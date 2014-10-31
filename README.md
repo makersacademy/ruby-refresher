@@ -16,7 +16,7 @@ $ rspec questions_spec.rb
 $ rspec questions_spec.rb --tag focus
 ~~~
 
-Also, don't spend the whole weekend on this. Try and do the bulk of them today, revisit it a bit this weekend if you want. Spend the weekend consolodating the stuff we've covered on Rails and JS, and carrying on with your yelp apps :smile:
+Also, don't spend the whole weekend on this. Try and do the bulk of them today, revisit it a bit this weekend if you want. Spend the weekend consolodating the stuff we've covered on JS and Node.js, and carrying on with your Node.js apps :smile:
 
 Good luck
 
