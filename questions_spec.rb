@@ -1,39 +1,34 @@
 require 'rspec'
 require_relative './questions'
 
-RSpec.configure do |config|
-  config.color = true
-  config.formatter = :documentation
-end
-
 describe 'the Friday test :)' do
   
-  specify 'select_elements_starting_with_a' do
+  fspecify 'select_elements_starting_with_a' do
     n = select_elements_starting_with_a ['bananas', 'apples', 'pears', 'avocados']
     expect(n).to eq ['apples', 'avocados']
   end
 
-  specify 'select_elements_starting_with_vowel' do
+  fspecify 'select_elements_starting_with_vowel' do
     n = select_elements_starting_with_vowel ['john', 'david', 'omar', 'fred', 'idris', 'angela']
     expect(n).to eq ['omar', 'idris', 'angela']
   end
 
-  specify 'remove_nils_from_array' do
+  fspecify 'remove_nils_from_array' do
     n = remove_nils_from_array ['a', 'b', nil, nil, false, 'c', nil]
     expect(n).to eq ['a', 'b', false, 'c']
   end
 
-  specify 'remove_nils_and_false_from_array' do
+  fspecify 'remove_nils_and_false_from_array' do
     n = remove_nils_and_false_from_array ['a', 'b', nil, nil, false, 'c', nil]
     expect(n).to eq ['a', 'b', 'c']
   end
 
-  specify 'reverse_every_element_in_array' do
+  fspecify 'reverse_every_element_in_array' do
     n = reverse_every_element_in_array ['dog', 'monkey', 'elephant']
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
 
-  specify 'every_possible_pairing_of_students' do
+  fspecify 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
 
