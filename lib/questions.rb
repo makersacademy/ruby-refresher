@@ -255,7 +255,16 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(value)
+  if value / 15 > 0
+    return "FizzBuzz"
+  elsif value / 5 > 0
+    return "Buzz"
+  elsif value / 3 > 0
+    return "Fizz"
+  else
+    return value
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
