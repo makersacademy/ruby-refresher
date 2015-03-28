@@ -288,7 +288,7 @@ def ninety_nine_bottles_of_beer
     puts "#{n} #{nouns[n]} of beer on the wall"
     puts "#{n} #{nouns[n]} of beer"
     puts 'take one down, pass it around'
-    puts "#{n - 1} #{nouns[n-1]} of beer on the wall\n\n" if n > 1
+    puts "#{n - 1} #{nouns[n - 1]} of beer on the wall\n\n" if n > 1
   end
   puts 'no bottles of beer on the wall'
 end
