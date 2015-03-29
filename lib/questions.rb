@@ -222,24 +222,34 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+   /\W/.match(string) == nil ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.to_a.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.to_s.match(/[[:punct:]]{3}/) == nil ? false : true
 end
 
 # get the square root of a number
 def square_root_of(number)
+  number**0.5
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  word_count = 0
+  file = File.open(file_path, "r")
+  file.each {|line|
+  word_count += line.split.length
+}
+word_count
 end
 
 # --- tougher ones ---
