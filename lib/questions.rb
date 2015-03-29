@@ -76,6 +76,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.select { |elem| elem == elem.reverse }.length
 end
 
 # return the shortest word in an array
@@ -131,7 +132,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.slice.sort!
+  array.map { |word| word.each_char.sort }.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -145,6 +146,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -190,6 +192,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string =~ (/\W/) ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -221,6 +224,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  self.str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -234,6 +238,9 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  year = 31536000
+  birthday += year until birthday.friday?
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
