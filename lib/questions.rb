@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by! {|letter| letter[-1]}
+  array.sort_by! { |letter| letter[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -92,7 +92,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject{ |sum, a| sum + a }
+  array.inject { |sum, a| sum + a }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -185,7 +185,6 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
 end
 
 # return true if a string contains any special characters
@@ -210,7 +209,6 @@ end
 # get the square root of a number
 def square_root_of(number)
   Math.sqrt(number)
-
 end
 
 # count the number of words in a file
@@ -268,10 +266,9 @@ def ninety_nine_bottles_of_beer
 
   while bottles > 2
     puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer,"
-    bottles = bottles -1
+    bottles = bottles - 1
     puts "Take one down, pass it around, #{bottles} bottles of beer on the wall."
   end
-
     puts "2 Bottles of Beer on the wall, 2 bottles of beer,"
     puts "Take one down, pass it around, 1 bottle of beer on the wall."
     puts "1 bottle of beer on the wall, 1 bottle of beer,"
