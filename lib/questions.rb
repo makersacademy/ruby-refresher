@@ -237,6 +237,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  years = [2015,2016,2017,2018,2019,2020,2021]
 
 end
 
@@ -246,7 +247,10 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  file = File.foreach('data/lorem.txt').map { |line| line.split(' ') }.flatten
+  words = File.foreach('data/lorem.txt').map { |line| line.split(' ') }.flatten.map{|word|word.chars.reject{|letter|letter=='.'|| letter==','}.join}
+  hash = {}
+  ((shortest_word_in_array(words).length)..(longest_word_in_array(words).length)).each{|numb| hash[numb] = words.select{|e| e.length==numb}.count }
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
