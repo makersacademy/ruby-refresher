@@ -264,13 +264,14 @@ end
 def ninety_nine_bottles_of_beer
   bottles = 99
 
-  while bottles > 2
-    puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer,"
-    bottles = bottles - 1
-    puts "Take one down, pass it around, #{bottles} bottles of beer on the wall."
-  end
-    puts "2 Bottles of Beer on the wall, 2 bottles of beer,"
-    puts "Take one down, pass it around, 1 bottle of beer on the wall."
-    puts "1 bottle of beer on the wall, 1 bottle of beer,"
-    puts "Take it down, pass it around, no more bottles of beer on the wall!"
+    while bottles > 2
+      puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer,"
+      bottles = bottles - 1
+      puts "Take one down, pass it around, #{bottles} bottles of beer on the wall."
+    end
+
+      puts "2 Bottles of Beer on the wall, 2 bottles of beer,"
+      puts "Take one down, pass it around, 1 bottle of beer on the wall."
+      puts "1 bottle of beer on the wall, 1 bottle of beer,"
+      puts "Take it down, pass it around, no more bottles of beer on the wall!"
 end
