@@ -1,7 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.keep_if {|array| array =~ /\A[a]/}
-
 end
 
 # keep only the elements that start with a vowel
@@ -17,7 +16,7 @@ end
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   array.compact!
-  array.reject {|array| array =~ /false/}
+  array.reject {|array| array == false}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -58,14 +57,11 @@ end
 def get_first_half_of_string(string)
   letters = string.length/2
   if string.length.odd?
-    letters+1
+    string[0..letters]
   else
-    letters
+    string[0..letters-1]
   end
-  string[0..letters]
 end
-#Works in IRB but can't figure out why it doesn't work in here...!!
-
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
@@ -81,7 +77,6 @@ def separate_array_into_even_and_odd_numbers(array)
   a = []
   a << array.select {|array| array.even?}
   a << array.select {|array| array.odd?}
-
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -89,8 +84,8 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  new = array.push((array.map{|array| array.reverse}).join(', '))
-
+  new = array.push(array.map{|array| array.reverse}).flatten
+  new.length - new.uniq.length
 end
 
 # return the shortest word in an array
@@ -116,6 +111,8 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  new = []
+  (array.map{|array| new << array})[0..1].flatten
 end
 
 # convert a symbol into a string
@@ -166,6 +163,8 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.chars.keep_if{|letter| letter == letter.downcase}.join('')
+
 end
 
 # round up a float up and convert it to an Integer,
@@ -197,13 +196,18 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string = string.split.map{|word| word.capitalize}
+  new = string[0]
+  other = string[1..string.length].join(' ').gsub("The","the").gsub("And", "and").gsub("A","a")
+  new+" "+other
+
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-
+  string.chars.include?(/^[a-zA-Z0-9]/)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -218,6 +222,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
@@ -266,4 +271,18 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+#   number = 100
+#   while number >= 0
+#     number -= 1
+#     print "#{number} bottles of beer on the wall, #{number} bottles of beer. Take one down and pass it around, #{number-1} bottles of beer on the wall."
+#     if number = 2
+#       print "#{number} bottles of beer on the wall, #{number} bottles of beer. Take one down and pass it around, #{number-1} bottle of beer on the wall."
+#     elsif number = 1
+#       print "#{number} bottle of beer on the wall, #{number} bottle of beer. Take one down and pass it around, no more bottles of beer on the wall."
+#     elsif number = 0
+#       print "No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall."
+#     else
+#     break
+#   end
+# end
 end
