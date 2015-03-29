@@ -157,7 +157,7 @@ describe 'the Friday test :)' do
   end
 
   it 'get_domain_name_from_email_address' do
-    n = get_domain_name_from_email_address 'alex@makersacademy.com'
+    n = get_domain_name_from_email_address 'alex.smith@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
 
