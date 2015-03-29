@@ -1,10 +1,10 @@
 ##Ruby Refresher
 
-###To get files:
+###How to run Ruby Refresher:
 `git clone https://github.com/c-christenson/ruby-refresher.git`
 `cd ruby-refresher`
 
-###To run the tests:
+###How to run tests:
 
 `rspec spec/questions_spec.rb`
 
