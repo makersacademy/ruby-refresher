@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-array.select{|element|element.start_with?('a','e','i','o','u')}
+  array.select{|element|element.start_with?('a','e','i','o','u')}
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -222,7 +222,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-   raise NameError if str_method == 'foobar'
+  raise NameError if str_method == 'foobar'
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -237,8 +237,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  years = [2015,2016,2017,2018,2019,2020,2021]
-
+  birthday += 31536000 until birthday.friday?
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
