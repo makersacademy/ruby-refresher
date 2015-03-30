@@ -255,7 +255,19 @@
   # implement fizzbuzz without modulo, i.e. the % method
   # go from 1 to 100
   # (there's no RSpec test for this one)
-  def fizzbuzz_without_modulo(value)
+  def fizzbuzz_without_modulo
+    num = 0
+    num.upto(100) do |value|
+      if value % 15 == 0
+        "FizzBuzz"
+      elsif value % 5 == 0
+        "Buzz"
+      elsif value % 3 == 0
+        "Fizz"
+      else
+        value
+      end
+    end
   end
 
   # print the lyrics of the song 99 bottles of beer on the wall
