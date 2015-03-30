@@ -48,20 +48,22 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort! {|a,b| a.byteslice(a.length-1) <=> b.byteslice(b.length-1)}
+  array.sort! do |a, b|
+    a.byteslice(a.length - 1) <=> b.byteslice(b.length - 1)
+  end
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string.slice(0..(string.length-1)/2)
+  string.slice(0..(string.length - 1) / 2)
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number > 0 ? number*-1 : number
+  number > 0 ? number * -1 : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of 
@@ -86,12 +88,12 @@ def number_of_elements_that_are_palindromes(array)
   array.each do |word|
     word == word.split(//).reverse.join ? counter += 1 : counter
   end
-  return counter
+  counter
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort! {|a,b| a.length <=> b.length}
+  array.sort! { |a, b| a.length <=> b.length }
   array.shift
 end
 
@@ -198,7 +200,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  email.gsub(/.+@([^.]+).+/,'\1')
+  email.gsub(/.+@([^.]+).+/, '\1')
 end
 
 # capitalize the first letter in each word of a string, 
@@ -222,7 +224,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-   /\W/.match(string) == nil ? false : true
+  /\W/.match(string) == nil ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -246,10 +248,10 @@ end
 def word_count_a_file(file_path)
   word_count = 0
   file = File.open(file_path, "r")
-  file.each {|line|
-  word_count += line.split.length
-}
-word_count
+  file.each do |line|
+    word_count += line.split.length
+  end
+  word_count
 end
 
 # --- tougher ones ---
@@ -258,12 +260,20 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method()
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  require 'time'
+  bank_holidays = ["2014-12-26", "2014-12-25", "2014-08-25", "2014-05-26", "2014-05-05", "2014-04-21", "2014-04-18", "2014-01-01"]
+  bank_holiday = false
+  bank_holidays.each do |day|
+    Time.parse(day) === date ? bank_holiday = true : bank_holiday
+  end
+  bank_holiday
 end
 
 # given your birthday this year, this method tells you
@@ -271,6 +281,11 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  require 'time'
+  while birthday.friday? == false
+    birthday += (60*60*24*365)
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -279,6 +294,20 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  hash = {}
+  file = File.open(file_path, "r")
+  file.each do |line|
+    words = line.split
+    words.each do |word| 
+      word.gsub!(/[[:punct:]]/, "")
+      if hash[word.length]
+        hash[word.length] += 1
+      else 
+        hash[word.length] = 1
+      end
+    end
+  end
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
