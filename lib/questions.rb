@@ -29,7 +29,6 @@
   # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   # make sure you don't have the same pairing twice,
   def every_possible_pairing_of_students(array)
-
   end
 
   # discard the first 3 elements of an array,
@@ -54,7 +53,7 @@
   # 'banana' becomes 'ban'. If the string is an odd number of letters
   # round up - so 'apple' becomes 'app'
   def get_first_half_of_string(string)
-    string[0, (string.length/2.to_f).ceil]
+    string[0, (string.length / 2.to_f).ceil]
   end
 
   # turn a positive integer into a negative integer. A negative integer
@@ -103,8 +102,8 @@
   # turn an array into itself repeated twice. So [1, 2, 3]
   # becomes [1, 2, 3, 1, 2, 3]
   def double_array(array)
-  arr = array
-  arr.each {|num| array << num}
+    arr = array
+    arr.each {|num| array << num}
   end
 
   # convert a symbol into a string
@@ -256,18 +255,18 @@
   # go from 1 to 100
   # (there's no RSpec test for this one)
   def fizzbuzz_without_modulo
-    num = 0
-    num.upto(100) do |value|
-      if value % 15 == 0
-        "FizzBuzz"
-      elsif value % 5 == 0
-        "Buzz"
-      elsif value % 3 == 0
-        "Fizz"
-      else
-        value
-      end
-    end
+    # num = 0
+    # num.upto(100) do |value|
+    #   if value % 15 == 0
+    #     "FizzBuzz"
+    #   elsif value % 5 == 0
+    #     "Buzz"
+    #   elsif value % 3 == 0
+    #     "Fizz"
+    #   else
+    #     value
+    #   end
+    # end
   end
 
   # print the lyrics of the song 99 bottles of beer on the wall
