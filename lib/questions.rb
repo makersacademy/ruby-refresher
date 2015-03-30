@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |word| word.byteslice(0) == "a"}
+  array.select { |word| word.byteslice(0) == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select do |word| 
+  array.select do |word|
     /[aeiou]/.match(word.byteslice(0))
   end
 end
@@ -17,24 +17,24 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select {|item| item.class == String}
+  array.select { |item| item.class == String }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map! {|word| word.split(//).reverse!.join}
+  array.map! { |word| word.split(//).reverse!.join }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
 # give every possible pairing - in this case:
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
-# make sure you don't have the same pairing twice, 
+# make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
   array.combination(2).to_a
 end
 
-# discard the first 3 elements of an array, 
+# discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
   array.drop(3)
@@ -66,7 +66,7 @@ def make_numbers_negative(number)
   number > 0 ? number * -1 : number
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of 
+# turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
@@ -74,7 +74,7 @@ def separate_array_into_even_and_odd_numbers(array)
   even = []
   uneven = []
   array.each do |n|
-    n.even? ? even << n : uneven << n 
+    n.even? ? even << n : uneven << n
   end
   array = [even, uneven]
 end
@@ -99,7 +99,7 @@ end
 
 # return the longest word in an array
 def longest_word_in_array(array)
-  array.sort! {|a,b| a.length <=> b.length}
+  array.sort! { |a, b| a.length <=> b.length }
   array.pop
 end
 
@@ -124,7 +124,7 @@ end
 # so [10, 15, 25] should return 17
 def average_of_array(array)
   length = array.length.to_f
-  average = array.inject(:+)/length
+  average = array.inject(:+) / length
   average.round
 end
 
@@ -134,9 +134,7 @@ end
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
   new_array = []
-  while array.first <=5
-    new_array << array.shift
-  end
+  new_array << array.shift while array.first <= 5
   new_array
 end
 
@@ -153,7 +151,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map! {|word| word.split(//) }
+  array.map! { |word| word.split(//) }
   array.flatten.sort
 end
 
@@ -175,7 +173,7 @@ end
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
   new_string = string.split(//)
-  new_string.reject! {|item| item.match(/[[:upper:]]/)}
+  new_string.reject! { |item| item.match(/[[:upper:]]/) }
   new_string.join
 end
 
@@ -194,7 +192,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  date.mday.to_s + "/" + date.mon.to_s + "/" +date.year.to_s
+  date.mday.to_s + "/" + date.mon.to_s + "/" + date.year.to_s
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -203,7 +201,7 @@ def get_domain_name_from_email_address(email)
   email.gsub(/.+@([^.]+).+/, '\1')
 end
 
-# capitalize the first letter in each word of a string, 
+# capitalize the first letter in each word of a string,
 #  except 'a', 'and' and 'the'
 # *unless* they come at the start of the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
@@ -215,7 +213,7 @@ def titleize_a_string(string)
       word.capitalize!
     elsif word.length <= 3 && index == 0
       word.capitalize!
-    end 
+    end
   end
   string = words.join(" ")
 end
@@ -224,7 +222,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  /\W/.match(string) == nil ? false : true
+  /\W/.match(string).nil? ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -233,10 +231,10 @@ def get_upper_limit_of(range)
   range.to_a.last
 end
 
-# should return true for a 3 dot range like 1...20, false for a 
+# should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
-def is_a_3_dot_range?(range)
-  range.to_s.match(/[[:punct:]]{3}/) == nil ? false : true
+def a_3_dot_range?(range)
+  range.to_s.match(/[[:punct:]]{3}/).nil? ? false : true
 end
 
 # get the square root of a number
@@ -266,12 +264,15 @@ end
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
-def is_a_2014_bank_holiday?(date)
+def a_2014_bank_holiday?(date)
   require 'time'
-  bank_holidays = ["2014-12-26", "2014-12-25", "2014-08-25", "2014-05-26", "2014-05-05", "2014-04-21", "2014-04-18", "2014-01-01"]
+  bank_holidays =
+    ["2014-12-26", "2014-12-25", "2014-08-25",
+     "2014-05-26", "2014-05-05", "2014-04-21",
+     "2014-04-18", "2014-01-01"]
   bank_holiday = false
   bank_holidays.each do |day|
-    Time.parse(day) === date ? bank_holiday = true : bank_holiday
+    Time.parse(day) == date ? bank_holiday = true : bank_holiday
   end
   bank_holiday
 end
@@ -282,9 +283,7 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   require 'time'
-  while birthday.friday? == false
-    birthday += (60*60*24*365)
-  end
+  birthday += (60 * 60 * 24 * 365) while birthday.friday? == false
   birthday.year
 end
 
@@ -298,13 +297,9 @@ def count_words_of_each_length_in_a_file(file_path)
   file = File.open(file_path, "r")
   file.each do |line|
     words = line.split
-    words.each do |word| 
+    words.each do |word|
       word.gsub!(/[[:punct:]]/, "")
-      if hash[word.length]
-        hash[word.length] += 1
-      else 
-        hash[word.length] = 1
-      end
+      hash[word.length] ? hash[word.length] += 1 : hash[word.length] = 1
     end
   end
   hash
@@ -318,7 +313,7 @@ end
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of 
+# make sure you use the singular when you have one bottle of
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
