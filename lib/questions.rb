@@ -5,7 +5,7 @@
 
   # keep only the elements that start with a vowel
   def select_elements_starting_with_vowel(array)
-    array.keep_if {|arr| arr.start_with?'a'}
+    array.select { |word| word[0] =~ /[aeiou]/ }
   end
 
   # remove instances of nil (but NOT false) from an array
@@ -29,6 +29,7 @@
   # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   # make sure you don't have the same pairing twice,
   def every_possible_pairing_of_students(array)
+    array.combination(2)
   end
 
   # discard the first 3 elements of an array,
@@ -102,8 +103,7 @@
   # turn an array into itself repeated twice. So [1, 2, 3]
   # becomes [1, 2, 3, 1, 2, 3]
   def double_array(array)
-    arr = array
-    arr.each {|num| array << num}
+    array * 2
   end
 
   # convert a symbol into a string
@@ -124,6 +124,7 @@
   # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
   # becomes [1, 3, 5, 4, 1, 2]
   def get_elements_until_greater_than_five(array)
+    array.take_while {|x| x < 6}
   end
 
   # turn an array (with an even number of elements) into a hash, by
@@ -176,6 +177,7 @@
   # take a date and format it like dd/mm/yyyy, so Halloween 2013
   # becomes 31/10/2013
   def format_date_nicely(date)
+    date.strftime("%d/%m/%Y")
   end
 
   # get the domain name *without* the .com part, from an email address
@@ -211,6 +213,7 @@
   # should return true for a 3 dot range like 1...20, false for a
   # normal 2 dot range
   def is_a_3_dot_range?(range)
+    range.exclude_end?
   end
 
   # get the square root of a number
