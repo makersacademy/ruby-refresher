@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |w| w.start_with? 'a' }
+  array.select { |word| word.start_with? 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |w| w =~ /\A[aeiou]/i }
+  array.select { |word| word =~ /\A[aeiou]/i }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by { |w| w[-1] }
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -76,7 +76,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select { |w| w == w.reverse }.size
+  array.select { |word| word == word.reverse }.size
 end
 
 # return the shortest word in an array
@@ -117,7 +117,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while { |n| n <= 5 }
+  array.take_while { |number| number <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -185,8 +185,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split.inject([]) do |words, w|
-    words << (%w(a and the).include?(w) && words.any? ? w : w.capitalize)
+  string.split.inject([]) do |words, word|
+    words << (%w(a and the).include?(word) && words.any? ? word : word.capitalize)
   end.join(' ')
 end
 
@@ -194,7 +194,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !!(string =~ /\W/)
+  !!(string =~ /\W/) # don't do this
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -253,24 +253,21 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  words, count = IO.read(file_path).scan(/\w+/), Hash.new(0)
-  words.each { |w| count[w.size] += 1 } and return count
+  words = IO.read(file_path).scan(/\w+/)
+  count = Hash.new(0)
+  words.each { |word| count[word.size] += 1 }
+  count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  1.upto(100) do |n|
-    str = ''
-    if (n / 3.0).round == (n / 3.0)
-      str << 'Fizz'
-    end
-
-    if (n / 5.0).round == (n / 5.0)
-      str << 'Buzz'
-    end
-    puts str.empty? ? n : str
+  1.upto(100) do |number|
+    result = ''
+    result << 'Fizz' if (number / 3.0).round == (number / 3.0)
+    result << 'Buzz' if (number / 5.0).round == (number / 5.0)
+    puts result.empty? ? number : result
   end
 end
 
@@ -292,3 +289,6 @@ def ninety_nine_bottles_of_beer
   end
   puts 'no bottles of beer on the wall'
 end
+
+fizzbuzz_without_modulo
+ninety_nine_bottles_of_beer
