@@ -1,3 +1,4 @@
+module questions
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select{|element| element[0] == 'a'}
@@ -245,4 +246,6 @@ def your_birthday_is_on_a_friday_in_the_year(birthday)
     birthday = Time.new(year, birthday.month, birthday.day)
   end
   year
+end
+
 end
