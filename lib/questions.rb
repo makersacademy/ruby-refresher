@@ -1,4 +1,4 @@
-module questions
+class Question
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select{|element| element[0] == 'a'}
@@ -218,8 +218,6 @@ def word_count_a_file(file_path)
   File.open(file_path, "r") {|file| file.each_line { |line| words = line.split(' ').each { |word| word_count += 1}}}
   word_count
 end
-
-# --- tougher ones ---
 
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
