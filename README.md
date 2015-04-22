@@ -1,7 +1,7 @@
 ## Friday test!
 
 ------------------------------
-#Post-challenge comments
+##Post-challenge comments
 A necessary refresher of Ruby after 3 weeks of Javascript. It took me a few minutes to get my brain back into Ruby-mode but after that I flew through the questions, setting myself the additional challenge of one-line answers to each one to keep things interesting :)
 
 
