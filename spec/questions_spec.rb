@@ -96,7 +96,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 25
   end
 
-  it 'double_array' do
+  fit 'double_array' do
     n = double_array [1, 2, 3]
     expect(n).to eq [1, 2, 3, 1, 2, 3]
   end
@@ -111,7 +111,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 17
   end
 
-  it 'get_elements_until_greater_than_five' do
+  fit 'get_elements_until_greater_than_five' do
     n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
@@ -126,17 +126,17 @@ describe 'the Friday test :)' do
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
 
-  it 'swap_keys_and_values_in_a_hash' do
+  fit 'swap_keys_and_values_in_a_hash' do
     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-  it 'add_together_keys_and_values' do
+  fit 'add_together_keys_and_values' do
     n = add_together_keys_and_values({1 => 1, 2 => 2})
     expect(n).to eq 6
   end
 
-  it 'remove_capital_letters_from_string' do
+  fit 'remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
@@ -161,7 +161,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  it 'titleize_a_string' do
+  fit 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
@@ -179,7 +179,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 20
   end
 
-  it 'is_a_3_dot_range?' do
+  fit 'is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 

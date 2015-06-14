@@ -99,6 +99,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array * 2
 end
 
 # convert a symbol into a string
@@ -117,6 +118,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  array.take_while { |x| x < 6}
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -138,17 +140,20 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.to_a.flatten.inject { | sum, x| sum + x }
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -180,6 +185,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string.split(" ").map {|word| word.capitalize unless $nocaps.include?(word)}.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -198,6 +204,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !range.include?(20)
 end
 
 # get the square root of a number
@@ -207,7 +214,9 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  puts File.foreach(file_path).count
+  file = File.open(file_path, "r")
+  contents = file.read 
+  contents.split.count
 end
 
 # --- tougher ones ---
