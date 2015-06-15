@@ -202,8 +202,7 @@ end
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
-def check_a_string_for_special_characters(string)
-
+def check_a_string_for_special_characters(_string)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -224,8 +223,7 @@ def square_root_of(number)
 end
 
 # count the number of words in a file
-def word_count_a_file(file_path)
-  
+def word_count_a_file(_file_path)
 end
 
 # --- tougher ones ---
