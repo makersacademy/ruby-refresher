@@ -169,11 +169,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.rpartition("@")[2].rpartition(".com")[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -190,24 +192,29 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string.delete("a-zA-Z0-9").length>0
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max()
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.new(file_path).read.split.count
 end
 
 # --- tougher ones ---
@@ -216,12 +223,14 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  call(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  [Time.parse('1/1/2014'),Time.parse('18/4/2014'),Time.parse('21/4/2014'),Time.parse('5/5/2014'),Time.parse('26/5/2014'),Time.parse('25/8/2014'),Time.parse('25/12/2014'),Time.parse('26/12/2014')].any?{|e|e==date}
 end
 
 # given your birthday this year, this method tells you
@@ -229,6 +238,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  birthday.friday? ? (return birthday.year) : your_birthday_is_on_a_friday_in_the_year(Time.parse("#{birthday.day}/#{birthday.month}/#{birthday.year + 1}"))
 end
 
 # in a file, total the number of times words of different lengths
