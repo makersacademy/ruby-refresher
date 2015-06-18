@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{|element| element[0]=='a'}
+  array.select { |element| element[0] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{|element| ["a","e","i","o","u"].include?(element[0])}
+  array.select { |element| %w(a e i o u).include?(element[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.reject{|element| element==nil}
+  array.reject(&:nil?)
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject{|element| element==nil||element==false}
+  array.reject { |element| element.nil? || element == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map{|element|element.reverse}
+  array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,14 +46,14 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.map{|element|element.reverse}.sort.map{|element|element.reverse}
+  array.map(&:reverse).sort.map(&:reverse)
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0..((string.length/2) + string.length%2 - 1)]
+  string[0..((string.length / 2) + string.length % 2 - 1)]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  return [array.reject{|e|e%2==1},array.reject{|e|e%2==0}]
+  [array.reject(&:odd?), array.reject(&:even?)]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -75,29 +75,29 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.inject(0){|accum, word| (word == word.reverse) ? accum+1 : accum}
+  array.inject(0) { |accum, word| (word == word.reverse) ? accum + 1 : accum }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.inject{|accum, word| accum.length < word.length ? accum : word}
+  array.inject { |accum, word| accum.length < word.length ? accum : word }
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.inject{|accum, word| accum.length > word.length ? accum : word}
+  array.inject { |accum, word| accum.length > word.length ? accum : word }
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject{|accum, e| accum+e}
+  array.inject { |accum, e| accum + e }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array+array
+  array + array
 end
 
 # convert a symbol into a string
@@ -108,7 +108,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  ((array.inject(:+).to_f)/array.length).round.to_i
+  ((array.inject(:+).to_f) / array.length).round.to_i
 end
 
 # get all the elements in an array, up until the first element
@@ -116,14 +116,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.first(array.find_index{|x|x>5})
+  array.first(array.find_index { |x| x > 5 })
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  [array.reject.with_index{|e, i|i%2==1},array.reject.with_index{|e, i|i%2==0}].transpose.to_h
+  [array.reject.with_index { |_e, i| i.odd? }, array.reject.with_index { |_e, i| i.even? }].transpose.to_h
 end
 
 # get all the letters used in an array of words and return
@@ -185,20 +185,20 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   bob = string.split
-  return bob[0].capitalize + ' ' + bob[1..-1].map{|wordy| ["a","and","the"].include?(wordy) ? wordy : wordy.capitalize}.join(' ')
+  bob[0].capitalize + ' ' + bob[1..-1].map { |wordy| %w(a and the).include?(wordy) ? wordy : wordy.capitalize }.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.delete("a-zA-Z0-9").length>0
+  string.delete("a-zA-Z0-9").length > 0
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
-  range.max()
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
@@ -230,7 +230,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  [Time.parse('1/1/2014'),Time.parse('18/4/2014'),Time.parse('21/4/2014'),Time.parse('5/5/2014'),Time.parse('26/5/2014'),Time.parse('25/8/2014'),Time.parse('25/12/2014'),Time.parse('26/12/2014')].any?{|e|e==date}
+  [Time.parse('1/1/2014'), Time.parse('18/4/2014'), Time.parse('21/4/2014'), Time.parse('5/5/2014'), Time.parse('26/5/2014'), Time.parse('25/8/2014'), Time.parse('25/12/2014'), Time.parse('26/12/2014')].any? { |e| e == date }
 end
 
 # given your birthday this year, this method tells you
@@ -247,7 +247,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  File.new(file_path).read.split(/\W+/).inject({}){|accum, word| accum.has_key?(word.length) ? accum.merge({ word.length => accum[word.length]+1 }) : accum.merge({ word.length => 1}) }
+  File.new(file_path).read.split(/\W+/).inject({}) { |accum, word| accum.key?(word.length) ? accum.merge(word.length => accum[word.length] + 1) : accum.merge(word.length => 1) }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
