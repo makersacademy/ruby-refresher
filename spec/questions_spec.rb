@@ -141,7 +141,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'ello ohnoe'
   end
 
-  it 'round_up_number' do
+  fit 'round_up_number' do
     n = round_up_number 3.142
     expect(n).to eq 4
   end
