@@ -85,7 +85,7 @@ end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max { | word1, word2 | word1.length <=> word2.length }
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -116,6 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  array.take_while { |num| num <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
