@@ -69,7 +69,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [array.select(&:even?) , array.select(&:odd?)]
+  [array.select(&:even?), array.select(&:odd?)]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -93,7 +93,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(&:+)
+  array.inject &:+
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -110,7 +110,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(&:+).to_f / array.length).round(0)
+  (array.inject(&:+).to_f / array.length).round 0
 end
 
 # get all the elements in an array, up until the first element
@@ -138,7 +138,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  return array.inject(&:+).chars.sort
+  array.inject(&:+).chars.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -152,13 +152,13 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  return (hash.keys + hash.values).inject(&:+)
+  (hash.keys + hash.values).inject &:+
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub(/[A-Z]/,"")
+  string.gsub /[A-Z]/, ""
 end
 
 # round up a float up and convert it to an Integer,
@@ -176,7 +176,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  Date.parse(date.to_s).strftime("%d/%m/%Y")
+  Date.parse(date.to_s).strftime "%d/%m/%Y"
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -197,14 +197,14 @@ def titleize_a_string(string)
     else
       word
     end
-  end.join(" ")
+  end.join " "
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !!string.match(/[\W_]/)
+  !!(string.match /[\W_]/)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -221,13 +221,12 @@ end
 
 # get the square root of a number
 def square_root_of(number)
-  Math::sqrt(number)
+  Math::sqrt number
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  file = File.open(file_path, "rb")
-  file.read.split.size
+  File.read(file_path).split.size
 end
 
 # --- tougher ones ---
