@@ -55,7 +55,7 @@ describe 'the Friday test :)' do
     expect(n).to eq ['puma', 'maker', 'sky']
   end
 
-  it 'get_first_half_of_string' do
+  fit 'get_first_half_of_string' do
     a = get_first_half_of_string 'banana'
     b = get_first_half_of_string 'apple'
 
@@ -63,7 +63,7 @@ describe 'the Friday test :)' do
     expect(b).to eq 'app'
   end
 
-  it 'make_numbers_negative' do
+  fit 'make_numbers_negative' do
     a = make_numbers_negative 5
     b = make_numbers_negative -7
 
@@ -76,32 +76,32 @@ describe 'the Friday test :)' do
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
 
-  it 'number_of_elements_that_are_palindromes' do
+  fit 'number_of_elements_that_are_palindromes' do
     n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
     expect(n).to eq 3
   end
 
-  it 'shortest_word_in_array' do
+  fit 'shortest_word_in_array' do
     n = shortest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'a'
   end
 
-  it 'longest_word_in_array' do
+  fit 'longest_word_in_array' do
     n = longest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'different'
   end
 
-  it 'total_of_array' do
+  fit 'total_of_array' do
     n = total_of_array [1, 3, 5, 6, 2, 8]
     expect(n).to eq 25
   end
 
-  it 'double_array' do
+  fit 'double_array' do
     n = double_array [1, 2, 3]
     expect(n).to eq [1, 2, 3, 1, 2, 3]
   end
 
-  it 'turn_symbol_into_string' do
+  fit 'turn_symbol_into_string' do
     n = turn_symbol_into_string :foobar
     expect(n).to eq 'foobar'
   end
