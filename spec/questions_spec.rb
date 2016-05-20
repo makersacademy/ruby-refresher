@@ -71,7 +71,7 @@ describe 'the Friday test :)' do
     expect(b).to eq -7
   end
 
-  it 'separate_array_into_even_and_odd_numbers' do
+  fit 'separate_array_into_even_and_odd_numbers' do
     n = separate_array_into_even_and_odd_numbers [1, 2, 3, 4, 5, 6, 7]
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
@@ -106,12 +106,12 @@ describe 'the Friday test :)' do
     expect(n).to eq 'foobar'
   end
 
-  it 'average_of_array' do
+  fit 'average_of_array' do
     n = average_of_array [10, 15, 25]
     expect(n).to eq 17
   end
 
-  it 'get_elements_until_greater_than_five' do
+  fit 'get_elements_until_greater_than_five' do
     n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
@@ -174,12 +174,12 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  it 'get_upper_limit_of' do
+  fit 'get_upper_limit_of' do
     n = get_upper_limit_of 1..20
     expect(n).to eq 20
   end
 
-  it 'is_a_3_dot_range?' do
+  fit 'is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 
@@ -187,14 +187,14 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  it 'square_root_of' do
+  fit 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
     expect(b).to eq 1.7320508075688772
   end
 
-  it 'word_count_a_file' do
+  fit 'word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end

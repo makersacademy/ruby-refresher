@@ -67,7 +67,9 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-
+  odds = array.select {|n| n.odd? }
+  evens = array.select {|n| n.even? }
+  [evens, odds]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -108,6 +110,8 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  average_float = array.inject(){|sum, n| sum + n }.to_f / array.size
+  average_float.round
 end
 
 # get all the elements in an array, up until the first element
@@ -115,7 +119,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  array.take_while { |n| n <=5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -144,7 +148,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.to_a.flatten.inject(0){|sum,n| sum + n }
+  hash.to_a.flatten.inject{|sum,n| sum + n }
 end
 
 # take out all the capital letters from a string
@@ -183,31 +187,37 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
+  string.split.map{|n| n.capitalize }.join(" ")
 end
+
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string.chars.any?{|char| /a-zA-Z0-9/.contains  }
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  number ** 0.5
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.read(file_path).to_s.split(" ").length
 end
 
 # --- tougher ones ---
