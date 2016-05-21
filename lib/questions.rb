@@ -305,6 +305,6 @@ def take_one(int)
   if int > 0
     "Take one down and pass it around, #{bottles(int-1)} on the wall."
   else
-  "Go to the store and buy some more, #{bottles(99)} on the wall."
+    "Go to the store and buy some more, #{bottles(99)} on the wall."
   end
 end
