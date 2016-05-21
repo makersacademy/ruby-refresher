@@ -187,7 +187,11 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split.map{|n| n.capitalize }.join(" ")
+  string.capitalize.split.map{|n| capitalize_string(n)}.join(" ")
+end
+
+def capitalize_string(word)
+  ["and", "the", "a"].include?(word) ? word : word.capitalize
 end
 
 
@@ -195,7 +199,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.chars.any?{|char| /a-zA-Z0-9/.contains  }
+  string.chars.any?{|char| char =~ /[^a-zA-Z0-9]/ }
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -226,12 +230,19 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = [Time.new(2014, 1, 1),Time.new(2014, 4, 18),
+                   Time.new(2014, 4, 21),Time.new(2014, 5, 5),
+                   Time.new(2014, 5, 26),Time.new(2014, 8, 25),
+                   Time.new(2014, 12, 25),Time.new(2014, 12, 26)]
+  bank_holidays.map!{|date| date.to_i}
+  bank_holidays.include?(date.to_i)
 end
 
 # given your birthday this year, this method tells you
@@ -239,6 +250,9 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  (birthday.year..birthday.year+15).each do
+    |year| return year if Time.new(year, birthday.month, birthday.day).friday?
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -247,6 +261,11 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_string = File.read(file_path).to_s.gsub(/[^a-zA-Z\s]/, "")
+  word_array = word_string.split(" ").sort{|word1, word2| word1.length <=> word2.length}
+  hash = Hash.new(0)
+  word_array.each {|word| hash[word.length] += 1 }
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
