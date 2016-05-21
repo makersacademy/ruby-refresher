@@ -250,8 +250,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  (birthday.year..birthday.year+15).each do
-    |year| return year if Time.new(year, birthday.month, birthday.day).friday?
+  (birthday.year..birthday.year+15).each do |year|
+    return year if Time.new(year, birthday.month, birthday.day).friday?
   end
 end
 
@@ -272,6 +272,17 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |int|
+    if (int/15.0) == (int/15.0).round
+      puts "fizzbuzz"
+    elsif (int/3.0) == (int/3.0).round
+      puts "fizz"
+    elsif (int/5.0) == (int/5.0).round
+      puts "buzz"
+    else
+      puts int
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -281,4 +292,19 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+	5.downto(0) do |int|
+		puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n#{take_one(int)}"
+	end
+end
+
+def bottles(int)
+	int == 1 ? "1 bottle of beer" : int == 0 ? "no more bottles of beer" : "#{int} bottles of beer"
+end
+
+def take_one(int)
+  if int > 0
+    "Take one down and pass it around, #{bottles(int-1)} on the wall."
+  else
+  "Go to the store and buy some more, 99 bottles of beer on the wall."
+  end
 end
