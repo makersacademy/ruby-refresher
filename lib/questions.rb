@@ -292,7 +292,7 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-	5.downto(0) do |int|
+	99.downto(0) do |int|
 		puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n#{take_one(int)}"
 	end
 end
@@ -305,6 +305,6 @@ def take_one(int)
   if int > 0
     "Take one down and pass it around, #{bottles(int-1)} on the wall."
   else
-  "Go to the store and buy some more, 99 bottles of beer on the wall."
+  "Go to the store and buy some more, #{bottles(99)} on the wall."
   end
 end
