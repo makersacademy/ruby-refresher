@@ -1,9 +1,19 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+	array1 = []
+	array.each do |elm|
+		array1 << elm if elm.index('a') == 0
+	end
+	array1
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+	array1 = []
+	array.each do |elm|
+		array1 << elm if elm.index(/[aeiou]/) == 0
+	end
+	array1
 end
 
 # remove instances of nil (but NOT false) from an array
