@@ -209,14 +209,14 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
 	string.capitalize! 
-    words_no_cap = ["and","the", "a"]
-    phrase = string.split(" ").map {|word| 
-        if words_no_cap.include?(word) 
-            word
-        else
-            word.capitalize
-        end
-    }.join(" ") 
+  words_no_cap = ["and","the", "a"]
+  phrase = string.split(" ").map {|word| 
+    if words_no_cap.include?(word) 
+      word
+    else
+      word.capitalize
+    end
+  }.join(" ") 
   phrase
 end
 
