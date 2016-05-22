@@ -53,7 +53,8 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0...(string.length/2.to_f).ceil]
+  half = string.length / 2.to_f
+  string[0...half.ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -77,23 +78,23 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.count { |n| n==n.reverse}
+  array.count { |n| n == n.reverse }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort { |m,n| m.length <=> n.length }.first
+  array.sort { |m, n| m.length <=> n.length }.first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort { |m,n| n.length <=> m.length }.first
+  array.sort { |m, n| n.length <=> m.length }.first
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(0) { |sum,n| sum + n }
+  array.inject(0) { |sum, n| sum + n }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -110,7 +111,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  average_float = array.inject() { |sum, n| sum + n }.to_f / array.size
+  average_float = array.inject { |sum, n| sum + n }.to_f / array.size
   average_float.round
 end
 
@@ -119,7 +120,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while { |n| n <=5 }
+  array.take_while { |n| n <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -148,7 +149,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.to_a.flatten.inject { |sum,n| sum + n }
+  hash.to_a.flatten.inject { |sum, n| sum + n }
 end
 
 # take out all the capital letters from a string
@@ -194,7 +195,6 @@ def capitalize_string(word)
   %w[and the a].include?(word) ? word : word.capitalize
 end
 
-
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
@@ -216,7 +216,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
-  number ** 0.5
+  number**0.5
 end
 
 # count the number of words in a file
@@ -237,10 +237,10 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_holidays = [Time.new(2014, 1, 1),Time.new(2014, 4, 18),
-                   Time.new(2014, 4, 21),Time.new(2014, 5, 5),
-                   Time.new(2014, 5, 26),Time.new(2014, 8, 25),
-                   Time.new(2014, 12, 25),Time.new(2014, 12, 26)]
+  bank_holidays = [Time.new(2014, 1, 1), Time.new(2014, 4, 18),
+                   Time.new(2014, 4, 21), Time.new(2014, 5, 5),
+                   Time.new(2014, 5, 26), Time.new(2014, 8, 25),
+                   Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
   bank_holidays.map! { |date| date.to_i }
   bank_holidays.include?(date.to_i)
 end
@@ -250,7 +250,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  (birthday.year..birthday.year+15).each do |year|
+  (birthday.year..birthday.year + 15).each do |year|
     return year if Time.new(year, birthday.month, birthday.day).friday?
   end
 end
@@ -298,7 +298,13 @@ def ninety_nine_bottles_of_beer
 end
 
 def bottles(int)
-  int == 1 ? "1 bottle of beer" : int == 0 ? "no more bottles of beer" : "#{int} bottles of beer"
+  if int == 1
+    "1 bottle of beer"
+  elsif int == 0
+    "no more bottles of beer"
+  else
+    "#{int} bottles of beer"
+  end
 end
 
 def take_one(int)
