@@ -241,7 +241,7 @@ def is_a_2014_bank_holiday?(date)
                    Time.new(2014, 4, 21), Time.new(2014, 5, 5),
                    Time.new(2014, 5, 26), Time.new(2014, 8, 25),
                    Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
-  bank_holidays.map! { |date| date.to_i }
+  bank_holidays.map!(&:to_i)
   bank_holidays.include?(date.to_i)
 end
 
@@ -261,11 +261,19 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  word_string = File.read(file_path).to_s.gsub(/[^a-zA-Z\s]/, "")
-  word_array = word_string.split(" ").sort{|word1, word2| word1.length <=> word2.length}
   hash = Hash.new(0)
-  word_array.each { |word| hash[word.length] += 1 }
+  word_array(file_path).each { |word| hash[word.length] += 1 }
   hash
+end
+
+def word_string(file_path)
+  File.read(file_path).to_s.gsub(/[^a-zA-Z\s]/, "")
+end
+
+def word_array(file_path)
+  word_string(file_path).split(" ").sort do |word1, word2|
+    word1.length <=> word2.length
+  end
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -293,7 +301,8 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   99.downto(0) do |int|
-    puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n#{take_one(int)}"
+    puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n\
+         #{take_one(int)}"
   end
 end
 
