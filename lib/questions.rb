@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select {|n| n[0] == "a"}
+  array.select { |n| n[0] == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select {|n| ["a", "e", "i", "o", "u"].include? n[0]}
+  array.select { |n| %w[a e i o u].include? n[0] }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select {|n| !n.nil?}
+  array.select { |n| !n.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if {|n| n.nil? || n == false}
+  array.delete_if { |n| n.nil? || n == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map! {|n| n.reverse}
+  array.map!(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort!{|m, n| m[-1] <=> n[-1]}
+  array.sort! { |m, n| m[-1] <=> n[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -67,8 +67,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  odds = array.select {|n| n.odd? }
-  evens = array.select {|n| n.even? }
+  odds = array.select(&:odd?)
+  evens = array.select(&:even?)
   [evens, odds]
 end
 
@@ -77,23 +77,23 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.count {|n| n==n.reverse}
+  array.count { |n| n==n.reverse}
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort{|m,n| m.length <=> n.length}.first
+  array.sort { |m,n| m.length <=> n.length }.first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort{|m,n| n.length <=> m.length}.first
+  array.sort { |m,n| n.length <=> m.length }.first
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(0){|sum,n| sum + n }
+  array.inject(0) { |sum,n| sum + n }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -110,7 +110,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  average_float = array.inject(){|sum, n| sum + n }.to_f / array.size
+  average_float = array.inject() { |sum, n| sum + n }.to_f / array.size
   average_float.round
 end
 
@@ -148,7 +148,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.to_a.flatten.inject{|sum,n| sum + n }
+  hash.to_a.flatten.inject { |sum,n| sum + n }
 end
 
 # take out all the capital letters from a string
@@ -187,11 +187,11 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.map{|n| capitalize_string(n)}.join(" ")
+  string.capitalize.split.map { |n| capitalize_string(n) }.join(" ")
 end
 
 def capitalize_string(word)
-  ["and", "the", "a"].include?(word) ? word : word.capitalize
+  %w[and the a].include?(word) ? word : word.capitalize
 end
 
 
@@ -199,7 +199,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.chars.any?{|char| char =~ /[^a-zA-Z0-9]/ }
+  string.chars.any? { |char| char =~ /[^a-zA-Z0-9]/ }
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -241,7 +241,7 @@ def is_a_2014_bank_holiday?(date)
                    Time.new(2014, 4, 21),Time.new(2014, 5, 5),
                    Time.new(2014, 5, 26),Time.new(2014, 8, 25),
                    Time.new(2014, 12, 25),Time.new(2014, 12, 26)]
-  bank_holidays.map!{|date| date.to_i}
+  bank_holidays.map! { |date| date.to_i }
   bank_holidays.include?(date.to_i)
 end
 
@@ -264,7 +264,7 @@ def count_words_of_each_length_in_a_file(file_path)
   word_string = File.read(file_path).to_s.gsub(/[^a-zA-Z\s]/, "")
   word_array = word_string.split(" ").sort{|word1, word2| word1.length <=> word2.length}
   hash = Hash.new(0)
-  word_array.each {|word| hash[word.length] += 1 }
+  word_array.each { |word| hash[word.length] += 1 }
   hash
 end
 
@@ -273,11 +273,11 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   (1..100).each do |int|
-    if (int/15.0) == (int/15.0).round
+    if (int / 15.0) == (int / 15.0).round
       puts "fizzbuzz"
-    elsif (int/3.0) == (int/3.0).round
+    elsif (int / 3.0) == (int / 3.0).round
       puts "fizz"
-    elsif (int/5.0) == (int/5.0).round
+    elsif (int / 5.0) == (int / 5.0).round
       puts "buzz"
     else
       puts int
@@ -292,18 +292,18 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-	99.downto(0) do |int|
-		puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n#{take_one(int)}"
-	end
+  99.downto(0) do |int|
+    puts "#{bottles(int).capitalize} on the wall, #{bottles(int)}.\n#{take_one(int)}"
+  end
 end
 
 def bottles(int)
-	int == 1 ? "1 bottle of beer" : int == 0 ? "no more bottles of beer" : "#{int} bottles of beer"
+  int == 1 ? "1 bottle of beer" : int == 0 ? "no more bottles of beer" : "#{int} bottles of beer"
 end
 
 def take_one(int)
   if int > 0
-    "Take one down and pass it around, #{bottles(int-1)} on the wall."
+    "Take one down and pass it around, #{bottles(int - 1)} on the wall."
   else
     "Go to the store and buy some more, #{bottles(99)} on the wall."
   end
