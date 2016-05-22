@@ -209,15 +209,15 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
 	string.capitalize! 
-  words_no_cap = ["and","the", "a"]
-  phrase = string.split(" ").map {|word| 
-    if words_no_cap.include?(word) 
-      word
-    else
-      word.capitalize
-    end
-  }.join(" ") 
-  phrase
+	words_no_cap = ["and","the", "a"]
+	phrase = string.split(" ").map {|word| 
+		if words_no_cap.include?(word) 
+			word
+		else
+			word.capitalize
+		end
+	}.join(" ") 
+	phrase
 end
 
 # return true if a string contains any special characters
@@ -274,10 +274,10 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
 	date = birthday
-  while !date.friday?
-    date = Time.new(date.year+1,date.month,date.day)
-  end
-  date.year
+	while !date.friday?
+		date = Time.new(date.year+1,date.month,date.day)
+	end
+	date.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -287,11 +287,11 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
 	file = File.read(file_path).gsub!(/[^0-9A-Za-z\s]/, '')
-  h = Hash.new(0)
-  file.split.each do |word|
-    h[word.length] += 1
-  end
-  h
+	h = Hash.new(0)
+	file.split.each do |word|
+		h[word.length] += 1
+	end
+	h
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
