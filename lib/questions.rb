@@ -29,32 +29,38 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  
+  array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.insert(0,element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by{ |letter| letter[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  half = (string.length/2.to_f).ceil
+  string.slice(0,half)
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -75,7 +81,7 @@ end
 def shortest_word_in_array(array)
 end
 
-# return the shortest word in an array
+# return the longest word in an array
 def longest_word_in_array(array)
 end
 
