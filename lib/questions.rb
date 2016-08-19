@@ -169,16 +169,19 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.delete "A-Z"
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.to_i
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -189,6 +192,9 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  at = email.index("@")
+  dot = email.index(".")
+  email[at+1..dot-1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -203,6 +209,8 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  match = /\W/.match(string)
+  match == nil ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
