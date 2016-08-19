@@ -71,12 +71,12 @@ describe 'the Friday test :)' do
     expect(b).to eq -7
   end
 
-  fit 'separate_array_into_even_and_odd_numbers' do
+  it 'separate_array_into_even_and_odd_numbers' do
     n = separate_array_into_even_and_odd_numbers [1, 2, 3, 4, 5, 6, 7]
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
 
-  it 'number_of_elements_that_are_palindromes' do
+  fit 'number_of_elements_that_are_palindromes' do
     n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
     expect(n).to eq 3
   end
