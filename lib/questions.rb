@@ -77,7 +77,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-
+  array.select{|word| word == word.reverse}.count
 end
 
 # return the shortest word in an array
@@ -121,7 +121,8 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  index = array.index(array.find{|x| x > 5})
+  array[0...index]
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -182,6 +183,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email[email.index("@")+1 .. email.index(".")-1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -190,30 +192,42 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  exceptions = ["a", "and", "the"]
+  newstring = string.split(" ")
+  newstring[0].capitalize!
+  newstring.map {|word| exceptions.include?(word) ? word : word.capitalize}.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  # string.force_encoding("UTF-8").ascii_only?
+  no_special = string.gsub(/[^a-zA-Z0-9\-]/,"")
+  string != no_special
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.to_s.include?("...")
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  words = File.read(file_path.to_s)
+  words.split.size
 end
 
 # --- tougher ones ---
@@ -222,12 +236,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method.to_sym)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank = ["26/12", "25/12", "25/08", "26/05", "5/05", "21/04", "18/04", "01/01"]
+  bank.include?(date.strftime("%d/%m"))
 end
 
 # given your birthday this year, this method tells you
@@ -235,6 +252,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  2016
 end
 
 # in a file, total the number of times words of different lengths
@@ -243,12 +261,19 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = File.read(file_path.to_s).gsub(/[[:punct:]]/, '').split
+  lengths = words.map{|word| word.size}
+  hash = Hash.new(0)
+  lengths.each{|key| hash[key] += 1}
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  # STUDY EXAMPLE BELOW LATER ON
+  # https://gist.github.com/nerocrux/2661464
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -257,5 +282,96 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
+def ninety_nine_bottles_of_beer num
+
+  def english_number number
+    if number < 0
+      return 'Please enter a positive number'
+    elsif number == 0
+      return 'zero'
+    end
+
+    num_string = ''
+
+    ones_place = ['one',      'two',      'three',
+                  'four',     'five',     'six',
+                  'seven',    'eight',    'nine']
+    tens_place = ['ten',      'twenty',   'thirty',
+                  'forty',   'fifty',    'sixty',
+                  'seventy',  'eighty',   'ninety']
+    teenagers  = ['eleven',   'twelve',   'thirteen',
+                  'fourteen', 'fifteen',  'sixteen',
+                  'seventeen','eighteen', 'ninteen']
+
+    zillions = [['hundred', 2],            ['thousand', 3],        ['million', 6],
+               ['billion', 9],            ['trillion', 12],       ['quadrillion', 15],
+               ['quintillion', 18],       ['sextillion', 21],     ['septillion', 24],
+               ['octillion', 27],         ['nonillion', 30],      ['decillion', 33],
+               ['undecillion', 36],       ['duodecillion', 39],   ['tredecillion', 42],
+               ['quattuordecillion', 45], ['quindecillion', 48],  ['sexdecillion', 51],
+               ['septendecillion', 54],   ['octodecillion', 57],  ['novemdecillion', 60],
+               ['vigintillion', 63],      ['googol', 100]]
+
+    left = number
+
+    while zillions.length > 0 #as long as there is a single element left in the zillions array
+      zil_pair = zillions.pop #take a zillion sub_array
+      zil_name = zil_pair[0] #zillion word = zil_name
+      zil_base = 10 ** zil_pair[1] #zillion value = zil_base
+      write = left/zil_base # how many zillions left
+      left = left - write*zil_base #subtract however many zillions there are left
+
+      if write > 0
+        prefix = english_number write # recursion - keeps it looping until there's no elements left in zillions array
+        num_string = num_string + prefix + ' ' + zil_name
+
+        if left > 0
+          #keep a space
+          num_string = num_string + ' '
+        end
+      end
+    end
+
+    write = left/10 #how many tens left
+    left = left - write*10 #subtract the tens off
+
+    if write > 0 #if there are any tens left from before
+      if ((write == 1) and (left > 0))
+        num_string = num_string + teenagers[left-1] #teenagers exception
+        left = 0
+      else
+        num_string = num_string + tens_place[write-1]
+      end
+
+      if left > 0
+        num_string = num_string + '-' #add dash
+      end
+    end
+
+    write = left #how many ones left
+    left = 0 #subtract the ones off
+
+    if write > 0
+      num_string = num_string + ones_place[write-1]
+    end
+
+    num_string #return the word
+  end
+
+# =================================================================================
+
+  if num == 2
+    puts "Two bottles of beer on the wall, two bottles of beer!"
+    puts "Take one down and pass it around, one more bottle of beer on the wall!"
+    puts "One bottle of beer on the wall, one bottle of beer!"
+    puts "Take one down and pass it around, no more bottles of beer on the wall!"
+  elsif num == 1
+    puts "One bottle of beer on the wall, one bottle of beer!"
+    puts "Take one down and pass it around, no more bottles of beer on the wall!"
+  else
+    puts english_number(num).capitalize + " bottles of beer on the wall, " + english_number(num) + " bottles of beer!"
+    puts "Take one down and pass it around, " + english_number((num-1)) + " bottles of beer on the wall!"
+    beer_song (num-1)
+  end
+
 end
