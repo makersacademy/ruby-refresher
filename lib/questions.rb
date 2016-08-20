@@ -132,7 +132,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-
+  array.join.split(//).sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -184,7 +184,14 @@ end
 # *unless* they come at the start of the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
+def capitalize_except(word)
+  words_to_exclude = ['a', 'and', 'the']
+  (words_to_exclude.include? word) ? word : word.capitalize
+end
+
 def titleize_a_string(string)
+  title = string.split.map { |word| capitalize_except(word) }
+  title.shift.capitalize + ' ' + title.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -196,11 +203,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  (range.inspect.include? '...') ? true : false
 end
 
 # get the square root of a number
