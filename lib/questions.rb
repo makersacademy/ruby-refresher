@@ -124,7 +124,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  #array.to_h
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -170,13 +170,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  #require 'date'
   date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.gsub(/.+@([^.]+).+/, '\1')
 end
 
 # capitalize the first letter in each word of a string,
@@ -198,6 +198,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string[/[a-zA-Z0-9]+/] != string
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -219,6 +220,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.read(file_path).split.length
 end
 
 # --- tougher ones ---
