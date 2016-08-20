@@ -281,7 +281,7 @@ def fizzbuzz_without_modulo(fizz, buzz, fizzbuzz, counter)
     print(counter, " ")
   end
   if counter < 100
-    fizzbuzz(fizz += 1, buzz += 1, fizzbuzz += 1, counter += 1)
+    fizzbuzz_without_modulo(fizz += 1, buzz += 1, fizzbuzz += 1, counter += 1)
   end
 end
 fizzbuzz_without_modulo(1, 1, 1, 1)
