@@ -231,7 +231,14 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  array = ['2014-01-01','2014-04-18','2014-04-21','2014-05-05','2014-05-26','2014-08-25','2014-12-25','2014-12-26']
+  array = ['2014-01-01',
+           '2014-04-18',
+           '2014-04-21',
+           '2014-05-05',
+           '2014-05-26',
+           '2014-08-25',
+           '2014-12-25',
+           '2014-12-26']
   array.any? { |bankholiday| Time.parse(bankholiday) == date }
 end
 
@@ -252,14 +259,14 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map(&:length)
-  array.each_with_object(Hash.new(0)) { |key,hash| hash[key] += 1 }
+  array.each_with_object(Hash.new(0)) { |key, hash| hash[key] += 1 }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  def fizzbuzz(fizz,buzz,fizzbuzz,counter)
+  def fizzbuzz(fizz, buzz, fizzbuzz, counter)
     if fizzbuzz == 15
       print("fizzbuzz ")
       fizzbuzz = 0
