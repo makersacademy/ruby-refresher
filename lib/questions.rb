@@ -265,8 +265,7 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
-  def fizzbuzz(fizz, buzz, fizzbuzz, counter)
+def fizzbuzz_without_modulo(fizz, buzz, fizzbuzz, counter)
     if fizzbuzz == 15
       print("fizzbuzz ")
       fizzbuzz = 0
@@ -285,8 +284,7 @@ def fizzbuzz_without_modulo
       fizzbuzz(fizz += 1, buzz += 1, fizzbuzz += 1, counter += 1)
     end
   end
-  fizzbuzz(1, 1, 1, 1)
-end
+fizzbuzz_without_modulo(1, 1, 1, 1)
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
