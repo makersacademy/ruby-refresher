@@ -278,6 +278,18 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
+  nice_date = "#{date.day}/#{date.month}/#{date.year}"
+
+  case nice_date
+
+  when date == "1/1/2014", "18/4/2014", "21/4/2014", "5/5/2014",
+               "26/5/2014","25/8/2014", "25/12/2014", "26/12/2014"
+    true
+  else
+    false
+  end
+
 end
 
 # given your birthday this year, this method tells you
