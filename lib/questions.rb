@@ -9,7 +9,6 @@ def select_elements_starting_with_vowel(array)
   array.select{|word| vowels.include?(word[0])}
 end
 
-
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
   array.compact
@@ -126,7 +125,9 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-
+hash = {}
+array.each_slice(2).map{|k,v| hash[k]=v}
+hash
 end
 
 # get all the letters used in an array of words and return
@@ -167,7 +168,6 @@ end
 # so 9.52 becomes 9
 def round_down_number(float)
   float.to_i
-
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -188,13 +188,14 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-
+  !(string == string.gsub(/\W/,""))
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -230,12 +231,18 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  @bank_holidays = ['26/12', '25/12',
+                    '25/8', '26/5',
+                    '5/5', '21/4',
+                    '18/4', '1/1']
+  @bank_holidays.include?("#{date.day}/#{date.month}")
 end
 
 # given your birthday this year, this method tells you
@@ -243,6 +250,12 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  yr = birthday.year ; mo = birthday.month ; day = birthday.day
+  until birthday.friday?
+    birthday=Time.new(yr,mo,day)
+    yr+=1
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -266,4 +279,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+
 end
