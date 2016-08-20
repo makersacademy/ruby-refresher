@@ -35,7 +35,7 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
-  array.slice!(0..2)
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
@@ -46,14 +46,16 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-
+  rev_array_sorted = array.each {|element| element.reverse!}.sort
+  rev_array_sorted.each {|element| element.reverse!}
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-
+  middle = ((string.length.to_f)/2).ceil
+  string[0..middle-1]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -135,13 +137,24 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  less_than_five = []
+  array.each do |element|
+    if element < 6
+      less_than_five << element
+    else
+      break
+    end
+  end
+  less_than_five
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+  key = array.values_at(* array.each_index.select {|index| index.even?})
+  value = array.values_at(* array.each_index.select {|index| index.odd?})
+  nest_array = Hash[*key.zip(value).flatten]
 end
 
 # get all the letters used in an array of words and return
@@ -150,7 +163,7 @@ end
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
   word = ""
-  ary.each { |element| word += element }
+  array.each { |element| word += element }
   word.chars.sort
 end
 
@@ -158,12 +171,16 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  result = 0
+  hash.each {|key,value| result += key+value}
+  result
 end
 
 # take out all the capital letters from a string
@@ -187,6 +204,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  nice_date = "#{date.day}/#{date.month}/#{date.year}"
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -203,6 +221,16 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  stringAry = string.split.map{|element| element.capitalize}
+  stringAry.each do |word|
+    if word == "The" || word == "A" || word == "And"
+      word.downcase!
+    else
+      word.capitalize!
+    end
+  end
+  stringAry[0].capitalize!
+  cap_string = stringAry.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -216,19 +244,25 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.inspect.include?("...") ? true : false
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "rb")
+  contents = file.read
+  contents.split.length
 end
 
 # --- tougher ones ---
