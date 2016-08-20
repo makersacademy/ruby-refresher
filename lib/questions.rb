@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{|element| element[0] == 'a'}
+  array.select { |element| element[0] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{|element| ['a','e','i','o','u'].include?(element[0])}
+  array.select { |element| ['a','e','i','o','u'].include?(element[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,13 +15,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{|element| element}
+  array.select { |element| element }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map{|element| element.reverse }
+  array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,14 +46,14 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{|word| word[-1]}
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0, (string.length/2.0).ceil]
+  string[0, (string.length / 2.0).ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition{ |number| number.even? }
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -75,17 +75,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.count{ |element| element == element.reverse }
+  array.count { |element| element == element.reverse }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min_by{ |word| word.length }
+  array.min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max_by{ |word| word.length }
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -108,7 +108,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.reduce(:+)/array.length.to_f).round
+  (array.reduce(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -116,7 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{ |number| number <= 5 }
+  array.take_while { |number| number <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -184,7 +184,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.each{ |word| word. capitalize! unless ['a', 'and', 'the'].include? word }.join(' ')
+  string.capitalize.split.each { |word| word. capitalize! unless ['a', 'and', 'the'].include? word }.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -245,9 +245,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  until birthday.friday?
-    birthday += (60*60*24*365)
-  end
+  birthday += (60*60*24*365) until birthday.friday?
   birthday.year
 end
 
@@ -267,11 +265,11 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   [*1..100].map do |number|
-    if number/15.0 == number/15
+    if number / 15.0 == number / 15
       "FizzBuzz"
-    elsif number/3.0 == number/3
+    elsif number / 3.0 == number / 3
       "Fizz"
-    elsif number/5.0 == number/5
+    elsif number / 5.0 == number / 5
       "Buzz"
     else
       number
