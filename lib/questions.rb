@@ -203,24 +203,31 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string.scan(/\W/).length > 0
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt number
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.open(file_path, "r") do |file|
+    file.read.split(' ').length
+  end
 end
 
 # --- tougher ones ---
@@ -229,12 +236,23 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = [
+    Date.new(2014, 1, 1),
+    Date.new(2014, 4, 18),
+    Date.new(2014, 5, 5),
+    Date.new(2014, 5, 26),
+    Date.new(2014, 8, 25),
+    Date.new(2014, 12, 25),
+    Date.new(2014, 12, 26)
+  ]
+  holidays.include? date.to_date
 end
 
 # given your birthday this year, this method tells you
@@ -242,6 +260,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  while !birthday.friday? do
+    birthday = birthday.to_date.next_year
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -250,14 +272,37 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  hash = Hash.new(0)
+  File.open(file_path, "r") do |file|
+    file.read.split(/\W+/).each do |word|
+      hash[word.length] += 1
+    end
+  end
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |i|
+    p fizzbuzz(i)
+  end
 end
 
+def fizzbuzz(number)
+  return "FizzBuzz" if is_divisible_by(15, number)
+  return "Fizz" if is_divisible_by(3, number)
+  return "Buzz" if is_divisible_by(5, number)
+  number
+end
+
+def is_divisible_by(divisor, number)
+  while number > 0
+    number -= divisor
+  end
+  number == 0 ? true : false
+end
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
 # make sure you use the singular when you have one bottle of 
@@ -265,4 +310,25 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  counter = 99
+  words = Proc.new { "#{counter} #{get_plural_of("bottle", counter)} of beer" }
+  while counter > 1 do
+    puts "#{words.call} on the wall, #{words.call}."
+    counter -= 1
+    puts "Take one down and pass it around, #{words.call} on the wall."
+    puts ""
+  end
+  puts "#{words.call} on the wall, #{words.call}."
+  puts "Take one down and pass it around, no more bottles of beer on the wall."
+  puts ""
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall."
+end
+
+def get_plural_of(word, number)
+  if number == 11 or number % 10 == 1
+    word
+  else
+    word + "s"
+  end
 end
