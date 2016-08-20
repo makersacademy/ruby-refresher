@@ -53,7 +53,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0,(string.length/2.to_f).ceil]
+  string[0, (string.length / 2.to_f).ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -91,7 +91,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(0){|sum,x| sum + x }
+  array.inject(0) { |sum, x| sum + x }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -108,7 +108,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(0){|sum,x| sum + x } / array.length.to_f).round
+  (array.inject(0) { |sum, x| sum + x } / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -145,7 +145,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  (hash.values.inject(&:+)) + (hash.keys.inject(&:+))
+  hash.values.inject(&:+) + hash.keys.inject(&:+)
 end
 
 # take out all the capital letters from a string
@@ -184,8 +184,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split.each_with_index.map do |word,index|
-    index == 0 || !['a','and','the'].include?(word) ? word.capitalize : word
+  string.split.each_with_index.map do |word, index|
+    index == 0 || !%w(a and the).include?(word) ? word.capitalize : word
   end.join(' ')
 end
 
@@ -239,8 +239,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  while !birthday.friday? do
-    birthday += (86400*365.25)
+  until birthday.friday? do
+    birthday += (864_00 * 365.25)
   end
   birthday.year
 end
@@ -250,7 +250,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map { |string| string.length }
+  array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map(%:length)
   array.each_with_object(Hash.new(0)) { |key,hash| hash[key] += 1 }
 end
 
@@ -291,8 +291,8 @@ def ninety_nine_bottles_of_beer
   99.downto(1) do |bottles|
     puts "#{bottles} bottle#{s.call(bottles)} of beer on the wall, #{bottles} bottle#{s.call(bottles)} of beer."
     bottles -= 1
-    puts "Take one down and pass it around, #{bottles} bottle#{s.call(bottles)} of beer on the wall." unless (bottles < 1)
-    puts "Take one down and pass it around, no more bottles of beer on the wall" unless (bottles > 0)
-    puts unless (bottles < 1)
+    puts "Take one down and pass it around, #{bottles} bottle#{s.call(bottles)} of beer on the wall." unless bottles < 1
+    puts "Take one down and pass it around, no more bottles of beer on the wall" unless bottles > 0
+    puts unless bottles < 1
   end
 end
