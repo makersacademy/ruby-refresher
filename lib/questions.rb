@@ -296,9 +296,7 @@ def fizzbuzz(number)
 end
 
 def divisible_by(divisor, number)
-  while number > 0
-    number -= divisor
-  end
+  number -= divisor while number > 0
   number == 0 ? true : false
 end
 # print the lyrics of the song 99 bottles of beer on the wall
