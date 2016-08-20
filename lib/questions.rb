@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |string| string[0] == 'a'}
+  array.select { |string| string[0] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{ |string| string[0] =~ /[aeiou]/}
+  array.select { |string| string[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select{ |item| !item.nil? }
+  array.select { |item| !item.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{ |item| !item.nil? && item != false }
+  array.select { |item| !item.nil? && item != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each{ |item| item.reverse! }
+  array.each(&:reverse!)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{ |item| item[-1, 1]}
+  array.sort_by { |item| item[-1, 1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [].push(array.select{ |i| i.even? }).push(array.select{ |i| i.odd? })
+  [].push(array.select(&:even?)).push(array.select(&:odd?))
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -75,7 +75,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select{ |word| word.reverse == word }.length
+  array.select { |word| word.reverse == word }.length
 end
 
 # return the shortest word in an array
@@ -116,7 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{ |item| item <= 5 }
+  array.take_while { |item| item <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -215,7 +215,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  File.foreach(file_path).map{|line| line.split}.flatten.length
+  File.foreach(file_path).map(&:split).flatten.length
 end
 
 # --- tougher ones ---
@@ -250,8 +250,8 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  array = File.foreach(file_path).map{|line| line.split(/\W+/)}.flatten.map{ |string| string.length }
-  array.each_with_object(Hash.new(0)){|key,hash| hash[key] += 1}
+  array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map { |string| string.length }
+  array.each_with_object(Hash.new(0)) { |key,hash| hash[key] += 1 }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -274,10 +274,10 @@ def fizzbuzz_without_modulo
       print(counter, " ")
     end
     if counter < 100
-      fizzbuzz(fizz+=1, buzz+=1, fizzbuzz+=1, counter+=1)
+      fizzbuzz(fizz += 1, buzz += 1, fizzbuzz += 1, counter += 1)
     end
   end
-  fizzbuzz(1,1,1,1)
+  fizzbuzz(1, 1, 1, 1)
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -287,7 +287,7 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  s = proc {|bottles| 's' unless bottles == 1}
+  s = proc { |bottles| 's' unless bottles == 1 }
   99.downto(1) do |bottles|
     puts "#{bottles} bottle#{s.call(bottles)} of beer on the wall, #{bottles} bottle#{s.call(bottles)} of beer."
     bottles -= 1
