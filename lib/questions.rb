@@ -227,7 +227,7 @@ end
 # the method foobar should be invoked
 def call_method_from_string(str_method)
   eval str_method
-  #public_send(str_method) raises NoMethodError - isn't this preferable?
+  # public_send(str_method) raises NoMethodError - isn't this preferable?
 end
 
 # return true if the date is a uk bank holiday for 2014
