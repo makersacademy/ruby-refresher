@@ -258,12 +258,39 @@ def is_a_2014_bank_holiday?(date)
   bank_holidays.include?(date.strftime("%d/%m"))
 end
 
+# Instructions:
 # given your birthday this year, this method tells you
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
-def your_birthday_is_on_a_friday_in_the_year(birthday)
 
+def birthday_in_jan_or_feb?(month_of_birthday)
+  return true if month_of_birthday == "January" || month_of_birthday == "February"
+  return false
+end
+
+# Based on the Rspec test, it seems that by "this year", the instructions mean 2013
+def your_birthday_is_on_a_friday_in_the_year(birthday)
+  day_of_bday_this_year = birthday.strftime("%A")
+  month_of_birthday = birthday.strftime("%B")
+  case day_of_bday_this_year
+  when "Friday"
+    return 2013
+  when "Saturday"
+    return 2018
+  when "Sunday"
+    return 2017
+  when "Monday"
+    return 2022 if birthday_in_jan_or_feb?(month_of_birthday)
+    return 2016
+  when "Tuesday"
+    return 2016 if birthday_in_jan_or_feb?(month_of_birthday)
+    return 2021
+  when "Wednesday"
+    return 2015
+  when "Thursday"
+    return 2014
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -272,7 +299,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-
+  # Come back to this one.
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -295,5 +322,21 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
+
+def print_verse(bottles)
+  if bottles > 1
+    puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer."
+    puts " Take one down and pass it around, #{bottles - 1} bottles of beer on the wall."
+  else
+    puts "1 bottle of beer on the wall, 1 bottle of beer."
+    puts "Take one down and pass it around, no more bottles of beer on the wall."
+  end
+end
+
 def ninety_nine_bottles_of_beer
+  bottles = 99
+  while bottles > 0
+    print_verse(bottles)
+    bottles -= 1
+  end
 end
