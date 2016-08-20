@@ -231,6 +231,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method()
 end
 
 # return true if the date is a uk bank holiday for 2014
