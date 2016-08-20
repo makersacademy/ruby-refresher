@@ -53,13 +53,14 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  chars = (string.length) - (string.length / 2) 
+  chars = (string.length) - (string.length / 2)
   string.slice(0,chars)
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,6 +68,13 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  arr = []
+  arr_even = []
+  arr_odd = []
+  array.each {|num| arr_even << num if num.even?}.each {|num| arr_odd << num if num.odd?}
+  arr << arr_even
+  arr << arr_odd
+  arr
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -74,33 +82,43 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  arr = []
+  array.each {|str| arr << str if str.reverse == str}
+  arr.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.sort_by {|word| word.length}.shift
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.sort_by {|word| word.length}.pop
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array + array
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  average = array.inject(:+).to_f / array.length
+  average.round
 end
 
 # get all the elements in an array, up until the first element
@@ -121,6 +139,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.join.chars.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -143,6 +162,7 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  
 end
 
 # round down a float up and convert it to an Integer,
@@ -190,6 +210,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+
 end
 
 # --- tougher ones ---
