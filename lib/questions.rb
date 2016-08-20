@@ -184,7 +184,11 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.each { |word| word. capitalize! unless %w(a and the).include? word }.join(' ')
+  word_array = string.capitalize.split(' ')
+  word_array.each do |word|
+    word.capitalize! unless %w(a and the).include? word
+  end
+  word_array.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -223,6 +227,7 @@ end
 # the method foobar should be invoked
 def call_method_from_string(str_method)
   eval str_method
+  #public_send(str_method) raises NoMethodError - isn't this preferable?
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -256,7 +261,8 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   word_count = Hash.new(0)
-  File.read(file_path).gsub(/[^a-zA-Z\s]/, '').split.each{|word| word_count[word.length]+=1}
+  word_array = File.read(file_path).gsub(/[^a-zA-Z\s]/, '').split
+  word_array.each { |word| word_count[word.length] += 1 }
   word_count
 end
 
@@ -286,10 +292,10 @@ end
 def ninety_nine_bottles_of_beer
   99.downto(0).each do |num|
     if num > 1
-      print "#{num.to_s} bottles of beer on the wall, "
-      puts "#{num.to_s} bottles of beer."
+      print "#{num} bottles of beer on the wall, "
+      puts "#{num} bottles of beer."
       print "Take one down and pass it around, "
-      puts "#{(num - 1).to_s} bottles of beer on the wall"
+      puts "#{num - 1} bottles of beer on the wall"
       puts ""
     elsif num == 1
       puts "1 bottle of beer on the wall, 1 bottle of beer."
