@@ -229,12 +229,24 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  return false if date.year != 2014
+  bank_holidays = [{month: 1, day: 1}, {month: 4, day: 18},
+                   {month: 5, day: 5}, {month: 5, day: 26},
+                   {month: 8, day: 25}, {month: 12, day: 25},
+                   {month: 12, day: 26}]
+  date_check = {month: date.month, day: date.day}
+
+  bank_holidays.each do |holiday|
+    return true if date_check == holiday
+  end
+  false
 end
 
 # given your birthday this year, this method tells you
@@ -242,6 +254,12 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  year = Time.new.year
+  date_to_check = Time.new(year, birthday.month, birthday.day)
+  until date_to_check.friday? == true
+    date_to_check >>(12)
+  end
+  date_to_check.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -250,6 +268,13 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  counts = Hash.new 0
+  words = File.read(file_path).scan(/[\w']+/)
+
+  words.each do |word|
+    counts[word.length] += 1
+  end
+  counts
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
