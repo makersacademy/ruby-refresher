@@ -41,11 +41,13 @@ end
 
 # add an element to the bginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.unshift(element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by {|element| element[-1, 1] }
 end
 
 # cut strings in half, and return the first half, e.g.
