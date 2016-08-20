@@ -203,7 +203,8 @@ def titleize_a_string(string)
     element.capitalize! unless exception_words.include?(element)
   end.join(" ")
 
-  titleized[0] = titleized[0].upcase
+  titleized[0] = titleized[0].capitalize!
+  titleized
 end
 
 # return true if a string contains any special characters
@@ -276,13 +277,14 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   wordcount = {}
-  contents = File.read(file_path)
+  contents = File.read(file_path).tr('^A-Za-z0-9 ', '')
 
   contents.split(" ").each do |word|
     wordcount[word.length] == nil ? wordcount[word.length] = 1 : wordcount[word.length] += 1
   end
-end
 
+  wordcount
+end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
