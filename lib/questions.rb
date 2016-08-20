@@ -291,8 +291,10 @@ def ninety_nine_bottles_of_beer
   99.downto(1) do |bottles|
     puts "#{bottles} bottle#{s.call(bottles)} of beer on the wall, #{bottles} bottle#{s.call(bottles)} of beer."
     bottles -= 1
-    puts "Take one down and pass it around, #{bottles} bottle#{s.call(bottles)} of beer on the wall." unless bottles < 1
-    puts "Take one down and pass it around, no more bottles of beer on the wall" unless bottles > 0
+    puts "Take one down and pass it around,
+          #{bottles} bottle#{s.call(bottles)} of beer on the wall." unless bottles < 1
+    puts "Take one down and pass it around,
+          no more bottles of beer on the wall" unless bottles > 0
     puts unless bottles < 1
   end
 end
