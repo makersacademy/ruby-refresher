@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [].push(array.select(&:even?)).push(array.select(&:odd?))
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -91,7 +91,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(0) { |sum, x| sum + x }
+  array.inject { |sum, x| sum + x }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -123,7 +123,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  array = Hash[*array]
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
