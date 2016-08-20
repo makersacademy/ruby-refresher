@@ -131,7 +131,9 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-
+  keys = array.select { |letter| array.index(letter) % 2 == 0 }
+  values = array.select { |letter| array.index(letter) % 2 == 1 }
+  Hash[keys.zip(values)]
 end
 
 # get all the letters used in an array of words and return
@@ -227,10 +229,15 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  array_of_lines = []
+  file.each {|line| array_of_lines << line }
+  array_of_lines.first.split(" ").count
 end
 
 # --- tougher ones ---
@@ -239,12 +246,16 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  self.str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = ["26/12", "25/12", "25/08", "26/05",
+                  "05/05", "21/04", "18/04", "01/01"]
+  bank_holidays.include?(date.strftime("%d/%m"))
 end
 
 # given your birthday this year, this method tells you
@@ -252,6 +263,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+
 end
 
 # in a file, total the number of times words of different lengths
@@ -260,12 +272,21 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(n)
+  fizzbuzz = [0,15,30,45,60,75,90]
+  buzz = [5,10,20,25,35,40,50,55,65,70,80,85,95]
+  fizz = [3,6,9,12,18,21,24,27,33,36,39,42,48,51,54,57,63,66,69,72,78,81,
+          84,87,93,96,99]
+  return "fizzbuzz" if fizzbuzz.include?(n)
+  return "buzz" if buzz.include?(n)
+  return "fizz" if fizz.include?(n)
+  return n
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
