@@ -292,6 +292,21 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  ## RUBY FILE OPEN
+  file = File.open(file_path, "rb")
+  ## RUBY FILE READ (CONVERTS TO STRING) AND REMOVE PUNCTUATION
+  contents = file.read
+  contents.gsub!(/[^a-z0-9\s]/i, '')
+  ## CONVERT STRING TO ARRAY
+  array = contents.split
+  ## CREATES NEW ARRAY OF LENGTH OF EACH STRING
+  lengths_array = []
+  array.each {|element| lengths_array << element.length}
+  lengths_array.sort!
+  ## CREATES 2D ARRAY OF WORD LENGTHS AND HOW MANY TIMES IT IS REPREATED IN LENGTHS_ARRAY
+  count_array = lengths_array.group_by{|element| element}.map{|key, value| [key, value.count]}
+  ## CONVERT 2D ARRAY TO HASH USING FLATTEN
+  Hash[*count_array.flatten]
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
