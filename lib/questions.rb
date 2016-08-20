@@ -250,7 +250,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map(%:length)
+  array = File.foreach(file_path).map { |line| line.split(/\W+/) }.flatten.map(&:length)
   array.each_with_object(Hash.new(0)) { |key,hash| hash[key] += 1 }
 end
 
