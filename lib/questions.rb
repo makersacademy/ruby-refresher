@@ -5,13 +5,13 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  vowels = ["a", "e", "i", "o", "u"]
+  vowels = %w{a e i o u }
   array.select { |el| vowels.include? el[0] }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select { |el| el != nil }
+  array.select { |el| !el.nil? }
 end
 
 # remove instances of nil AND false from an array
@@ -22,7 +22,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map { |el| el.reverse }
+  array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -70,8 +70,8 @@ end
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   [
-    array.select { |n| n.even? },
-    array.select { |n| n.odd? }
+    array.select(&:even?),
+    array.select(&:odd?)
   ]
 end
 
@@ -136,7 +136,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map { |el| el.chars }.flatten.sort
+  array.map(&:chars).flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -156,7 +156,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.split('').select{|l| l==l.downcase}.join('')
+  string.split('').select { |l| l == l.downcase }.join('')
 end
 
 # round up a float up and convert it to an Integer,
@@ -189,9 +189,9 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  excepts = ["a", "and", "the"]
+  excepts = %w{a the and}
   string.split(' ').map.with_index do |e, index|
-    if index == 0 or !excepts.include? e
+    if (index == 0) || (!excepts.include? e)
       e.capitalize
     else
       e
@@ -203,7 +203,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.scan(/\W/).length > 0
+  !string.scan(/\W/).empty?
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -260,9 +260,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  while !birthday.friday? do
-    birthday = birthday.to_date.next_year
-  end
+  birthday = birthday.to_date.next_year until birthday.friday?
   birthday.year
 end
 
@@ -291,13 +289,13 @@ def fizzbuzz_without_modulo
 end
 
 def fizzbuzz(number)
-  return "FizzBuzz" if is_divisible_by(15, number)
-  return "Fizz" if is_divisible_by(3, number)
-  return "Buzz" if is_divisible_by(5, number)
+  return "FizzBuzz" if divisible_by(15, number)
+  return "Fizz" if divisible_by(3, number)
+  return "Buzz" if divisible_by(5, number)
   number
 end
 
-def is_divisible_by(divisor, number)
+def divisible_by(divisor, number)
   while number > 0
     number -= divisor
   end
@@ -311,8 +309,8 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   counter = 99
-  words = Proc.new { "#{counter} #{get_plural_of("bottle", counter)} of beer" }
-  while counter > 1 do
+  words = proc { "#{counter} #{get_plural_of('bottle', counter)} of beer" }
+  while counter > 1
     puts "#{words.call} on the wall, #{words.call}."
     counter -= 1
     puts "Take one down and pass it around, #{words.call} on the wall."
@@ -326,7 +324,7 @@ def ninety_nine_bottles_of_beer
 end
 
 def get_plural_of(word, number)
-  if number == 11 or number % 10 == 1
+  if number == 11 || number % 10 == 1
     word
   else
     word + "s"
