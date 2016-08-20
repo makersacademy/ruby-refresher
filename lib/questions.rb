@@ -96,20 +96,26 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  sum = 0
+  array.each {|x| sum += x}
+  sum
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  Array.new(2, array).flatten
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  (array.inject{|total, element| total + element}.to_f / array.size).ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -117,6 +123,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  p array[0..array.index { |x| x > 5 } - 1]
 end
 
 # turn an array (with an even number of elements) into a hash, by
