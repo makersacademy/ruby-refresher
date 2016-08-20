@@ -161,7 +161,7 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
-  (float.to_i) +1
+  float.ceil
 end
 
 # round a float down and convert it to an Integer,
@@ -264,12 +264,51 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  document = File.read(file_path).gsub(/\W/," ")
+  document.split.map!{|word| word.length}.each_with_object(Hash.new(0)) do
+    |key,hash| hash[key] += 1
+  end
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+
+    return 'fizzbuzz' if divisible_by_fifteen?(number)
+    return 'fizz' if divisible_by_three?(number)
+    return 'buzz' if divisible_by_five?(number)
+
+  number
+
+end
+
+def divisible_by_three?(number)
+  is_divisible_by(number,3)
+end
+
+def divisible_by_five?(number)
+  is_divisible_by(number,5)
+end
+
+def divisible_by_fifteen?(number)
+    is_divisible_by(number,15)
+end
+
+def is_divisible_by(n,divisor)
+round_up(n,divisor) == round_down(n,divisor)
+end
+
+def round_up(n,m)
+  (n/m.to_f).ceil
+end
+
+def round_down(n,m)
+  n/m.to_f.to_i
+end
+puts 'FIZZBUZZ:'
+for n in 1..101
+  print "#{fizzbuzz_without_modulo(n)} "
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
