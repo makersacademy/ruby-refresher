@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |element| ['a','e','i','o','u'].include?(element[0]) }
+  array.select { |element| %w(a e i o u).include?(element[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -97,7 +97,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array*2
+  array * 2
 end
 
 # convert a symbol into a string
@@ -184,7 +184,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.each { |word| word. capitalize! unless ['a', 'and', 'the'].include? word }.join(' ')
+  string.capitalize.split.each { |word| word. capitalize! unless %w(a and the).include? word }.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -245,7 +245,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  birthday += (60*60*24*365) until birthday.friday?
+  birthday += (60 * 60 * 24 * 365) until birthday.friday?
   birthday.year
 end
 
@@ -284,18 +284,23 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  [*0..99].reverse.each do |num|
+  99.downto(0).each do |num|
     if num > 1
-      puts num.to_s + " bottles of beer on the wall, " + num.to_s + " bottles of beer."
-      puts "Take one down and pass it around," + (num-1).to_s  + " bottles of beer on the wall"
+      print "#{num.to_s} bottles of beer on the wall, "
+      puts "#{num.to_s} bottles of beer."
+      print "Take one down and pass it around, "
+      puts "#{(num - 1).to_s} bottles of beer on the wall"
       puts ""
     elsif num == 1
-      puts num.to_s + " bottle of beer on the wall, " + num.to_s + " bottle of beer."
-      puts "Take one down and pass it around, no more bottles of beer on the wall"
+      puts "1 bottle of beer on the wall, 1 bottle of beer."
+      print "Take one down and pass it around,"
+      puts" no more bottle of beer on the wall"
       puts ""
     else
-      puts "No more bottles of beer on the wall, no more bottles of beer."
-      puts "Go to the store and buy some more, 99 bottles of beer on the wall."
+      print "No more bottles of beer on the wall,"
+      puts " no more bottles of beer."
+      print "Go to the store and buy some more,"
+      puts" 99 bottles of beer on the wall."
     end
   end
 end
