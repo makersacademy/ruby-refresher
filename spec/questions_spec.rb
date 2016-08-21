@@ -227,7 +227,4 @@ describe 'the Friday test :)' do
     expect(fizzbuzz_without_modulo(15)).to eq "FizzBuzz"
   end
 
-  fit 'ninety_nine_bottles_of_beer' do
-    ninety_nine_bottles_of_beer
-  end
 end
