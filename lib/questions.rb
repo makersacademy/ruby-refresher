@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |name| name[0] =~ /[aeiou]/}
+  array.select { |name| name[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,13 +15,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select { |element| element =~ /[A-z]/}
+  array.select { |element| element =~ /[A-z]/ }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map{ |element| element.reverse }
+  array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -40,7 +40,7 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
-  array.insert(0,element)
+  array.insert(0, element)
 end
 
 # sort an array of words by their last letter, e.g.
@@ -53,8 +53,8 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  half = (string.length/2.to_f).ceil
-  string.slice(0,half)
+  half = (string.length / 2.to_f).ceil
+  string.slice(0, half)
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -69,7 +69,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition { |number| number.even?  }
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -77,7 +77,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.count { |element| element == element.reverse}
+  array.count { |element| element == element.reverse }
 end
 
 # return the shortest word in an array
@@ -110,7 +110,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(:+)/array.length.to_f).ceil
+  (array.inject(:+) / array.length.to_f).ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -188,7 +188,7 @@ end
 def titleize_a_string(string)
   exceptions = %w{a and the}
   string.split.map.with_index do |word, index|
-    if (!exceptions.include? word) or (index==0)
+    if (!exceptions.include? word) || (index == 0)
       word.capitalize
     else
       word
@@ -242,11 +242,10 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_holidays = ['1/01/2014','18/04/2014', '21/04/2014',
-                  '5/05/2014', '26/05/2014','25/08/2014',
-                 '25/12/2014', '26/12/2014']
+  bank_holidays = ['1/01/2014', '18/04/2014', '21/04/2014',
+                   '5/05/2014', '26/05/2014','25/08/2014',
+                                '25/12/2014', '26/12/2014']
   bank_holidays.include? date.strftime("%d/%m/%Y")
-
 end
 
 # given your birthday this year, this method tells you
