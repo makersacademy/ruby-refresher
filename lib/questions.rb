@@ -280,7 +280,38 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
+
+def is_divisible_by_3? (number)
+  true_results = [0, 3, 6, 9]
+    2.times do
+      number = number.to_s.chars.map(&:to_i).reduce(:+)
+    end
+  return true if true_results.include? number
+	false
+end
+
+def is_divisible_by_5? (number)
+  number_string = number.to_s
+  return true if number_string.end_with? '0'
+  return true if number_string.end_with? '5'
+end
+
+def fizzbuzz(number)
+  if is_divisible_by_5?(number) && is_divisible_by_3?(number)
+    return 'Fizzbuzz'
+  elsif is_divisible_by_5?(number)
+    return 'Buzz'
+  elsif is_divisible_by_3?(number)
+    return 'Fizz'
+  else
+    number
+  end
+end
+
 def fizzbuzz_without_modulo
+  for number in 1..100
+    puts fizzbuzz(number)
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
