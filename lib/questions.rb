@@ -62,30 +62,43 @@ end
 
 # # turn a positive integer into a negative integer. A negative integer
 # # stays negative
-# def make_numbers_negative(number)
-# end
+def make_numbers_negative(number)
+  number > 0 ? -number : number
+end
 
-# # turn an array of numbers into two arrays of numbers, one an array of
-# # even numbers, the other an array of odd numbers
-# # even numbers come first
-# # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
-# def separate_array_into_even_and_odd_numbers(array)
-# end
+# turn an array of numbers into two arrays of numbers, one an array of
+# even numbers, the other an array of odd numbers
+# even numbers come first
+# so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
+def separate_array_into_even_and_odd_numbers(array)
+  parent_array = []
+  evens = []
+  odds = []
+
+  array.each do |num|
+    num % 2 == 0 ? evens << num : odds << num
+  end
+  parent_array = [evens, odds]
+end
+
+
+# count the numbers of elements in an element which are palindromes
+# a palindrome is a word that's the same backwards as forward
+# e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
+# are 2 palindromes (bob and radar), so the method should return 2
+def number_of_elements_that_are_palindromes(array)
+  array.count { |element| element == element.reverse}
+end
 #
-# # count the numbers of elements in an element which are palindromes
-# # a palindrome is a word that's the same backwards as forward
-# # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
-# # are 2 palindromes (bob and radar), so the method should return 2
-# def number_of_elements_that_are_palindromes(array)
-# end
-#
-# # return the shortest word in an array
-# def shortest_word_in_array(array)
-# end
-#
-# # return the shortest word in an array
-# def longest_word_in_array(array)
-# end
+# return the shortest word in an array
+def shortest_word_in_array(array)
+  array.min { |x,y| x.length <=> y.length }
+end
+
+# return the longest word in an array
+def longest_word_in_array(array)
+  array.max { |x,y| x.length <=> y.length }
+end
 #
 # # add up all the numbers in an array, so [1, 3, 5, 6]
 # # returns 15

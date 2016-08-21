@@ -55,7 +55,7 @@ describe 'the Friday test :)' do
     expect(n).to eq ['puma', 'maker', 'sky']
   end
 
-  fit 'get_first_half_of_string' do
+  it 'get_first_half_of_string' do
     a = get_first_half_of_string 'banana'
     b = get_first_half_of_string 'apple'
 
@@ -86,7 +86,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'a'
   end
 
-  it 'longest_word_in_array' do
+  fit 'longest_word_in_array' do
     n = longest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'different'
   end
