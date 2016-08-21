@@ -273,43 +273,7 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo(number)
 
-    return 'fizzbuzz' if divisible_by_fifteen?(number)
-    return 'fizz' if divisible_by_three?(number)
-    return 'buzz' if divisible_by_five?(number)
-
-  number
-
-end
-
-def divisible_by_three?(number)
-  is_divisible_by(number,3)
-end
-
-def divisible_by_five?(number)
-  is_divisible_by(number,5)
-end
-
-def divisible_by_fifteen?(number)
-    is_divisible_by(number,15)
-end
-
-def is_divisible_by(n,divisor)
-round_up(n,divisor) == round_down(n,divisor)
-end
-
-def round_up(n,m)
-  (n/m.to_f).ceil
-end
-
-def round_down(n,m)
-  n/m.to_f.to_i
-end
-puts 'FIZZBUZZ:'
-for n in 1..101
-  print "#{fizzbuzz_without_modulo(n)} "
-end
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
@@ -317,6 +281,3 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
-
-end
