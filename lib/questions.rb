@@ -272,7 +272,16 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+  if number / 15 != 0 && (number / 15 == number.to_f / 15)
+    'Fizzbuzz'
+  elsif number / 5 != 0 && (number / 5 == number.to_f / 5)
+    'Buzz'
+  elsif number / 3 != 0 && (number / 3 == number.to_f / 3)
+    'Fizz'
+  else
+    number
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
