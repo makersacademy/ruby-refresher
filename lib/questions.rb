@@ -231,6 +231,11 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  counter = 0
+  file = File.open file_path
+  file.readlines.each { |line| counter += line.split(" ").length }
+  file.close
+  counter
 end
 
 # --- tougher ones ---
@@ -239,12 +244,17 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  self.send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  date_to_find = date.strftime("%Y%m%d")
+  file = File.open("https://www.gov.uk/bank-holidays/england-and-wales.ics")#("./data/england-and-wales.ics")
+  file.each_line {|line| return true if line.include? "DTSTART;VALUE=DATE:#{date_to_find}"}
+  return false
 end
 
 # given your birthday this year, this method tells you
@@ -252,6 +262,15 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  counter = 1
+  p day = birthday.strftime("%m").to_i
+  p month = birthday.strftime("%m").to_i
+  p year = birthday.strftime("%Y").to_i
+  loop do
+    chacked_date = Time.new(year + counter, month, day)
+    return chacked_date.strftime("%Y").to_i if chacked_date.friday?
+    counter += 1
+  end
 end
 
 # in a file, total the number of times words of different lengths
