@@ -21,7 +21,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map! { |element| element.reverse }
+  array.map!(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,14 +46,14 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{ |element| element.reverse }
+  array.sort_by { |element| element.reverse }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string.reverse!.slice!(0, string.length/2)
+  string.reverse!.slice!(0, string.length / 2)
   string.reverse
 end
 
@@ -69,8 +69,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [array.select{ |number| number.even? },
-   array.select{ |number| number.odd? } ]
+  [array.select(&:even?),
+   array.select(&:odd?)]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -78,17 +78,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.keep_if{|word| word == word.reverse }.length
+  array.keep_if { |word| word == word.reverse }.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.map.sort_by{|word| word.length}.first
+  array.map.sort_by(&:length).first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.map.sort_by{|word| word.length}.last
+  array.map.sort_by(&:length).last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -111,7 +111,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(:+).to_f/array.length).round(0)
+  (array.inject(:+).to_f / array.length).round(0)
 end
 
 # get all the elements in an array, up until the first element
@@ -119,7 +119,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{ |number| number <= 5 }
+  array.take_while { |number| number <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -134,14 +134,14 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map{ |word| word.scan(/./) }.flatten.uniq.sort
+  array.map { |word| word.scan(/./) }.flatten.uniq.sort
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
-  hash.each_pair.map{|key, value| {value => key}}.reduce &:merge
+  hash.each_pair.map {|key, value| {value => key}}.reduce &:merge
 end
 
 # in a hash where the keys and values are all numbers
@@ -237,7 +237,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  holidays_in_2014 = [ "2014/12/26", "2014/12/25", "2014/8/25", "2014/5/26",
+  holidays_in_2014 = ["2014/12/26", "2014/12/25", "2014/8/25", "2014/5/26",
                     "2014/5/5", "2014/4/21", "2014/4/18", "2014/1/1"]
   date_string = "#{date.year}/#{date.month}/#{date.day}"
   holidays_in_2014.include?(date_string)
@@ -254,9 +254,9 @@ def your_birthday_is_on_a_friday_in_the_year(birthday)
     if birthday.friday? == true
       birthday_on_friday = true
     end
-    birthday += (60*60*24*365)
+    birthday += (60 * 60 * 24 * 365)
   end
-  return birthday.year
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -265,8 +265,8 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  words = IO.read(file_path).split.each{ |word| word.gsub!(/^(\w+)\W/, '\1') }
-  each_word_length = words.map{ |word| word.length }
+  words = IO.read(file_path).split.each { |word| word.gsub!(/^(\w+)\W/, '\1') }
+  each_word_length = words.map(&:length)
   word_lengths = each_word_length.uniq
   word_lengths.map{ |length| [length, (each_word_length.count(length))]}.to_h
 end
@@ -299,5 +299,3 @@ def ninety_nine_bottles_of_beer
   puts "No more bottles of beer on the wall, no more bottles of beer."
   puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
-
-ninety_nine_bottles_of_beer
