@@ -305,7 +305,7 @@ def ninety_nine_bottles_of_beer
 
   while bottles != 0
     if bottles == 1
-    	puts "#{bottles} bottle of beer on the wall, #{bottles} bottle of beer."
+      puts "#{bottles} bottle of beer on the wall, #{bottles} bottle of beer."
       puts "Take one down and pass it around, no more bottles of beer on the wall!"
     else
       puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer."
@@ -319,4 +319,4 @@ end
 
 # ninety_nine_bottles_of_beer
 
-#fizzbuzz_without_modulo
+# fizzbuzz_without_modulo
