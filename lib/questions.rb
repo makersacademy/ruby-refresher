@@ -191,6 +191,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.tr('A-Z', '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -210,6 +211,10 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  time_array = date.to_s.split(/[\-, ]/)
+  time_array.pop(2)
+  answer = time_array.reverse.join('/')
+  return answer
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -225,22 +230,29 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  array = string.capitalize.split(' ')
+  array.map!{|word| word == 'and' || word == 'the' ? word : word.capitalize }
+  return array.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  /\W/.match(string) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  array = range.to_s.split('.')
+  return upper = array.pop.to_i
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  /\.\.\./.match(range.to_s) != nil
 end
 
 # get the square root of a number
@@ -250,6 +262,8 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  count = file.each_line{|line| return line.split(' ').count}
 end
 
 # --- tougher ones ---
@@ -258,12 +272,16 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = ['2014-12-26', '2014-12-25', '2014-8-25', '2014-5-26', '2014-5-5', '2014-4-21', '2014-4-18', '2014-1-1']
+  holidays.map! {|day| Time.parse(day)}
+  holidays.include? date
 end
 
 # given your birthday this year, this method tells you
@@ -271,6 +289,15 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  t = birthday
+  y = t.year
+  m = t.month
+  d = t.day
+  until t.friday? == true do
+    y += 1
+    t = Time.local(y, m, d)
+  end
+  return y
 end
 
 # in a file, total the number of times words of different lengths
@@ -279,6 +306,9 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, 'r')
+  words = file.each_line{|line| line.split(' ')}
+  puts words.count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
