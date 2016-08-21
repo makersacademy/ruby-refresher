@@ -32,12 +32,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  final = []
   array.each do |item|
-    if item.nil? or item == false
-      array.delete(item)
+    if item
+      final.push(item)
     end
   end
-  array
+  final
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -192,7 +193,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  final = []
+  array.each do |number|
+    if number > 5
+      break
+    end
+    final.push(number)
+  end
+  final
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -254,21 +262,25 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  "#{date.day}/#{date.month}/#{date.year}"
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.split("@")[1].split(".")[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -277,30 +289,55 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  array = string.split(" ")
+  final = []
+  array.each do |word|
+    if (word == "a" or word == "and" or word == "the")
+      if (array[0] == word) and (final[0] != word.capitalize)
+        final.push(word.capitalize)
+      else
+        final.push(word)
+      end
+    else
+      final.push(word.capitalize)
+    end
+  end
+  final.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  if (string =~ /[^A-Z, ^a-z, ^0-9]/) == nil
+    false
+  else
+    true
+  end
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !range.include?(range.last)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path)
+  array = file.read.split(" ")
+  array.length
 end
 
 # --- tougher ones ---
@@ -309,12 +346,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  banks_holidays = [Time.new(2014, 12, 26), Time.new(2014, 12, 26), Time.new(2014, 8, 25), Time.new(2014, 5, 26), Time.new(2014, 5, 5), Time.new(2014, 4, 21), Time.new(2014, 4, 18), Time.new(2014, 1, 1)]
+  banks_holidays.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -322,6 +362,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+
 end
 
 # in a file, total the number of times words of different lengths
@@ -335,7 +376,24 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(x)
+  def by_three(x)
+    x = x.to_f
+    x/3 == (x/3).to_i
+  end
+  def by_five(x)
+    x = x.to_f
+    x/5 == (x/5).to_i
+  end
+  if by_three(x) and by_five(x)
+    "FizzBuzz"
+  elsif by_three(x) and !by_five(x)
+    "Fizz"
+  elsif !by_three(x) and by_five(x)
+    "Buzz"
+  else
+    "Nought"
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
