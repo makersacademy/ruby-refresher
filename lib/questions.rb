@@ -260,6 +260,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  birthday = birthday.to_date.next_year until birthday.friday?
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -268,13 +270,30 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  hash = Hash.new(0)
+  File.open(file_path, "r") do |file|
+    file.read.split(/\W+/).each do |word|
+      hash[word.length] += 1
+    end
+  end
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-
+  100.times do |number|
+    if number.modulo(15).zero?
+      "FizzBuzz"
+    elsif number.modulo(3).zero?
+      "Fizz"
+    elsif number.modulo(5).zero?
+      "Buzz"
+    else
+      number
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
