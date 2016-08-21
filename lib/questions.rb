@@ -252,7 +252,7 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   date_to_find = date.strftime("%Y%m%d")
-  file = File.open("https://www.gov.uk/bank-holidays/england-and-wales.ics")#("./data/england-and-wales.ics")
+  file = open("england-and-wales.ics").read
   file.each_line {|line| return true if line.include? "DTSTART;VALUE=DATE:#{date_to_find}"}
   return false
 end
@@ -263,9 +263,9 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   counter = 1
-  p day = birthday.strftime("%m").to_i
-  p month = birthday.strftime("%m").to_i
-  p year = birthday.strftime("%Y").to_i
+  day = birthday.strftime("%m").to_i
+  month = birthday.strftime("%m").to_i
+  year = birthday.strftime("%Y").to_i
   loop do
     chacked_date = Time.new(year + counter, month, day)
     return chacked_date.strftime("%Y").to_i if chacked_date.friday?
