@@ -21,7 +21,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each( &:reverse! )
+  array.each(&:reverse!)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -320,9 +320,8 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   99.downto 1 do |n|
-    puts "#{n} bottle#{get_plural(n)} of beer on the wall,
-    \r#{n} bottle#{get_plural(n)} of beer."
-    puts "Take one down and pass it around, #{n != 1 ? n-1 : 'No more'} bottle#{get_plural(n-1)} of beer on the wall."
+    puts "#{n} bottle#{get_plural(n)} of beer on the wall,#{n} bottle#{get_plural(n)} of beer."
+    puts "Take one down and pass it around, #{n != 1 ? n - 1 : 'No more'} bottle#{get_plural(n-1)} of beer on the wall."
   end
   puts "No more bottles of beer on the wall, no more bottles of beer."
   puts "Go to the store and buy some more, 99 bottles of beer on the wall."
