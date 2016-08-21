@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |element| /^[a,e,i,o,u]/.match(element)  }
+  array.select { |element| /^[a,e,i,o,u]/.match(element) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,7 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if{ |element| element == nil || element == false  }
+  array.delete_if { |element| element.nil? || element == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -141,7 +141,7 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
-  hash.each_pair.map {|key, value| {value => key}}.reduce &:merge
+  hash.each_pair.map { |key, value| {value => key } }.inject(&:merge)
 end
 
 # in a hash where the keys and values are all numbers
@@ -237,11 +237,16 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  holidays_in_2014 = ["2014/12/26", "2014/12/25", "2014/8/25", "2014/5/26",
-                    "2014/5/5", "2014/4/21", "2014/4/18", "2014/1/1"]
+  holidays_in_2014 = ["2014/12/26",
+                      "2014/12/25",
+                      "2014/8/25",
+                      "2014/5/26",
+                      "2014/5/5",
+                      "2014/4/21",
+                      "2014/4/18",
+                      "2014/1/1"]
   date_string = "#{date.year}/#{date.month}/#{date.day}"
   holidays_in_2014.include?(date_string)
-
 end
 
 # given your birthday this year, this method tells you
@@ -268,14 +273,25 @@ def count_words_of_each_length_in_a_file(file_path)
   words = IO.read(file_path).split.each { |word| word.gsub!(/^(\w+)\W/, '\1') }
   each_word_length = words.map(&:length)
   word_lengths = each_word_length.uniq
-  word_lengths.map{ |length| [length, (each_word_length.count(length))]}.to_h
+  word_lengths.map { |length| [length, each_word_length.count(length)] }.to_h
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  fizz = ["", "", "fizz"]
+  buzz = ["", "", "", "", "buzz"]
 
+  (1..99).each do |number|
+    if fizz[0] + buzz[0] == ""
+      puts number
+    else
+      puts fizz[0] + buzz[0]
+    end
+    fizz.rotate!
+    buzz.rotate!
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -286,12 +302,13 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   bottles = 99
+
   while bottles != 0
     if bottles == 1
-    	puts "#{bottles.to_s} bottle of beer on the wall, #{bottles.to_s} bottle of beer."
+    	puts "#{bottles} bottle of beer on the wall, #{bottles} bottle of beer."
       puts "Take one down and pass it around, no more bottles of beer on the wall!"
     else
-      puts "#{bottles.to_s} bottles of beer on the wall, #{bottles.to_s} bottles of beer."
+      puts "#{bottles} bottles of beer on the wall, #{bottles} bottles of beer."
       puts "Take one down and pass it around, #{bottles - 1} bottles of beer on the wall"
     end
     bottles -= 1
@@ -299,3 +316,7 @@ def ninety_nine_bottles_of_beer
   puts "No more bottles of beer on the wall, no more bottles of beer."
   puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
+
+# ninety_nine_bottles_of_beer
+
+#fizzbuzz_without_modulo
