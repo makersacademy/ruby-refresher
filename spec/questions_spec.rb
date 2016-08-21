@@ -62,14 +62,14 @@ describe 'the Friday test :)' do
     expect(a).to eq 'ban'
     expect(b).to eq 'app'
   end
-  #
-  # it 'make_numbers_negative' do
-  #   a = make_numbers_negative 5
-  #   b = make_numbers_negative -7
-  #
-  #   expect(a).to eq -5
-  #   expect(b).to eq -7
-  # end
+
+  it 'make_numbers_negative' do
+    a = make_numbers_negative 5
+    b = make_numbers_negative -7
+
+    expect(a).to eq -5
+    expect(b).to eq -7
+  end
   #
   # it 'separate_array_into_even_and_odd_numbers' do
   #   n = separate_array_into_even_and_odd_numbers [1, 2, 3, 4, 5, 6, 7]
