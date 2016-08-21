@@ -319,8 +319,9 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  (99).downto(1) do |n|
-    puts "#{n} bottle#{get_plural(n)} of beer on the wall, #{n} bottle#{get_plural(n)} of beer."
+  99.downto 1 do |n|
+    puts "#{n} bottle#{get_plural(n)} of beer on the wall,
+    \r#{n} bottle#{get_plural(n)} of beer."
     puts "Take one down and pass it around, #{n != 1 ? n-1 : 'No more'} bottle#{get_plural(n-1)} of beer on the wall."
   end
   puts "No more bottles of beer on the wall, no more bottles of beer."
