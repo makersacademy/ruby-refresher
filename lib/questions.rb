@@ -342,6 +342,21 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  count = 0.0
+  divisible_by_three = Range.new(1,(100/3.floor)).to_a
+  divisible_by_five = Range.new(1,(100/5.floor)).to_a
+  divisible_by_fifteen = Range.new(1,(100/15).floor).to_a
+
+  while count < 100.0
+    count += 1.0
+
+    if (divisible_by_three.include?((count / 3.0).to_i)) == true
+      puts "fizz"
+    else
+      puts count.to_i
+    end
+  end
+
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
