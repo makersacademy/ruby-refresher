@@ -188,7 +188,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
+  string.split.map! { |word| word.capitalize }.join(" ").gsub(" The"," the").gsub(" And"," and").gsub(" A"," a")
 end
 
 # return true if a string contains any special characters
