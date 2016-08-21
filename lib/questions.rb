@@ -250,7 +250,6 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-    # date.strftime("%d/%m/%Y")
   while !birthday.friday?
     birthday += (60*60*24*365)
   end
@@ -300,4 +299,3 @@ def ninety_nine_bottles_of_beer
   puts "#{bottles_num[1]} of beer on the wall, #{bottles_num[1]} of beer."
   puts "Take one down and pass it around, no more bottles of beer on the wall."
 end
-ninety_nine_bottles_of_beer
