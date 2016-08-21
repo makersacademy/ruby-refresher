@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |element| element =~ /^[aA]/}
+  array.select { |element| element =~ /^[aA]/ }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{ |element| element =~ /^[aeiouAIEOU]/ }
+  array.select { |element| element =~ /^[aeiouAIEOU]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -21,7 +21,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each { |element| element.reverse! }
+  array.each(&:reverse!)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,8 +46,8 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  rev_array_sorted = array.each {|element| element.reverse!}.sort
-  rev_array_sorted.each {|element| element.reverse!}
+  rev_array_sorted = array.each(&:reverse!).sort
+  rev_array_sorted.each(&:reverse!)
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -55,7 +55,7 @@ end
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
   middle = ((string.length.to_f)/2).ceil
-  string[0..middle-1]
+  string[0..middle - 1]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -69,8 +69,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  evens = array.select { |number| number.even? }
-  odds = array.select { |number| number.odd? }
+  evens = array.select(&:even?)
+  odds = array.select(&:odd?)
   array = [evens, odds]
 end
 
@@ -152,8 +152,8 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  key = array.values_at(* array.each_index.select {|index| index.even?})
-  value = array.values_at(* array.each_index.select {|index| index.odd?})
+  key = array.values_at(* array.each_index.select(&:even?))
+  value = array.values_at(* array.each_index.select(&:odd?))
   nest_array = Hash[*key.zip(value).flatten]
 end
 
@@ -212,7 +212,7 @@ end
 def get_domain_name_from_email_address(email)
   at = email.index("@")
   dot = email.index(".")
-  email[at+1..dot-1]
+  email[at + 1..dot - 1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -221,16 +221,16 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  stringAry = string.split.map{|element| element.capitalize}
-  stringAry.each do |word|
+  string_ary = string.split.map(&:capitalize)
+  string_ary.each do |word|
     if word == "The" || word == "A" || word == "And"
       word.downcase!
     else
       word.capitalize!
     end
   end
-  stringAry[0].capitalize!
-  cap_string = stringAry.join(' ')
+  string_ary[0].capitalize!
+  cap_string = string_ary.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -297,7 +297,7 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
 
-  one_year = (60*60*24*365)
+  one_year = (60 * 60 * 24 * 365)
 
   if birthday.friday? == true
     birthday = birthday + one_year
@@ -329,7 +329,7 @@ def count_words_of_each_length_in_a_file(file_path)
   array = contents.split
   ## CREATES NEW ARRAY OF LENGTH OF EACH STRING
   lengths_array = []
-  array.each {|element| lengths_array << element.length}
+  array.each { |element| lengths_array << element.length }
   lengths_array.sort!
   ## CREATES 2D ARRAY OF WORD LENGTHS AND HOW MANY TIMES IT IS REPREATED IN
   ## LENGTHS_ARRAY
