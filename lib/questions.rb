@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select {|word| word[0] === "a"}
+  array.select { |word| word[0] === "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select {|word| word[0]=~/[aeiou]/}
+  array.select { |word| word[0]=~/[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -16,13 +16,13 @@ end
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   array.compact!
-  array.delete_if{|word| word === false}
+  array.delete_if { |word| word === false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each {|word| word.reverse!}
+  array.each { |word| word.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -47,7 +47,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort{|a,b| a[-1] <=> b[-1]}
+  array.sort { |a,b| a[-1] <=> b[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -69,7 +69,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition{|n| n.even?}
+  array.partition { |n| n.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -77,17 +77,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select{|word| word == word.reverse}.count
+  array.select { |word| word == word.reverse }.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort{|a,b| a.length <=> b.length}[0]
+  array.sort { |a,b| a.length <=> b.length }[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort{|a,b| b.length <=> a.length}[0]
+  array.sort { |a,b| b.length <=> a.length }[0]
   #OR array.sort{|a,b| a.length <=> b.length}[-1]
 
 end
@@ -95,7 +95,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject{|n,sum| n + sum }
+  array.inject { |n,sum| n + sum }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -112,7 +112,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  total = array.inject{|n,sum| n + sum }
+  total = array.inject { |n,sum| n + sum }
   (total/array.length.to_f).round
 end
 
@@ -121,7 +121,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  index = array.index(array.find{|x| x > 5})
+  index = array.index(array.find { |x| x > 5 })
   array[0...index]
 end
 
@@ -152,7 +152,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   array = hash.flatten
-  array.inject{|n,sum| n + sum }
+  array.inject { |n,sum| n + sum }
 end
 
 # take out all the capital letters from a string
@@ -183,7 +183,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  email[email.index("@")+1 .. email.index(".")-1]
+  email[(email.index("@") + 1)..(email.index(".") - 1)]
 end
 
 # capitalize the first letter in each word of a string,
@@ -192,10 +192,10 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  exceptions = ["a", "and", "the"]
+  exceptions = %w(a and the)
   newstring = string.split(" ")
   newstring[0].capitalize!
-  newstring.map {|word| exceptions.include?(word) ? word : word.capitalize}.join(" ")
+  newstring.map { |word| exceptions.include?(word) ? word : word.capitalize }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -293,15 +293,9 @@ def ninety_nine_bottles_of_beer num
 
     num_string = ''
 
-    ones_place = ['one',      'two',      'three',
-                  'four',     'five',     'six',
-                  'seven',    'eight',    'nine']
-    tens_place = ['ten',      'twenty',   'thirty',
-                  'forty',   'fifty',    'sixty',
-                  'seventy',  'eighty',   'ninety']
-    teenagers  = ['eleven',   'twelve',   'thirteen',
-                  'fourteen', 'fifteen',  'sixteen',
-                  'seventeen','eighteen', 'ninteen']
+    ones_place = %w(one two three four five six seven eight nine)
+    tens_place = %w(ten twenty thirty forty fifty sixty seventy eighty ninety)
+    teenagers  = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen ninteen)
 
     zillions = [['hundred', 2],            ['thousand', 3],        ['million', 6],
                ['billion', 9],            ['trillion', 12],       ['quadrillion', 15],
