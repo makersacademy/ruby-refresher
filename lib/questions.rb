@@ -297,7 +297,23 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+
+  one_year = (60*60*24*365)
+
+  if birthday.friday? == true
+    birthday = birthday + one_year
+    while birthday.friday? != true
+      birthday = birthday + one_year
+    end
+    birthday.year
+  else
+    while birthday.friday? != true
+      birthday = birthday + one_year
+    end
+    birthday.year
+  end
 end
+
 
 # in a file, total the number of times words of different lengths
 # appear. So in a file with the text "the cat sat on the blue mat"
