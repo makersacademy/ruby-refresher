@@ -1,21 +1,21 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.keep_if {|x| x[0].downcase == "a"}
+  array.keep_if { |x| x[0].downcase == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.keep_if {|x| x[0].downcase =~ /[aeiou]/}
+  array.keep_if { |x| x[0].downcase =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.delete_if {|x| x === nil}
+  array.delete_if { |x| x === nil }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if {|x| x === nil || x === false}
+  array.delete_if { |x| x === nil || x === false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -60,7 +60,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number > 0 ? number*-1 : number
+  number > 0 ? number * -1 : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -69,8 +69,8 @@ end
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   new_array = []
-  new_array.push array.select{ |x| x.even? }
-  new_array.push array.select{ |x| x.odd? }
+  new_array.push array.select { |x| x.even? }
+  new_array.push array.select { |x| x.odd? }
   new_array
 end
 
@@ -79,7 +79,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.keep_if{ |x| x == x.reverse }
+  array.keep_if { |x| x == x.reverse }
   array.length
 end
 
@@ -97,7 +97,7 @@ end
 # returns 15
 def total_of_array(array)
   sum = 0
-  array.each {|x| sum += x}
+  array.each { |x| sum += x }
   sum
 end
 
@@ -115,7 +115,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject{|total, element| total + element}.to_f / array.size).ceil
+  (array.inject{ |total, element| total + element }.to_f / array.size).ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -138,7 +138,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  (array.map {|x| x.chars}).flatten.sort
+  (array.map { |x| x.chars }).flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -153,7 +153,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   sum = 0
-  hash.each {|key, value| sum += key + value}
+  hash.each { |key, value| sum += key + value }
   sum
 end
 
@@ -184,7 +184,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  email[(email.index("@")+1)..(email.index(".")-1)]
+  email[(email.index("@") + 1)..(email.index(".") - 1)]
 end
 
 # capitalize the first letter in each word of a string,
@@ -193,9 +193,9 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  skip = ["a","and","the"]
+  skip = ["a", "and", "the"]
   new_string = []
-  string.split(" ").each_with_index do |x,i|
+  string.split(" ").each_with_index do |x, i|
     if !(skip.include? x) || (i == 0)
       new_string.push x.capitalize
     else
@@ -244,7 +244,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  self.send(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -282,7 +282,7 @@ def count_words_of_each_length_in_a_file(file_path)
   lengths = {}
   file = File.open file_path
   file.each_line do |line|
-    words = line.gsub(/[,.]/,'').split(" ")
+    words = line.gsub(/[,.]/, '').split(" ")
     words.each do |word|
       key = word.length
       (lengths.has_key? key) ? lengths[key] += 1 : lengths[key] = 1
