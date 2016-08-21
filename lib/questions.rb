@@ -238,6 +238,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -265,6 +266,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
