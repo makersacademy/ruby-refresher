@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{ |letter| letter[-1] }
+  array.sort_by { |letter| letter[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -153,7 +153,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub(/[A-Z]/,'')
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -235,7 +235,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  eval str_method
+  send str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -264,7 +264,10 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   file = File.open(file_path).read
-  file.scan(/\w+/).inject(Hash.new(0)) { |hash, word| hash[word.length] += 1; hash }
+  file.scan(/\w+/).inject(Hash.new(0)) do |hash, word|
+    hash[word.length] += 1
+    hash
+  end
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
