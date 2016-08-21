@@ -1,28 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select {|element| element[0] == 'a'}
+  array.select { |element| element[0] == 'a'}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  # array.select {|element| element[0] == 'a'||element[0] == 'e'||element[0] == 'i'||element[0] == 'o'||element[0] == 'u'}
-  array.select {|element| element.start_with?('a', 'e', 'i', 'o', 'u')}
+  array.select { |element| element.start_with?('a', 'e', 'i', 'o', 'u')}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select {|element| !element.nil? }
+  array.select { |element| !element.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select {|element| !!element }
+  array.select { |element| !!element }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each {|element| element.reverse! }
+  array.each { |element| element.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -47,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by {|element| element[-1, 1] }
+  array.sort_by { |element| element[-1, 1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -82,7 +81,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select {|element| element == element.reverse }.length
+  array.select { |element| element == element.reverse }.length
 end
 
 # return the shortest word in an array
@@ -152,13 +151,13 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.map {|k, v| k + v }.inject(:+)
+  hash.map { |k , v| k + v }.inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.split('').select {|char| char == char.downcase }.join()
+  string.split('').select { |char| char == char.downcase }.join()
 end
 
 # round up a float up and convert it to an Integer,
@@ -283,7 +282,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  100.times do |number|
+  (1..100).each do |number|
     if number.modulo(15).zero?
       "FizzBuzz"
     elsif number.modulo(3).zero?
