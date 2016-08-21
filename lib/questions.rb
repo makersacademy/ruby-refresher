@@ -289,7 +289,6 @@ def is_a_2014_bank_holiday?(date)
   else
     false
   end
-
 end
 
 # given your birthday this year, this method tells you
@@ -332,8 +331,10 @@ def count_words_of_each_length_in_a_file(file_path)
   lengths_array = []
   array.each {|element| lengths_array << element.length}
   lengths_array.sort!
-  ## CREATES 2D ARRAY OF WORD LENGTHS AND HOW MANY TIMES IT IS REPREATED IN LENGTHS_ARRAY
-  count_array = lengths_array.group_by{|element| element}.map{|key, value| [key, value.count]}
+  ## CREATES 2D ARRAY OF WORD LENGTHS AND HOW MANY TIMES IT IS REPREATED IN
+  ## LENGTHS_ARRAY
+  count_array = lengths_array.group_by{|element| element}.map{|key, value|
+                [key, value.count]}
   ## CONVERT 2D ARRAY TO HASH USING FLATTEN
   Hash[*count_array.flatten]
 end
@@ -350,13 +351,16 @@ def fizzbuzz_without_modulo
   while count < 100.0
     count += 1.0
 
-    if (divisible_by_three.include?((count / 3.0).to_i)) == true
-      puts "fizz"
+    if divisible_by_fifteen.include?((count / 15.0)) == true
+      puts "fizzbuzz"
+    elsif divisible_by_five.include?((count / 5.0)) == true
+      puts "buzz"
+    elsif divisible_by_three.include?((count / 3.0)) == true
+    puts "fizz"
     else
       puts count.to_i
     end
   end
-
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -366,4 +370,20 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  count = 99
+
+  while count > 0
+
+    if count == 1
+      puts "#{count} bottle of beer on the wall, #{count} bottle of beer.
+          Take one down and pass it around, no more bottles of beer on the
+          wall"
+          count -= 1
+    else
+      puts "#{count} bottles of beer on the wall, #{count} bottles of beer.
+          Take one down and pass it around, #{count - 1} bottles of beer on
+          the wall."
+      count -= 1
+    end
+  end
 end
