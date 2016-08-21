@@ -23,7 +23,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map { |item| item.reverse! }
+  array.map(&:reverse!)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -48,16 +48,16 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  revSort = array.each { |item| item.reverse! }
-  revSort.sort!
-  revSort.each { |item| item.reverse! }
+  rev_sort = array.each(&:reverse!)
+  rev_sort.sort!
+  rev_sort.each(&:reverse!)
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string.slice(0,(string.length.to_f / 2).ceil)
+  string.slice(0, (string.length.to_f / 2).ceil)
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -72,7 +72,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [ array.select(&:even?), array.select(&:odd?) ]
+  [array.select(&:even?), array.select(&:odd?)]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -136,7 +136,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map {|item| item.split('')}.flatten.sort
+  array.map { |item| item.split('') }.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -156,7 +156,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub(/[A-Z]/,'')
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -189,8 +189,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  words = string.split(' ').each { |item| item.capitalize!}
-  words.each { |item| item.downcase! if item == "A" || item == "And" || item == "The"}
+  words = string.split(' ').each(&:capitalize!)
+  words.each { |item| item.downcase! if item == "A" || item == "And" || item == "The" }
   words[0].capitalize!
   words.join(' ')
 end
@@ -250,7 +250,7 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   while !birthday.friday?
-    birthday += 31536000
+    birthday += 31_536_000
   end
   birthday.year
 end
@@ -272,11 +272,11 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   (1..100).each do |number|
-    if number.is_divisible_by?(15)
+    if number.divisible_by?(15)
       puts 'Fizzbuzz'
-    elsif number.is_divisible_by?(3)
+    elsif number.divisible_by?(3)
       puts 'Fizz'
-    elsif number.is_divisible_by?(5)
+    elsif number.divisible_by?(5)
       puts 'Buzz'
     else
       puts number
@@ -285,7 +285,7 @@ def fizzbuzz_without_modulo
 end
 
 class Integer
-  def is_divisible_by?(divisor)
+  def divisible_by?(divisor)
     self.to_f / divisor == self / divisor
   end
 end
