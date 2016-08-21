@@ -234,10 +234,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  file = File.open(file_path, 'r')
   array_of_lines = []
-  file.each {|line| array_of_lines << line }
-  array_of_lines.first.split(" ").count
+  file = File.open(file_path, 'r')
+  file.each {|line| array_of_lines << line}
+  array_of_lines.join(" ").split(" ").count
 end
 
 # --- tougher ones ---
@@ -298,10 +298,12 @@ end
 # I have 5 words which are 3 letters long, 1 which is 2 letters long
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
+
 def count_words_of_each_length_in_a_file(file_path)
-  array_of_words = File.read(file_path).gsub(/[^a-zA-Z\s]/, "").split
   word_frequencies = Hash.new(0)
-  array_of_words.each {|word| word_frequencies[word.length] += 1}
+  array_of_words = File.read(file_path).gsub(/[^a-zA-Z\s]/, "").split
+  array_of_lengths = array_of_words.map {|word| word.length}
+  array_of_lengths.each {|length| word_frequencies[length] += 1 }
   word_frequencies
 end
 
