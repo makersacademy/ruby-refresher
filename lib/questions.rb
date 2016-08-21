@@ -267,6 +267,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -276,4 +277,18 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles=99
+  suffixes=['no more bottles', '1 bottle']
+  i=2
+  while i <= bottles
+    suffixes=suffixes+[i.to_s + ' bottles']
+    i=i+1
+  end
+  while bottles > 0
+    puts suffixes[bottles] + " of beer on the wall," + suffixes[bottles] + " of beer."
+    puts "Take one down and pass it around," + suffixes[bottles-1] + " of beer on the wall."
+    bottles=bottles-1
+  end
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
