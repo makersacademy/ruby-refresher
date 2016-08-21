@@ -264,33 +264,11 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 
-def birthday_in_jan_or_feb?(month_of_birthday)
-  return true if month_of_birthday == "January" || month_of_birthday == "February"
-  return false
-end
-
-# Based on the Rspec test, it seems that by "this year", the instructions mean 2013
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  day_of_bday_this_year = birthday.strftime("%A")
-  month_of_birthday = birthday.strftime("%B")
-  case day_of_bday_this_year
-  when "Friday"
-    return 2013
-  when "Saturday"
-    return 2018
-  when "Sunday"
-    return 2017
-  when "Monday"
-    return 2022 if birthday_in_jan_or_feb?(month_of_birthday)
-    return 2016
-  when "Tuesday"
-    return 2016 if birthday_in_jan_or_feb?(month_of_birthday)
-    return 2021
-  when "Wednesday"
-    return 2015
-  when "Thursday"
-    return 2014
+  while !birthday.friday?
+    birthday += 3_1547_000
   end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
