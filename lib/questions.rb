@@ -285,4 +285,14 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  for i in (99).downto(1)
+    bottle = i > 1 ? "bottles" : "bottle"
+    reduce = i == 1 ? "no more" : i - 1
+    next_bottle = reduce == 1 ? "bottle" : "bottles"
+
+    puts "#{i} #{bottle} of beer on the wall, #{i} #{bottle} of beer."
+    puts "Take one down and pass it around, #{reduce} #{next_bottle} of beer on the wall."
+  end
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
