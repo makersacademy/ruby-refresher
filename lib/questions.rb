@@ -54,7 +54,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  middle = ((string.length.to_f)/2).ceil
+  middle = (string.length.to_f / 2).ceil
   string[0..middle - 1]
 end
 
@@ -179,7 +179,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   result = 0
-  hash.each {|key,value| result += key+value}
+  hash.each { |key, value| result += key + value }
   result
 end
 
@@ -238,7 +238,7 @@ end
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
   match = /\W/.match(string)
-  match == nil ? false : true
+  match.nil? ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -284,7 +284,7 @@ def is_a_2014_bank_holiday?(date)
   case nice_date
 
   when date == "1/1/2014", "18/4/2014", "21/4/2014", "5/5/2014",
-               "26/5/2014","25/8/2014", "25/12/2014", "26/12/2014"
+               "26/5/2014", "25/8/2014", "25/12/2014", "26/12/2014"
     true
   else
     false
@@ -300,14 +300,14 @@ def your_birthday_is_on_a_friday_in_the_year(birthday)
   one_year = (60 * 60 * 24 * 365)
 
   if birthday.friday? == true
-    birthday = birthday + one_year
+    birthday += one_year
     while birthday.friday? != true
-      birthday = birthday + one_year
+      birthday += one_year
     end
     birthday.year
   else
     while birthday.friday? != true
-      birthday = birthday + one_year
+      birthday += one_year
     end
     birthday.year
   end
@@ -344,9 +344,9 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   count = 0.0
-  divisible_by_three = Range.new(1,(100/3.floor)).to_a
-  divisible_by_five = Range.new(1,(100/5.floor)).to_a
-  divisible_by_fifteen = Range.new(1,(100/15).floor).to_a
+  divisible_by_three = Range.new(1, (100 / 3.floor)).to_a
+  divisible_by_five = Range.new(1, (100 / 5.floor)).to_a
+  divisible_by_fifteen = Range.new(1, (100 / 15).floor).to_a
 
   while count < 100.0
     count += 1.0
@@ -356,7 +356,7 @@ def fizzbuzz_without_modulo
     elsif divisible_by_five.include?((count / 5.0)) == true
       puts "buzz"
     elsif divisible_by_three.include?((count / 3.0)) == true
-    puts "fizz"
+      puts "fizz"
     else
       puts count.to_i
     end
@@ -378,12 +378,11 @@ def ninety_nine_bottles_of_beer
       puts "#{count} bottle of beer on the wall, #{count} bottle of beer.
           Take one down and pass it around, no more bottles of beer on the
           wall"
-          count -= 1
     else
       puts "#{count} bottles of beer on the wall, #{count} bottles of beer.
           Take one down and pass it around, #{count - 1} bottles of beer on
           the wall."
-      count -= 1
     end
+    count -= 1
   end
 end
