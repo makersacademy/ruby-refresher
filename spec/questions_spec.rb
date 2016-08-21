@@ -105,11 +105,11 @@ describe 'the Friday test :)' do
     n = turn_symbol_into_string :foobar
     expect(n).to eq 'foobar'
   end
-  #
-  # it 'average_of_array' do
-  #   n = average_of_array [10, 15, 25]
-  #   expect(n).to eq 17
-  # end
+
+  it 'average_of_array' do
+    n = average_of_array [10, 15, 25]
+    expect(n).to eq 17
+  end
   #
   # it 'get_elements_until_greater_than_five' do
   #   n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
