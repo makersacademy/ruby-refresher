@@ -291,4 +291,13 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles_start = 99
+  bottles_num = proc { |n| "#{n} bottle#{n == 1 ? '' : 's'}"}
+  bottles_start.downto(2) do |num|
+    puts "#{bottles_num[num]} of beer on the wall, #{bottles_num[num]} of beer."
+    puts "Take one down and pass it around, #{bottles_num[num-1]} of beer on the wall."
+  end
+  puts "#{bottles_num[1]} of beer on the wall, #{bottles_num[1]} of beer."
+  puts "Take one down and pass it around, no more bottles of beer on the wall."
 end
+ninety_nine_bottles_of_beer

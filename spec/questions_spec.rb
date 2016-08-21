@@ -227,4 +227,5 @@ describe 'the Friday test :)' do
     expect(fizzbuzz_without_modulo(30)).to eq('Fizzbuzz')
     expect(fizzbuzz_without_modulo(12)).to eq('Fizz')
   end
+
 end
