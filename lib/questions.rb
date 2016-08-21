@@ -321,4 +321,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  # Variation on a theme: 99 sticks of dynamite
+  # Obviously doesn't work with edge cases where objects are not explosive
+  start_number = 99
+  objects = "sticks of dynamite"
+  text = "hanging on the wall"
+
+  2.times { puts "#{start_number} #{objects} #{text}" }
+  puts "If one stick of dynamite"
+  puts "Should accidently fall"
+  puts "There'll be #{start_number - start_number} #{objects}"
+  puts "And no ****ing wall"
 end
