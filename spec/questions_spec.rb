@@ -165,14 +165,14 @@ describe 'the Friday test :)' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
-  #
-  # it 'check_a_string_for_special_characters' do
-  #   a = check_a_string_for_special_characters 'ABCdef123'
-  #   b = check_a_string_for_special_characters 'ABC@def123!'
-  #
-  #   expect(a).to be false
-  #   expect(b).to be true
-  # end
+
+  it 'check_a_string_for_special_characters' do
+    a = check_a_string_for_special_characters 'ABCdef123'
+    b = check_a_string_for_special_characters 'ABC@def123!'
+
+    expect(a).to be false
+    expect(b).to be true
+  end
   #
   # it 'get_upper_limit_of' do
   #   n = get_upper_limit_of 1..20
