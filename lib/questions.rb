@@ -83,6 +83,8 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  string = array*' '
+  string.split(' ').min_by(&:length)
 end
 
 # return the shortest word in an array
