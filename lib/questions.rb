@@ -99,32 +99,42 @@ end
 def longest_word_in_array(array)
   array.max { |x,y| x.length <=> y.length }
 end
+
+# add up all the numbers in an array, so [1, 3, 5, 6]
+# returns 15
+def total_of_array(array)
+  array.inject { |sum, n| n + sum }
+end
+
+# turn an array into itself repeated twice. So [1, 2, 3]
+# becomes [1, 2, 3, 1, 2, 3]
+def double_array(array)
+  array.dup + array.clone
+end
 #
-# # add up all the numbers in an array, so [1, 3, 5, 6]
-# # returns 15
-# def total_of_array(array)
-# end
+# convert a symbol into a string
+def turn_symbol_into_string(symbol)
+  symbol.to_s
+end
+
+# get the average from an array, rounded to the nearest integer
+# so [10, 15, 25] should return 17
+def average_of_array(array)
+  length = array.length.to_f
+  array.inject do |sum, n|
+                  @total = sum.to_f + n.to_f
+                  end
+  average = @total/length
+  average.round
+end
 #
-# # turn an array into itself repeated twice. So [1, 2, 3]
-# # becomes [1, 2, 3, 1, 2, 3]
-# def double_array(array)
-# end
-#
-# # convert a symbol into a string
-# def turn_symbol_into_string(symbol)
-# end
-#
-# # get the average from an array, rounded to the nearest integer
-# # so [10, 15, 25] should return 17
-# def average_of_array(array)
-# end
-#
-# # get all the elements in an array, up until the first element
-# # which is greater than five. e.g.
-# # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
-# # becomes [1, 3, 5, 4, 1, 2]
-# def get_elements_until_greater_than_five(array)
-# end
+# get all the elements in an array, up until the first element
+# which is greater than five. e.g.
+# [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
+# becomes [1, 3, 5, 4, 1, 2]
+def get_elements_until_greater_than_five(array)
+  array.take_while {|n| n <= 5}
+end
 #
 # # turn an array (with an even number of elements) into a hash, by
 # # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes

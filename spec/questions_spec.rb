@@ -86,7 +86,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'a'
   end
 
-  fit 'longest_word_in_array' do
+  it 'longest_word_in_array' do
     n = longest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'different'
   end
@@ -111,7 +111,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 17
   end
 
-  it 'get_elements_until_greater_than_five' do
+  fit 'get_elements_until_greater_than_five' do
     n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
