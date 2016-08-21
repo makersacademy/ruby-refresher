@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |element| element.start_with?('a', 'e', 'i', 'o', 'u')}
+  array.select { |element| element.start_with?('a', 'e', 'i', 'o', 'u') }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -151,13 +151,13 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.map { |k , v| k + v }.inject(:+)
+  hash.map { |k, v| k + v }.inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.split('').select { |char| char == char.downcase }.join()
+  string.split('').select { |char| char == char.downcase }.join
 end
 
 # round up a float up and convert it to an Integer,
