@@ -262,9 +262,9 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   words = File.read(file_path.to_s).gsub(/[[:punct:]]/, '').split
-  lengths = words.map{|word| word.size}
+  lengths = words.map { |word| word.size }
   hash = Hash.new(0)
-  lengths.each{|key| hash[key] += 1}
+  lengths.each { |key| hash[key] += 1 }
   hash
 end
 
@@ -308,48 +308,48 @@ def ninety_nine_bottles_of_beer num
 
     left = number
 
-    while zillions.length > 0 #as long as there is a single element left in the zillions array
-      zil_pair = zillions.pop #take a zillion sub_array
-      zil_name = zil_pair[0] #zillion word = zil_name
-      zil_base = 10 ** zil_pair[1] #zillion value = zil_base
-      write = left / zil_base # how many zillions left
-      left = left - write*zil_base #subtract however many zillions there are left
+    while zillions.length > 0
+      zil_pair = zillions.pop
+      zil_name = zil_pair[0]
+      zil_base = 10 ** zil_pair[1]
+      write = left / zil_base
+      left -= (write * zil_base)
 
       if write > 0
-        prefix = english_number write # recursion - keeps it looping until there's no elements left in zillions array
-        num_string = num_string + prefix + ' ' + zil_name
+        prefix = english_number write
+        num_string += (prefix + ' ' + zil_name)
 
         if left > 0
-          #keep a space
-          num_string = num_string + ' '
+          num_string += ' '
         end
+
       end
     end
 
-    write = left/10 #how many tens left
-    left = left - write*10 #subtract the tens off
+    write = left / 10
+    left -= write * 10
 
-    if write > 0 #if there are any tens left from before
+    if write > 0
       if ((write == 1) and (left > 0))
-        num_string = num_string + teenagers[left-1] #teenagers exception
+        num_string += teenagers[left - 1]
         left = 0
       else
-        num_string = num_string + tens_place[write-1]
+        num_string += tens_place[write - 1]
       end
 
       if left > 0
-        num_string = num_string + '-' #add dash
+        num_string += '-'
       end
     end
 
-    write = left #how many ones left
-    left = 0 #subtract the ones off
+    write = left
+    left = 0
 
     if write > 0
-      num_string = num_string + ones_place[write-1]
+      num_string += (string + ones_place[write - 1])
     end
 
-    num_string #return the word
+    num_string
   end
 
 # =================================================================================
@@ -364,8 +364,8 @@ def ninety_nine_bottles_of_beer num
     puts "Take one down and pass it around, no more bottles of beer on the wall!"
   else
     puts english_number(num).capitalize + " bottles of beer on the wall, " + english_number(num) + " bottles of beer!"
-    puts "Take one down and pass it around, " + english_number((num-1)) + " bottles of beer on the wall!"
-    beer_song (num-1)
+    puts "Take one down and pass it around, " + english_number((num - 1)) + " bottles of beer on the wall!"
+    beer_song (num - 1)
   end
 
 end
