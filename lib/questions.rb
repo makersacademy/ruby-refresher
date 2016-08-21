@@ -1,54 +1,33 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  with_an_a = []
-  array.each do |item|
-    if item[0] == "a"
-      with_an_a.push(item)
-    end
-  end
+  with_an_a = Array.new
+  array.each { |item| with_an_a << (item) if item[0] == "a" }
   with_an_a
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  starting_with_an_vowel = []
-  array.each do |item|
-    if ["a", "e", "i", "o", "u"].include?(item[0])
-      starting_with_an_vowel.push(item)
-    end
-  end
+  starting_with_an_vowel = Array.new
+  array.each { |item| starting_with_an_vowel << item if ["a", "e", "i", "o", "u"].include?(item[0]) }
   starting_with_an_vowel
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.each do |item|
-    if item.nil?
-      array.delete(item)
-    end
-  end
-  array
+  array.each { |item| array.delete(item) if item.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   final = []
-  array.each do |item|
-    if item
-      final.push(item)
-    end
-  end
+  array.each { |item| final << item if item }
   final
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  reversed = []
-  array.each do |item|
-    reversed.push(item.reverse)
-  end
-  reversed
+  array.map { |item| item.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -121,33 +100,21 @@ end
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
   palindrome_count = 0
-  array.each do |word|
-    if word == word.reverse
-      palindrome_count += 1
-    end
-  end
+  array.each { |word| palindrome_count += 1 if word == word.reverse }
   palindrome_count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  shortest_word = array[0]
-  array.each do |word|
-    if word.length < shortest_word.length
-      shortest_word = word
-    end
-  end
-  shortest_word
+  short_word = array[0]
+  array.each { |word| short_word = word if word.length < short_word.length }
+  short_word
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
   longest_word = array[0]
-  array.each do |word|
-    if word.length > longest_word.length
-      longest_word = word
-    end
-  end
+  array.each { |word| longest_word = word if word.length > longest_word.length }
   longest_word
 end
 
@@ -155,22 +122,14 @@ end
 # returns 15
 def total_of_array(array)
   total = 0
-  array.each do |number|
-    total += number
-  end
+  array.each { |number| total += number }
   total
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  final_array = []
-  2.times do
-    array.each do |item|
-      final_array.push(item)
-    end
-  end
-  final_array
+  [array, array].flatten
 end
 
 # convert a symbol into a string
@@ -182,9 +141,7 @@ end
 # so [10, 15, 25] should return 17
 def average_of_array(array)
   total = 0
-  array.each do |number|
-    total += number.to_f
-  end
+  array.each { |number| total += number.to_f }
   (total/array.length).round
 end
 
