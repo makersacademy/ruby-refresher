@@ -1,2 +1,3 @@
 ruby:
   config_file: .rubocop.yml
+  ignore_file: spec/spec_helper.rb
