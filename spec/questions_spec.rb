@@ -173,11 +173,11 @@ describe 'the Friday test :)' do
     expect(a).to be false
     expect(b).to be true
   end
-  #
-  # it 'get_upper_limit_of' do
-  #   n = get_upper_limit_of 1..20
-  #   expect(n).to eq 20
-  # end
+
+  it 'get_upper_limit_of' do
+    n = get_upper_limit_of 1..20
+    expect(n).to eq 20
+  end
   #
   # it 'is_a_3_dot_range?' do
   #   a = is_a_3_dot_range? 1..20
