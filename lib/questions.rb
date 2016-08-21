@@ -1,12 +1,12 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{|word| 'a'== word[0]}
+  array.select { |word| 'a' == word[0] }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
   vowels = ['a','e','i','o','u']
-  array.select{|word| vowels.include?(word[0])}
+  array.select { |word| vowels.include?(word[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -16,7 +16,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{|word|word}
+  array.select { |word| word }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -47,7 +47,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{|word| word[-1]}
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -60,7 +60,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number.abs*-1
+  number.abs * -1
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -68,7 +68,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition { |number| number.even? }
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -76,17 +76,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.keep_if{|word| word == word.reverse}.length
+  array.keep_if{ |word| word == word.reverse }.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by{|word|word.length}[0]
+  array.sort_by(&:length)[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort_by{|word|word.length}[-1]
+  array.sort_by{ |word| word.length }[-1]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -110,7 +110,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.reduce(:+)/array.length.to_f).round
+  (array.reduce(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -118,7 +118,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{|i| i<6}
+  array.take_while{ |i| i<6 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -126,7 +126,7 @@ end
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
 hash = {}
-array.each_slice(2).map{|k,v| hash[k]=v}
+array.each_slice(2).map{ |k,v| hash[k]=v }
 hash
 end
 
@@ -195,7 +195,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !(string == string.gsub(/\W/,""))
+  !(string == string.gsub(/\W/, ""))
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -252,8 +252,8 @@ end
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   yr = birthday.year ; mo = birthday.month ; day = birthday.day
   until birthday.friday?
-    birthday=Time.new(yr,mo,day)
-    yr+=1
+    birthday = Time.new(yr, mo, day)
+    yr += 1
   end
   birthday.year
 end
@@ -265,7 +265,7 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   document = File.read(file_path).gsub(/\W/," ")
-  document.split.map!{|word| word.length}.each_with_object(Hash.new(0)) do
+  document.split.map!(&:length).each_with_object(Hash.new(0)) do
     |key,hash| hash[key] += 1
   end
 end
