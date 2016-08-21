@@ -227,7 +227,9 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  
+  File.open(file_path, "r") do |file|
+    file.read.split.size
+  end
 end
 
 # --- tougher ones ---
