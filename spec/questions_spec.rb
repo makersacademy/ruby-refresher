@@ -155,11 +155,11 @@ describe 'the Friday test :)' do
     n = format_date_nicely Time.new(2013, 10, 31)
     expect(n).to eq '31/10/2013'
   end
-  #
-  # it 'get_domain_name_from_email_address' do
-  #   n = get_domain_name_from_email_address 'alex@makersacademy.com'
-  #   expect(n).to eq 'makersacademy'
-  # end
+
+  it 'get_domain_name_from_email_address' do
+    n = get_domain_name_from_email_address 'alex@makersacademy.com'
+    expect(n).to eq 'makersacademy'
+  end
   #
   # it 'titleize_a_string' do
   #   n = titleize_a_string 'the lion the witch and the wardrobe'
