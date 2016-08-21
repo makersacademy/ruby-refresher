@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |word| word[0] === "a" }
+  array.select { |word| word[0] == "a" }
 end
 
 # keep only the elements that start with a vowel
@@ -16,7 +16,7 @@ end
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   array.compact!
-  array.delete_if { |word| word === false }
+  array.delete_if { |word| word == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -88,8 +88,6 @@ end
 # return the shortest word in an array
 def longest_word_in_array(array)
   array.sort { |a, b| b.length <=> a.length }[0]
-  #OR array.sort{|a,b| a.length <=> b.length}[-1]
-
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -121,7 +119,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  index = array.index(array.find { |x| x > 5 })
+  index = array.index(array.detect { |x| x > 5 })
   array[0...index]
 end
 
@@ -283,7 +281,6 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer num
-
   def english_number number
     if number < 0
       return 'Please enter a positive number'
@@ -297,7 +294,7 @@ def ninety_nine_bottles_of_beer num
     tens_place = %w(ten twenty thirty forty fifty sixty seventy eighty ninety)
     teenagers  = %w(eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen ninteen)
 
-    zillions = [['hundred', 2],            ['thousand', 3],        ['million', 6],
+    zillions = [['hundred', 2],           ['thousand', 3],        ['million', 6],
                ['billion', 9],            ['trillion', 12],       ['quadrillion', 15],
                ['quintillion', 18],       ['sextillion', 21],     ['septillion', 24],
                ['octillion', 27],         ['nonillion', 30],      ['decillion', 33],
@@ -308,10 +305,10 @@ def ninety_nine_bottles_of_beer num
 
     left = number
 
-    while zillions.length > 0
+    while zillions.!empty?
       zil_pair = zillions.pop
       zil_name = zil_pair[0]
-      zil_base = 10 ** zil_pair[1]
+      zil_base = 10**zil_pair[1]
       write = left / zil_base
       left -= (write * zil_base)
 
@@ -330,7 +327,7 @@ def ninety_nine_bottles_of_beer num
     left -= write * 10
 
     if write > 0
-      if ((write == 1) and (left > 0))
+      if (write == 1) && (left > 0)
         num_string += teenagers[left - 1]
         left = 0
       else
@@ -367,5 +364,4 @@ def ninety_nine_bottles_of_beer num
     puts "Take one down and pass it around, " + english_number((num - 1)) + " bottles of beer on the wall!"
     beer_song (num - 1)
   end
-
 end
