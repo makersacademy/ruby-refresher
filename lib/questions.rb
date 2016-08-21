@@ -10,12 +10,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.delete_if { |x| x === nil }
+  array.delete_if { |x| x == nil }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if { |x| x === nil || x === false }
+  array.delete_if { |x| x == nil || x == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -254,7 +254,7 @@ def is_a_2014_bank_holiday?(date)
   date_to_find = date.strftime("%Y%m%d")
   file = open("england-and-wales.ics").read
   file.each_line {|line| return true if line.include? "DTSTART;VALUE=DATE:#{date_to_find}"}
-  return false
+  false
 end
 
 # given your birthday this year, this method tells you
@@ -288,13 +288,13 @@ def count_words_of_each_length_in_a_file(file_path)
       (lengths.has_key? key) ? lengths[key] += 1 : lengths[key] = 1
     end
   end
-  return lengths
+  lengths
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
