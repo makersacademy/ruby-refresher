@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |word| word[0]=~/[aeiou]/ }
+  array.select { |word| word[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -47,21 +47,21 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort { |a,b| a[-1] <=> b[-1] }
+  array.sort { |a, b| a[-1] <=> b[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  index = (string.length/2.0).ceil
-  string[0..index-1]
+  index = (string.length / 2.0).ceil
+  string[0..(index - 1)]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number > 0? (number * -1) : number
+  number > 0 ? (number * -1) : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -82,12 +82,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort { |a,b| a.length <=> b.length }[0]
+  array.sort { |a, b| a.length <=> b.length }[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort { |a,b| b.length <=> a.length }[0]
+  array.sort { |a, b| b.length <=> a.length }[0]
   #OR array.sort{|a,b| a.length <=> b.length}[-1]
 
 end
@@ -95,7 +95,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject { |n,sum| n + sum }
+  array.inject { |n, sum| n + sum }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -112,8 +112,8 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  total = array.inject { |n,sum| n + sum }
-  (total/array.length.to_f).round
+  total = array.inject { |n, sum| n + sum }
+  (total / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -152,7 +152,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   array = hash.flatten
-  array.inject { |n,sum| n + sum }
+  array.inject { |n, sum| n + sum }
 end
 
 # take out all the capital letters from a string
@@ -203,7 +203,7 @@ end
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
   # string.force_encoding("UTF-8").ascii_only?
-  no_special = string.gsub(/[^a-zA-Z0-9\-]/,"")
+  no_special = string.gsub(/[^a-zA-Z0-9\-]/, "")
   string != no_special
 end
 
@@ -312,7 +312,7 @@ def ninety_nine_bottles_of_beer num
       zil_pair = zillions.pop #take a zillion sub_array
       zil_name = zil_pair[0] #zillion word = zil_name
       zil_base = 10 ** zil_pair[1] #zillion value = zil_base
-      write = left/zil_base # how many zillions left
+      write = left / zil_base # how many zillions left
       left = left - write*zil_base #subtract however many zillions there are left
 
       if write > 0
