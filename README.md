@@ -38,4 +38,5 @@ Good luck
 * Read the specs and the comments - if you're still confused, just ask.
 * Don't panic :wink:
 
-
+###21/08/2016 - Some of this challenge was very straight forward, with others
+###the use of google helped. 
