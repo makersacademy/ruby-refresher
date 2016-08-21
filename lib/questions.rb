@@ -251,9 +251,9 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  date_to_find = date.strftime("%Y%m%d")
+  date = date.strftime("%Y%m%d")
   file = open("england-and-wales.ics").read
-  file.each_line {|line| return true if line.include? "DTSTART;VALUE=DATE:#{date_to_find}"}
+  file.each_line {|line| return true if line.include? "TART;VALUE=DATE:#{date}"}
   false
 end
 
@@ -285,7 +285,7 @@ def count_words_of_each_length_in_a_file(file_path)
     words = line.gsub(/[,.]/, '').split(" ")
     words.each do |word|
       key = word.length
-      (lengths.has_key? key) ? lengths[key] += 1 : lengths[key] = 1
+      (lengths.key? key) ? lengths[key] += 1 : lengths[key] = 1
     end
   end
   lengths
@@ -295,17 +295,21 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  for number in 1..100
-    if (number / 15) * 15 == number
+  (1..100).each do |number|
+    if modulo_check(number, 15)
       p "fizzbuzz"
-    elsif (number / 3) * 3 == number
+    elsif modulo_check(number, 3)
       p "fizz"
-    elsif (number / 5) * 5 == number
+    elsif modulo_check(number, 5)
       p "buzz"
     else
       p number
     end
   end
+end
+
+def modulo_check(number, divisor)
+  (number / divisor) * divisor == number
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -315,12 +319,12 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  for n in (99).downto(1)
+  (99).downto(1) do |n|
     puts "#{n} bottle#{get_plural(n)} of beer on the wall, #{n} bottle#{get_plural(n)} of beer."
     puts "Take one down and pass it around, #{n != 1 ? n-1 : 'No more'} bottle#{get_plural(n-1)} of beer on the wall."
   end
-    puts "No more bottles of beer on the wall, no more bottles of beer."
-    puts "Go to the store and buy some more, 99 bottles of beer on the wall."
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
 
 def get_plural(n)
