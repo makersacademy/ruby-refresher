@@ -1,21 +1,21 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |word| word[0,1] == "a" }
+  array.select { |word| word[0, 1] == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |word| word[0,1] == word[/[aeiou]/] }
+  array.select { |word| word[0, 1] == word[/[aeiou]/] }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select { |item| item != nil }
+  array.select { |item| !item.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select { |item| item != nil && item != false }
+  array.select { |item| !item.nil? && item != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -53,8 +53,8 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  cut = (string.length/2)
-  string.length.even? ? string[0..cut-1] : string[0..cut]
+  cut = (string.length / 2)
+  string.length.even? ? string[0..cut - 1] : string[0..cut]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -83,13 +83,13 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  string = array*' '
+  string = array * ' '
   string.split(' ').min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  string = array*' '
+  string = array * ' '
   string.split(' ').max_by(&:length)
 end
 
@@ -114,7 +114,7 @@ end
 # so [10, 15, 25] should return 17
 def average_of_array(array)
   sum = array.inject(:+)
-  (sum/array.length.to_f).round
+  ( sum / array.length.to_f ).round
 end
 
 # get all the elements in an array, up until the first element
@@ -123,7 +123,7 @@ end
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
   index = array.index { |num| num > 5 }
-  array[0..index-1]
+  array[ 0..index-1 ]
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -250,8 +250,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  while !birthday.friday?
-    birthday += (60*60*24*365)
+  until birthday.friday?
+    birthday += ( 60*60*24*365 )
   end
   birthday.strftime("%Y").to_i
 end
@@ -291,7 +291,7 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   bottles_start = 99
-  bottles_num = proc { |n| "#{n} bottle#{n == 1 ? '' : 's'}"}
+  bottles_num = proc { |n| "#{n} bottle#{n == 1 ? '' : 's'}" }
   bottles_start.downto(2) do |num|
     puts "#{bottles_num[num]} of beer on the wall, #{bottles_num[num]} of beer."
     puts "Take one down and pass it around, #{bottles_num[num-1]} of beer on the wall."
