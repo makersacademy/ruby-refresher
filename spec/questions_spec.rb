@@ -202,14 +202,14 @@ describe 'the Friday test :)' do
   it 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
-  #
-  # it 'is_a_2014_bank_holiday?' do
-  #   a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
-  #   b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
-  #
-  #   expect(a).to be true
-  #   expect(b).to be false
-  # end
+
+  it 'is_a_2014_bank_holiday?' do
+    a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
+    b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
+
+    expect(a).to be true
+    expect(b).to be false
+  end
   #
   # it 'your_birthday_is_on_a_friday_in_the_year' do
   #   n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
