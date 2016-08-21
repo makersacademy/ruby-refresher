@@ -140,11 +140,11 @@ describe 'the Friday test :)' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
-  #
-  # it 'round_up_number' do
-  #   n = round_up_number 3.142
-  #   expect(n).to eq 4
-  # end
+
+  it 'round_up_number' do
+    n = round_up_number 3.142
+    expect(n).to eq 4
+  end
   #
   # it 'round_down_number' do
   #   n = round_down_number 4.9
