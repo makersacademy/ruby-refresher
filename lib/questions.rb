@@ -290,6 +290,39 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  def fizzbuzz(number)
+    return 'FizzBuzz' if is_divisible_by_fifteen?(number)
+    return 'Buzz' if is_divisible_by_five?(number)
+    return 'Fizz' if is_divisible_by_three?(number)
+    number
+  end
+
+  def is_divisible_by_three?(number)
+    is_divisible_by?(number, 3)
+  end
+
+  def is_divisible_by_five?(number)
+    is_divisible_by?(number, 5)
+  end
+
+  def is_divisible_by_fifteen?(number)
+    is_divisible_by?(number, 15)
+  end
+
+  def is_divisible_by?(number, divisor)
+    quotient = number/divisor
+    divisibleNum = divisor*quotient
+    if (number-divisibleNum) == 0
+      true
+    else
+      false
+    end
+  end
+
+  for i in 1..100
+    puts fizzbuzz(i)
+  end
+
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -299,4 +332,17 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottle_count = 99
+  while bottle_count > 2
+  puts bottle_count.to_s + ' bottles of beer on the wall, ' +
+               bottle_count.to_s + ' bottles of beer.'
+          bottle_count= bottle_count - 1
+          puts 'Take one down, pass it around, ' +
+               bottle_count.to_s + ' bottles of beer on the wall.'
+  end
+  puts "2 bottles of beer on the wall, 2 bottles of beer."
+  puts "Take one down, pass it around, 1 bottle of beer on the wall."
+  puts "1 bottle of beer on the wall, 1 bottle of beer!"
+  puts "Take one down, pass it around, no more bottles of beer on the wall."
+
 end
