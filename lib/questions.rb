@@ -1,3 +1,5 @@
+require 'pry'
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
     array.select{|item| item.start_with?('a')}
@@ -238,6 +240,10 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  isHoliday = false;
+  holidays14 = [[1],[],[],[18,21],[5,26],[],[],[25],[],[],[],[25,26]]
+  holidays14[date.month-1].each{|day| isHoliday = true if date.day.to_i == day}
+  isHoliday
 end
 
 # given your birthday this year, this method tells you
@@ -245,6 +251,17 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  start_year = birthday.year.to_i
+  bd_month = birthday.month.to_i
+  bd_date = birthday.day.to_i
+  while (true) do
+    start_year +=1
+    new_time = Time.new(start_year, bd_month, bd_date)
+    if new_time.strftime("%A")==="Friday"
+      break
+    end
+  end
+  start_year
 end
 
 # in a file, total the number of times words of different lengths
@@ -253,6 +270,20 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  f = File.open(file_path, "r")
+  hash = Hash.new
+  f.each_line{|line|
+    words = line.split(" ")
+    words.each do |word|
+      word=word.gsub(/[,.]/,"")
+      if hash.has_key?(word.length)
+        hash[word.length] += 1
+      else
+        hash[word.length] = 1
+      end
+    end
+  }
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
