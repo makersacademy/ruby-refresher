@@ -29,11 +29,12 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  array.combination(2).to_a
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
+# Could also use array.drop(3)
 def all_elements_except_first_3(array)
   array.slice(3,array.length)
 end
@@ -77,31 +78,31 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  count = 0
-  array.each { |word| count += 1 if (word == word.reverse) }
-  count
+  array.select { |word| word == word.reverse }.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by! { |word| word.length}
-  array.shift
+  array.min_by(&:length)
 end
 
-# return the shortest word in an array
+# return the longest word in an array
+
+# or you could use max_by of course:
 def longest_word_in_array(array)
   array.sort_by! { |word| word.length }
   array.pop
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
-# returns 15
+# returns 15. Longer hand solution:
+# array.inject(0) { |sum, element| sum + element }
 def total_of_array(array)
-  array.inject(0) { |sum, element| sum + element }
+  array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
-# becomes [1, 2, 3, 1, 2, 3]
+# becomes [1, 2, 3, 1, 2, 3]. Could do array * 2.
 def double_array(array)
   array + array
 end
@@ -114,14 +115,15 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  total = array.inject(0) { |sum, element| sum + element }
-  (total.to_f / array.length).round
+  (array.inject(:+).to_f / array.length).round
 end
 
 # get all the elements in an array, up until the first element
 # which is greater than five. e.g.
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
+
+# More elegant: array.take_while { |number| number <= 5 }
 def get_elements_until_greater_than_five(array)
   index_first_num_greater_than_five = array.index {|number| number > 5 }
   array[0,index_first_num_greater_than_five]
@@ -130,18 +132,22 @@ end
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
+
+# My first solution:
+# keys = array.select { |letter| array.index(letter) % 2 == 0 }
+# values = array.select { |letter| array.index(letter) % 2 == 1 }
+# Hash[keys.zip(values)]
 def convert_array_to_a_hash(array)
-  keys = array.select { |letter| array.index(letter) % 2 == 0 }
-  values = array.select { |letter| array.index(letter) % 2 == 1 }
-  Hash[keys.zip(values)]
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
 # it as a array of letters, in alphabetical order
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
+
 def get_all_letters_in_array_of_words(array)
-  array.join.split("").sort
+  array.join.split("").uniq.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -154,10 +160,13 @@ end
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
+
+# First solution:
+# sum_of_keys = hash.keys.inject(0) { |sum, key| sum + key }
+# sum_of_values = hash.values.inject(0) { |sum, value| sum + value }
+# sum_of_keys + sum_of_values
 def add_together_keys_and_values(hash)
-  sum_of_keys = hash.keys.inject(0) { |sum, key| sum + key }
-  sum_of_values = hash.values.inject(0) { |sum, value| sum + value }
-  sum_of_keys + sum_of_values
+  hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -186,6 +195,9 @@ end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
+
+# More elegant:
+# email[/@(\w+)/, 1]
 def get_domain_name_from_email_address(email)
   email.split("@").last.split(".com").first
 end
@@ -216,7 +228,7 @@ def check_a_string_for_special_characters(string)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
-# should return 20
+# should return 20. There's also range.max
 def get_upper_limit_of(range)
   range.last
 end
@@ -233,6 +245,9 @@ def square_root_of(number)
 end
 
 # count the number of words in a file
+
+# More elegant:
+# IO.read(file_path).split.length
 def word_count_a_file(file_path)
   array_of_lines = []
   file = File.open(file_path, 'r')
@@ -278,25 +293,27 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 
 def count_words_of_each_length_in_a_file(file_path)
-  word_frequencies = Hash.new(0)
+  count = Hash.new(0)
   array_of_words = File.read(file_path).gsub(/[^a-zA-Z\s]/, "").split
-  array_of_lengths = array_of_words.map {|word| word.length}
-  array_of_lengths.each {|length| word_frequencies[length] += 1 }
-  word_frequencies
+  array_of_words.each {|word| count[word.length] += 1 }
+  count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo(n)
-  fizzbuzz = [0,15,30,45,60,75,90]
-  buzz = [5,10,20,25,35,40,50,55,65,70,80,85,95]
-  fizz = [3,6,9,12,18,21,24,27,33,36,39,42,48,51,54,57,63,66,69,72,78,81,
-          84,87,93,96,99]
-  return "fizzbuzz" if fizzbuzz.include?(n)
-  return "buzz" if buzz.include?(n)
-  return "fizz" if fizz.include?(n)
-  return n
+def fizzbuzz_without_modulo
+  (1..100).each do |number|
+    result = ''
+    result = "fizz" if is_divisible_by?(number, 3)
+    result = "buzz" if is_divisible_by?(number, 5)
+    result = "fizzbuzz" if is_divisible_by?(number, 15)
+    puts result.empty? ? number : result
+  end
+end
+
+def is_divisible_by?(number, divisor)
+  (number / divisor.to_f).round == number / divisor.to_f
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
