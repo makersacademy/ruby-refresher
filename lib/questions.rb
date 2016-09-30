@@ -237,10 +237,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  y = 2014
-  [Time.new(y,1,1), Time.new(y,4,18), Time.new(y,4,21),
-   Time.new(y,5,5), Time.new(y,5,26), Time.new(y,8,25),
-   Time.new(y,12,25), Time.new(y,12,26)].include?(date)
+  bank_holidays = [[1, 1],[4, 18],[4, 21],[5, 5],[5, 26],[8, 25],[12, 25],[12, 26]]
+  bank_holidays.map { |d| Time.new(2014,d[0],d[1]) }.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -283,5 +281,16 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  
+  no_more_bottles = "Go to the store and buy some more, "
+  take_one_down = "Take one down and pass it around, "
+  99.downto(0) do |num|
+    print "#{num == 0 ? 'No more' : num} #{num == 1 ? 'bottle' : 'bottles'}" +
+    " of beer on the wall, #{num == 0 ? 'no more' : num} " +
+    "#{num == 1 ? 'bottle' : 'bottles'} of beer.\n" +
+    "#{num == 0 ? no_more_bottles : take_one_down}" +
+    "#{num == 1 ? 'no more' : (num == 0 ? 99 : (num - 1))} " +
+    "#{(num == 1) ? 'bottle' : 'bottles'} of beer on the wall.\n\n"
+  end
 end
+
+ninety_nine_bottles_of_beer()
