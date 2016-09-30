@@ -81,14 +81,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by!{|elem| elem.length}
-  array[0]
+  array.sort_by{|elem| elem.length}[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort_by!{|elem| -elem.length}
-  array[0]
+  array.sort_by{|elem| -elem.length}[0]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -128,7 +126,11 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  # array.to_h
+  target_a = {}
+  array.each_with_index do |elem, index|
+    if index % 2 == 0 then target_a[elem] = array[index + 1] end
+  end
+  target_a
 end
 
 # get all the letters used in an array of words and return
@@ -189,7 +191,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.map{ |word| (word != "a" && word != "and" && word != "the") ? word.capitalize : word }.join(" ")
+  str_in_array = string.capitalize.split
+  str_in_array.map{ |word| (word != "a" && word != "and" && word != "the") ? word.capitalize : word }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -255,12 +258,22 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file_content = File.open(file_path, "r") { |f| f.readlines }[0].gsub(/\W+/, ' ')
+  temp_hash = file_content.split(" ").map {|word| word.length}.group_by{|x| x}
+  temp_hash.map {|k, v| [k, v.length]}.sort_by {|elem| elem[0]}
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100) do |n|
+    if (n / 15.0 == n / 15) then p "FizzBuzz"
+    elsif (n / 5.0 == n / 5) then p "Fizz"
+    elsif (n / 3.0 == n / 3) then p "Buzz"
+    else p n
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -270,4 +283,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  
 end
