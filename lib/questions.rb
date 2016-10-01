@@ -1,57 +1,76 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select{|x| x[0] == "a"}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select{|x| x[0] =~ /[aeiou]/}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  array.compact!
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.select{|x| x != nil && x != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.each{|x| x.reverse!}
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
 # give every possible pairing - in this case:
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
-# make sure you don't have the same pairing twice, 
+# make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2)
 end
 
-# discard the first 3 elements of an array, 
+# discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array[3..array.length]
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.unshift(element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by{|x| x[-1]}
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  if string.length % 2 != 0
+    string[0..(string.length / 2).ceil]
+  else
+    string[0..(string.length / 2).ceil - 1]
+  end
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  if number > 0
+    number - (number. * 2)
+  else
+    number
+  end
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of 
+# turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
@@ -63,6 +82,11 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.each do |x|
+    count = 0
+    backward = x.reverse
+    count =+ 1 if x == backward
+  end
 end
 
 # return the shortest word in an array
@@ -76,20 +100,26 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array.each do |x|
+    array.push(x)
+  end
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  array.inject(:+) / array.length
 end
 
 # get all the elements in an array, up until the first element
@@ -110,6 +140,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.each.split("").sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -122,21 +153,28 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  total = 0
+  hash.each do |k,v|
+    total += (k + v)
+  end
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.select{|x| x == x.downcase}
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -149,7 +187,7 @@ end
 def get_domain_name_from_email_address(email)
 end
 
-# capitalize the first letter in each word of a string, 
+# capitalize the first letter in each word of a string,
 #  except 'a', 'and' and 'the'
 # *unless* they come at the start of the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
@@ -168,13 +206,14 @@ end
 def get_upper_limit_of(range)
 end
 
-# should return true for a 3 dot range like 1...20, false for a 
+# should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  number ** 0.5
 end
 
 # count the number of words in a file
@@ -214,11 +253,14 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  # x = 1
+  # until x > 100
+  #   if x / 15 != integer
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of 
+# make sure you use the singular when you have one bottle of
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
