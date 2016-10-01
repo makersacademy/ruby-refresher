@@ -240,6 +240,10 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  [Time.new(2014, 1, 1),Time.new(2014,4,18),
+    Time.new(2014, 4, 21),Time.new(2014, 5, 5),
+    Time.new(2014,05,26),Time.new(2014, 8, 25),
+    Time.new(2014,12,25), Time.new(2014, 12, 26)].include? date
 end
 
 # given your birthday this year, this method tells you
@@ -247,6 +251,11 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  bday = birthday
+  until bday.friday?
+    bday += (60*60*24*365)
+  end
+  bday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -255,12 +264,26 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, "r")
+  words = file.read.gsub(/\W+/, ' ').split(" ")
+  words.each_with_object(Hash.new(0)) { |word,count| count[word.length] += 1 }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).to_a.map do |n|
+    if 15*(n/15) == n
+      "fizzbuzz"
+    elsif 5*(n/5) == n
+      "buzz"
+    elsif 3*(n/3) == n
+      "fizz"
+    else
+      n
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -270,4 +293,14 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  i = 99
+  while i > 0
+    puts "#{i} bottles of beer on the wall, #{i} bottles of beer.
+          Take one down and pass it around, #{i-1} bottles of beer on the wall."
+    i -= 1
+  end
+  puts "1 bottle of beer on the wall, 1 bottle of beer.
+        Take one down and pass it around, no more bottles of beer on the wall.
+        No more bottles of beer on the wall, no more bottles of beer.
+        Go to the store and buy some more, 99 bottles of beer on the wall."
 end
