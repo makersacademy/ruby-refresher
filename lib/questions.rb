@@ -29,7 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  
+
 end
 
 # discard the first 3 elements of an array,
@@ -40,6 +40,7 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.unshift(element);
 end
 
 # sort an array of words by their last letter, e.g.
@@ -51,6 +52,9 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  cut_length = string.length/2.round
+  cut_length % 2 == 0 ? cut_length += 1 : cut_length
+  return string.slice(0,(cut_length))
 end
 
 # turn a positive integer into a negative integer. A negative integer
