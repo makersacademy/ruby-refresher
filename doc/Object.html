@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Object - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">BasicObject
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-add_element_to_beginning_of_array">#add_element_to_beginning_of_array</a>
+    
+    <li ><a href="#method-i-add_together_keys_and_values">#add_together_keys_and_values</a>
+    
+    <li ><a href="#method-i-all_elements_except_first_3">#all_elements_except_first_3</a>
+    
+    <li ><a href="#method-i-array_sort_by_last_letter_of_word">#array_sort_by_last_letter_of_word</a>
+    
+    <li ><a href="#method-i-average_of_array">#average_of_array</a>
+    
+    <li ><a href="#method-i-call_method_from_string">#call_method_from_string</a>
+    
+    <li ><a href="#method-i-check_a_string_for_special_characters">#check_a_string_for_special_characters</a>
+    
+    <li ><a href="#method-i-convert_array_to_a_hash">#convert_array_to_a_hash</a>
+    
+    <li ><a href="#method-i-count_words_of_each_length_in_a_file">#count_words_of_each_length_in_a_file</a>
+    
+    <li ><a href="#method-i-double_array">#double_array</a>
+    
+    <li ><a href="#method-i-every_possible_pairing_of_students">#every_possible_pairing_of_students</a>
+    
+    <li ><a href="#method-i-fizzbuzz_without_modulo">#fizzbuzz_without_modulo</a>
+    
+    <li ><a href="#method-i-format_date_nicely">#format_date_nicely</a>
+    
+    <li ><a href="#method-i-get_all_letters_in_array_of_words">#get_all_letters_in_array_of_words</a>
+    
+    <li ><a href="#method-i-get_domain_name_from_email_address">#get_domain_name_from_email_address</a>
+    
+    <li ><a href="#method-i-get_elements_until_greater_than_five">#get_elements_until_greater_than_five</a>
+    
+    <li ><a href="#method-i-get_first_half_of_string">#get_first_half_of_string</a>
+    
+    <li ><a href="#method-i-get_upper_limit_of">#get_upper_limit_of</a>
+    
+    <li ><a href="#method-i-is_a_2014_bank_holiday-3F">#is_a_2014_bank_holiday?</a>
+    
+    <li ><a href="#method-i-is_a_3_dot_range-3F">#is_a_3_dot_range?</a>
+    
+    <li ><a href="#method-i-longest_word_in_array">#longest_word_in_array</a>
+    
+    <li ><a href="#method-i-make_numbers_negative">#make_numbers_negative</a>
+    
+    <li ><a href="#method-i-ninety_nine_bottles_of_beer">#ninety_nine_bottles_of_beer</a>
+    
+    <li ><a href="#method-i-number_of_elements_that_are_palindromes">#number_of_elements_that_are_palindromes</a>
+    
+    <li ><a href="#method-i-remove_capital_letters_from_string">#remove_capital_letters_from_string</a>
+    
+    <li ><a href="#method-i-remove_nils_and_false_from_array">#remove_nils_and_false_from_array</a>
+    
+    <li ><a href="#method-i-remove_nils_from_array">#remove_nils_from_array</a>
+    
+    <li ><a href="#method-i-reverse_every_element_in_array">#reverse_every_element_in_array</a>
+    
+    <li ><a href="#method-i-round_down_number">#round_down_number</a>
+    
+    <li ><a href="#method-i-round_up_number">#round_up_number</a>
+    
+    <li ><a href="#method-i-select_elements_starting_with_a">#select_elements_starting_with_a</a>
+    
+    <li ><a href="#method-i-select_elements_starting_with_vowel">#select_elements_starting_with_vowel</a>
+    
+    <li ><a href="#method-i-separate_array_into_even_and_odd_numbers">#separate_array_into_even_and_odd_numbers</a>
+    
+    <li ><a href="#method-i-shortest_word_in_array">#shortest_word_in_array</a>
+    
+    <li ><a href="#method-i-square_root_of">#square_root_of</a>
+    
+    <li ><a href="#method-i-swap_keys_and_values_in_a_hash">#swap_keys_and_values_in_a_hash</a>
+    
+    <li ><a href="#method-i-titleize_a_string">#titleize_a_string</a>
+    
+    <li ><a href="#method-i-total_of_array">#total_of_array</a>
+    
+    <li ><a href="#method-i-turn_symbol_into_string">#turn_symbol_into_string</a>
+    
+    <li ><a href="#method-i-word_count_a_file">#word_count_a_file</a>
+    
+    <li ><a href="#method-i-your_birthday_is_on_a_friday_in_the_year">#your_birthday_is_on_a_friday_in_the_year</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Object">
+  <h1 id="class-Object" class="class">
+    class Object
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-add_element_to_beginning_of_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_element_to_beginning_of_array</span><span
+            class="method-args">(array, element)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>add an element to the beginning of an array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_element_to_beginning_of_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_element_to_beginning_of_array</span>(<span class="ruby-identifier">array</span>, <span class="ruby-identifier">element</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-identifier">element</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-add_together_keys_and_values" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_together_keys_and_values</span><span
+            class="method-args">(hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>in a hash where the keys and values are all numbers add all the keys and
+all the values together, e.g. {1 =&gt; 1, 2 =&gt; 2} becomes 6</p>
+          
+          
+
+          
+          <div class="method-source-code" id="add_together_keys_and_values-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 149</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_together_keys_and_values</span>(<span class="ruby-identifier">hash</span>)
+  
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-all_elements_except_first_3" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">all_elements_except_first_3</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>discard the first 3 elements of an array, e.g. [1, 2, 3, 4, 5, 6] becomes
+[4, 5, 6]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="all_elements_except_first_3-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_elements_except_first_3</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">array</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-array_sort_by_last_letter_of_word" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">array_sort_by_last_letter_of_word</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>sort an array of words by their last letter, e.g.</p>
+<dl class="rdoc-list label-list"><dt>&#39;sky&#39;, &#39;puma&#39;, &#39;maker&#39;
+<dd>
+<p>becomes [&#39;puma&#39;, &#39;maker&#39;, &#39;sky&#39;]</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="array_sort_by_last_letter_of_word-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 48</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">array_sort_by_last_letter_of_word</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>[<span class="ruby-value">-1</span>] }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-average_of_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">average_of_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get the average from an array, rounded to the nearest integer so [10, 15,
+25] should return 17</p>
+          
+          
+
+          
+          <div class="method-source-code" id="average_of_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">average_of_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">n</span> = <span class="ruby-identifier">array</span>.<span class="ruby-identifier">inject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">number</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sum</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">number</span> }.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span>
+  <span class="ruby-identifier">n</span>.<span class="ruby-identifier">round</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-call_method_from_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">call_method_from_string</span><span
+            class="method-args">(str_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>call an arbitrary method from a string. so if I called <a
+href="Object.html#method-i-call_method_from_string">#call_method_from_string</a>(&#39;foobar&#39;)
+the method foobar should be invoked</p>
+          
+          
+
+          
+          <div class="method-source-code" id="call_method_from_string-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 217</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">call_method_from_string</span>(<span class="ruby-identifier">str_method</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-check_a_string_for_special_characters" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_a_string_for_special_characters</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return true if a string contains any special characters where &#39;special
+character&#39; means anything apart from the letters a-z (uppercase and
+lower) or numbers</p>
+          
+          
+
+          
+          <div class="method-source-code" id="check_a_string_for_special_characters-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_a_string_for_special_characters</span>(<span class="ruby-identifier">string</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-convert_array_to_a_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">convert_array_to_a_hash</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>turn an array (with an even number of elements) into a hash, by pairing up
+elements. e.g. [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;] becomes
+{&#39;a&#39; =&gt; &#39;b&#39;, &#39;c&#39; =&gt; &#39;d&#39;}</p>
+          
+          
+
+          
+          <div class="method-source-code" id="convert_array_to_a_hash-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 126</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">convert_array_to_a_hash</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_h</span>
+  <span class="ruby-comment"># Hash[*array] - ASK ABOUT</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-count_words_of_each_length_in_a_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count_words_of_each_length_in_a_file</span><span
+            class="method-args">(file_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>in a file, total the number of times words of different lengths appear. So
+in a file with the text “the cat sat on the blue mat” I have 5 words which
+are 3 letters long, 1 which is 2 letters long and 1 that is 4 letters long.
+Return it as a hash in the format word_length =&gt; count, e.g. {2 =&gt; 1,
+3 =&gt; 5, 4 =&gt; 1}</p>
+          
+          
+
+          
+          <div class="method-source-code" id="count_words_of_each_length_in_a_file-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 238</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">count_words_of_each_length_in_a_file</span>(<span class="ruby-identifier">file_path</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-double_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">double_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>turn an array into itself repeated twice. So [1, 2, 3] becomes [1, 2, 3, 1,
+2, 3]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="double_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">double_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-every_possible_pairing_of_students" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">every_possible_pairing_of_students</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>given an array of student names, like [&#39;Bob&#39;, &#39;Dave&#39;,
+&#39;Clive&#39;] give every possible pairing - in this case:</p>
+<dl class="rdoc-list label-list"><dt>[&#39;Bob&#39;, &#39;Clive&#39;], [&#39;Bob&#39;, &#39;Dave&#39;], [&#39;Clive&#39;, &#39;Dave&#39;]
+<dd>
+<p>make sure you don&#39;t have the same pairing twice,</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="every_possible_pairing_of_students-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">every_possible_pairing_of_students</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">combination</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-fizzbuzz_without_modulo" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fizzbuzz_without_modulo</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>implement fizzbuzz without modulo, i.e. the % method go from 1 to 100
+(there&#39;s no RSpec test for this one)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="fizzbuzz_without_modulo-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 244</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fizzbuzz_without_modulo</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-format_date_nicely" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">format_date_nicely</span><span
+            class="method-args">(date)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>take a date and format it like dd/mm/yyyy, so Halloween 2013 becomes
+31/10/2013</p>
+          
+          
+
+          
+          <div class="method-source-code" id="format_date_nicely-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 171</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">format_date_nicely</span>(<span class="ruby-identifier">date</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_all_letters_in_array_of_words" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_all_letters_in_array_of_words</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get all the letters used in an array of words and return it as a array of
+letters, in alphabetical order . e.g. the array [&#39;cat&#39;,
+&#39;dog&#39;, &#39;fish&#39;] becomes</p>
+<dl class="rdoc-list label-list"><dt>&#39;a&#39;, &#39;c&#39;, &#39;d&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;o&#39;, &#39;s&#39;, &#39;t&#39;
+<dd></dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="get_all_letters_in_array_of_words-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_all_letters_in_array_of_words</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">chars</span> }.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">sort</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_domain_name_from_email_address" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_domain_name_from_email_address</span><span
+            class="method-args">(email)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get the domain name <strong>without</strong> the .com part, from an email
+address so alex@makersacademy.com becomes makersacademy</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_domain_name_from_email_address-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 176</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_domain_name_from_email_address</span>(<span class="ruby-identifier">email</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_elements_until_greater_than_five" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_elements_until_greater_than_five</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get all the elements in an array, up until the first element which is
+greater than five. e.g.</p>
+<dl class="rdoc-list label-list"><dt>1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7
+<dd>
+<p>becomes [1, 3, 5, 4, 1, 2]</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="get_elements_until_greater_than_five-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_elements_until_greater_than_five</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">take_while</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">5</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_first_half_of_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_first_half_of_string</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>cut strings in half, and return the first half, e.g. &#39;banana&#39;
+becomes &#39;ban&#39;. If the string is an odd number of letters round up -
+so &#39;apple&#39; becomes &#39;app&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_first_half_of_string-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_first_half_of_string</span>(<span class="ruby-identifier">string</span>)
+  <span class="ruby-identifier">string</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">0</span>, (<span class="ruby-identifier">string</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">/</span> <span class="ruby-value">2.0</span>).<span class="ruby-identifier">round</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-get_upper_limit_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_upper_limit_of</span><span
+            class="method-args">(range)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get the upper limit of a range. e.g. for the range 1..20, you should return
+20</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_upper_limit_of-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 195</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_upper_limit_of</span>(<span class="ruby-identifier">range</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_a_2014_bank_holiday-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_a_2014_bank_holiday?</span><span
+            class="method-args">(date)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return true if the date is a uk bank holiday for 2014 the list of bank
+holidays is here: <a
+href="https://www.gov.uk/bank-holidays">www.gov.uk/bank-holidays</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="is_a_2014_bank_holiday-3F-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_a_2014_bank_holiday?</span>(<span class="ruby-identifier">date</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-is_a_3_dot_range-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_a_3_dot_range?</span><span
+            class="method-args">(range)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>should return true for a 3 dot range like 1…20, false for a normal 2 dot
+range</p>
+          
+          
+
+          
+          <div class="method-source-code" id="is_a_3_dot_range-3F-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_a_3_dot_range?</span>(<span class="ruby-identifier">range</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-longest_word_in_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">longest_word_in_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the longest word in an array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="longest_word_in_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">longest_word_in_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">max_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">length</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-make_numbers_negative" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_numbers_negative</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>turn a positive integer into a negative integer. A negative integer stays
+negative</p>
+          
+          
+
+          
+          <div class="method-source-code" id="make_numbers_negative-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 61</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_numbers_negative</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-operator">-</span>(<span class="ruby-identifier">number</span>.<span class="ruby-identifier">abs</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ninety_nine_bottles_of_beer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ninety_nine_bottles_of_beer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>print the lyrics of the song 99 bottles of beer on the wall <a
+href="http://www.99-bottles-of-beer.net/lyrics.html">www.99-bottles-of-beer.net/lyrics.html</a>
+make sure you use the singular when you have one bottle of beer on the
+wall, and print &#39;no more bottles of beer on the wall&#39; at the end.
+(there&#39;s no RSpec test for this one)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ninety_nine_bottles_of_beer-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ninety_nine_bottles_of_beer</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-number_of_elements_that_are_palindromes" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">number_of_elements_that_are_palindromes</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>count the numbers of elements in an element which are palindromes a
+palindrome is a word that&#39;s the same backwards as forward e.g.
+&#39;bob&#39;. So in the array [&#39;bob&#39;, &#39;radar&#39;,
+&#39;eat&#39;], there are 2 palindromes (bob and radar), so the method
+should return 2</p>
+          
+          
+
+          
+          <div class="method-source-code" id="number_of_elements_that_are_palindromes-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 77</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">number_of_elements_that_are_palindromes</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">count</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">reverse</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_capital_letters_from_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_capital_letters_from_string</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>take out all the capital letters from a string so &#39;Hello JohnDoe&#39;
+becomes &#39;ello ohnoe&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_capital_letters_from_string-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_capital_letters_from_string</span>(<span class="ruby-identifier">string</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_nils_and_false_from_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_nils_and_false_from_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>remove instances of nil AND false from an array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_nils_and_false_from_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_nils_and_false_from_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span> <span class="ruby-operator">-</span> [<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">false</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-remove_nils_from_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_nils_from_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>remove instances of nil (but NOT false) from an array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="remove_nils_from_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_nils_from_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-reverse_every_element_in_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reverse_every_element_in_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>don&#39;t reverse the array, but reverse every word inside it. e.g.</p>
+<dl class="rdoc-list label-list"><dt>&#39;dog&#39;, &#39;monkey&#39;
+<dd>
+<p>becomes [&#39;god&#39;, &#39;yeknom&#39;]</p>
+</dd></dl>
+          
+          
+
+          
+          <div class="method-source-code" id="reverse_every_element_in_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reverse_every_element_in_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">reverse</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-round_down_number" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">round_down_number</span><span
+            class="method-args">(float)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>round down a float up and convert it to an Integer, so 9.52 becomes 9</p>
+          
+          
+
+          
+          <div class="method-source-code" id="round_down_number-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 166</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">round_down_number</span>(<span class="ruby-identifier">float</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-round_up_number" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">round_up_number</span><span
+            class="method-args">(float)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>round up a float up and convert it to an Integer, so 3.214 becomes 4</p>
+          
+          
+
+          
+          <div class="method-source-code" id="round_up_number-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 160</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">round_up_number</span>(<span class="ruby-identifier">float</span>)
+  <span class="ruby-identifier">float</span>.<span class="ruby-identifier">ceil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-select_elements_starting_with_a" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_elements_starting_with_a</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>keep only the elements that start with an a</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select_elements_starting_with_a-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">select_elements_starting_with_a</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&#39;a&#39;</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-select_elements_starting_with_vowel" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">select_elements_starting_with_vowel</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>keep only the elements that start with a vowel</p>
+          
+          
+
+          
+          <div class="method-source-code" id="select_elements_starting_with_vowel-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">select_elements_starting_with_vowel</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-regexp">/[aeiou]/</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">n</span>[<span class="ruby-value">0</span>]) }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-separate_array_into_even_and_odd_numbers" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">separate_array_into_even_and_odd_numbers</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>turn an array of numbers into two arrays of numbers, one an array of even
+numbers, the other an array of odd numbers even numbers come first so [1,
+2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="separate_array_into_even_and_odd_numbers-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">separate_array_into_even_and_odd_numbers</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">partition</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">even?</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-shortest_word_in_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">shortest_word_in_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return the shortest word in an array</p>
+          
+          
+
+          
+          <div class="method-source-code" id="shortest_word_in_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">shortest_word_in_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">min_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">word</span><span class="ruby-operator">|</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">length</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-square_root_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">square_root_of</span><span
+            class="method-args">(number)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get the square root of a number</p>
+          
+          
+
+          
+          <div class="method-source-code" id="square_root_of-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 204</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">square_root_of</span>(<span class="ruby-identifier">number</span>)
+  <span class="ruby-identifier">number</span> <span class="ruby-operator">**</span> <span class="ruby-value">0.5</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-swap_keys_and_values_in_a_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">swap_keys_and_values_in_a_hash</span><span
+            class="method-args">(hash)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>swap the keys and values in a hash. e.g. {&#39;a&#39; =&gt; &#39;b&#39;,
+&#39;c&#39; =&gt; &#39;d&#39;} becomes {&#39;b&#39; =&gt; &#39;a&#39;,
+&#39;d&#39; =&gt; &#39;c&#39;}</p>
+          
+          
+
+          
+          <div class="method-source-code" id="swap_keys_and_values_in_a_hash-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">swap_keys_and_values_in_a_hash</span>(<span class="ruby-identifier">hash</span>)
+  <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">invert</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-titleize_a_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">titleize_a_string</span><span
+            class="method-args">(string)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>capitalize the first letter in each word of a string,</p>
+
+<pre class="ruby"><span class="ruby-identifier">except</span> <span class="ruby-string">&#39;a&#39;</span>, <span class="ruby-string">&#39;and&#39;</span> <span class="ruby-keyword">and</span> <span class="ruby-string">&#39;the&#39;</span>
+</pre>
+
+<p><strong>unless</strong> they come at the start of the start of the string,
+e.g. &#39;the lion the witch and the wardrobe&#39; becomes &#39;The Lion
+the Witch and the Wardrobe&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="titleize_a_string-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 184</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">titleize_a_string</span>(<span class="ruby-identifier">string</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-total_of_array" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">total_of_array</span><span
+            class="method-args">(array)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>add up all the numbers in an array, so [1, 3, 5, 6] returns 15</p>
+          
+          
+
+          
+          <div class="method-source-code" id="total_of_array-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">total_of_array</span>(<span class="ruby-identifier">array</span>)
+  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">inject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sum</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">item</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-turn_symbol_into_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">turn_symbol_into_string</span><span
+            class="method-args">(symbol)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>convert a symbol into a string</p>
+          
+          
+
+          
+          <div class="method-source-code" id="turn_symbol_into_string-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">turn_symbol_into_string</span>(<span class="ruby-identifier">symbol</span>)
+  <span class="ruby-identifier">symbol</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-word_count_a_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">word_count_a_file</span><span
+            class="method-args">(file_path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>count the number of words in a file</p>
+          
+          
+
+          
+          <div class="method-source-code" id="word_count_a_file-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">word_count_a_file</span>(<span class="ruby-identifier">file_path</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-your_birthday_is_on_a_friday_in_the_year" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">your_birthday_is_on_a_friday_in_the_year</span><span
+            class="method-args">(birthday)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>given your birthday this year, this method tells you the next year when
+your birthday will fall on a friday e.g. january 1st, will next be a friday
+in 2016 return the day as a capitalized string like &#39;Friday&#39;</p>
+          
+          
+
+          
+          <div class="method-source-code" id="your_birthday_is_on_a_friday_in_the_year-source">
+            <pre><span class="ruby-comment"># File lib/questions.rb, line 230</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">your_birthday_is_on_a_friday_in_the_year</span>(<span class="ruby-identifier">birthday</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
