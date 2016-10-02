@@ -211,10 +211,12 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt number
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  IO.read(file_path).split.length
 end
 
 # --- tougher ones ---
@@ -223,12 +225,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  day = date.strftime '%-d/%-m'
+  %w(1/1 18/4 21/4 5/5 26/5 25/8 25/12 26/12).include? day
 end
 
 # given your birthday this year, this method tells you
@@ -236,6 +241,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday?
+    birthday = Time.new birthday.year + 1, birthday.month, birthday.day
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -244,12 +253,22 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = IO.read(file_path).scan(/\w+/)
+  count = Hash.new(0)
+  words.each { |word| count[word.size] += 1 }
+  count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100) do |number|
+    result = ''
+    result << 'Fizz' if (number / 3.0).round == (number / 3.0)
+    result << 'Buzz' if (number / 5.0).round == (number / 5.0)
+    puts result.empty? ? number : result
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -259,4 +278,14 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  99.downto(1) do |n|
+    nouns = Hash.new('bottles')
+    nouns[1] = 'bottle'
+
+    puts "#{n} #{nouns[n]} of beer on the wall"
+    puts "#{n} #{nouns[n]} of beer"
+    puts 'take one down, pass it around'
+    puts "#{n - 1} #{nouns[n - 1]} of beer on the wall\n\n" if n > 1
+  end
+  puts 'no bottles of beer on the wall'
 end
