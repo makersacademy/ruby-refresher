@@ -60,6 +60,8 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  puts number
+  number > 0 ? number * -1 : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,6 +69,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -78,6 +81,9 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.each do |x|
+
+  end
 end
 
 # return the shortest word in an array
@@ -87,20 +93,29 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  sum = 0
+  array.each { |number| sum += number }
+  return sum
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  sum = 0
+  array.collect { |number| sum += number }
+  ave = (sum / (array.length).to_f)
+  return ave.ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -166,26 +181,35 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  no_caps = ["a", "and", "the"]
+  result = string.split(" ").map { |word| no_caps.include?(word) ? word : word.capitalize }
+  first_word = result.shift.capitalize
+  return result.unshift(first_word).join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  result = string.match(/[^a-zA-Z0-9]/)
+  result === nil ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  return range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end? ? true : false
 end
 
 # get the square root of a number
 def square_root_of(number)
+  return Math.sqrt(number)
 end
 
 # count the number of words in a file
