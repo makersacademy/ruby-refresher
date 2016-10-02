@@ -206,7 +206,7 @@ def titleize_a_string(string)
   no_caps = ["a", "and", "the"]
   result = string.split(" ").map { |word| no_caps.include?(word) ? word : word.capitalize }
   first_word = result.shift.capitalize
-  return result.unshift(first_word).join(" ")
+  result.unshift(first_word).join(" ")
 end
 
 # return true if a string contains any special characters
@@ -220,13 +220,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
-  return range.max
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-  range.exclude_end? ? true : false
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -259,7 +259,8 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   holidays = ['2014-01-01 00:00:00 +0100', "2014-04-18 00:00:00 +0100", "2014-04-21 00:00:00 +0100", "2014-05-05 00:00:00 +0100", "2014-05-26 00:00:00 +0100", "2014-08-25 00:00:00 +0100", "2014-12-25 00:00:00 +0100", "2014-12-26 00:00:00 +0100"]
-  holidays.include?(date.to_s) ? true : false
+  puts date
+  holidays.map {|date| Time.parse(date)}.include?(date)
 end
 
 # given your birthday this year, this method tells you
