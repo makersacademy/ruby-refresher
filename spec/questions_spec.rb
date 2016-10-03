@@ -1,5 +1,5 @@
 require 'rspec'
-require 'questions'
+require_relative '../lib/questions'
 
 RSpec.configure do |config|
   config.color = true
