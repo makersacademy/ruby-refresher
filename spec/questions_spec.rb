@@ -116,7 +116,7 @@ describe 'the Friday test :)' do
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
 
-  fit 'convert_array_to_a_hash' do
+  it 'convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end
@@ -194,7 +194,7 @@ describe 'the Friday test :)' do
     expect(b).to eq 1.7320508075688772
   end
 
-  it 'word_count_a_file' do
+  fit 'word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end
