@@ -99,7 +99,6 @@ end
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
   return array+=array
-
 end
 
 # convert a symbol into a string
