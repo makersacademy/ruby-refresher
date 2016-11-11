@@ -256,6 +256,12 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100) do |n|
+    result = ''
+    result << 'Fizz' if (n/3.0).ceil == (n/3.0)
+    result << 'Buzz' if (n/5.0).ceil == (n/5.0)
+    puts result.empty? ? n : result
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
