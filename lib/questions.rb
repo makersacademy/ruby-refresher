@@ -46,17 +46,20 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+   array.sort_by { |i| i[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  string[0...(string.length/2.0).round]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  -(number.abs)
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -64,6 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  array.partition { |i| !i.odd? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -71,19 +75,23 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.count { |i| i == i.reverse }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
