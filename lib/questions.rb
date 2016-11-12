@@ -1,9 +1,20 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+	arr = []
+	array.each do |obj|
+		arr << obj if obj[0] == "a"
+	end
+	arr
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+	arr = []
+	vowels = %w[a e i o u]
+	array.each do |obj|
+		arr << obj if vowels.include?(obj[0])
+	end
+	arr
 end
 
 # remove instances of nil (but NOT false) from an array
