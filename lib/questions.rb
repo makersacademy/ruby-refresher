@@ -203,8 +203,7 @@ end
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 #NOT PASSING
 def remove_capital_letters_from_string(string)
-    b = string.gsub(/[^[:lower:]]+/, "")
-    return b
+    string.gsub(/[A-Z]/, "")
 end
 
 # round up a float up and convert it to an Integer,
