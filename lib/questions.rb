@@ -184,7 +184,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
+  arr = string.capitalize.split
+  arr.map{ |i| (i != 'a' && i != 'and' && i != 'the')? i.capitalize : i }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -213,7 +214,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  IO.read(file_path).split.length
+  IO.read(file_path).split.length # poor performance with large files?
 end
 
 # --- tougher ones ---
@@ -250,6 +251,10 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = IO.read(file_path).scan(/\w+/)
+  count = Hash.new(0)
+  words.each { |word| count[word.size] += 1 }
+  count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
