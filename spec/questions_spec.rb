@@ -40,7 +40,7 @@ describe 'the Friday test :)' do
     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   end
 
-  it 'all_elements_except_first_3' do
+  fit 'all_elements_except_first_3' do
     n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
     expect(n).to eq [4, 5, 6, 7]
   end
@@ -65,10 +65,10 @@ describe 'the Friday test :)' do
 
   it 'make_numbers_negative' do
     a = make_numbers_negative 5
-    b = make_numbers_negative -7
+    b = make_numbers_negative (- 7)
 
-    expect(a).to eq -5
-    expect(b).to eq -7
+    expect(a).to eq (-5)
+    expect(b).to eq (-7)
   end
 
   it 'separate_array_into_even_and_odd_numbers' do
