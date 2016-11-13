@@ -166,7 +166,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  it 'check_a_string_for_special_characters' do
+  fit 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -187,7 +187,7 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  it 'square_root_of' do
+  fit 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0

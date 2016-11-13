@@ -210,6 +210,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  /\W/ === string
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -224,6 +225,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
@@ -272,21 +274,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-
-  require_relative 'english_number'
-
-  num_at_start = 99
-  num_now = num_at_start
-  while num_now > 2
-    puts english_number(num_now).capitalize + ' bottles of beer on the wall, ' +
-    english_number(num_now) + ' bottles of beer!'
-    num_now = num_now - 1
-    puts 'Take one down, pass it around, ' +
-    english_number(num_now) + ' bottles of beer on the wall!'
-  end
-  puts "Two bottles of beer on the wall, two bottles of beer!"
-  puts "Take one down, pass it around, one bottle of beer on the wall!"
-  puts "One bottle of beer on the wall, one bottle of beer!"
-  puts "Take one down, pass it around, no more bottles of beer on the wall!"
 
 end
