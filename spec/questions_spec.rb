@@ -54,42 +54,42 @@ describe 'the Friday test :)' do
     n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
     expect(n).to eq ['puma', 'maker', 'sky']
   end
-  
-  # it 'get_first_half_of_string' do
-  #   a = get_first_half_of_string 'banana'
-  #   b = get_first_half_of_string 'apple'
-  #
-  #   expect(a).to eq 'ban'
-  #   expect(b).to eq 'app'
-  # end
-  #
-  # it 'make_numbers_negative' do
-  #   a = make_numbers_negative 5
-  #   b = make_numbers_negative -7
-  #
-  #   expect(a).to eq -5
-  #   expect(b).to eq -7
-  # end
-  #
+
+  it 'get_first_half_of_string' do
+    a = get_first_half_of_string 'banana'
+    b = get_first_half_of_string 'apple'
+
+    expect(a).to eq 'ban'
+    expect(b).to eq 'app'
+  end
+
+  it 'make_numbers_negative' do
+    a = make_numbers_negative 5
+    b = make_numbers_negative -7
+
+    expect(a).to eq -5
+    expect(b).to eq -7
+  end
+
   # it 'separate_array_into_even_and_odd_numbers' do
   #   n = separate_array_into_even_and_odd_numbers [1, 2, 3, 4, 5, 6, 7]
   #   expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   # end
-  #
-  # it 'number_of_elements_that_are_palindromes' do
-  #   n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
-  #   expect(n).to eq 3
-  # end
-  #
-  # it 'shortest_word_in_array' do
-  #   n = shortest_word_in_array %w(here is a bunch of words of different lengths)
-  #   expect(n).to eq 'a'
-  # end
-  #
-  # it 'longest_word_in_array' do
-  #   n = longest_word_in_array %w(here is a bunch of words of different lengths)
-  #   expect(n).to eq 'different'
-  # end
+
+  it 'number_of_elements_that_are_palindromes' do
+    n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
+    expect(n).to eq 3
+  end
+
+  it 'shortest_word_in_array' do
+    n = shortest_word_in_array %w(here is a bunch of words of different lengths)
+    expect(n).to eq 'a'
+  end
+
+  it 'longest_word_in_array' do
+    n = longest_word_in_array %w(here is a bunch of words of different lengths)
+    expect(n).to eq 'different'
+  end
   #
   # it 'total_of_array' do
   #   n = total_of_array [1, 3, 5, 6, 2, 8]
