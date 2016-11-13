@@ -65,10 +65,10 @@ describe 'the Friday test :)' do
 
   it 'make_numbers_negative' do
     a = make_numbers_negative 5
-    b = make_numbers_negative -7
+    b = make_numbers_negative - 7
 
-    expect(a).to eq -5
-    expect(b).to eq -7
+    expect(a).to eq - 5
+    expect(b).to eq - 7
   end
 
   it 'separate_array_into_even_and_odd_numbers' do
