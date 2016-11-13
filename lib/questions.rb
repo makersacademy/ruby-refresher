@@ -5,7 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.keep_if { |word| word[0] == 'a' || 'e' || 'i' || 'o' || 'u' }
+  array.keep_if { |word| word[0].match(/a|e|i|o|u/)}
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -29,7 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-
+ array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
@@ -60,9 +60,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  if number > 0
-    number*-1
-  end
+ if number > 0 then number * -1 else number end
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -70,6 +68,9 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  odd = array.select{ |num| num.odd? }
+  even = array.select{ |num| num.even? }
+  [even, odd]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -122,7 +123,9 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.keep_if { |num| num == 5 }
+  num = array.drop_while { |num| num < 6 }.length
+  array.take(num + 1)
+  #this isn't great. need to work on this one.
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -182,7 +185,10 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-
+ email.gsub!(/.*?(?=@)/im, "")
+ email[0] = ""
+ email.chomp!('.com')
+ #this is a mess. needs to be sorted.
 end
 
 # capitalize the first letter in each word of a string,
@@ -191,23 +197,35 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  arr = string.split(" ")
+  first = arr.shift
+  arr.map! do |word|
+    if word == 'a' || word == 'and' || word == 'the'
+      word
+    else
+      word.capitalize
+    end
+  end
+  "#{first.capitalize} #{arr.join(" ")}"
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
- # string.include?(/[^0-9a-zA-Z *]/)
+  /\W/ === string
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  if range.to_s.include?('...') then true else false end
 end
 
 # get the square root of a number
@@ -217,7 +235,8 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-
+ file = File.open(file_path, 'r')
+ file.read.split(/\s+/).length
 end
 
 # --- tougher ones ---
