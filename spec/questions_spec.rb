@@ -13,12 +13,12 @@ describe 'the Friday test :)' do
     expect(n).to eq ['apples', 'avocados']
   end
 
-  it 'select_elements_starting_with_vowel' do
+  it 'select_elements_starting_with_vowel', :focus => true do
     n = select_elements_starting_with_vowel ['john', 'david', 'omar', 'fred', 'idris', 'angela']
     expect(n).to eq ['omar', 'idris', 'angela']
   end
 
-  it 'remove_nils_from_array' do
+  it 'remove_nils_from_array', :focus => true do
     n = remove_nils_from_array ['a', 'b', nil, nil, false, 'c', nil]
     expect(n).to eq ['a', 'b', false, 'c']
   end
