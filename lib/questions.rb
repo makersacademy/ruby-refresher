@@ -144,9 +144,7 @@ end
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
   array = array.join('')
-  array = array.scan(/./)
-  array.sort
-
+  array = array.scan(/./).sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -190,7 +188,6 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-
 end
 
 # capitalize the first letter in each word of a string,
@@ -199,7 +196,6 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
 end
 
 # return true if a string contains any special characters
@@ -279,17 +275,17 @@ def count_words_of_each_length_in_a_file(file_path)
   hash
 end
 
-  # implement fizzbuzz without modulo, i.e. the % method
-  # go from 1 to 100
-  # (there's no RSpec test for this one)
-  def fizzbuzz_without_modulo
-  end
+# implement fizzbuzz without modulo, i.e. the % method
+# go from 1 to 100
+# (there's no RSpec test for this one)
+def fizzbuzz_without_modulo
+end
 
-  # print the lyrics of the song 99 bottles of beer on the wall
-  # http://www.99-bottles-of-beer.net/lyrics.html
-  # make sure you use the singular when you have one bottle of
-  # beer on the wall, and print 'no more bottles of beer on the wall'
-  # at the end.
-  # (there's no RSpec test for this one)
-  def ninety_nine_bottles_of_beer
-  end
+# print the lyrics of the song 99 bottles of beer on the wall
+# http://www.99-bottles-of-beer.net/lyrics.html
+# make sure you use the singular when you have one bottle of
+# beer on the wall, and print 'no more bottles of beer on the wall'
+# at the end.
+# (there's no RSpec test for this one)
+def ninety_nine_bottles_of_beer
+end
