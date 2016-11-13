@@ -136,12 +136,14 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
