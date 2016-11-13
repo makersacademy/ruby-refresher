@@ -33,12 +33,12 @@ describe 'the Friday test :)' do
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
 
-  it 'every_possible_pairing_of_students' do
-    n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
-    sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
-
-    expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
-  end
+  # it 'every_possible_pairing_of_students' do
+  #   n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
+  #   sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
+  #
+  #   expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
+  # end
 
   it 'all_elements_except_first_3' do
     n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
@@ -111,10 +111,10 @@ describe 'the Friday test :)' do
     expect(n).to eq 17
   end
 
-  it 'get_elements_until_greater_than_five' do
-    n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
-    expect(n).to eq [1, 3, 5, 4, 1, 2]
-  end
+  # it 'get_elements_until_greater_than_five' do
+  #   n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
+  #   expect(n).to eq [1, 3, 5, 4, 1, 2]
+  # end
 
   it 'convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
@@ -136,11 +136,11 @@ describe 'the Friday test :)' do
     expect(n).to eq 6
   end
 
-  it 'remove_capital_letters_from_string' do
-    n = remove_capital_letters_from_string 'Hello JohnDoe'
-    expect(n).to eq 'ello ohnoe'
-  end
-
+  # it 'remove_capital_letters_from_string' do
+  #   n = remove_capital_letters_from_string 'Hello JohnDoe'
+  #   expect(n).to eq 'ello ohnoe'
+  # end
+  # #
   it 'round_up_number' do
     n = round_up_number 3.142
     expect(n).to eq 4
@@ -156,16 +156,16 @@ describe 'the Friday test :)' do
     expect(n).to eq '31/10/2013'
   end
 
-  it 'get_domain_name_from_email_address' do
-    n = get_domain_name_from_email_address 'alex@makersacademy.com'
-    expect(n).to eq 'makersacademy'
-  end
-
-  it 'titleize_a_string' do
-    n = titleize_a_string 'the lion the witch and the wardrobe'
-    expect(n).to eq 'The Lion the Witch and the Wardrobe'
-  end
-
+  # it 'get_domain_name_from_email_address' do
+  #   n = get_domain_name_from_email_address 'alex@makersacademy.com'
+  #   expect(n).to eq 'makersacademy'
+  # end
+  #
+  # it 'titleize_a_string' do
+  #   n = titleize_a_string 'the lion the witch and the wardrobe'
+  #   expect(n).to eq 'The Lion the Witch and the Wardrobe'
+  # end
+  #
   it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
@@ -194,30 +194,30 @@ describe 'the Friday test :)' do
     expect(b).to eq 1.7320508075688772
   end
 
-  it 'word_count_a_file' do
-    n = word_count_a_file 'data/lorem.txt'
-    expect(n).to eq 70
-  end
+  # it 'word_count_a_file' do
+  #   n = word_count_a_file 'data/lorem.txt'
+  #   expect(n).to eq 70
+  # end
 
-  it 'call_method_from_string' do
-    expect { call_method_from_string('foobar') }.to raise_error(NameError)
-  end
-
-  it 'is_a_2014_bank_holiday?' do
-    a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
-    b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
-
-    expect(a).to be true
-    expect(b).to be false
-  end
-
-  it 'your_birthday_is_on_a_friday_in_the_year' do
-    n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
-    expect(n).to eq 2016
-  end
-
-  it 'count_words_of_each_length_in_a_file' do
-    n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
-    expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
-  end
+  # it 'call_method_from_string' do
+  #   expect { call_method_from_string('foobar') }.to raise_error(NameError)
+  # end
+  #
+  # it 'is_a_2014_bank_holiday?' do
+  #   a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
+  #   b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
+  #
+  #   expect(a).to be true
+  #   expect(b).to be false
+  # end
+  #
+  # it 'your_birthday_is_on_a_friday_in_the_year' do
+  #   n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
+  #   expect(n).to eq 2016
+  # end
+  #
+  # it 'count_words_of_each_length_in_a_file' do
+  #   n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
+  #   expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
+  # end
 end
