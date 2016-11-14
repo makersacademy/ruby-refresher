@@ -59,7 +59,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number.abs * -1
+  -1 * number.abs
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -145,7 +145,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.keys.reduce(:x) + hash.values.reduce(:+)
+  hash.to_a.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
