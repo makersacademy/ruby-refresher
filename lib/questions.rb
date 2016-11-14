@@ -97,7 +97,7 @@ def number_of_elements_that_are_palindromes(array)
     else
     end
   end
-    return count
+  return count
 end
 
 # return the shortest word in an array
@@ -167,7 +167,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.to_a
+  hash.to_a.flatten.inject(0, :+)
 end
 
 # take out all the capital letters from a string
@@ -238,8 +238,8 @@ end
 def word_count_a_file(file_path)
   file = File.open(file_path, "r")
   array_of_words = []
-  	file.each_line {|line| array_of_words << line}
-  	array_of_words.first.split(' ').count
+  file.each_line {|line| array_of_words << line}
+  array_of_words.first.split(' ').count
 end
 
 # --- tougher ones ---
@@ -248,12 +248,17 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method.send('foobar')
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  date = date.strftime("%Y%m%d")
+  file = open("./lib/england-and-wales.ics").read
+  file.each_line {|line| return true if line.include? "TART;VALUE=DATE:#{date}"}
+  false
 end
 
 # given your birthday this year, this method tells you
@@ -261,6 +266,15 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  counter = 1
+  day = birthday.strftime("%m").to_i
+  month = birthday.strftime("%m").to_i
+  year = birthday.strftime("%Y").to_i
+  loop do
+    chacked_date = Time.new(year + counter, month, day)
+    return chacked_date.strftime("%Y").to_i if chacked_date.friday?
+    counter += 1
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -269,6 +283,16 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  lengths = {}
+ file = File.open file_path
+ file.each_line do |line|
+   words = line.gsub(/[,.]/, '').split(" ")
+   words.each do |word|
+     key = word.length
+     (lengths.key? key) ? lengths[key] += 1 : lengths[key] = 1
+   end
+ end
+ lengths
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
