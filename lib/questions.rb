@@ -241,10 +241,10 @@ def word_count_a_file(file_path)
   File.open(file_path, "r") do |l|
     lines = ""
     while (line = l.gets)
-        lines += line
+      lines += line
     end
     lines.split.length
-end
+  end
 end
 
 # --- tougher ones ---
@@ -253,12 +253,24 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays_2014 = [
+    Time.new(2014,1,1),
+    Time.new(2014,4,18),
+    Time.new(2014,4,21),
+    Time.new(2014,5,5),
+    Time.new(2014,5,26),
+    Time.new(2014,8,25),
+    Time.new(2014,12,25),
+    Time.new(2014,12,26)]
+
+    bank_holidays_2014.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -266,6 +278,14 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  y = birthday.year
+  m = birthday.month
+  d = birthday.day
+  until birthday.friday?
+    y = y + 1
+    birthday = Time.new(y, m, d)
+  end
+  y
 end
 
 # in a file, total the number of times words of different lengths
