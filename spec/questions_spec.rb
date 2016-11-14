@@ -65,10 +65,10 @@ describe 'the Friday test :)' do
 
   it 'make_numbers_negative' do
     a = make_numbers_negative 5
-    b = make_numbers_negative -7
+    b = make_numbers_negative (- 7)
 
-    expect(a).to eq -5
-    expect(b).to eq -7
+    expect(a).to eq (-5)
+    expect(b).to eq (-7)
   end
 
   it 'separate_array_into_even_and_odd_numbers' do
@@ -216,7 +216,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 2016
   end
 
-  it 'count_words_of_each_length_in_a_file' do
+  xit 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
