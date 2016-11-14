@@ -150,11 +150,13 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  (hash.keys + hash.values).inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -207,6 +209,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  	array_of_words = []
+  	file.each_line {|line| array_of_words << line}
+  	array_of_words.first.split(' ').count
 end
 
 # --- tougher ones ---
