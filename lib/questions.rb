@@ -55,11 +55,14 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  half = string.length / 2
+  string.length.even? ? string[0..half-1] : string[0..half]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  -(number.abs)
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,6 +70,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  (1..7).partition { |v| v.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -74,14 +78,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.select{|word| word if word == word.reverse}.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.group_by(&:size).min.last.join("")
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.group_by(&:size).max.last.join("")
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
