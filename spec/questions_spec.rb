@@ -187,7 +187,7 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  fit 'square_root_of' do
+  it 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0

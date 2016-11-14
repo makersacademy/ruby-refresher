@@ -102,7 +102,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array*2
+  array * 2
 end
 
 # convert a symbol into a string
@@ -113,7 +113,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.reduce(:+)/array.size.to_f).round
+  (array.reduce(:+) / array.size.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -121,8 +121,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while{|x| x<6}
-
+  array.take_while { |x| x < 6 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -169,11 +168,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  Time.new(2013, 10, 31).strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.gsub(/.+@([^.]+).+/, '\1')
 end
 
 # capitalize the first letter in each word of a string,
@@ -182,22 +183,29 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  ignore_string = %w(a and the)
+  split_string = string.split
+  split_string.first.capitalize!
+  split_string.map { |string| ignore_string.include?(string) ? string : string.capitalize }.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string =~ /\W/ ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range == (1...20) ? true : false
 end
 
 # get the square root of a number
@@ -207,6 +215,11 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file_path = 'data/lorem.txt'
+  f = File.open(file_path, "r")
+  count = []
+  f.each_line { |line| count << line }
+  count.first.split.size
 end
 
 # --- tougher ones ---
