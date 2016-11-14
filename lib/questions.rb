@@ -256,8 +256,8 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   date = date.strftime("%Y%m%d")
-  file = open("./lib/england-and-wales.ics").read
-  file.each_line {|line| return true if line.include? "TART;VALUE=DATE:#{date}"}
+  file = open("./data/england-and-wales.ics").read
+  file.each_line {|line| return true if line.include? "DTSTART;VALUE=DATE:#{date}"}
   false
 end
 
@@ -267,12 +267,12 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   counter = 1
-  day = birthday.strftime("%m").to_i
+  day = birthday.strftime("%d").to_i
   month = birthday.strftime("%m").to_i
   year = birthday.strftime("%Y").to_i
   loop do
-    chacked_date = Time.new(year + counter, month, day)
-    return chacked_date.strftime("%Y").to_i if chacked_date.friday?
+    checked_date = Time.new(year + counter, month, day)
+    return checked_date.strftime("%Y").to_i if checked_date.friday?
     counter += 1
   end
 end
@@ -284,15 +284,15 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   lengths = {}
- file = File.open file_path
- file.each_line do |line|
-   words = line.gsub(/[,.]/, '').split(" ")
-   words.each do |word|
-     key = word.length
-     (lengths.key? key) ? lengths[key] += 1 : lengths[key] = 1
-   end
- end
- lengths
+  file = File.open file_path
+  file.each_line do |line|
+    words = line.gsub(/[,.]/, '').split(" ")
+    words.each do |word|
+      key = word.length
+      (lengths.key? key) ? lengths[key] += 1 : lengths[key] = 1
+    end
+  end
+  lengths
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
