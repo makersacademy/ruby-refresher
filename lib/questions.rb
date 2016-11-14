@@ -185,7 +185,11 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   check = ['a', 'and', 'the']
-  y = string.downcase.split(" ").map!{|x| check.include?(x) ? x : x.capitalize}.join(" ")
+  y = string
+    .downcase
+    .split(" ")
+    .map!{|x| check.include?(x) ? x : x.capitalize}
+    .join(" ")
   y[0].upcase + y[1..-1]
 end
 
@@ -225,6 +229,7 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
+#Google ruby meta programming
 def call_method_from_string(str_method)
 end
 
