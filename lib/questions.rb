@@ -201,6 +201,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+
 end
 
 # return true if a string contains any special characters
@@ -212,6 +213,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
@@ -221,6 +223,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt number
 end
 
 # count the number of words in a file
@@ -233,6 +236,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
