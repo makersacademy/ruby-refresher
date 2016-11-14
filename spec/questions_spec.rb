@@ -40,7 +40,7 @@ describe 'the Friday test :)' do
     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   end
 
-  fit 'all_elements_except_first_3' do
+  it 'all_elements_except_first_3' do
     n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
     expect(n).to eq [4, 5, 6, 7]
   end
@@ -194,7 +194,7 @@ describe 'the Friday test :)' do
     expect(b).to eq 1.7320508075688772
   end
 
-  it 'word_count_a_file' do
+  fit 'word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end

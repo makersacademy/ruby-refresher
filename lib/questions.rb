@@ -1,21 +1,21 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |fruit| fruit if fruit.chars.first == "a"}
+  array.select{ |fruit| fruit.chars.first == "a"}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{|name| name =~ /^[aeiou\W]/}
+  array.keep_if{|name| name =~ /^[aeiou\W]/}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select{ |value| value if !(value.class == NilClass)}
+  array.delete_if{ |value| value.class == NilClass}
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{ |value| value if value != false}
+  array.keep_if{ |value| value.class == String}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -35,7 +35,7 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
-  array.slice(3..-1)
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
@@ -134,13 +134,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  array.take_while{|num| num < 6}
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-
+Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -170,6 +171,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.tr('A-Z', '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -203,12 +205,17 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  exceptions = ['a', 'and', 'the']
+  first = string.split[0].capitalize
+  rest = string.split[1..-1].each{|word| exceptions.include?(word) ? word : word.capitalize! }.join(' ')
+  first.concat(" " + rest)
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  /[^a-zA-Z0-9]/ === string
 
 end
 
@@ -231,6 +238,13 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.open(file_path, "r") do |l|
+    lines = ""
+    while (line = l.gets)
+        lines += line
+    end
+    lines.split.length
+end
 end
 
 # --- tougher ones ---
