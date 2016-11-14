@@ -30,6 +30,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
@@ -166,6 +167,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.to_a
 end
 
 # take out all the capital letters from a string
@@ -204,6 +206,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  nocaps = ["and", "or", "the", "over", "to", "the", "a", "but", "he"]
+  string.slice(0, 1).capitalize + string.slice(1..-1).split(" ").map { |word| nocaps.include?(word) ? word : word.capitalize }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -216,11 +220,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -230,6 +236,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "r")
+  array_of_words = []
+  	file.each_line {|line| array_of_words << line}
+  	array_of_words.first.split(' ').count
 end
 
 # --- tougher ones ---
