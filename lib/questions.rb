@@ -231,6 +231,7 @@ end
 # the method foobar should be invoked
 #Google ruby meta programming
 def call_method_from_string(str_method)
+  (str_method).new 
 end
 
 # return true if the date is a uk bank holiday for 2014
