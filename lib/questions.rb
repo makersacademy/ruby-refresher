@@ -203,12 +203,8 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   result = string.split.map do |word|
-              if ["a","the","and"].include?(word)
-                word
-              else
-                word.capitalize
-              end
-            end.join(' ')
+      ["a","the","and"].include?(word) ? word : word.capitalize
+      end.join(' ')
   result.slice(0,1).capitalize + result.slice(1..-1)
 end
 
@@ -216,16 +212,19 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  !!(/\W\D/ =~ string)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.inspect.include?("...")
 end
 
 # get the square root of a number
