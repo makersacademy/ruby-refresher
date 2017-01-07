@@ -116,27 +116,27 @@ describe 'the Friday test :)' do
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
 
-  it 'convert_array_to_a_hash' do
+  fit 'convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end
 
-  it 'get_all_letters_in_array_of_words' do
+  fit 'get_all_letters_in_array_of_words' do
     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
 
-  it 'swap_keys_and_values_in_a_hash' do
+  fit 'swap_keys_and_values_in_a_hash' do
     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-  it 'add_together_keys_and_values' do
+  fit 'add_together_keys_and_values' do
     n = add_together_keys_and_values({1 => 1, 2 => 2})
     expect(n).to eq 6
   end
 
-  it 'remove_capital_letters_from_string' do
+  fit 'remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
