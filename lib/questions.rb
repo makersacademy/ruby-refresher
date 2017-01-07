@@ -218,11 +218,8 @@ end
 def word_count_a_file(file_path)
 	count = 0
 	file = File.open(file_path, "r")
-	file.each_line { | line | 
-		words = line.split(" ")
-		count += words.count
-	}
-	count
+	words = file.read.split(" ")
+	count += words.count
 end
 
 # --- tougher ones ---
@@ -264,6 +261,12 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+	string = ""
+	file = File.open(file_path, "r")
+	words = file.read.gsub(/[^A-Za-z0-9 ]*/, "").split(" ")
+	word_length_hash = Hash.new(0)
+	words.each { | word | word_length_hash[word.length] += 1 }
+	word_length_hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
