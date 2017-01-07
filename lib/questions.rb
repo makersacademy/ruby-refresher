@@ -302,9 +302,13 @@ def ninety_nine_bottles_of_beer
     if beers == 1
       bottles_string = "bottle"
     end
-  	puts "#{beers} #{bottles_string} of beers on the wall\n#{beers} #{bottles_string} of beer\nTake one down\nPass it around"
-    beers -= 1
-    puts "#{beers - 1} #{bottles_string} of beer on the wall!"
-    puts "------------------------------"
+    	puts "#{beers} #{bottles_string} of beer on the wall\n#{beers} #{bottles_string} of beer\nTake one down\nPass it around"
+      beers -= 1
+      if beers == 0
+        puts "No more bottles of beer on the wall!"
+      else
+        puts "#{beers} #{bottles_string} of beer on the wall!"
+      end
+      puts "------------------------------"
   end
 end
