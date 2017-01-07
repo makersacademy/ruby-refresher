@@ -95,17 +95,17 @@ describe 'the Friday test :)' do
     expect(n).to eq 25
   end
 
-  it 'double_array' do
+  fit 'double_array' do
     n = double_array [1, 2, 3]
     expect(n).to eq [1, 2, 3, 1, 2, 3]
   end
 
-  it 'turn_symbol_into_string' do
+  fit 'turn_symbol_into_string' do
     n = turn_symbol_into_string :foobar
     expect(n).to eq 'foobar'
   end
 
-  it 'average_of_array' do
+  fit 'average_of_array' do
     n = average_of_array [10, 15, 25]
     expect(n).to eq 17
   end
