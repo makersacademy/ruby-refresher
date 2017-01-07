@@ -36,7 +36,6 @@ describe 'the Friday test :)' do
   it 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
-
     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   end
 
@@ -56,11 +55,11 @@ describe 'the Friday test :)' do
   end
 
   it 'get_first_half_of_string' do
-    a = get_first_half_of_string 'banana'
     b = get_first_half_of_string 'apple'
+    a = get_first_half_of_string 'banana'
 
-    expect(a).to eq 'ban'
     expect(b).to eq 'app'
+    expect(a).to eq 'ban'
   end
 
   it 'make_numbers_negative' do
@@ -219,5 +218,26 @@ describe 'the Friday test :)' do
   it 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
+  end
+
+  it 'fizzbuzz_without_modulo' do
+    n = fizzbuzz_without_modulo
+    expect(n).to include( 2=>2)
+    expect(n).to include( 3=>"fizz")
+    expect(n).to include( 5=>"buzz")
+    expect(n).to include( 15=>"fizzbuzz")
+    expect(n).to include( 79=>79)
+    expect(n).to include( 51=>"fizz")
+    expect(n).to include( 80=>"buzz")
+    expect(n).to include( 90=>"fizzbuzz")
+  end
+
+  it 'ninety_nine_bottles_of_beer' do
+    n = ninety_nine_bottles_of_beer
+    expect(n).to include("99 bottles of beer on the wall, 99 bottles of beer. Take one down and pass it around, 98 bottles of beer on the wall.")
+    expect(n).to include("12 bottles of beer on the wall, 12 bottles of beer. Take one down and pass it around, 11 bottles of beer on the wall.")
+    expect(n).to include("2 bottles of beer on the wall, 2 bottles of beer. Take one down and pass it around, 1 bottle of beer on the wall.")
+    expect(n).to include("1 bottle of beer on the wall, 1 bottle of beer. Take one down and pass it around, no more bottles of beer on the wall.")
+    expect(n).to include("No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall.")
   end
 end
