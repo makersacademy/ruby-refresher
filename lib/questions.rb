@@ -15,6 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+	array.compact.delete_if { | element | element == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
