@@ -1,3 +1,5 @@
+require 'holidays'
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |item| item[0] == "a" }
@@ -229,12 +231,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method.to_sym)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  check_date = Date.parse(date.strftime('%Y/%m/%d'))
+  Holidays.on(check_date, :gb_eng, :gb_wls, :gb_sct, :gb_nir ) != []
 end
 
 # given your birthday this year, this method tells you
