@@ -273,6 +273,20 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+	numbers = (1..100)
+	numbers.each { | number |
+		if number == 0
+			puts number
+		elsif (number.divmod(3)[1] == 0) && (number.divmod(5)[1] == 0)
+			puts "Fizzbuzz"
+		elsif number.divmod(3)[1] == 0
+			puts "Fizz"
+		elsif number.divmod(5)[1] == 0
+			puts "Buzz"
+		else
+			puts number
+		end
+	}
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
