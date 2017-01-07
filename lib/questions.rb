@@ -1,22 +1,30 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select {|fruit| fruit[0] == "a"}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select {|name| name[0].match(/[aeiou]/)}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  array.reject {|letter| letter == nil}
+  # there's also "array.compact". Neat.
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  # could have array.compact before 
+  # and just reject those with false in the block below
+  array.reject{|letter| letter == nil || letter == false}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.each {|animal| animal.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -24,31 +32,42 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice, 
 def every_possible_pairing_of_students(array)
+  array.combination(2).to_a
+  # There's probably another way to do it, 
+  # this solution feels a bit like cheating
 end
 
 # discard the first 3 elements of an array, 
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.reject {|number| number < 4}
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.insert(0, element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by! {|x| x[x.length - 1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  string_half_length = string.length / 2
+  odd_string_half_length = string_half_length + 1
+  string.length.even? ? string.slice(0...string_half_length) : string.slice(0...odd_string_half_length)
+  # feels dirty, there's probably a better solution somewhere...
 end
-
+  
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  number > 0 ? - number : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of 
@@ -56,6 +75,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  array.partition {|number| number.even?}
+  # same as the "pairing" one
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -63,33 +84,41 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.reject! {|word| word != word.reverse}
+  array.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.sort_by! {|word| word.length}.first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.sort_by! {|word| word.length}.last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject {|result, number| number + result}
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array.concat(array)
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  (array.inject {|result, number| result + number } / array.length).next
 end
 
 # get all the elements in an array, up until the first element
@@ -116,6 +145,8 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
+  # ...easy?
 end
 
 # in a hash where the keys and values are all numbers
