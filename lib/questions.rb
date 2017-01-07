@@ -10,11 +10,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.delete_if {|element| array.delete(element) if element == nil}
+  array.delete_if {|element| element == nil}
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+    array.delete_if {|element| !(!!element == true)}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
