@@ -166,7 +166,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  fit 'check_a_string_for_special_characters' do
+  it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -174,7 +174,7 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  it 'get_upper_limit_of' do
+  fit 'get_upper_limit_of' do
     n = get_upper_limit_of 1..20
     expect(n).to eq 20
   end
