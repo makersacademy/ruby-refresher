@@ -1,10 +1,4 @@
-require 'rspec'
 require 'questions'
-
-RSpec.configure do |config|
-  config.color = true
-  config.formatter = :documentation
-end
 
 describe 'the Friday test :)' do
 
