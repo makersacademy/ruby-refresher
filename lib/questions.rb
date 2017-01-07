@@ -321,5 +321,5 @@ def ninety_nine_bottles_of_beer
      end
        bottles -= 1
   end
-  response.join(" ")
+  response.join("\n")
 end
