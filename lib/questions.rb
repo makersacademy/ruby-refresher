@@ -307,4 +307,16 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles = 99
+  response = []
+  while bottles > 0
+    response.push("#{bottles} bottles of beer on the wall, #{bottles} bottles of beer. Take one down and pass it around, #{bottles-1} bottles of beer on the wall.")
+    bottles -= 1
+      if bottles  == 1
+        response.push("#{bottles} bottle of beer on the wall, #{bottles} bottle of beer. Take one down and pass it around, no more bottles of beer on the wall.")
+      elsif bottles  == 0
+        response.push("No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall.")
+     end
+  end
+  response.join(" ")
 end

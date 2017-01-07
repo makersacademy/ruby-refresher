@@ -219,4 +219,12 @@ describe 'the Friday test :)' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
+
+  it 'ninety_nine_bottles_of_beer' do
+    n = ninety_nine_bottles_of_beer
+    expect(n).to include("99 bottles of beer on the wall, 99 bottles of beer. Take one down and pass it around, 98 bottles of beer on the wall.")
+    expect(n).to include("12 bottles of beer on the wall, 12 bottles of beer. Take one down and pass it around, 11 bottles of beer on the wall.")
+    expect(n).to include("1 bottle of beer on the wall, 1 bottle of beer. Take one down and pass it around, no more bottles of beer on the wall.")
+    expect(n).to include("No more bottles of beer on the wall, no more bottles of beer. Go to the store and buy some more, 99 bottles of beer on the wall.")
+  end
 end
