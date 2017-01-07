@@ -298,6 +298,19 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  response = {}
+  (1..100).each do |number|
+    if ((number.to_f / 15).divmod 1)[1] == 0.0
+      response[number] = "fizzbuzz"
+    elsif ((number.to_f / 3).divmod 1)[1] == 0.0
+      response[number] =  "fizz"
+    elsif ((number.to_f / 5).divmod 1)[1] == 0.0
+      response[number] =  "buzz"
+    else
+      response[number] = number
+    end
+  end
+  response
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall

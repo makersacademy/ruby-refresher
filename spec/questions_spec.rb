@@ -220,6 +220,18 @@ describe 'the Friday test :)' do
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
 
+  it 'fizzbuzz_without_modulo' do
+    n = fizzbuzz_without_modulo
+    expect(n).to include( 2=>2)
+    expect(n).to include( 3=>"fizz")
+    expect(n).to include( 5=>"buzz")
+    expect(n).to include( 15=>"fizzbuzz")
+    expect(n).to include( 79=>79)
+    expect(n).to include( 51=>"fizz")
+    expect(n).to include( 80=>"buzz")
+    expect(n).to include( 90=>"fizzbuzz")
+  end
+
   it 'ninety_nine_bottles_of_beer' do
     n = ninety_nine_bottles_of_beer
     expect(n).to include("99 bottles of beer on the wall, 99 bottles of beer. Take one down and pass it around, 98 bottles of beer on the wall.")
