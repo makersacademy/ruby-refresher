@@ -229,10 +229,14 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  number**0.5
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "rb")
+  contents = file.read
+  contents.split.count
 end
 
 # --- tougher ones ---
@@ -241,19 +245,27 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = ["01/01/2014","18/04/2014","21/04/2014","05/05/2014","26/05/2014","25/08/2014"]
+  bank_holidays.include?(date.strftime("%d/%m/%Y"))
 end
 
 # given your birthday this year, this method tells you
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
+
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday?
+    birthday += (60*60*24*365)
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -262,6 +274,13 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, "rb")
+  contents = file.read
+  hash = Hash.new(0)
+  contents.split.map{|word| word.gsub(/[.,]/,"")}.each do |word|
+    hash[word.length] += 1
+  end
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
