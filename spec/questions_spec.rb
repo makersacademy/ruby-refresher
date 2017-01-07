@@ -1,4 +1,3 @@
-require 'rspec'
 require 'questions'
 
 RSpec.configure do |config|
