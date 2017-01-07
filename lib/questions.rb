@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{|word| word[4] == "a" }
+  array.select{|word| word[0] == "a" }
 end
 
 # keep only the elements that start with a vowel
