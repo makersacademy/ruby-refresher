@@ -35,6 +35,8 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  3.times { array.shift }
+  array
 end
 
 # add an element to the beginning of an array
