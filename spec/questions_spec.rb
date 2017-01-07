@@ -187,14 +187,14 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  fit 'square_root_of' do
+  it 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
     expect(b).to eq 1.7320508075688772
   end
 
-  it 'word_count_a_file' do
+  fit 'word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end
