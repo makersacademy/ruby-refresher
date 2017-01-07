@@ -6,3 +6,4 @@ group :development do
 end
 
 gem 'pry'
+gem 'holidays'
