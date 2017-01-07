@@ -213,6 +213,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  IO.readlines(file_path).join.split.count
 end
 
 # --- tougher ones ---
