@@ -45,7 +45,7 @@ describe 'the Friday test :)' do
     expect(n).to eq [4, 5, 6, 7]
   end
 
-  xit 'add_element_to_beginning_of_array' do
+  it 'add_element_to_beginning_of_array' do
     n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
     expect(n).to eq [1, 2, 3, 4, 5]
   end
