@@ -296,4 +296,18 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+	bottles = 99
+	sg_pl = "bottles"
+	until bottles == 0
+		puts "#{bottles} #{sg_pl} of beer on the wall"
+		puts "#{bottles} #{sg_pl} of beer"
+		puts "take one down, pass it around"
+		bottles -= 1
+		sg_pl = "bottle" if bottles == 1
+		if bottles != 0
+			puts ("#{bottles} #{sg_pl} of beer on the wall")
+		else
+			puts "no more bottles of beer on the wall"
+		end
+	end
 end
