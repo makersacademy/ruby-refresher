@@ -80,17 +80,17 @@ describe 'the Friday test :)' do
     expect(n).to eq 3
   end
 
-  it 'shortest_word_in_array' do
+  fit 'shortest_word_in_array' do
     n = shortest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'a'
   end
 
-  it 'longest_word_in_array' do
+  fit 'longest_word_in_array' do
     n = longest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'different'
   end
 
-  it 'total_of_array' do
+  fit 'total_of_array' do
     n = total_of_array [1, 3, 5, 6, 2, 8]
     expect(n).to eq 25
   end
