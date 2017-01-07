@@ -250,6 +250,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday?
+    birthday = Time.new birthday.year + 1
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -264,6 +268,17 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |number|
+    if (number / 15.0).round == (number / 15.0)
+      puts 'Fizzbuzz'
+    elsif (number / 5.0).round == (number / 5.0)
+      puts 'Buzz'
+    elsif (number / 3.0).round == (number / 3.0)
+      puts 'Fizz'
+    else
+      puts number
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -273,4 +288,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  beers = 99
+  bottles_string = "bottles"
+  while beers > 0
+    if beers == 1
+      bottles_string = "bottle"
+    end
+  	puts "#{beers} #{bottles_string} of beers on the wall\n#{beers} #{bottles_string} of beer\nTake one down\nPass it around"
+    beers -= 1
+    puts "#{beers - 1} #{bottles_string} of beer on the wall!"
+    puts "------------------------------"
+  end
 end
