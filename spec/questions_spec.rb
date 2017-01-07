@@ -161,12 +161,12 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  fit 'titleize_a_string' do
+  it 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  it 'check_a_string_for_special_characters' do
+  fit 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
