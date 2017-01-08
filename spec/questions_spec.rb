@@ -126,12 +126,12 @@ describe 'the Friday test :)' do
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
 
-  fit 'swap_keys_and_values_in_a_hash' do
+  it 'swap_keys_and_values_in_a_hash' do
     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-  it 'add_together_keys_and_values' do
+  fit 'add_together_keys_and_values' do
     n = add_together_keys_and_values({1 => 1, 2 => 2})
     expect(n).to eq 6
   end
