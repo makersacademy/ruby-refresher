@@ -285,6 +285,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+    while !birthday.friday?
+      birthday = Time.new(birthday.year + 1, birthday.mon, birthday.day)
+    end
+    return birthday.year
 end
 
 # in a file, total the number of times words of different lengths
