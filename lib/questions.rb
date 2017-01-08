@@ -45,6 +45,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort {|word, word_2| word[-1] <=> word_2[-1]}
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -56,6 +57,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  array.select {|x| x * -1}
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
