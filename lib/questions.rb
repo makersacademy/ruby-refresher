@@ -255,6 +255,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_hols = ["2014/12/26","2014/12/25","2014/08/25","2014/05/26","2014/05/05","2014/04/21","2014/04/18","2014/01/01"]
+  bank_hols.include?(date.strftime("%Y/%m/%d")) ? true : false
 end
 
 # given your birthday this year, this method tells you
