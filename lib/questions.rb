@@ -301,6 +301,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  #sadly not time to do this one
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -310,4 +311,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  # No time now, but I have done this one with Chris Pine
 end
