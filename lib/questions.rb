@@ -205,6 +205,8 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  is_special_char = string.match(/\W/)
+  is_special_char == nil ? false : true
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -215,6 +217,8 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  array = *range
+  !array.include?(range.last)
 end
 
 # get the square root of a number
