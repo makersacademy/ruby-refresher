@@ -170,26 +170,31 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.chars.select{|element| element == element.downcase}.join("")
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.to_i
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime('%d/%m/%Y')
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.partition('@').last.partition('.')[-3]
 end
 
 # capitalize the first letter in each word of a string,
@@ -198,30 +203,66 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  input = string.split(" ")
+  first_word = input.shift.capitalize
+  input.map! do |element|
+    if ['a','and','the'].include?(element)
+      element
+    else
+      element.capitalize
+    end
+  end.unshift(first_word).join(" ")
+  #
+  # 'the lion the witch and the wardrobe'.split(" ").each do |element|
+  #   element.capitalize unless ['a','and','the'].include?(element)
+  # end.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  result = []
+  string.chars.each do |element|
+    "?<>',?[]}{=-)@!(*&^%$#`~{}".chars.each do |character|
+      if element == character
+        result << 1;
+      else
+        false
+      end
+    end
+  end
+  !result.empty?
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !range.cover?(range.last)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number);
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+f = File.open(file_path, 'r')
+word_counter = [];
+f.each_line do |line|
+  words = line.split
+  words.each do |word|
+    word_counter << word
+  end
+end
+word_counter.length
 end
 
 # --- tougher ones ---
@@ -230,12 +271,17 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  String.str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = ['26/12/2014','25/12/2014','25/08/2014', '26/05/2014/', '05/05/2014',
+  '21/04/2014/', '18/04/2014', '01/01/2014']
+  return true if bank_holidays.include?(date.strftime('%d/%m/%Y'))
+  false
 end
 
 # given your birthday this year, this method tells you
