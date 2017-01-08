@@ -119,6 +119,9 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  divisor = array.count
+  result = ((array.inject { |a, b| (a + b)})/divisor.to_f).round
+
 end
 
 # get all the elements in an array, up until the first element
