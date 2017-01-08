@@ -308,11 +308,14 @@ class Fixnum
     lyrics_part_3 = " of beer on the wall."
     lyrics = ""
     bottles.map{|bottle_num|
-      break if bottle_num == 0
-      str = (bottle_num.to_s + " #{bottle.pluralize(bottle_num)}")
-      str2 = ((bottle_num -1).to_s + " #{bottle.pluralize(bottle_num -1)}")
-      lyrics += (str + lyrics_part_1)
-      lyrics +=  (str + lyrics_part_2 + str2 + lyrics_part_3 + "\n")
+      if (bottle_num == 0)
+        lyrics += "no more bottles of beer on the wall"
+      else
+        str = (bottle_num.to_s + " #{bottle.pluralize(bottle_num)}")
+        str2 = ((bottle_num -1).to_s + " #{bottle.pluralize(bottle_num -1)}")
+        lyrics += (str + lyrics_part_1)
+        lyrics +=  (str + lyrics_part_2 + str2 + lyrics_part_3 + "\n")
+      end
     }
     puts lyrics
   end
