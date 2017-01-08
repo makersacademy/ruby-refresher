@@ -77,8 +77,7 @@ def separate_array_into_even_and_odd_numbers(array)
     odds << number if number.odd?
     evens << number if number.even?
   end
-  result << evens
-  result << odds
+  result.concat([evens, odds])
 end
 
 # count the numbers of elements in an element which are palindromes
