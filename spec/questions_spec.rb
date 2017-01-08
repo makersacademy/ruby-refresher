@@ -203,7 +203,7 @@ describe 'the Friday test :)' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  fit 'is_a_2014_bank_holiday?' do
+  it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
@@ -211,7 +211,7 @@ describe 'the Friday test :)' do
     expect(b).to be false
   end
 
-  it 'your_birthday_is_on_a_friday_in_the_year' do
+  fit 'your_birthday_is_on_a_friday_in_the_year' do
     n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
     expect(n).to eq 2016
   end
