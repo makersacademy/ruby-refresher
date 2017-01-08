@@ -247,6 +247,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  IO.readlines(file_path).join.split(/[,.\s]/).reject(&:empty?).collect{|word| word.size}.each_with_object(Hash.new(0)){|key,hash| hash[key] += 1}
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -274,7 +275,7 @@ def fizzbuzz_without_modulo
     i += 1
   end
 end
-fizzbuzz_without_modulo
+
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
