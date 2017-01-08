@@ -229,6 +229,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  arr = [Time.new(2014,1,1), Time.new(2014,4,18), Time.new(2014,4,21), Time.new(2014,5,5), Time.new(2014,5,26), Time.new(2014,8,25), Time.new(2014,12,25), Time.new(2014,12,26)]
+  !arr.select{|holiday| holiday === date}.count.zero?
 end
 
 # given your birthday this year, this method tells you
