@@ -244,7 +244,11 @@ end
 # count the number of words in a file
 def word_count_a_file(file_path)
   file = File.open(file_path, "r")
-  file.length
+
+  file.each_line do |words|
+    return words.split(" ").length
+  end
+
 end
 
 # --- tougher ones ---
@@ -253,40 +257,90 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-end
+  bank_holidays_2014 = ["2014, 01, 01",
+    "2014, 04, 18",
+    "2014, 04, 24",
+    "2014, 05, 05",
+    "2014, 05, 26",
+    "2014, 08, 25",
+    "2014, 12, 25",
+    "2014, 12, 26"]
+    bank_holidays_2014.include?(date.strftime("%Y, %m, %d"))
+  end
 
-# given your birthday this year, this method tells you
-# the next year when your birthday will fall on a friday
-# e.g. january 1st, will next be a friday in 2016
-# return the day as a capitalized string like 'Friday'
-def your_birthday_is_on_a_friday_in_the_year(birthday)
-end
+  # given your birthday this year, this method tells you
+  # the next year when your birthday will fall on a friday
+  # e.g. january 1st, will next be a friday in 2016
+  # return the day as a capitalized string like 'Friday'
+  def your_birthday_is_on_a_friday_in_the_year(birthday)
+    until birthday.friday? do
+      birthday += (60*60*24*356)
+    end
+    birthday.year
+  end
 
-# in a file, total the number of times words of different lengths
-# appear. So in a file with the text "the cat sat on the blue mat"
-# I have 5 words which are 3 letters long, 1 which is 2 letters long
-# and 1 that is 4 letters long. Return it as a hash in the format
-# word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
-def count_words_of_each_length_in_a_file(file_path)
-end
+  # in a file, total the number of times words of different lengths
+  # appear. So in a file with the text "the cat sat on the blue mat"
+  # I have 5 words which are 3 letters long, 1 which is 2 letters long
+  # and 1 that is 4 letters long. Return it as a hash in the format
+  # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
+  def count_words_of_each_length_in_a_file(file_path)
+    file = File.open(file_path, "r")
+    word_length_array = []
+    counts = Hash.new(0)
 
-# implement fizzbuzz without modulo, i.e. the % method
-# go from 1 to 100
-# (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
-end
+    file.each_line do |words|
+      all_words = words.split(/[\s,.]/).delete_if{|word| word == ""}
+      all_words.each{|word| word_length_array.push(word.length)}
+    end
 
-# print the lyrics of the song 99 bottles of beer on the wall
-# http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of
-# beer on the wall, and print 'no more bottles of beer on the wall'
-# at the end.
-# (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
-end
+    word_length_array.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+  end
+
+  # implement fizzbuzz without modulo, i.e. the % method
+  # go from 1 to 100
+  # (there's no RSpec test for this one)
+  def fizzbuzz_without_modulo
+    numbers = (1..100).to_a
+    numbers.map{|num| fizzbuzz(num)}
+  end
+
+  def fizzbuzz(number)
+    return "fizzbuzz" if divisible_by_15?(number)
+    return "buzz" if divisible_by_5?(number)
+    return "fizz" if divisible_by_3?(number)
+    number
+  end
+
+  def divisible_by_3?(number)
+    div_by_3 = number.to_f / 3
+    div_by_3 == div_by_3.floor
+  end
+
+  def divisible_by_5?(number)
+    div_by_5 = number.to_f / 5
+    div_by_5 == div_by_5.floor
+  end
+
+  def divisible_by_15?(number)
+    div_by_15 = number.to_f/15
+    div_by_15 == div_by_15.floor
+  end
+
+
+
+  # print the lyrics of the song 99 bottles of beer on the wall
+  # http://www.99-bottles-of-beer.net/lyrics.html
+  # make sure you use the singular when you have one bottle of
+  # beer on the wall, and print 'no more bottles of beer on the wall'
+  # at the end.
+  # (there's no RSpec test for this one)
+  def ninety_nine_bottles_of_beer
+  end

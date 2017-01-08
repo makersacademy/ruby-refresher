@@ -199,11 +199,11 @@ describe 'the Friday test :)' do
     expect(n).to eq 70
   end
 
-  it 'call_method_from_string' do
+  fit 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  it 'is_a_2014_bank_holiday?' do
+  fit 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
@@ -211,13 +211,48 @@ describe 'the Friday test :)' do
     expect(b).to be false
   end
 
-  it 'your_birthday_is_on_a_friday_in_the_year' do
+  fit 'your_birthday_is_on_a_friday_in_the_year' do
     n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
     expect(n).to eq 2016
   end
 
-  it 'count_words_of_each_length_in_a_file' do
+  fit 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
+end
+
+describe "fizzbuz" do
+  it "should check if a number is divisible by 3" do
+    expect(divisible_by_3?(4)).to eq false
+  end
+
+  it "should check if a number is divisibly by 5" do
+    expect(divisible_by_5?(5)).to eq true
+  end
+
+  it "should check if a number is divisible by 15" do
+    expect(divisible_by_15?(45)).to eq true
+  end
+
+  it "should return fizz for multiples of 3" do
+    expect(fizzbuzz(6)).to eq "fizz"
+  end
+
+  it "should return buzz for multiples of 5" do
+    expect(fizzbuzz(20)).to eq "buzz"
+  end
+
+  it "should return fizzbuzz for multiples of 15" do
+    expect(fizzbuzz(30)).to eq "fizzbuzz"
+  end
+
+  it "should return the number if none of the above" do
+    expect(fizzbuzz(1)).to eq 1
+  end
+
+  it "should print out an array with all results from 1 to 100" do
+    expect(fizzbuzz_without_modulo).to eq [1, 2, "fizz", 4, "buzz", "fizz", 7, 8, "fizz", "buzz", 11, "fizz", 13, 14, "fizzbuzz", 16, 17, "fizz", 19, "buzz", "fizz", 22, 23, "fizz", "buzz", 26, "fizz", 28, 29, "fizzbuzz", 31, 32, "fizz", 34, "buzz", "fizz", 37, 38, "fizz", "buzz", 41, "fizz", 43, 44, "fizzbuzz", 46, 47, "fizz", 49, "buzz", "fizz", 52, 53, "fizz", "buzz", 56, "fizz", 58, 59, "fizzbuzz", 61, 62, "fizz", 64, "buzz", "fizz", 67, 68, "fizz", "buzz", 71, "fizz", 73, 74, "fizzbuzz", 76, 77, "fizz", 79, "buzz", "fizz", 82, 83, "fizz", "buzz", 86, "fizz", 88, 89, "fizzbuzz", 91, 92, "fizz", 94, "buzz", "fizz", 97, 98, "fizz", "buzz"]
+  end
+
 end
