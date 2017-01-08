@@ -235,6 +235,10 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  upper = get_upper_limit_of(range)
+  array = []
+  listed = range.each { |number| array << number}
+  !(array.include? upper)
 end
 
 # get the square root of a number
