@@ -209,6 +209,13 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  array = string.capitalize.split(" ")
+  n = 1
+  until array[n] == nil
+    array[n].capitalize! unless array[n] == "a" || array[n] == "and" || array[n] == "the"
+    n += 1
+  end
+  array.join(" ")
 end
 
 # return true if a string contains any special characters
