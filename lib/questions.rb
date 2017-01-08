@@ -22,7 +22,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map {|x| x.reverse!} 
+  array.map {|x| x.reverse!}
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -39,6 +39,7 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.insert(0,element)
 end
 
 # sort an array of words by their last letter, e.g.
