@@ -199,7 +199,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 70
   end
 
-  xit 'call_method_from_string' do
+  it 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
