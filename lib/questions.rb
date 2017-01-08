@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{|e| (/a/ =~ e[0]) == 0}
+  array.select{|e| e[0] == 'a'}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{|e| (/[aeiou]/ =~ e[0]) == 0}
+  array.select{|e| 'aeiou'.include? e[0]}
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -29,7 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  array.combination(2).to_a.uniq
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  [array.select{|e| e%2 == 0}, array.reject{|e| e%2 == 0}]
+  [array.select{|e| e.even?}, array.select{|e| e.odd?}]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -131,7 +131,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map{|e| e.split("")}.flatten.sort
+  array.map(&:chars).flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -145,13 +145,13 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.keys.reduce(:+)+hash.values.reduce(:+)
+  hash.keys.reduce(:+) + hash.values.reduce(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.split('').reject{|e| (/[A-Z]/ =~ e) == 0}.join
+  string.chars.reject{|e| ('A'..'Z').include? e }.join
 end
 
 # round up a float up and convert it to an Integer,
@@ -163,7 +163,7 @@ end
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
-  float.to_i
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -185,14 +185,14 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   minors = ['a', 'the', 'and']
-  string.split.map.with_index{|e, i| (minors.include?(e) && i > 0) ? e : e.capitalize}.join(' ')
+  string.capitalize.split.map{|e| minors.include?(e) ? e : e.capitalize}.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !!(((/\W/) =~ string) != nil)
+  (/\W/ =~ string) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
