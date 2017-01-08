@@ -292,5 +292,28 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
+class String
+  def pluralize(number)
+    return self + "s" if number != 1
+    self
+  end
+end
+
+class Fixnum
+  def bottles_of_beer
+    bottle = "bottle"
+    bottles = (0..self).to_a.reverse
+    lyrics_part_1 = " of beer on the wall, "
+    lyrics_part_2 = " of beer. take one down, pass it around "
+    lyrics_part_3 = " of beer on the wall."
+    lyrics = ""
+    bottles.map{|bottle_num|
+      break if bottle_num == 0
+      str = (bottle_num.to_s + " #{bottle.pluralize(bottle_num)}")
+      str2 = ((bottle_num -1).to_s + " #{bottle.pluralize(bottle_num -1)}")
+      lyrics += (str + lyrics_part_1)
+      lyrics +=  (str + lyrics_part_2 + str2 + lyrics_part_3 + "\n")
+    }
+    puts lyrics
+  end
 end

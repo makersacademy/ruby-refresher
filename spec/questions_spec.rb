@@ -186,7 +186,6 @@ describe 'the Friday test :)' do
     expect(a).to be false
     expect(b).to be true
   end
-
   it 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
@@ -221,3 +220,5 @@ describe 'the Friday test :)' do
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
 end
+
+ninety_nine_bottles_of_beer
