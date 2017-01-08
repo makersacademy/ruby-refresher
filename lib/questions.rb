@@ -222,6 +222,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  !!(string.match(/[^A-Za-z0-9_]/))
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
