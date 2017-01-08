@@ -313,6 +313,21 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  def is_divisible_by? (divisor, number)
+    result = number / divisor.to_f
+    result.to_s[-1] == "0"
+  end
+  (1..100).each do | number |
+    if is_divisible_by?(15, number)
+      puts "fizzbuzz"
+    elsif is_divisible_by?(3, number)
+      puts "fizz"
+    elsif is_divisible_by?(5, number)
+      puts "buzz"
+    else
+      puts number
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -323,7 +338,6 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   count = 99
-
 while count > 1
     puts "#{count} bottles of beer on the wall, #{count} bottles of beer."
     count -= 1
@@ -338,4 +352,3 @@ while count > 1
   puts "No more bottles of beer on the wall, no more bottles of beer."
   puts "Go to the store and buy some more, 99 bottles of beer on the wall."
 end
-p ninety_nine_bottles_of_beer
