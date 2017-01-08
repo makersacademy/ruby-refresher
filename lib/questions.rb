@@ -270,6 +270,14 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  dates = [Time.new(2014, 4, 14),
+           Time.new(2014, 4, 17),
+           Time.new(2014, 5, 01),
+           Time.new(2014, 5, 29),
+           Time.new(2014, 8, 25),
+           Time.new(2014, 12, 25),
+           Time.new(2014, 12, 26)]
+  dates.include? date
 end
 
 # given your birthday this year, this method tells you
