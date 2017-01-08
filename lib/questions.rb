@@ -7,6 +7,9 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  result = [];
+  array.each{|element|  result << element if element.scan(/[aeiou]/).include?(element[0])}
+  result
 end
 
 # remove instances of nil (but NOT false) from an array
