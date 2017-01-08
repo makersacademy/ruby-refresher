@@ -343,4 +343,16 @@ def is_a_2014_bank_holiday?(date)
   # at the end.
   # (there's no RSpec test for this one)
   def ninety_nine_bottles_of_beer
+    beers = (0..99).to_a.reverse
+    beers.map{|beer| bottles(beer)}.join("\n\n")
   end
+
+  def bottles(number)
+ if number == 0
+   "No more bottles of beer on the wall, no more bottles of beer. \n Go to the store and buy some more, 99 bottles of beer on the wall."
+ elsif number == 1
+      "1 bottle of beer on the wall, 1 bottle of beer. \n Take one down and pass it around, no more bottles of beer on the wall."
+else
+    "#{number} bottles of beer on the wall, #{number} bottles of beer. \n Take one down and pass it around, #{number - 1} bottles of beer on the wall."
+  end
+end
