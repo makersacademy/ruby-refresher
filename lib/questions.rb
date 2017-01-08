@@ -158,6 +158,9 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  swapped = Hash.new(0)
+  hash.each {|key, value| swapped[value] = key}
+  return swapped
 end
 
 # in a hash where the keys and values are all numbers
