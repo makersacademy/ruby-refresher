@@ -230,10 +230,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  text = ""
-  File.open(file_path) do |file|
-   file.each_line{ |line| text += line }
-  end
+  text = load_text(file_path)
   text.split(" ").size
 end
 
@@ -281,6 +278,13 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  text = load_text(file_path)
+  text = text.gsub(/\W/," ")
+  hash = {}
+  words_size = text.split(" ").map{ |word| word.size }
+  target_n = words_size.uniq.sort
+  target_n.each{|n| hash[n] = words_size.count(n)}
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -296,4 +300,12 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+end
+
+def load_text(file_path)
+  text = ""
+  File.open(file_path) do |file|
+   file.each_line{ |line| text += line }
+  end
+  text
 end
