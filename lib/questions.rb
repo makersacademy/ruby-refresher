@@ -105,6 +105,10 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  duration = array.count
+  n = 0
+  (duration).times { array << array[n]; n += 1 }
+  array
 end
 
 # convert a symbol into a string
