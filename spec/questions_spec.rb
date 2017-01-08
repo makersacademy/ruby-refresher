@@ -96,7 +96,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 25
   end
 
-  xit 'double_array' do
+  it 'double_array' do
     n = double_array [1, 2, 3]
     expect(n).to eq [1, 2, 3, 1, 2, 3]
   end
