@@ -37,6 +37,8 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  discard_number = 3
+  array[ discard_number, array.length - discard_number ]
 end
 
 # add an element to the beginning of an array
