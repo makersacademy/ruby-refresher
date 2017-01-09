@@ -145,6 +145,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.map {|x| x.split(%r{\s*})}.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
