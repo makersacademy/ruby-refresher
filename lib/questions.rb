@@ -158,6 +158,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.each {|k,v| k =+ v}
 end
 
 # take out all the capital letters from a string
@@ -213,6 +214,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
