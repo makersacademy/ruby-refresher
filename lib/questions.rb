@@ -36,7 +36,7 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
-  array - array[0..2]
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
@@ -137,7 +137,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  Hash[array.each_slice(2).to_a]
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -152,18 +152,20 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.each {|k,v| k =+ v}
+  hash.to_a.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -181,11 +183,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime '%d/%m/%Y'
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email[/@(\w+)/, 1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -194,14 +198,17 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string.split.inject([]) do |words, word|
+    words << (%w(a and the).include?(word) && words.any? ? word : word.capitalize)
+  end.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  !!(string =~ /\W/)
 end
-
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
@@ -210,6 +217,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -219,6 +227,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  IO.read(file_path).split.length
 end
 
 # --- tougher ones ---
@@ -227,12 +236,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  day = date.strftime '%-d/%-m'
+  %w(1/1 18/4 21/4 5/5 26/5 25/8 25/12 26/12).include? day
 end
 
 # given your birthday this year, this method tells you
@@ -240,6 +252,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday?
+    birthday = Time.new birthday.year + 1, birthday.month, birthday.day
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
