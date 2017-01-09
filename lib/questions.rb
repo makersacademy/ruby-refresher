@@ -129,6 +129,8 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  drop_index = array.index{|x| x > 5}
+  array.select.with_index{|x,i| i < 6}
 end
 
 # turn an array (with an even number of elements) into a hash, by
