@@ -88,10 +88,20 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  shortest_word = ''
+  array.each do |word|
+    shortest_word = word if  word.length > shortest_word.length
+  end
+  shortest_word
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  longest_word = ''
+  array.each do |word|
+    longest_word = word if longest_word.length < word.length
+  end
+  longest_word
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -103,6 +113,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+
 end
 
 # convert a symbol into a string
