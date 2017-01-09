@@ -31,7 +31,6 @@ end
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
   array.combination(2).to_a
-
 end
 
 # discard the first 3 elements of an array,
@@ -111,7 +110,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-
+  array * 2
 end
 
 # convert a symbol into a string
