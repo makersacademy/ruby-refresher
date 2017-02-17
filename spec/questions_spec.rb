@@ -50,19 +50,19 @@ describe 'the Friday test :)' do
     expect(n).to eq [1, 2, 3, 4, 5]
   end
 
-  # it 'array_sort_by_last_letter_of_word' do
-  #   n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
-  #   expect(n).to eq ['puma', 'maker', 'sky']
-  # end
-  #
-  # it 'get_first_half_of_string' do
-  #   a = get_first_half_of_string 'banana'
-  #   b = get_first_half_of_string 'apple'
-  #
-  #   expect(a).to eq 'ban'
-  #   expect(b).to eq 'app'
-  # end
-  #
+  it 'array_sort_by_last_letter_of_word' do
+    n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
+    expect(n).to eq ['puma', 'maker', 'sky']
+  end
+
+  it 'get_first_half_of_string' do
+    a = get_first_half_of_string 'banana'
+    b = get_first_half_of_string 'apple'
+
+    expect(a).to eq 'ban'
+    expect(b).to eq 'app'
+  end
+
   # it 'make_numbers_negative' do
   #   a = make_numbers_negative 5
   #   b = make_numbers_negative -7
