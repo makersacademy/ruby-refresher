@@ -41,7 +41,8 @@ See here for the full instructions: [INSTRUCTIONS.md](ruby-refresher/INSTRUCTION
       result = [[],[]]
       array.each { |x| x.even? ? (result[0].push(x)) : (result[1].push(x)) }
       result
-    end```
+    end
+    ```
 
   * I'm not very happy with this pattern as it means the variable (called `result` in the case above) gets repeated on two lines and it makes the method block look a bit clunky
   * Sometimes this pattern can be avoided by using `:collect` or `:map`, instead of `:each`, which return the new array as part of the iteration. However, in several cases in this challenge, couldn't figure out a way of not defining an empty array before the loop
