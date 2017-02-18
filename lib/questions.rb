@@ -185,11 +185,7 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   string.split(" ").each_with_index.map{|word,i|
-    if (!["a","and","the"].include? word) || i == 0
-      word.capitalize
-    else
-      word
-    end
+    (!["a","and","the"].include? word) || i == 0 ? word.capitalize : word
   }.join(" ")
 end
 
@@ -254,13 +250,9 @@ end
 # return the day as a capitalized string like 'Friday'
 require "date"
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  # (1..4).each do |year|
   year = 1
   while Time.new(birthday.year + year, birthday.month, birthday.day).wday != 5
     year += 1
-    # if day_of_year = Time.new(birthday.year + year, birthday.month, birthday.day).wday == 5
-    #   return birthday.year + year
-    # end
   end
   birthday.year + year
 end
