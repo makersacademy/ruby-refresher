@@ -294,6 +294,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  7.times do
+    birthday += 31536000
+    return birthday.strftime('%Y').to_i if birthday.strftime('%A') == 'Friday'
+  end
 end
 
 # No. 39
@@ -305,7 +309,7 @@ end
 def count_words_of_each_length_in_a_file(file_path)
 end
 
-# --------- no tests ---------
+# ----------- no tests -----------
 
 # No. 40
 # implement fizzbuzz without modulo, i.e. the % method
