@@ -287,4 +287,21 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  (99).downto(1).each do |number|
+    puts "#{number} bottle#{plural(number)} of beer on the wall, #{number} bottle#{plural(number-1)}  of beer."
+    puts "Take one down and pass it around, #{bottle_left(number)} of beer on the wall."
+    puts
+  end
+
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, 99 bottles of beer on the wall."
+end
+
+def plural(number)
+  return "s" if number > 1
+end
+
+def bottle_left(number)
+  return "#{number-1} bottle#{plural(number-1)}" if number > 1
+  return "no more bottles"
 end
