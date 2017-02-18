@@ -1,11 +1,7 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   results = []
-  array.each do |x|
-    if x.chars.first === 'a'
-      results.push(x)
-    end
-  end
+  array.each {|x| results.push(x) if x.chars.first === 'a'}
   results
 end
 
@@ -13,33 +9,21 @@ end
 def select_elements_starting_with_vowel(array)
   results = []
   vowels = ['a', 'e', 'i', 'o', 'u']
-  array.each do |x|
-    if vowels.include?(x.chars.first)
-      results.push(x)
-    end
-  end
+  array.each {|x| results.push(x) if vowels.include?(x.chars.first)}
   results
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
   results = []
-  array.each do |x|
-    if x != nil
-      results.push(x)
-    end
-  end
+  array.each {|x| results.push(x) if x != nil}
   results
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   results = []
-  array.each do |x|
-    if x != nil && x!= false
-      results.push(x)
-    end
-  end
+  array.each {|x| results.push(x) if (x != nil && x!= false)}
   results
 end
 
@@ -47,9 +31,7 @@ end
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
   results = []
-  array.each do |x|
-    results.push(x.reverse)
-  end
+  array.each {|x| results.push(x.reverse)}
   results
 end
 
@@ -59,7 +41,6 @@ end
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
   results = array.combination(2).to_a
-  results
 end
 
 # discard the first 3 elements of an array,
@@ -85,9 +66,7 @@ end
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
   num = ((string.length + 1) / 2)
-  until string.length == num do
-      string.chop!
-  end
+  string.chop! until string.length == num
   string
 end
 
@@ -103,9 +82,7 @@ end
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   evens, odds = [], []
-  array.each do |x|
-    x % 2 == 0 ? evens.push(x) : odds.push(x)
-  end
+  array.each {|x| x % 2 == 0 ? evens.push(x) : odds.push(x)}
   [evens, odds]
 end
 
@@ -165,10 +142,7 @@ end
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
   results = []
-  array.each do |x|
-    break if x > 5
-    results.push(x)
-  end
+  array.each {|x| break if x > 5; results.push(x)}
   results
 end
 
@@ -185,11 +159,7 @@ end
 def get_all_letters_in_array_of_words(array)
   results, letters = [],[]
   array.each {|x| letters += x.split(//)}
-  letters.each do |y|
-    unless results.include? y
-      results.push(y)
-    end
-  end
+  letters.each {|y| results.push(y) unless results.include? y}
   results.sort!
 end
 
@@ -205,15 +175,14 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   result = 0
-  hash.each{ |key, value| result += (key+value) }
+  hash.each{|key, value| result += (key+value)}
   result
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.each_char {|x| string.delete!(x) if (x.upcase == x && x != ' ') }
-  string
+  string.each_char {|x| string.delete!(x) if (x.upcase == x && x != ' ')}
 end
 
 # round up a float up and convert it to an Integer,
