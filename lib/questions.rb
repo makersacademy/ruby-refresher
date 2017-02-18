@@ -87,11 +87,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.select { |a| a.length == array.map {|a| a.length}.min }[0]
+  array.select { |a| a.length == array.map { |a| a.length }.min }[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.select { |a| a.length == array.map { |a| a.length }.max }[0]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
