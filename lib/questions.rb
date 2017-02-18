@@ -228,6 +228,18 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  p date.to_s[0..9]
+  case date.to_s[0..9]
+    when "2014-01-01" ; return true
+    when "2014-04-18" ; return true
+    when "2014-04-21" ; return true
+    when "2014-05-05" ; return true
+    when "2014-05-26" ; return true
+    when "2014-08-25" ; return true
+    when "2014-12-25" ; return true
+    when "2014-12-26" ; return true
+    else ; return false
+  end
 end
 
 # given your birthday this year, this method tells you
@@ -243,6 +255,12 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  return_hash = Hash.new {|key, value| key[value]=0}
+  File.open(file_path, "r").each_line do |line|
+    line.gsub(/\W/, '')
+    line.split(" ").each {|word| return_hash[word.length] += 1}
+  end
+  return_hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
