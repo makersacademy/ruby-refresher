@@ -252,7 +252,17 @@ end
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
+require "date"
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  # (1..4).each do |year|
+  year = 1
+  while Time.new(birthday.year + year, birthday.month, birthday.day).wday != 5
+    year += 1
+    # if day_of_year = Time.new(birthday.year + year, birthday.month, birthday.day).wday == 5
+    #   return birthday.year + year
+    # end
+  end
+  birthday.year + year
 end
 
 # in a file, total the number of times words of different lengths
