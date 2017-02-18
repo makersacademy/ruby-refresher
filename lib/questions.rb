@@ -63,7 +63,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string.length.even? ? string[0..string.length/2-1] : string[0..string.length/2]
+  string.length.even? ? (string[0..string.length/2-1]) : (string[0..string.length/2])
 end
 
 # No. 11
@@ -80,7 +80,7 @@ end
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   result = [[],[]]
-  array.each { |x| x.even? ? result[0].push(x) : result[1].push(x) }
+  array.each { |x| x.even? ? (result[0].push(x)) : (result[1].push(x)) }
   result
 end
 
@@ -209,6 +209,12 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  result = []; write = false
+  email.chars.each { |x|
+    write = !write if x == "." || x == "@"
+    result.push(x) if write
+  }
+  result.drop(1).join
 end
 
 # No. 30
@@ -218,46 +224,67 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  exceptions = ['a', 'and', 'the']
+  string.split.each_with_index.collect { |x, i|
+    exceptions.include?(x) && i != 0 ? x : x.capitalize!
+  }.join(' ')
 end
 
+# No. 31
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string.match(/^[0-9a-zA-Z]*$/) == nil ? true : false
 end
 
+# No. 32
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  !(range === range.last) ? (range.last - 1) : (range.last)
 end
 
+# No. 33
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !(range === range.last)
 end
 
+# No. 34
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
+# No. 35
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  word_count = 0
+  file.each_line { |line| line.split.each { |word| word_count += 1 } }
+  word_count
 end
 
-# --- tougher ones ---
+# --------- tougher ones ---------
 
+# No. 36
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
+# No. 37
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
 end
 
+# No. 38
 # given your birthday this year, this method tells you
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
@@ -265,6 +292,7 @@ end
 def your_birthday_is_on_a_friday_in_the_year(birthday)
 end
 
+# No. 39
 # in a file, total the number of times words of different lengths
 # appear. So in a file with the text "the cat sat on the blue mat"
 # I have 5 words which are 3 letters long, 1 which is 2 letters long
@@ -273,12 +301,16 @@ end
 def count_words_of_each_length_in_a_file(file_path)
 end
 
+# --------- no tests ---------
+
+# No. 40
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
 end
 
+# No. 41
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
 # make sure you use the singular when you have one bottle of
