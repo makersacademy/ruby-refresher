@@ -64,18 +64,26 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  string.slice(0,string.length.fdiv(2).round)
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-end
+  number.abs * -1
+ end
 
 # turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  a_even = []
+  a_odd = []
+  array.each do |num|
+    num.even? ? a_even << num : a_odd << num
+  end
+  res = [a_even, a_odd]
 end
 
 # count the numbers of elements in an element which are palindromes
