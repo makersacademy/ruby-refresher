@@ -158,7 +158,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  # string.gsub(/[^[:lower:]]+/, " ")
+  # string.gsub(/[A-Z]/, '')
   x = string.split("")
   x.delete_if { |a| a.match(/[A-Z]/) }.join
 end
@@ -178,11 +178,15 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.gsub(/.+@([^.]+).+/, '\1')
+  # email.split("@").last
+  # Mail::Address.new('#{email}').domain
 end
 
 # capitalize the first letter in each word of a string,
@@ -191,30 +195,43 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  nocaps = ["and", "a", "the"]
+  array_of_words = string.split(" ")
+  array_of_words.first.capitalize!
+  array_of_words.map { |word| nocaps.include?(word) ? word : word.capitalize }.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  # string =~ /\W/ ? true : false
+  string.match(/\W/) ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
+  # range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  array_of_words = []
+  File.readlines(file_path).map { |line| array_of_words << line }
+  array_of_words.first.split(' ').length
 end
 
 # --- tougher ones ---
