@@ -197,13 +197,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
-  # (range)
+  range.sort[-1]
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-  # range.include? "..." ? false : true
+  range.to_s.include? "..."
 end
 
 # get the square root of a number
@@ -228,7 +228,6 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  p date.to_s[0..9]
   case date.to_s[0..9]
     when "2014-01-01" ; return true
     when "2014-04-18" ; return true
