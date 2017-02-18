@@ -184,7 +184,13 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  # string.split(" ").map{|word| word.capitalize if word.match != ["a","and","the"]}.join.capitalize
+  string.split(" ").each_with_index.map{|word,i|
+    if (!["a","and","the"].include? word) || i == 0
+      word.capitalize
+    else
+      word
+    end
+  }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -222,6 +228,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014

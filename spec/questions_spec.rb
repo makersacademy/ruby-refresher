@@ -161,10 +161,10 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  # it 'titleize_a_string' do
-  #   n = titleize_a_string 'the lion the witch and the wardrobe'
-  #   expect(n).to eq 'The Lion the Witch and the Wardrobe'
-  # end
+  it 'titleize_a_string' do
+    n = titleize_a_string 'the lion the witch and the wardrobe'
+    expect(n).to eq 'The Lion the Witch and the Wardrobe'
+  end
 
   it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
@@ -199,9 +199,9 @@ describe 'the Friday test :)' do
     expect(n).to eq 70
   end
 
-  # it 'call_method_from_string' do
-  #   expect { call_method_from_string('foobar') }.to raise_error(NameError)
-  # end
+  it 'call_method_from_string' do
+    expect { call_method_from_string('foobar') }.to raise_error(NameError)
+  end
 
   it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
