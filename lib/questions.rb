@@ -116,7 +116,9 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  result = []
+  array.map{|num| num > 5 ? break : result << num}
+  result
 end
 
 # turn an array (with an even number of elements) into a hash, by
