@@ -236,6 +236,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.read(file_path).split.length
 end
 
 # --- tougher ones ---
@@ -272,12 +273,19 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  count = {}
+  contents = File.read(file_path).scan(/\w+/)
+  contents.each { |word| count.has_key?(word.length) ? count[word.length] += 1 : count[word.length] = 1 } 
+  count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  fizz = ["","",:fizz].cycle
+  buzz = ["","","","",:buzz].cycle
+  (1..100).each { |i| puts "#{fizz.next}#{buzz.next}"[/.+/] || i }
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -287,4 +295,20 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  99.downto(1) do |i|
+    if i == 1
+      puts "1 bottle of beer on the wall, 1 bottle of beer.
+      Take one down and pass it around, no more bottles of beer on the wall.
+      No more bottles of beer on the wall, no more bottles of beer. 
+      Go to the store and buy some more, 99 bottles of beer on the wall."
+    else
+      puts "#{i} bottles of beer on the wall, #{i} bottles of beer.
+      Take one down and pass it around, "
+      if i - 1 == 1
+        puts "#{i-1} bottle of beer on the wall."
+      else
+        puts "#{i-1} bottles of beer on the wall."
+      end
+    end
+  end
 end
