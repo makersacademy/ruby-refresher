@@ -1,4 +1,5 @@
 require 'date'
+require 'facets'
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
@@ -19,7 +20,6 @@ end
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
   array.select {|word| word != nil && word != false}
-
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -216,6 +216,19 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  result = []
+  exceptions = ["a", "and", "the"]
+  array = string.split(" ")
+  result << array[0].capitalize
+  array.delete_at(0)
+  array.each do |word|
+    if exceptions.include?(word)
+      result << word
+    else
+      result << word.capitalize
+    end
+  end
+result.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -227,19 +240,28 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.end
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  wordcount = 0
+  file = File.open(file_path, 'r')
+  file.each_line do |line|
+    wordcount += line.split.count
+  end
+  wordcount
 end
 
 # --- tougher ones ---
