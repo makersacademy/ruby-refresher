@@ -85,33 +85,52 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.select {|word| word == word.reverse}.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  result = array[0]
+  array.each do |word|
+    if word.length < result.length
+      result = word
+    end
+  end
+  result
 end
 
-# return the shortest word in an array
+# return the longest word in an array
 def longest_word_in_array(array)
+  result = array[0]
+  array.each do |word|
+    if word.length > result.length
+      result = word
+    end
+  end
+  result
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.reduce(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array + array
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  (array.reduce(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
