@@ -22,9 +22,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.select do |word|
-    word.reverse!
-  end
+  array.select { |word| word.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -80,9 +78,7 @@ def make_numbers_negative(number)
 def separate_array_into_even_and_odd_numbers(array)
   a_even = []
   a_odd = []
-  array.each do |num|
-    num.even? ? a_even << num : a_odd << num
-  end
+  array.each { |num| num.even? ? a_even << num : a_odd << num }
   res = [a_even, a_odd]
 end
 
@@ -92,27 +88,21 @@ end
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
   num_pals = 0
-  array.each do |word|
-    num_pals +=1 if word.reverse == word
-  end
+  array.each { |word| num_pals +=1 if word.reverse == word }
   num_pals
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(arr)
   shortest = arr.first
-  arr.each do |word|
-    shortest = word if word.size < shortest.size
-  end
+  arr.each { |word| shortest = word if word.size < shortest.size }
   shortest
 end
 
 # return the shortest word in an array
 def longest_word_in_array(arr)
   longest = arr.first
-  arr.each do |word|
-    longest = word if word.size > longest.size
-  end
+  arr.each { |word| longest = word if word.size > longest.size }
   longest
 end
 
@@ -144,14 +134,27 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  res = []
+  array.each do |a|
+    break if a > 5
+    res << a
+  end
+  res
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+  res, i = {}, 0
+  while (i < array.length) do
+    j = i + 1
+    res[array[i]] = array[j]
+    i += 2
+  end
+  res
 end
-
+convert_array_to_a_hash(['a', 'b', 'c', 'd'])
 # get all the letters used in an array of words and return
 # it as a array of letters, in alphabetical order
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
