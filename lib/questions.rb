@@ -336,7 +336,21 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |n|
+    array = [((n-1)/15), ((n-1)/3), ((n-1)/5)]
+    array2 = [(n/15), (n/3), (n/5)]
+    if array[0] != array2[0]
+      p 'fizzbuzz'
+    elsif array[1] != array2[1]
+      p 'fizz'
+    elsif array[2] != array2[2]
+      p 'buzz'
+    else
+      p n
+    end
+ end
 end
+
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
@@ -345,4 +359,23 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  (1..100).each do |n|
+    num = (100 - n)
+    if num > 2
+      puts num.to_s + " bottles of beer on the wall. " + num.to_s + \
+      " bottles of beer! Take one down and pass it around, " + (num-1).to_s + \
+      " bottles of beer on the wall."
+    elsif num == 2
+      puts num.to_s + " bottles of beer on the wall. " + num.to_s + \
+      " bottles of beer! Take one down and pass it around, " + (num-1).to_s + \
+      " bottle of beer on the wall."
+    elsif num == 1
+      puts num.to_s + " bottle of beer on the wall. " + num.to_s + \
+      " bottle of beer! Take one down and pass it around, no more bottles of" \
+      " beer on the wall."
+    else
+      puts "No more bottles of beer on the wall, no more bottles of beer. " \
+      "Go to the store and buy some more, 99 bottles of beer on the wall."
+    end
+  end
 end
