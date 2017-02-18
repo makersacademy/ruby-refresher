@@ -1,41 +1,37 @@
-## Ruby Refresher
+# Ruby Refresher
+### Makers Academy Weekend Challenge No. 7
 
 [![Build Status](https://travis-ci.org/KatHicks/ruby-refresher.svg?branch=master)](https://travis-ci.org/KatHicks/ruby-refresher) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/ruby-refresher/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/ruby-refresher?branch=master)
 
-Here we're going to revisit the basics of Ruby. There are 41 questions - you don't have to do every single one (although if you can, that's great). You should be able to do at least 50% of them. They vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
+### Instructions
+
+* We were given the weekend to complete the challenge and were not allowed to use any gems to solve the challenges.
+* As usual, we were required to work on our own for this challenge
+* We were allowed, again as usual, to consult resources online or in books
+
+### Task
+
+We have 41 empty methods with failing tests. The task is to implement code within the empty methods to make the tests pass. You should be able to do at least 50% of them and they vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
 
 You should be able to answer most questions with a couple of lines of code, and just a few methods. If you're writing a long, complex solution, there's probably a better way.
 
-As usual, fork the repo - and get ready to revisit a dear old friend :smile:
+See here for the full instructions: [INSTRUCTIONS.md](ruby-refresher/INSTRUCTIONS.md)
 
-To run the specs, just run
+### Using my application
 
-~~~
-$ rspec questions_spec.rb
-~~~
+* To run the specs, just run `$ rspec questions_spec.rb` or `$ rspec` only
+* All my individual methods and solutions are in the `questions.rb` file ([see here](ruby-refresher/lib/questions.rb))
 
-**Quick tip**: to run a single example, change `it` to `fit` on that example, then run
+### Dependencies
 
-~~~
-$ rspec spec/questions_spec.rb --tag focus
-~~~
+* Used **RSpec** for testing and plain **Ruby** to pass the tests
+* No other gems were used as part of the task was the solve the problems independently without the help of external libraries
 
-Also, don't spend the whole weekend on this. Try and do the bulk of them today, revisit it a bit this weekend if you want. Spend the weekend consolidating the stuff we've covered in JS :smile:
+### Reflections on my solutions
 
-Good luck
-
-### Rules
-
-* Try and get the RSpec tests to pass (but not by cheating - i.e. hardcoding the expected value)
-* You shouldn't need any extra libraries or gems
-* The cleaner your code the better!
-* Googling is fine as usual
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
-
-### Tips
-
-* Use the ruby docs http://www.ruby-doc.org/core-2.0.0/String.html
-* Try and break down the problems into smaller chunks. For e.g. if you google "How to select elements in an array that start with a", you won't have much luck. Try and find out a) how to select certain elements in an array, b) how to test if a string starts with an 'a'
-* Don't forget Enumerable (advanced array methods)
-* Read the specs and the comments - if you're still confused, just ask.
-* Don't panic :wink:
+* **Lots of fun**
+  * ...
+* **Cleaning up results arrays**
+  * ...
+* **Using the tests to explain the task**
+  * ...
