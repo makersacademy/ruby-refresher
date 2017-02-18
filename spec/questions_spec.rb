@@ -65,7 +65,6 @@ describe 'the Friday test :)' do
   it 'make_numbers_negative' do
     a = make_numbers_negative 5
     b = make_numbers_negative -7
-
     expect(a).to eq -5
     expect(b).to eq -7
   end
@@ -115,7 +114,7 @@ describe 'the Friday test :)' do
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
 
-  it 'convert_array_to_a_hash' do
+  fit 'convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end

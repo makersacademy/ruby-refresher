@@ -94,6 +94,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  number > 0 ? 0 - number : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -101,6 +102,11 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  evens, odds = [], []
+  array.each do |x|
+    x % 2 == 0 ? evens.push(x) : odds.push(x)
+  end
+  [evens, odds]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -108,33 +114,49 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  reversed = []
+  array.each {|x| reversed.push(x.reverse)}
+  (reversed & array).length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.sort_by! {|x| x.length}
+  array[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.sort_by! {|x| x.length}
+  array.last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  total = 0
+  array.each {|x| total += x}
+  total
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  double = array
+  array + double
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  total = 0
+  array.each {|x| total += x}
+  (total.to_f/(array.length).to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -142,6 +164,12 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  results = []
+  array.each do |x|
+    break if x > 5
+    results.push(x)
+  end
+  results
 end
 
 # turn an array (with an even number of elements) into a hash, by
