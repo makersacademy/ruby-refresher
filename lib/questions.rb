@@ -263,8 +263,7 @@ end
 def count_words_of_each_length_in_a_file(file_path)
   return_hash = Hash.new {|key, value| key[value]=0}
   File.open(file_path, "r").each_line do |line|
-    line.gsub(/\W/, '')
-    line.split(" ").each {|word| return_hash[word.length] += 1}
+    line.split(" ").each {|word| return_hash[word.gsub(/\W/, '').length] += 1}
   end
   return_hash
 end
