@@ -159,7 +159,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  fit 'titleize_a_string' do
+  it 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
@@ -167,7 +167,6 @@ describe 'the Friday test :)' do
   it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
-
     expect(a).to be false
     expect(b).to be true
   end
@@ -204,7 +203,6 @@ describe 'the Friday test :)' do
   it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
-
     expect(a).to be true
     expect(b).to be false
   end
