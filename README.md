@@ -35,19 +35,19 @@ See here for the full instructions: [INSTRUCTIONS.md](ruby-refresher/INSTRUCTION
   * It was also comforting to realise that despite learning a new language, I've not completely forgotten my first language
 * **Cleaning up results arrays**
   * One pattern that found myself repeating a number of times was [1] creating an empty array, then [2] pushing into the empty array when looping through the parameter, before [3] returning the new array on the last line of the method. See example below:
-    ```
-    def separate_array_into_even_and_odd_numbers(array)
+
+    ```def separate_array_into_even_and_odd_numbers(array)
       result = [[],[]]
       array.each { |x| x.even? ? (result[0].push(x)) : (result[1].push(x)) }
       result
     end
     ```
+
   * I'm not very happy with this pattern as it means the variable (called `result` in the case above) gets repeated on two lines and it makes the method block look a bit clunky
   * Sometimes this pattern can be avoided by using `:collect` or `:map`, instead of `:each`, which return the new array as part of the iteration. However, in several cases in this challenge, couldn't figure out a way of not defining an empty array before the loop
 * **Using the tests to explain the task**
   * Also had a few instances in which looking at the specs really helped me understand the question
   * Question 28 (on line 229 in `questions.rb`) confused me for a long time as the commented instructions stated:
-
     > "Take a date and format it like dd/mm/yyyy, so Halloween 2013 becomes 31/10/2013".
 
   * I'd read these instructions as expecting me to parse colloquial dates (such as holidays, festivals or Halloween in this case) into a DateTime object!
