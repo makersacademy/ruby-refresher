@@ -1,5 +1,9 @@
 ## Ruby Refresher
 
+Here are some challenges that were set by Makers Academy after 2 weeks of working with javascript.
+
+###Instructions
+
 Here we're going to revisit the basics of Ruby. There are 41 questions - you don't have to do every single one (although if you can, that's great). You should be able to do at least 50% of them. They vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
 
 You should be able to answer most questions with a couple of lines of code, and just a few methods. If you're writing a long, complex solution, there's probably a better way.
@@ -17,8 +21,6 @@ $ rspec questions_spec.rb
 ~~~
 $ rspec spec/questions_spec.rb --tag focus
 ~~~
-
-Also, don't spend the whole weekend on this. Try and do the bulk of them today, revisit it a bit this weekend if you want. Spend the weekend consolidating the stuff we've covered in JS :smile:
 
 Good luck
 
