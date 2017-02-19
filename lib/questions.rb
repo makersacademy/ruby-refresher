@@ -33,7 +33,6 @@ def every_possible_pairing_of_students(array)
   results = []
   until cloned.length <= 1
     first = cloned.shift
-    p first, cloned
     cloned.each {|second| results << [first, second]}
   end
   results
@@ -245,6 +244,9 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  dat = ''
+  File.open(file_path) {|f| dat = f.read }
+  dat.split.count
 end
 
 # --- tougher ones ---
@@ -253,12 +255,26 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
+
+# 2014
+# 26 December	Friday	Boxing Day
+# 25 December	Thursday	Christmas Day
+# 25 August	Monday	Summer bank holiday
+# 26 May	Monday	Spring bank holiday
+# 5 May	Monday	Early May bank holiday
+# 21 April	Monday	Easter Monday
+# 18 April	Friday	Good Friday
+# 1 January	Wednesday	New Year’s Day
 def is_a_2014_bank_holiday?(date)
+  require 'date'
+  bank_holidays_2014 = ['01/01/2014','18/04/2014','21/04/2014','05/05/2014','26/05/2014','25/08/2014','25/12/2014','26/12/2014'].map{|date| Date.strptime(date, '%d/%m/%Y')}
+  bank_holidays_2014.include?(date.to_date)
 end
 
 # given your birthday this year, this method tells you
@@ -266,6 +282,15 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  require 'date'
+  year = birthday.to_date.year
+  while true
+    year += 1
+    month = birthday.to_date.month
+    day = birthday.to_date.day
+    next_birthday_day = Time.new(year, month, day ).to_date.strftime('%A')
+    return year if next_birthday_day == "Friday"
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -274,6 +299,14 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  dat = ''
+  File.open(file_path) {|f| dat = f.read }
+  results = {}
+  results = dat.to_s.gsub(/[^0-9a-zA-Z ]/i, '').split.map{|word| word.length}.group_by{|i| i}
+
+
+  results.each {|key, value| results[key] = value.length}
+  results
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
