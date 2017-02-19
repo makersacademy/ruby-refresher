@@ -1,32 +1,32 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array = ['bananas', 'apples', 'pears', 'avocados']
+  # array = ['bananas', 'apples', 'pears', 'avocados']
   array.select {|letter| letter[0,1] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array = ['john', 'david', 'omar', 'fred', 'idris', 'angela']
+  # array = ['john', 'david', 'omar', 'fred', 'idris', 'angela']
   array.select {|v| v[0] == v[/[aeiou]/]}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array =  ['a', 'b', nil, nil, false, 'c', nil]
+  # array =  ['a', 'b', nil, nil, false, 'c', nil]
   array.compact
   # n.delete_if {|i| i == nil}
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-    array = ['a', 'b', nil, nil, false, 'c', nil]
+    # array = ['a', 'b', nil, nil, false, 'c', nil]
     array.compact.reject {|i| i == false}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array = ['dog', 'monkey', 'elephant']
+  # array = ['dog', 'monkey', 'elephant']
   array.each {|i| i.reverse!}
 end
 
@@ -35,27 +35,27 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  array = ['Bob', 'Dave', 'Clive']
+  # array = ['Bob', 'Dave', 'Clive']
   array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
-  array = [1, 2, 3, 4, 5, 6, 7]
+  # array = [1, 2, 3, 4, 5, 6, 7]
   array[3..-1]
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
-  array = [2, 3, 4, 5]
+  # array = [2, 3, 4, 5]
   array.unshift(element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array = ['sky', 'puma', 'maker']
+  # array = ['sky', 'puma', 'maker']
   array.sort_by {|i| i[-1]}
 end
 
@@ -299,13 +299,13 @@ end
 def ninety_nine_bottles_of_beer
   bottles = 99
   while bottles > -1
-      if bottles == 0
-        puts "No more bottles of beer on the wall"
-      elsif bottles == 1
-        puts "#{bottles} bottle of beer on the wall"
-      else
-        puts "#{bottles} bottles of beer on the wall"
-      end
+    if bottles == 0
+      puts "No more bottles of beer on the wall"
+    elsif bottles == 1
+      puts "#{bottles} bottle of beer on the wall"
+    else
+      puts "#{bottles} bottles of beer on the wall"
+    end
     bottles -= 1
   end
 end
