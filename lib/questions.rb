@@ -312,8 +312,21 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def myModulo(dividend, divisor)
+  result = dividend.to_f / divisor
+  modulo = (result - result.floor) * divisor
+  modulo
 end
+
+def fizzbuzz_without_modulo
+  (1..20).each do |number|
+    text = ''
+    myModulo(number, 3) == 0 ? text += 'fizz' : nil
+    myModulo(number, 5) == 0 ? text += 'buzz' : nil
+    puts "#{number}: #{text != '' ? text : number}"
+  end
+end
+fizzbuzz_without_modulo
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
@@ -321,5 +334,32 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
+    # 2 bottles of beer on the wall, 2 bottles of beer.
+    # Take one down and pass it around, 1 bottle of beer on the wall.
+    # 1 bottle of beer on the wall, 1 bottle of beer.
+    # Take one down and pass it around, no more bottles of beer on the wall.
+    # No more bottles of beer on the wall, no more bottles of beer.
+    # Go to the store and buy some more, 99 bottles of beer on the wall.
+def beers_bottles(number)
+  case number
+  when -1
+    "99 bottles"
+  when 0
+    "no more bottles"
+  when 1
+    "#{number} bottle"
+  else
+    "#{number} bottles"
+  end
 end
+
+def ninety_nine_bottles_of_beer
+  results = []
+  (0..99).each do |number|
+    results <<  "#{beers_bottles(number).capitalize} of beer on the wall, #{beers_bottles(number)} of beer.\n" +
+    (number == 0 ? "Go to the store and buy some more" : "Take one down and pass it around")  +
+    ", #{beers_bottles(number - 1)} of beer on the wall."
+  end
+  puts results.reverse.join("\n")
+end
+ninety_nine_bottles_of_beer
