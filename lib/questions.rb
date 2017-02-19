@@ -33,7 +33,11 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-
+  pairing = []
+  array.each do |student|
+    array.each {|second_student| pairing << [student, second_student].sort}
+  end
+  pairing.reject!{|pair| pair[0] == pair[1]}.uniq
 end
 
 # discard the first 3 elements of an array,
@@ -128,11 +132,8 @@ end
 def get_elements_until_greater_than_five(array)
   result = []
   array.each do |element|
-    if element <= 5
-      result << element
-    else
-      return result
-    end
+    return result unless element <= 5
+    result << element
   end
 end
 
@@ -158,6 +159,11 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  result = {}
+  hash.each do |key,value|
+    result[value] = key
+  end
+  result
 end
 
 # in a hash where the keys and values are all numbers
@@ -207,14 +213,20 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split(" ").map.each(&:capitalize).join(" ")
+  exclusion_list = ['a','and','the']
+  string = string.split(" ").map.each do |word|
+    word.capitalize! unless exclusion_list.include?(word)
+    word
+  end
+  string[0].capitalize!
+  string.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.gsub(/[a-z]/,"").length < 0
+  string.gsub(/[a-z,A-Z,0-9]/,"").length != 0
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -236,6 +248,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "r")
+  data = file.read
+  file.close
+  data.split(" ").length
 end
 
 # --- tougher ones ---
@@ -251,6 +267,10 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = [[26,12],[25,12],[25,8],[26,5],[5,5],[21,4],[18,4],[1,1]]
+  month = date.month
+  day =  date.mday
+  bank_holidays.include?([day,month])
 end
 
 # given your birthday this year, this method tells you
@@ -258,7 +278,12 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  birthday.strftime("%A")
+  year = birthday.year
+  while true do
+    return year if birthday.friday?
+    year += 1
+    birthday = Date.new(year,birthday.month,birthday.mday)
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -267,12 +292,44 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  result = Hash.new(0)
+  File.open(file_path, "r") do |file|
+    words = file.read.split
+    words.each do |word|
+      word = word.gsub(/[^a-zA-Z0-9]/,"")
+      result[word.length] += 1
+    end
+  end
+  result
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  fizzbuzz = 0
+  buzz = 0
+  fizz = 0
+  (1..100).each do |n|
+    if fizzbuzz == 15
+      puts("fizzbuzz")
+      fizzbuzz = 0
+      fizz = 0
+      buzz = 0
+    elsif fizz == 3
+      puts("fizz")
+      fizz = 0
+    elsif buzz == 5
+      puts("buzz")
+      buzz = 0
+    else
+      puts(n)
+    end
+    n += 1
+    fizzbuzz += 1
+    fizz += 1
+    buzz += 1
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -282,4 +339,7 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  num.downto(2){|i|puts "#{i} bottles of beer on the wall, #{i} bottles of beer! \nTake one down and pass it around, #{i-1} bottles of beer on the wall!"}
+  puts "one bottle of beer on the wall, one bottle of beer! \nTake it down and pass it around, no bottles of beer on the wall!"
+  puts "no bottles of beer on the wallllllll!"
 end
