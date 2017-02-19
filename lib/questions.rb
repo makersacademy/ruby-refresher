@@ -80,6 +80,7 @@ end
 def separate_array_into_even_and_odd_numbers(array)
   separated = array.group_by {|i| i % 2}
   [separated[0], separated[1]]
+  #[array.select(&:even?),array.select(&:odd?)]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -169,21 +170,25 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.gsub(/.+@([^.]+).+/, '\1')
 end
 
 # capitalize the first letter in each word of a string,
@@ -192,30 +197,48 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  ignore_words = ['a', 'and', 'the']
+  splitted = string.split
+  splitted.first.capitalize!
+  splitted.each do |word|
+    if ignore_words.include?(word)
+      word
+    else
+      word.capitalize!
+    end
+  end.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string =~ /\W/ ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+    array_of_words = []
+    file.each_line {|line| array_of_words << line}
+    array_of_words.first.split(' ').count
 end
 
 # --- tougher ones ---
@@ -224,12 +247,16 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  self.str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  array_of_holidays = ['2014-05-26','2014-08-25', '2014-12-25', '2014-12-26']
+  date = date.to_s.split
+  array_of_holidays.include?(date[0])
 end
 
 # given your birthday this year, this method tells you
@@ -237,6 +264,11 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  year = 1
+  while Time.new(birthday.year + year, birthday.month, birthday.day).wday != 5
+    year += 1
+  end
+  birthday.year + year
 end
 
 # in a file, total the number of times words of different lengths
@@ -245,6 +277,11 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  return_hash = Hash.new {|key, value| key[value]=0}
+  File.open(file_path, "r").each_line do |line|
+    line.split(" ").each {|word| return_hash[word.gsub(/\W/, '').length] += 1}
+  end
+  return_hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -260,4 +297,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles = 99
+  while bottles > -1
+      if bottles == 0
+        puts "No more bottles of beer on the wall"
+      elsif bottles == 1
+        puts "#{bottles} bottle of beer on the wall"
+      else
+        puts "#{bottles} bottles of beer on the wall"
+      end
+    bottles -= 1
+  end
 end
