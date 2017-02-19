@@ -17,4 +17,4 @@
 To see my solutions to the problems and watch the specs pass
 * Clone this repo
 * Run `rspec` or `rspec questions_spec.rb`
-* Find my soltions in `questions.rb`
+* Find my solutions in the file `questions.rb`
