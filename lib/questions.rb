@@ -189,6 +189,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+	string.capitalize.split(" ").map {|word| word[0,3] == 'the' || word[0] == 'a' ?  word : word.capitalize}.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -247,6 +248,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  date_range = birthday.to_datetime..DateTime::Infinity.new
+  date_range.each {|date| break date.strftime("%Y") if date.strftime("%A %d %B") == "Friday 01 January"}.to_i
 end
 
 # in a file, total the number of times words of different lengths
@@ -257,7 +260,7 @@ end
 def count_words_of_each_length_in_a_file(file_path)
   hash = Hash.new(0)
   group = File.readlines(file_path).join.split(" ").group_by {|w| w.gsub(/[^a-zA-Z]/, "").size}
-  group.map {|k, v| hash[k] = v.size}
+  group.map {|k,v| hash[k] = v.size}
   hash
 end
 
