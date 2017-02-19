@@ -121,17 +121,17 @@ describe 'the Friday test :)' do
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end
 
-  fit '22. get_all_letters_in_array_of_words' do
+  it '22. get_all_letters_in_array_of_words' do
     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
 
-  fit '23. swap_keys_and_values_in_a_hash' do
+  it '23. swap_keys_and_values_in_a_hash' do
     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-  fit '24. add_together_keys_and_values' do
+  it '24. add_together_keys_and_values' do
     n = add_together_keys_and_values({1 => 1, 2 => 2})
     expect(n).to eq 6
   end
@@ -141,7 +141,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'ello ohnoe'
   end
 
-  it '26. round_up_number' do
+  fit '26. round_up_number' do
     n = round_up_number 3.142
     expect(n).to eq 4
   end
