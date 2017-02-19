@@ -1,38 +1,28 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  results = []
-  array.each {|x| results.push(x) if x.chars.first === 'a'}
-  results
+  array.select {|x| x.chars.first === 'a'}
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  results = []
   vowels = ['a', 'e', 'i', 'o', 'u']
-  array.each {|x| results.push(x) if vowels.include?(x.chars.first)}
-  results
+  array.select {|x| vowels.include?(x.chars.first)}
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  results = []
-  array.each {|x| results.push(x) if x != nil}
-  results
+  array.select {|x| x != nil}
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  results = []
-  array.each {|x| results.push(x) if (x != nil && x!= false)}
-  results
+  array.select {|x| x != nil && x!= false}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  results = []
-  array.each {|x| results.push(x.reverse)}
-  results
+  array.map {|x| x.reverse}
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -200,9 +190,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  date.strftime('%d') + '/' + \
-  date.strftime('%m') + '/' + \
-  date.strftime('%C') + date.strftime('%y')
+  date.strftime('%d' + '/' + '%m' + '/' + '%C' + '%y')
 end
 
 # get the domain name *without* the .com part, from an email address
