@@ -215,23 +215,8 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   ignore = ['a', 'and', 'the']
-  array = string.split(" ")
+  array = string.split(" ").each { |word| word.capitalize! unless ignore.include?(word)}
   array[0].capitalize!
-  array.each do |element|
-    p element
-    element.capitalize! unless ignore.each { |i| element.include? i  }
-    # if element == "a" || "and" || "the"
-    #   element
-    # else
-      # element.capitalize!
-      # if element.eql? "a" || "and" || "the"
-      #   p element
-      # end
-    # end
-    # p element
-  end
-
-  p array
   return array.join(" ")
 end
 
@@ -263,9 +248,14 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  # word_count = 0
-  # file = File.read(file_path)
-  #
+  word_count = 0
+  file = File.open(file_path, "r")
+  file.each_line do |line|
+    line.split.each do |word|
+      word_count += 1
+    end
+  end
+  word_count
 end
 
 # --- tougher ones ---
@@ -303,6 +293,19 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, "r")
+  count = Hash.new
+  file.each_line do |line|
+    line.split.each do |word|
+      letters = word.gsub(/[.,]/,'').length
+      if count.has_key?(letters)
+        count[letters] += 1
+      else
+        count[letters] = 1
+      end
+    end
+  end
+  return count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method

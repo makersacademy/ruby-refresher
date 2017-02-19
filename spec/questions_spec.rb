@@ -161,10 +161,10 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  # it 'titleize_a_string' do
-  #   n = titleize_a_string 'the lion the witch and the wardrobe'
-  #   expect(n).to eq 'The Lion the Witch and the Wardrobe'
-  # end
+  it 'titleize_a_string' do
+    n = titleize_a_string 'the lion the witch and the wardrobe'
+    expect(n).to eq 'The Lion the Witch and the Wardrobe'
+  end
 
   it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
@@ -194,10 +194,10 @@ describe 'the Friday test :)' do
     expect(b).to eq 1.7320508075688772
   end
 
-  # it 'word_count_a_file' do
-  #   n = word_count_a_file 'data/lorem.txt'
-  #   expect(n).to eq 70
-  # end
+  it 'word_count_a_file' do
+    n = word_count_a_file 'data/lorem.txt'
+    expect(n).to eq 70
+  end
 
   it 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
@@ -216,8 +216,8 @@ describe 'the Friday test :)' do
     expect(n).to eq 2016
   end
 
-  # it 'count_words_of_each_length_in_a_file' do
-  #   n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
-  #   expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
-  # end
+  it 'count_words_of_each_length_in_a_file' do
+    n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
+    expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
+  end
 end
