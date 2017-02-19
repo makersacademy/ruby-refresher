@@ -141,32 +141,32 @@ describe 'the Friday test :)' do
     expect(n).to eq 'ello ohnoe'
   end
 
-  fit '26. round_up_number' do
+  it '26. round_up_number' do
     n = round_up_number 3.142
     expect(n).to eq 4
   end
 
-  fit '27. round_down_number' do
+  it '27. round_down_number' do
     n = round_down_number 4.9
     expect(n).to eq 4
   end
 
-  fit '28. format_date_nicely' do
+  it '28. format_date_nicely' do
     n = format_date_nicely Time.new(2013, 10, 31)
     expect(n).to eq '31/10/2013'
   end
 
-  fit '29. get_domain_name_from_email_address' do
+  it '29. get_domain_name_from_email_address' do
     n = get_domain_name_from_email_address 'alex@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
 
-  fit '30. titleize_a_string' do
+  it '30. titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  it '31. check_a_string_for_special_characters' do
+  fit '31. check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 

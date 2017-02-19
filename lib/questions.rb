@@ -215,6 +215,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  /\W/ === string
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
