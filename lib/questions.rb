@@ -153,25 +153,33 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  letters = 'string'
-
+  letters = ''
+  array.each {|word| letters += word.to_s}
+  output = (letters.split(//)).sort!
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
+# i = 0 for  i  < hash.size  do i +=1
 def swap_keys_and_values_in_a_hash(hash)
+  hash = {hash.values[0] => hash.keys[0],hash.values[1] => hash.keys[1]}
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  i = 0
+  hash.each {|key,value| i+= (key + value)}
+  i
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.each_char {|char| string.delete!(char) if (char == char.upcase && char !=' ')}
+  string
 end
 
 # round up a float up and convert it to an Integer,
