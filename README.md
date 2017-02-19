@@ -1,5 +1,7 @@
 ## Ruby Refresher
 
+[![Build Status](https://travis-ci.org/tamarlehmann/ruby-refresher.svg?branch=master)](https://travis-ci.org/tamarlehmann/ruby-refresher)
+
 ### Task
 
 * After a week of JavaScript, revisit the basics of Ruby by completing 41 kata which vary in difficulty.
