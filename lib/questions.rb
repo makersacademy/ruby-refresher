@@ -339,7 +339,7 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  num.downto(2){|i|puts "#{i} bottles of beer on the wall, #{i} bottles of beer! \nTake one down and pass it around, #{i-1} bottles of beer on the wall!"}
+  99.downto(2){|i|puts "#{i} bottles of beer on the wall, #{i} bottles of beer! \nTake one down and pass it around, #{i-1} bottles of beer on the wall!"}
   puts "one bottle of beer on the wall, one bottle of beer! \nTake it down and pass it around, no bottles of beer on the wall!"
   puts "no bottles of beer on the wallllllll!"
 end
