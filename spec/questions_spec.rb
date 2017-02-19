@@ -58,7 +58,6 @@ describe 'the Friday test :)' do
   it 'get_first_half_of_string' do
     a = get_first_half_of_string 'banana'
     b = get_first_half_of_string 'apple'
-
     expect(a).to eq 'ban'
     expect(b).to eq 'app'
   end
@@ -66,7 +65,6 @@ describe 'the Friday test :)' do
   it 'make_numbers_negative' do
     a = make_numbers_negative 5
     b = make_numbers_negative -7
-
     expect(a).to eq -5
     expect(b).to eq -7
   end
@@ -169,7 +167,6 @@ describe 'the Friday test :)' do
   it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
-
     expect(a).to be false
     expect(b).to be true
   end
@@ -206,7 +203,6 @@ describe 'the Friday test :)' do
   it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
-
     expect(a).to be true
     expect(b).to be false
   end
