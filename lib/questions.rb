@@ -271,12 +271,19 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method()
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = [Time.new(2014, 1, 1), Time.new(2014, 4, 18),
+              Time.new(2014, 4, 21), Time.new(2014, 5, 5),
+              Time.new(2014, 5, 26), Time.new(2014, 8, 25),
+              Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
+
+  holidays.include?(date) ? true : false
 end
 
 # given your birthday this year, this method tells you
@@ -284,6 +291,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  birthday.strftime('%A') == "Friday" ? birthday.strftime('%Y') :
+  your_birthday_is_on_a_friday_in_the_year(birthday + 31536000).to_i
 end
 
 # in a file, total the number of times words of different lengths
@@ -292,12 +301,37 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, 'r')
+  result = {}
+  file.each_line do |line|
+    words = line.split
+    words.each do |word|
+      word.gsub!(/[^0-9A-Za-z]/, '')
+      if result.has_key?(word.length)
+        result[word.length] += 1
+      else
+        result[word.length] = 1
+      end
+    end
+  end
+  result
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  for num in (1..100)
+    if num / 15.0 == (num / 15.0).to_i
+      puts "Fizzbuzz"
+    elsif num / 5.0 == (num / 5.0).to_i
+      puts "Buzz"
+    elsif num / 3.0 == (num / 3.0).to_i
+      puts "Fizz"
+    else
+      puts num
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -306,5 +340,118 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
+def english_number (number)
+
+  if number < 0
+    return "Please enter a number that isn't negative."
+  end
+  if number == 0
+    return 'zero'
+  end
+
+
+  num_string = ""
+  ones_place = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+  tens_place = ["ten", "twenty", "thirty", "fourty", "fifty", "sixty", "seventy", "eighty", "ninety"]
+  teenagers = ["eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
+
+left = number
+write = left / 1000000000000
+left = left - (write * 1000000000000)
+
+if write > 0
+  trillions = english_number(write)
+  num_string = num_string + trillions + ' trillion'
+  if left > 0
+    num_string = num_string + " "
+  end
+end
+
+write = left / 1000000000
+left = left - (write * 1000000000)
+
+if write > 0
+  billions = english_number(write)
+  num_string = num_string + billions + " billion"
+  if left > 0
+    num_string = num_string + " "
+  end
+end
+
+write = left / 1000000
+left = left - (write * 1000000)
+
+if write > 0
+  millions = english_number write
+  num_string = num_string + millions + " million"
+  if left > 0
+    num_string = num_string + " "
+  end
+end
+
+write = left / 1000
+left = left - write * 1000
+if write > 0
+  thousands = english_number(write)
+  num_string = num_string + thousands + " thousand"
+  if left > 0
+    num_string = num_string + " "
+  end
+end
+
+write = left / 100 # how many hundreds left?
+left = left - (write * 100) # Subtract those hundreds.
+
+if write > 0
+  hundreds = english_number write
+  num_string = num_string + hundreds + " hundred"
+  if left > 0
+    num_string = num_string + " "
+  end
+end
+
+write = left / 10 # how many tens left?
+left = left - (write * 10) # subtract off the tens.
+
+  if write > 0
+    if ((write == 1) && (left > 0))
+      num_string = num_string + teenagers[left-1]
+      left = 0
+    else
+      num_string = num_string + tens_place[write-1]
+    end
+
+    if left > 0
+      num_string = num_string + "-"
+    end
+  end
+
+  write = left
+  left = 0
+
+  if write > 0
+    num_string = num_string + ones_place[write-1]
+  end
+
+  num_string
+end
+
+def ninety_nine_bottles_of_beer(number)
+  word_num = english_number(number).capitalize
+  next_num = english_number(number - 1).capitalize
+  if number == 1
+    puts word_num + " bottle of beer on the wall, " + word_num + " bottle of beer."
+    puts "You take one down, pass it around, " + next_num + " bottles of beer on the wall."
+    puts "THE END!"
+    exit
+
+  else
+    while number > 0
+      puts word_num + " bottles of beer on the wall, " + word_num + " bottles of beer."
+      puts "You take one down, pass it around, " + next_num + " bottles of beer on the wall."
+      puts "*" * 50
+      ninety_nine_bottles_of_beer(number - 1)
+
+    end
+  end
 end
