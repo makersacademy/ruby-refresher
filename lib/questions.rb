@@ -203,6 +203,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  /\W/ === string
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -214,14 +215,18 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.to_s.include? "..."
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.new(file_path)
+  file.readlines.join.split(" ").length
 end
 
 # --- tougher ones ---
@@ -259,6 +264,15 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  hash = {}
+  File.open(file_path,"r") do |f|
+    f.each_line do |line|
+      line.scan(/[\w\']+/).each do |word|
+        hash.key?(word.length) ? hash[word.length] += 1 :  hash[word.length] = 1
+      end
+    end
+  end
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
