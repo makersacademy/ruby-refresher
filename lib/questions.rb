@@ -208,6 +208,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string.capitalize!.split(" ").each {|w| w.capitalize! if !["the", "a", "and"].include? w}.join(" ")
 end
 
 # return true if a string contains any special characters
