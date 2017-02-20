@@ -281,6 +281,17 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |n|
+    if (n / 15.0) == (n / 15.0).round
+      puts "fizzbuzz"
+    elsif (n / 3.0) == (n / 3.0).round
+      puts "fizz"
+    elsif (n / 5.0) == (n / 5.0).round
+      puts "buzz"
+    else
+      puts n
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
