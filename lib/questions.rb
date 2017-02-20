@@ -1,5 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  #array.delete_if { |x| !x.start_with?('a') }
   result = []
   array.each do |x|
     if x[0] == "a"
@@ -11,6 +12,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  #array.delete_if { |x| !x[0].match(/[aeoui]/) }
   result = []
   array.each do |x|
     if x[0] == "a" || x[0] == "i" || x[0] == "o" || x[0] == "u"
@@ -27,6 +29,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  #delete_if
   array.reject{|n| n == false || n == nil}
 end
 
@@ -52,6 +55,7 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  #array.unshift(element)
   array.insert(0, element)
 end
 
@@ -72,6 +76,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  #-(number.abs)
   if number > 0
     return number*-1
   else
@@ -92,6 +97,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  #array.delete_if { |x| x != x.reverse }.length
   number = 0
   array.each do |x|
     if x.reverse == x
@@ -114,6 +120,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  #array.reduce(:+)
   sum = 0
   array.each do |x|
     sum += x
@@ -150,6 +157,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+#Hash[*array]
   hash = {array[0] => array[1], array[2] => array[3]}
 end
 
@@ -172,6 +180,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  #hash.keys.map.reduce(:+) + hash.values.map.reduce(:+)
   x = hash.map { |h,v| h+v }
   result = 0
   x.each do |x|
@@ -189,13 +198,13 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
-  (float.to_f).ceil
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
-  (float.to_f).floor
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -207,7 +216,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  array = email.split("")
+  array = email.chars
   x = (array.find_index("@")) + 1
   x.times{
     array.shift
@@ -224,6 +233,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  a = ['a', 'the', 'and']
+  string.split(" ").each_with_index.collect {|x,i| a.include?(x) && i != 0 ? x : x.capitalize!}.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -259,6 +270,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  word_count= 0
+  file.each_line { |line| line.split.each {|word| word_count += 1}}
+  return word_count
 end
 
 # --- tougher ones ---
@@ -267,12 +282,14 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_mehtod)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
 end
 
 # given your birthday this year, this method tells you
@@ -280,6 +297,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  7.times do
+    birthday += 31536000
+    return birthday.strftime('%Y').to_i if birthday.strftime('%A') == 'Friday'
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -288,6 +309,13 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  file = File.open(file_path, 'r')
+  result = {}
+  file.each_line { |line| line.split.each {|word|
+    letters = word.gsub(/[.,]/, '').length
+    result[letters].nil? ? (result[letters] = 1) : (result[letters] += 1)
+  }}
+  return result
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
