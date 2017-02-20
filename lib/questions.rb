@@ -108,6 +108,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  # array.count { |word| word == word.reverse }
   array.delete_if { |x| x != x.reverse }.length
 end
 
@@ -115,6 +116,7 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  # array.min_by { |word| word.length }
   array.sort_by { |x| x.length }.first
 end
 
@@ -122,6 +124,7 @@ end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  # array.max_by { |word| word.length }
   array.sort_by { |x| x.length }.last
 end
 
@@ -285,6 +288,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  # range.max
   !(range === range.last) ? (range.last - 1) : (range.last)
 end
 
