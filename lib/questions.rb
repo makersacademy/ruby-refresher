@@ -54,6 +54,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  string[0,(string.length.to_f/2).ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -101,7 +102,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array.push(array[0..-1])
+  array*2
 end
 
 # convert a symbol into a string
@@ -179,11 +180,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  (email.split("@")[1].split("."))[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -192,6 +195,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string.capitalize.split(" ").map {|s| s.capitalize unless s == 'a' || s == 'and' || s == 'the' }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -203,11 +207,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+
 end
 
 # get the square root of a number
