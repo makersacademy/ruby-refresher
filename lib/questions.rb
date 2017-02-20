@@ -328,7 +328,20 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-
+  for number in 1..100
+    if (number.to_f/15-number/15)==0
+      p 'fizzbuzz'
+      next
+    elsif (number.to_f/5-number/5)==0
+      p 'buzz'
+      next
+    elsif (number.to_f/3-number/3)==0
+      p 'fizz'
+      next
+    else
+      p number
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
