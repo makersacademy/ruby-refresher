@@ -1,41 +1,20 @@
 ## Ruby Refresher
 
-Here we're going to revisit the basics of Ruby. There are 41 questions - you don't have to do every single one (although if you can, that's great). You should be able to do at least 50% of them. They vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
+[![Build Status](https://travis-ci.org/tamarlehmann/ruby-refresher.svg?branch=master)](https://travis-ci.org/tamarlehmann/ruby-refresher)
 
-You should be able to answer most questions with a couple of lines of code, and just a few methods. If you're writing a long, complex solution, there's probably a better way.
+### Task
 
-As usual, fork the repo - and get ready to revisit a dear old friend :smile:
+* After a week of JavaScript, revisit the basics of Ruby by completing 41 kata which vary in difficulty.
+* It was suggested that most count be answered with a couple of lines of code, and just a few methods. We were not allowed to 'hardcode' any values to make the tests pass or use any extra libraries or gems.
+* We were instructed to work alone, but were allowed to use any resources to solve the questions.
 
-To run the specs, just run
+### Technology
 
-~~~
-$ rspec questions_spec.rb
-~~~
+* The questions were answered using Ruby and the tests run in RSpec.
 
-**Quick tip**: to run a single example, change `it` to `fit` on that example, then run
+### To Run
 
-~~~
-$ rspec spec/questions_spec.rb --tag focus
-~~~
-
-Also, don't spend the whole weekend on this. Try and do the bulk of them today, revisit it a bit this weekend if you want. Spend the weekend consolidating the stuff we've covered in JS :smile:
-
-Good luck
-
-### Rules
-
-* Try and get the RSpec tests to pass (but not by cheating - i.e. hardcoding the expected value)
-* You shouldn't need any extra libraries or gems
-* The cleaner your code the better!
-* Googling is fine as usual
-* Finally submit a pull request before Monday at 9am with your solution or partial solution.  However much or little amount of code you wrote please please please submit a pull request before Monday at 9am
-
-### Tips
-
-* Use the ruby docs http://www.ruby-doc.org/core-2.0.0/String.html
-* Try and break down the problems into smaller chunks. For e.g. if you google "How to select elements in an array that start with a", you won't have much luck. Try and find out a) how to select certain elements in an array, b) how to test if a string starts with an 'a'
-* Don't forget Enumerable (advanced array methods)
-* Read the specs and the comments - if you're still confused, just ask.
-* Don't panic :wink:
-
-
+To see my solutions to the problems and watch the specs pass
+* Clone this repo
+* Run `rspec` or `rspec questions_spec.rb`
+* Find my solutions in the file `questions.rb`
