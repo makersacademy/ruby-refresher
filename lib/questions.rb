@@ -16,6 +16,7 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  # array.compact!
   array.delete_if { |x| x == nil }
 end
 
@@ -23,6 +24,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  # array.reject { |n| n== false || n = nil}
   array.delete_if { |x| x == nil || x == false }
 end
 
@@ -49,6 +51,7 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  # array.drop(3)
   array.drop(3).collect { |x| x }
 end
 
@@ -73,6 +76,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  # string[0...-(string.length / 2)]
   string.length.even? ? (string[0..string.length/2-1]) : (string[0..string.length/2])
 end
 
@@ -91,6 +95,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  # array.partition { |x| x.even? }
   result = [[],[]]
   array.each { |x| x.even? ? (result[0].push(x)) : (result[1].push(x)) }
   result
@@ -125,6 +130,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  # array.reduce(:+)
   array.inject(0){ |sum, x| sum + x }
 end
 
@@ -160,6 +166,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  # array[0...(array.index { |x| x > 5} )]
   result = []
   array.each { |x| break if (x > 5); result.push(x) }
   result
@@ -207,6 +214,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  # string.tr("A-Z", "")
   string.chars.delete_if { |x| x =~ /[[:alpha:]]/ && x == x.capitalize }.join
 end
 
@@ -215,6 +223,7 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  # float.ceil
   (float + 0.5).round
 end
 
@@ -223,6 +232,7 @@ end
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  # float.floor
   (float - 0.5).round
 end
 
