@@ -189,21 +189,33 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  (float.to_f).ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  (float.to_f).floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  array = email.split("")
+  x = (array.find_index("@")) + 1
+  x.times{
+    array.shift
+  }
+  4.times{
+    array.pop
+  }
+  return array.join("")
 end
 
 # capitalize the first letter in each word of a string,
@@ -218,20 +230,31 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  x = string.tr("A-Z", "")
+  y = x.tr("a-z", "")
+  z = y.tr("0-9", "")
+  if z == ""
+    return false
+  else
+    return true
+  end
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !(range.include?(range.last))
 end
 
 # get the square root of a number
 def square_root_of(number)
+  number ** 0.5
 end
 
 # count the number of words in a file
