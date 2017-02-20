@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |element| element.chars.first == 'a'}
+  array.select { |element| element.start_with?('a')}
 end
 
 # keep only the elements that start with a vowel
@@ -29,18 +29,19 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  array.combination(2).to_a
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
-  array.slice(3, (array.length))
+  array.drop(3)
+  #array.slice(3, (array.length))
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
-  array.insert(0, 1)
+  array.insert(0, element)
 end
 
 # sort an array of words by their last letter, e.g.
@@ -53,15 +54,16 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  index = (string.size.to_f / 2).ceil
+  index = (string.length.to_f / 2).ceil
   string.slice(0, index)
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  return number if number < 0
-  return -number
+  number >= 0 ? -number : number
+  # return number if number < 0
+  # return -number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -69,9 +71,11 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  even = []
-  odd = []
-  array.each { |element| element % 2 == 0 ? even.push(element) : odd.push(element) }
+  # even = []
+  # odd = []
+  # array.each { |element| element % 2 == 0 ? even.push(element) : odd.push(element) }
+  even = array.select{ |n| n % 2 == 0}
+  odd = array.select{ |n| n % 2 != 0 }
   return [even, odd]
 end
 
@@ -102,11 +106,10 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  new = []
-  2.times do
-    array.each { |e| new.push(e) }
-  end
-  return new
+  array + array
+  # new = []
+  # 2.times { array.each { |e| new.push(e) } }
+  # return new
 end
 
 # convert a symbol into a string
@@ -142,15 +145,16 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  letters = []
-  string = array.join("")
-  new_array = string.chars
-  new_array.each do |element|
-    if element =~ /[abcdefghijklmnopqrstuvwxyz ]/
-      letters.push(element)
-    end
-  end
-  return letters.sort
+  array.map { |element| element.split('')}.flatten.uniq.sort
+  # letters = []
+  # string = array.join("")
+  # new_array = string.chars
+  # new_array.each do |element|
+  #   if element =~ /[abcdefghijklmnopqrstuvwxyz ]/
+  #     letters.push(element)
+  #   end
+  # end
+  # return letters.sort
 end
 
 
@@ -172,15 +176,17 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  array = []
-  new = []
-  array = string.chars
-  array.each do |element|
-    if element =~ /[abcdefghijklmnopqrstuvwxyz ]/
-      new.push(element)
-    end
-  end
-  return new.join("")
+  string.gsub(/\p{Lu}/, '')
+  # p matches any character with a property in the {}. L refers to letter and u to uppercase. A capital P does the opposite.
+  # array = []
+  # new = []
+  # array = string.chars
+  # array.each do |element|
+  #   if element =~ /[abcdefghijklmnopqrstuvwxyz ]/
+  #     new.push(element)
+  #   end
+  # end
+  # return new.join("")
 end
 
 # round up a float up and convert it to an Integer,
@@ -198,14 +204,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  return date.strftime("%d/%m/%Y")
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  domain = email.split("@").last
-  domain.split(".").first
+  email.split("@")[1].split(".")[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -230,8 +235,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
-  array = range.to_a
-  array[-1]
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
@@ -265,6 +269,7 @@ end
 # the method foobar should be invoked
 def call_method_from_string(str_method)
   self.str_method
+  #send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -321,4 +326,13 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  # i = 98
+  # while i < 2 do
+  #   "#{i} bottles of beer on the wall, #{i} bottles of beer."
+  #   "Take one down and pass it around #{i-1} bottles of beer on the wall"
+  #   i -= 1
+  # end
+  # '''
+  #   1 bottle of beer on the wall, 1 bottle of beer.
+  #   Take one down and pass it around, no more bottles of beer on the wall. '''
 end
