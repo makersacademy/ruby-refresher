@@ -15,7 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject { |a| (a == nil)||(a == false) }
+  array.reject { |a| !!a == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -40,12 +40,13 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
-  array.insert(0, element)
+  array.unshift(element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  # array.sort_by { |x| x[-1] }
   array.sort { |a,b| a[-1] <=> b[-1] }
 end
 
@@ -59,6 +60,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  # -(number.abs)
   number < 0 ? number : -number
 end
 
@@ -67,10 +69,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  odd = []
-  even = []
-  array.each { |a| a.odd? ? odd << a : even << a }
-  [even, odd]
+  [array.select{|x| x.even?}, array.select{|x| x.odd?}]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -81,31 +80,29 @@ def number_of_elements_that_are_palindromes(array)
   array.count { |a| a.reverse == a }
 end
 
-def polindrome?(string)
-  string.reverse == string
-end
-
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.select { |a| a.length == array.map { |a| a.length }.min }[0]
+  array.sort_by { |x| x.length }.first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.select { |a| a.length == array.map { |a| a.length }.max }[0]
+  array.sort_by { |x| x.length }.last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  s = 0
-  array.map { |a| s += a }.last
+  #s = 0
+  #array.map { |a| s += a }.last
+  array.inject(0){ |sum, x| sum + x }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array.concat(array)
+  # array.concat(array)
+  array + array
 end
 
 # convert a symbol into a string
@@ -116,8 +113,8 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  s = 0
-  array.map { |a| s += a/(array.length.to_f) }.last.ceil
+  #array.map { |a| s += a/(array.length.to_f) }.last.ceil
+  array.inject(0) { |s,a| s += a/(array.length.to_f) }.ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -125,12 +122,8 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  i = 0
   result = []
-  until array[i] > 5 do
-    result << array[i]
-    i+=1
-  end
+  array.each { |x| break if (x > 5); result.push(x) }
   result
 end
 
@@ -138,11 +131,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  result = Hash.new
-  array.each_index do |i|
-    result.store(array[i], array[i+1]) if !i.odd?
-  end
-  result
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -150,6 +139,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  # array.reduce(:concat).chars.uniq.sort
   result = []
   array.map { |a| a.split('').map { |e| result << e } }
   result.sort
@@ -166,6 +156,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  # array.reduce(:concat).chars.uniq.sort
   s = 0
   hash.each_pair { |k,v| s += k + v }
   s
@@ -192,14 +183,14 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  # date.strftime("%d/%m/%Y")
   "#{date.day}/#{date.month}/#{date.year}"
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  email.sub!(".com","")
-  email.sub!(/^[^@]*@/,"")
+  email.sub!(".com","").sub!(/^[^@]*@/,"")
 end
 
 # capitalize the first letter in each word of a string,
@@ -246,7 +237,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  method(str_method).call()
+  method(str_method).call() # send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
