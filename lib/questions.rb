@@ -15,8 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.compact!.delete(false) {'Nothing false here'}
-  array
+  array.compact!.each { |i| array.delete i if i == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -30,6 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
@@ -204,11 +204,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -218,6 +220,12 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  words = []
+  file = File.open(file_path)
+  file.each_line {
+    |line| words = line.split
+  }
+  words.length
 end
 
 # --- tougher ones ---
@@ -226,6 +234,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -247,6 +256,16 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = []
+  file = File.open(file_path)
+  file.each_line {
+    |line| words = line.split(/\W/)
+  }
+  h = {}
+  words.each { |w1|
+    h[w1.length] = words.count { |w2| w2.length == w1.length } if w1.length > 0
+  }
+  h.to_a.to_h
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
