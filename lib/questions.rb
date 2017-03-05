@@ -75,9 +75,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  memo = 0
-  array.each { |elem| memo += 1 if elem == elem.reverse }
-  memo
+  array.count { |word| word == word.reverse }
 end
 
 # return the shortest word in an array
@@ -94,6 +92,7 @@ end
 # returns 15
 def total_of_array(array)
   array.reduce(:+)
+  # array.reduce { |sum, n| sum + n }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -265,7 +264,7 @@ def count_words_of_each_length_in_a_file(file_path)
   words.each { |w1|
     h[w1.length] = words.count { |w2| w2.length == w1.length } if w1.length > 0
   }
-  h.to_a.to_h
+  h
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
