@@ -24,7 +24,9 @@ describe 'the Friday test :)' do
   end
 
   it 'remove_nils_and_false_from_array' do
-    n = remove_nils_and_false_from_array ['a', 'b', nil, nil, false, 'c', nil]
+    arr = ['a', 'b', nil, nil, false, 'c', nil]
+    n = remove_nils_and_false_from_array arr
+    p arr
     expect(n).to eq ['a', 'b', 'c']
   end
 
