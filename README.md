@@ -1,7 +1,7 @@
 # Ruby Refresher
 ### Makers Academy Weekend Challenge No. 7
 
-[![Build Status](https://travis-ci.org/KatHicks/ruby-refresher.svg?branch=master)](https://travis-ci.org/KatHicks/ruby-refresher) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/ruby-refresher/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/ruby-refresher?branch=master)
+[![Build Status](https://travis-ci.org/KatHicks/ruby-refresher.svg?branch=master)](https://travis-ci.org/KatHicks/ruby-refresher) [![Coverage Status](https://coveralls.io/repos/github/KatHicks/ruby-refresher/badge.svg?branch=master)](https://coveralls.io/github/KatHicks/ruby-refresher?branch=master) [![Code Climate](https://codeclimate.com/github/KatHicks/ruby-refresher/badges/gpa.svg)](https://codeclimate.com/github/KatHicks/ruby-refresher)
 
 ### Instructions
 
