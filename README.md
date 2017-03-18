@@ -19,7 +19,7 @@ See here for the full instructions: [INSTRUCTIONS.md](ruby-refresher/INSTRUCTION
 
 ### Using my application
 
-* To run the specs, just run `$ rspec questions_spec.rb` or `$ rspec` only
+* To run the tests, just run `$ rspec questions_spec.rb` or `$ rspec` only
 * All my individual methods and solutions are in the `questions.rb` file ([see here](ruby-refresher/lib/questions.rb))
 
 ### Dependencies
