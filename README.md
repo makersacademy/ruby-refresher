@@ -1,6 +1,6 @@
 # Ruby Refresher
 #### Technologies: Ruby, Rspec
-### [Makers Academy] (http://www.makersacademy.com) - Week 7 Solo Weekend Project
+### [Makers Academy](http://www.makersacademy.com) - Week 7 Solo Weekend Project
 
 ### Introduction
 
