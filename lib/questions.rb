@@ -247,7 +247,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-   while !birthday.friday?
+   until birthday.friday?
      birthday += (365*24*60*60)
    end
    birthday.year
@@ -259,6 +259,16 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_length_count = Hash.new(0)
+  file = File.open(file_path, "r")
+  file.each_line do |line|
+    words = line.split
+    words.each do |word|
+      word.gsub!(/[^0-9a-z]/i, '')
+      word_length_count[word.length] += 1
+    end
+  end
+  word_length_count
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
