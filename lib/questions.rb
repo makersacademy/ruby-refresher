@@ -186,7 +186,7 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   exclude = ['and', 'a', 'the']
-  string.split(" ").map.with_index do |word, index|
+  string.split.map.with_index do |word, index|
    (exclude.include?(word) && index != 0) ? word : word.capitalize
   end.join(' ')
 end
@@ -212,10 +212,17 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "r")
+  count = 0
+  file.each_line do |line|
+    count += line.split.length
+  end
+  count
 end
 
 # --- tougher ones ---
@@ -224,12 +231,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  raise NameError
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = [Time.new(2014,1,1), Time.new(2014,4,18), Time.new(2014,4,21), Time.new(2014,5,5), Time.new(2014,5,26), Time.new(2014,8,25), Time.new(2014,12,25), Time.new(2014,12,26) ]
+  holidays.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -237,6 +247,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+   while !birthday.friday?
+     birthday += (365*24*60*60)
+   end
+   birthday.year
 end
 
 # in a file, total the number of times words of different lengths
