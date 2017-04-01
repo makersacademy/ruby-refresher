@@ -48,7 +48,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-
+  array.sort_by {|x| x[-1]}
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -152,6 +152,7 @@ end
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
@@ -163,6 +164,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+   date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -197,6 +199,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
