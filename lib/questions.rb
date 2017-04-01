@@ -1,9 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select { |elem| elem.start_with? 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select { |elem| elem[0] == elem[/[aeiou]/] }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -23,7 +25,9 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-
+  array = ['dog', 'monkey', 'elephant']
+  # arr = array.join(
+  # arr.reverse
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -31,6 +35,9 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array = 'Bob', 'Dave', 'Clive'
+  array = array.repeated_combination(2)
+
 end
 
 # discard the first 3 elements of an array,
