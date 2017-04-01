@@ -42,13 +42,13 @@ end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
-arr = [2, 3, 4, 5]
-arr.unshift(1)
+array.unshift(1)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -61,7 +61,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-
+  -(number.abs)
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -80,10 +80,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -150,6 +152,7 @@ end
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -179,6 +182,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+
 end
 
 # should return true for a 3 dot range like 1...20, false for a
@@ -192,6 +196,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+
 end
 
 # --- tougher ones ---
@@ -206,6 +211,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
 end
 
 # given your birthday this year, this method tells you
