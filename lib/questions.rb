@@ -283,6 +283,43 @@ def fizzbuzz_without_modulo(number)
   end
 end
 
+# print the lyrics of the song 99 bottles of beer on the wall
+# http://www.99-bottles-of-beer.net/lyrics.html
+# make sure you use the singular when you have one bottle of
+# beer on the wall, and print 'no more bottles of beer on the wall'
+# at the end.
+# (there's no RSpec test for this one)
+def ninety_nine_bottles_of_beer
+  beer_bottles = 99
+  sing_plural = "bottles"
+
+  while (beer_bottles.to_i >= 0) do
+
+  	puts "#{beer_bottles.to_s} #{sing_plural} of beer on the wall, #{beer_bottles.to_s} #{sing_plural} of beer."
+
+  	if (beer_bottles.is_a? Integer)
+  		beer_bottles -= 1
+  	end
+
+  	case beer_bottles
+  	when 1
+  		sing_plural = "bottle"
+  	when 0
+  		beer_bottles = "no more"
+  		sing_plural = "bottles"
+  	when "no more"
+  		puts "Go to the store and buy some more, 99 bottles of beer on the wall"
+  		exit
+  	end
+
+  	puts "Take one down and pass it around, #{beer_bottles.to_s} #{sing_plural} of beer on the wall."
+  	puts
+
+  end
+end
+
+ninety_nine_bottles_of_beer
+
 private
 
 def divisible_by_three(number)
@@ -300,12 +337,4 @@ end
 def divisible_by(dividend, divisor)
   result = dividend.fdiv(divisor)
   result - Integer(result) == 0
-end
-# print the lyrics of the song 99 bottles of beer on the wall
-# http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of
-# beer on the wall, and print 'no more bottles of beer on the wall'
-# at the end.
-# (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
 end
