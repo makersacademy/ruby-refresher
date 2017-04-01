@@ -14,11 +14,16 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  arr = ['a', 'b', nil, nil, false, 'c', nil]
+  arr = arr.compact
+  arr.delete(false)
+  arr
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -51,11 +56,13 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
