@@ -274,9 +274,33 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+  case
+  when divisible_by_fifteen(number) then 'fizzbuzz'
+  when divisible_by_five(number) then 'buzz'
+  when divisible_by_three(number) then 'fizz'
+  else number
+  end
 end
 
+private
+
+def divisible_by_three(number)
+  divisible_by(number, 3)
+end
+
+def divisible_by_five(number)
+  divisible_by(number, 5)
+end
+
+def divisible_by_fifteen(number)
+  divisible_by(number, 15)
+end
+
+def divisible_by(dividend, divisor)
+  result = dividend.fdiv(divisor)
+  result - Integer(result) == 0
+end
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
 # make sure you use the singular when you have one bottle of
