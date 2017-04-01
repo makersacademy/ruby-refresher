@@ -280,3 +280,24 @@ describe "fizzbuzz" do
   end
 
 end
+
+describe 'Beersong' do
+
+  def stanza(n)
+    return n.map { |i| stanza i }.reverse.flatten if n.is_a? Range
+    return [''] if n == 0
+    return "1 bottle of beer on the wall, 1 bottle of beer,\nTake one down and pass it around,no more bottles of beer on the wall.".split("\n") if n == 1
+    <<-STANZA.gsub(/^\s+/,'').split("\n")
+      #{n} bottles of beer on the wall,
+      #{n} bottles of beer,
+      Take one down and pass it around,
+      #{n-1} bottle#{n == 2 ? '' : 's'} of beer on the wall.
+    STANZA
+  end
+
+   it 'prints the song' do
+    #  output = ninety_nine_bottles_of_beer
+    #  p stanza(0..99).join
+    #  expect(output).to eq stanza(1)
+   end
+end

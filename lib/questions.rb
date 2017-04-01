@@ -318,8 +318,6 @@ def ninety_nine_bottles_of_beer
   end
 end
 
-ninety_nine_bottles_of_beer
-
 private
 
 def divisible_by_three(number)
