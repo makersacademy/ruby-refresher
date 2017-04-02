@@ -10,7 +10,7 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select{|element| element unless element.nil? && element.to_s == ""}
+  array.compact
 end
 
 # remove instances of nil AND false from an array
@@ -70,7 +70,7 @@ end
 def separate_array_into_even_and_odd_numbers(array)
   arrEven, arrOdd = [], []
   array.each{|element| element % 2 > 0 ? arrEven.push(element) : arrOdd.push(element)}
-  return [arrOdd, arrEven]
+  [arrOdd, arrEven]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -78,7 +78,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  return array.select{|element| element if element == element.reverse}.length
+  array.select{|element| element if element == element.reverse}.length
 end
 
 # return the shortest word in an array
@@ -100,7 +100,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-# xxx
+  output = [array, array].flatten
 end
 
 # convert a symbol into a string
@@ -119,7 +119,11 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  # xx
+  output = []
+  array.each do |element|
+    return output if element > 5
+    output.push(element)
+  end
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -187,13 +191,15 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  # xx
+  words = ['a', 'and', 'the']
+  string.split(" ").each_with_index{|word, index| word.capitalize! unless (words.include? word) && (index > 0) }.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  !string.match(/[!@%&"]/).nil?
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -231,6 +237,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = ["26/12", "25/12", "25/08", "26/05", "5/05", "21/04","18/04","01/01"]
+  bank_holidays.include?date.strftime('%d/%m')
 end
 
 # given your birthday this year, this method tells you
@@ -238,6 +246,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  (1..100).each  do
+    birthday += 86400 * 365.25
+    return birthday.year if birthday.wday == 5
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -246,6 +258,7 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
