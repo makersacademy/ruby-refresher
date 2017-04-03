@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+require 'date'
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
@@ -193,9 +196,9 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-    str = string.capitalize.split
-    str.map!{|x| ['a', 'and', 'the'].include?(x) ? x : x.capitalize}
-    str.join(' ')
+    str1 = string.capitalize.split
+    str1.map!{|x| ['a', 'and', 'the'].include?(x) ? x : x.capitalize}
+    str1.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -235,13 +238,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  x.str_method
+  prc = Proc.new { [0].str_method }
+  prc.call
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
 end
 
 # given your birthday this year, this method tells you
@@ -249,7 +254,28 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  time = birthday
+  today = time.wday
+  year_given = birthday.year.to_i
+  day_desired = DateTime.parse("Friday").wday
+  today < day_desired ? day_diff = (day_desired - today) : day_diff = (7 - today + day_desired)
+  target_year = year_given + day_diff
+  increment_year(year_given, target_year)
 end
+
+def increment_year(year_given, target_year)
+  until year_given >= target_year
+    year_given += 1 if is_leap_year?(year_given)
+    year_given += 1
+  end
+  target_year = year_given
+end
+
+def is_leap_year?(year_given)
+  (year_given % 4 == 0) && (year_given % 100 != 0)
+end
+
+
 
 # in a file, total the number of times words of different lengths
 # appear. So in a file with the text "the cat sat on the blue mat"
@@ -257,12 +283,23 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  n, hsh = 0, Hash.new(0);
+  (File.open(file_path, "r")).each do |line|
+    line.split.each do |word|
+      hsh[sz = word.sub(/\W/, '').size] += 1
+    end
+  end
+  hsh;
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(n)
+  x = ''
+  x += 'Fizz' if 3 * (n / 3) == n
+  x += 'Buzz' if 5 * (n / 5) == n
+  x.empty? ? n : x
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -272,4 +309,14 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  num, bottle = 100, 'bottles';
+   while num > 1
+ 	  num -= 1;
+ 	  num2, bottle2 = num - 1, bottle;
+ 		(num2 = 'no more') && (bottle = 'bottle') if num == 1;
+ 		num == 2 ? bottle2 = 'bottle' : bottle2 = 'bottles'
+ 		puts "#{num} #{bottle} of beer on the wall, #{num} #{bottle} of beer. Take one down, pass it around, #{num2} #{bottle2} of beer on the wall."
+   end
 end
+
+ninety_nine_bottles_of_beer();
