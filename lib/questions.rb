@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 require 'date'
+PAGE_URL = "https://www.gov.uk/bank-holidays"
+
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
@@ -69,7 +71,7 @@ def make_numbers_negative(number)
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
-# even numbers, the other an array of odd numbers
+  # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
@@ -246,7 +248,9 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-
+  dates = {12 => 26, 12 => 25, 8 => 25, 5 => 26, 5 => 5, 4 => 21, 4 => 18, 1 => 1}
+  month, day = date.month, date.day
+  dates[month] == day
 end
 
 # given your birthday this year, this method tells you
