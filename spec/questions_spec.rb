@@ -221,3 +221,83 @@ describe 'the Friday test :)' do
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
   end
 end
+
+describe "fizzbuzz" do
+
+  describe "should print 'fizz' when passed a number divisible by 3" do
+
+    it "prints 'fizz' when 3 is passed as argument" do
+      n = fizzbuzz_without_modulo(3)
+      expect(n).to eq 'fizz'
+    end
+
+    it "prints 'fizz' when 6 is passed as argument" do
+      n = fizzbuzz_without_modulo(6)
+      expect(n).to eq 'fizz'
+    end
+
+  end
+
+  describe "should print 'buzz' when passed a number divisible by 5" do
+
+    it "prints 'fizz' when 5 is passed as argument" do
+      n = fizzbuzz_without_modulo(5)
+      expect(n).to eq 'buzz'
+    end
+
+    it "prints 'fizz' when 10 is passed as argument" do
+      n = fizzbuzz_without_modulo(10)
+      expect(n).to eq 'buzz'
+    end
+
+  end
+
+  describe "should print 'fizzbuzz' when passed a number divisible by 3 & 5" do
+
+    it "prints 'fizzbuzz' when 15 is passed as argument" do
+      n = fizzbuzz_without_modulo(15)
+      expect(n).to eq 'fizzbuzz'
+    end
+
+    it "prints 'fizzbuzz' when 30 is passed as argument" do
+      n = fizzbuzz_without_modulo(30)
+      expect(n).to eq 'fizzbuzz'
+    end
+
+  end
+
+  describe "should print number when passed a number not divisible by 3 or 5" do
+
+    it "prints 1 when 1 is passed as argument" do
+      n = fizzbuzz_without_modulo(1)
+      expect(n).to eq 1
+    end
+    it "prints 11 when 11 is passed as argument" do
+      n = fizzbuzz_without_modulo(11)
+      expect(n).to eq 11
+    end
+
+  end
+
+end
+
+describe 'Beersong' do
+
+  def stanza(n)
+    return n.map { |i| stanza i }.reverse.flatten if n.is_a? Range
+    return [''] if n == 0
+    return "1 bottle of beer on the wall, 1 bottle of beer,\nTake one down and pass it around,no more bottles of beer on the wall.".split("\n") if n == 1
+    <<-STANZA.gsub(/^\s+/,'').split("\n")
+      #{n} bottles of beer on the wall,
+      #{n} bottles of beer,
+      Take one down and pass it around,
+      #{n-1} bottle#{n == 2 ? '' : 's'} of beer on the wall.
+    STANZA
+  end
+
+   it 'prints the song' do
+    #  output = ninety_nine_bottles_of_beer
+    #  p stanza(0..99).join
+    #  expect(output).to eq stanza(1)
+   end
+end
