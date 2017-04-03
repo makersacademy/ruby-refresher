@@ -212,7 +212,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-
+  string.index( /[^[:alnum:]]/ ) ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -253,7 +253,6 @@ def is_a_2014_bank_holiday?(date)
   p date
   bank_holiday = ["2014-01-01", "2014-04-18", "2014-04-21", "2014-05-05", "2014-05-26", "2014-08-26", "2014-12-25", "2014-12-26"]
   bank_holiday.include?(date)
-
 end
 
 # given your birthday this year, this method tells you
