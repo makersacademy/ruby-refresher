@@ -198,7 +198,14 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
+  array = string.split
+  array.each do |i|
+    next if i == "the" &&  i != array[0]
+    next if i == "and" &&  i != array[0]
+    next if i == "a" && i != array[0]
+    i.capitalize!
+  end
+  array.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -243,6 +250,9 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  p date
+  bank_holiday = ["2014-01-01", "2014-04-18", "2014-04-21", "2014-05-05", "2014-05-26", "2014-08-26", "2014-12-25", "2014-12-26"]
+  bank_holiday.include?(date)
 
 end
 
