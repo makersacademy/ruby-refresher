@@ -1,8 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
 require 'date'
-PAGE_URL = "https://www.gov.uk/bank-holidays"
-
 
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
@@ -135,8 +131,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-    nu_arr = array.each_slice(2).to_a
-    nu_arr.to_h
+    array.each_slice(2).to_h
 end
 
 # get all the letters used in an array of words and return
@@ -198,9 +193,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-    str1 = string.capitalize.split
-    str1.map!{|x| ['a', 'and', 'the'].include?(x) ? x : x.capitalize}
-    str1.join(' ')
+  str = string.capitalize.split
+  str.map!{|x| ['a', 'and', 'the'].include?(x) ? x : x.capitalize}.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -278,8 +272,6 @@ end
 def is_leap_year?(year_given)
   (year_given % 4 == 0) && (year_given % 100 != 0)
 end
-
-
 
 # in a file, total the number of times words of different lengths
 # appear. So in a file with the text "the cat sat on the blue mat"
