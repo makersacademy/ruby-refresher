@@ -1,6 +1,6 @@
-## Ruby Refresher
+# Ruby Refresher
 
-Returning to Ruby after two weeks of JavaScript.
+##Returning to Ruby after two weeks of JavaScript.
 
 - Ruby Version:   2.2.1
 
