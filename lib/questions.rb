@@ -136,6 +136,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+ array.join.split("").uniq.sort!
 end
 
 # swap the keys and values in a hash. e.g.
@@ -149,11 +150,17 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  sum = 0
+    hash.each do |key, value|
+      sum += key + value
+    end
+    sum
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string = string.tr("A-Z", "")
 end
 
 # round up a float up and convert it to an Integer,
@@ -186,6 +193,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+
 end
 
 # return true if a string contains any special characters
@@ -222,6 +230,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+ send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
