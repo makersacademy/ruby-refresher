@@ -2,9 +2,12 @@
 
 Returning to Ruby after two weeks of JavaScript.
 
-Ruby Version:   2.2.1
-Dependencies:   rspec
-Test Suite:     'rspec' from the Command Line.
+- Ruby Version:   2.2.1
+
+- Dependencies:   rspec
+
+- Test Suite:     'rspec' from the Command Line.
+
 
 I'm still more comfortable in Ruby than in JavaScript. Loving the simplicity of it, though I still haven't had long enough with JavaScript to be able to compare the two fairly.
 
