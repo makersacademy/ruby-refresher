@@ -55,7 +55,12 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-
+    n = string.length
+    if n % 2 ==0
+      string[0..(n/2) -1]
+    else
+      string[0..(n/2)]
+    end
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -200,6 +205,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
