@@ -111,32 +111,32 @@ describe 'the Friday test :)' do
     expect(n).to eq 17
   end
 
-  fit '20 - get_elements_until_greater_than_five' do
+  it '20 - get_elements_until_greater_than_five' do
     n = get_elements_until_greater_than_five [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
     expect(n).to eq [1, 3, 5, 4, 1, 2]
   end
 
-  fit '21 - convert_array_to_a_hash' do
+  it '21 - convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end
 
-  fit '22 - get_all_letters_in_array_of_words' do
+  it '22 - get_all_letters_in_array_of_words' do
     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
 
-  fit '23 - swap_keys_and_values_in_a_hash' do
+  it '23 - swap_keys_and_values_in_a_hash' do
     n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
     expect(n).to eq({'b' => 'a', 'd' => 'c'})
   end
 
-  fit '24 - add_together_keys_and_values' do
+  it '24 - add_together_keys_and_values' do
     n = add_together_keys_and_values({1 => 1, 2 => 2})
     expect(n).to eq 6
   end
 
-  fit '25 - remove_capital_letters_from_string' do
+  it '25 - remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
@@ -146,22 +146,22 @@ describe 'the Friday test :)' do
     expect(n).to eq 4
   end
 
-  it 'round_down_number' do
+  fit '27 - round_down_number' do
     n = round_down_number 4.9
     expect(n).to eq 4
   end
 
-  it 'format_date_nicely' do
+  fit '28 - format_date_nicely' do
     n = format_date_nicely Time.new(2013, 10, 31)
     expect(n).to eq '31/10/2013'
   end
 
-  it 'get_domain_name_from_email_address' do
+  fit '29 - get_domain_name_from_email_address' do
     n = get_domain_name_from_email_address 'alex@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
 
-  it 'titleize_a_string' do
+  fit '30 - titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
