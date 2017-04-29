@@ -123,46 +123,54 @@ def average_of_array(array)
   (array_sum / array_length).round
 end
 
-# get all the elements in an array, up until the first element
+# 20 - get all the elements in an array, up until the first element
 # which is greater than five. e.g.
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  element_greater_than_five_position = array.index{ |element| element > 5 }
+  array.slice(0...element_greater_than_five_position)
 end
 
-# turn an array (with an even number of elements) into a hash, by
+# 21 - turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+  Hash[array.each_slice(2).to_a]
 end
 
-# get all the letters used in an array of words and return
+# 22 - get all the letters used in an array of words and return
 # it as a array of letters, in alphabetical order
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.join.chars.sort
 end
 
-# swap the keys and values in a hash. e.g.
+# 23 - swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
-# in a hash where the keys and values are all numbers
+# 24 - in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.inject{ |key, value| key + value }.reduce(:+)
 end
 
-# take out all the capital letters from a string
+# 25 - take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.tr("A-Z", "")
 end
 
-# round up a float up and convert it to an Integer,
+# 26 - round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+
 end
 
 # round down a float up and convert it to an Integer,
