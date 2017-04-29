@@ -109,7 +109,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  array.inject { |sum, x| sum + x }/array.length
+  (array.inject { |sum, x| sum + x }/array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -117,7 +117,9 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  below_six = []
+  array.each { |num| num <= 5 ? below_six << num : break }
+  below_six
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -242,7 +244,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-    year = birthday.year
+  year = birthday.year
   until birthday.strftime('%A') === 'Friday'
     year += 1
     birthday = Time.new(year, birthday.month, birthday.day)
