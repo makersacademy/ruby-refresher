@@ -5,8 +5,7 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  vowels = ['a', 'e', 'i', 'o', 'u']
-  array.select { |word| vowels.include?(word.downcase[0]) }
+  array.select { |word| ['a', 'e', 'i', 'o', 'u'].include?(word.downcase[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -86,7 +85,7 @@ end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort_by{ |word| word.length }[-1]
+  array.sort_by { |word| word.length }[-1]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -193,8 +192,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  articles = ['a', 'the', 'and']
-  string.capitalize!.split(' ').each { |word| word.capitalize! unless articles.include?(word) }.join(' ')
+  string.capitalize!.split(' ').each { |word| word.capitalize! unless ['a', 'the', 'and'].include?(word) }.join(' ')
 end
 
 # return true if a string contains any special characters
