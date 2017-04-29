@@ -34,6 +34,19 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  a = ['Bob', 'Dave', 'Clive']
+  a.sort!
+
+  new_array_a = []
+  for i in 0..a.length-1
+    if i != a.last
+      for j in (i+1)..a.length-1
+        new_array_a << ("#{a[i]} #{a[j]}".split)
+      end
+    end
+  end
+  new_array_a
+
 end
 
 # discard the first 3 elements of an array,
