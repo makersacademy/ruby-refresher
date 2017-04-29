@@ -321,8 +321,8 @@ def ninety_nine_bottles_of_beer
     puts "#{@bottle_number} #{bottle_word} of beer on the wall, #{@bottle_number} #{bottle_word} of beer."
     @bottle_number -= 1
     puts "Take one down and pass it around, #{@bottle_number} #{bottle_word} of beer on the wall."
-
   end
-    puts "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."
+
+  puts "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."
 
 end
