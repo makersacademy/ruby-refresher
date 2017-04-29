@@ -282,7 +282,7 @@ end
 def fizzbuzz_without_modulo
 
   def divisible_by?(numerator, denominator)
-    numerator/denominator.to_f === numerator/denominator
+    numerator/denominator.to_f == numerator/denominator
   end
 
   for num in 0..100
