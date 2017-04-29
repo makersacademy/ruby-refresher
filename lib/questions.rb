@@ -112,11 +112,15 @@ end
 
 # 18 - convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
-# get the average from an array, rounded to the nearest integer
+# 19 - get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  array_sum = array.reduce(:+).to_f
+  array_length = array.length.to_f
+  (array_sum / array_length).round
 end
 
 # get all the elements in an array, up until the first element
