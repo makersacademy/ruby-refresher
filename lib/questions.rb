@@ -171,7 +171,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  date.strftime('%d','%m','%Y')
+  date.strftime('%d/%m/%Y')
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -234,7 +234,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  # bank_holidays = [Time.new()]
+  ['26/12/14', '25/12/14', '25/08/14', '26/05/14', '05/05/14', '21/04/14', '18/04/14', '01/01/14' ].include?(date.strftime('%d/%m/%y'))
 end
 
 # given your birthday this year, this method tells you
