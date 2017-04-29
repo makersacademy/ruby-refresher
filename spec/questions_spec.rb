@@ -45,16 +45,16 @@ describe 'the Friday test :)' do
     expect(n).to eq [4, 5, 6, 7]
   end
 
-  # it 'add_element_to_beginning_of_array' do
-  #   n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
-  #   expect(n).to eq [1, 2, 3, 4, 5]
-  # end
-  #
-  # it 'array_sort_by_last_letter_of_word' do
-  #   n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
-  #   expect(n).to eq ['puma', 'maker', 'sky']
-  # end
-  #
+  it 'add_element_to_beginning_of_array' do
+    n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
+    expect(n).to eq [1, 2, 3, 4, 5]
+  end
+
+  it 'array_sort_by_last_letter_of_word' do
+    n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
+    expect(n).to eq ['puma', 'maker', 'sky']
+  end
+
   # it 'get_first_half_of_string' do
   #   a = get_first_half_of_string 'banana'
   #   b = get_first_half_of_string 'apple'
