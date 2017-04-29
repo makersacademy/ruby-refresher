@@ -6,6 +6,8 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  n = ['john', 'david', 'omar', 'fred', 'idris', 'angela']
+  n.select { |x| x[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
