@@ -288,11 +288,11 @@ def fizzbuzz_without_modulo
   for num in 0..100
     if num == 0
       puts 0
-    elsif divisible_by?(num,15)
+    elsif divisible_by?(num, 15)
       puts 'fizzbuzz'
-    elsif divisible_by?(num,3)
+    elsif divisible_by?(num, 3)
       puts 'fizz'
-    elsif divisible_by?(num,5)
+    elsif divisible_by?(num, 5)
       puts 'buzz'
     else
       puts num
@@ -310,4 +310,19 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+
+  @bottle_number = 99
+
+  def bottle_word
+    @bottle_number == 1 ? 'bottle' : 'bottles'
+  end
+
+  while @bottle_number > 0
+    puts "#{@bottle_number} #{bottle_word} of beer on the wall, #{@bottle_number} #{bottle_word} of beer."
+    @bottle_number -= 1
+    puts "Take one down and pass it around, #{@bottle_number} #{bottle_word} of beer on the wall."
+
+  end
+    puts "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall."
+
 end
