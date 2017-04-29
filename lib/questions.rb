@@ -71,7 +71,7 @@ def separate_array_into_even_and_odd_numbers(array)
   array.partition { |number| number.even? }
 end
 
-# count the numbers of elements in an element which are palindromes
+# 13 - count the numbers of elements in an element which are palindromes
 # a palindrome is a word that's the same backwards as forward
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
@@ -88,8 +88,9 @@ def number_of_elements_that_are_palindromes(array)
   return palindrome
 end
 
-# return the shortest word in an array
+# 14 - return the shortest word in an array
 def shortest_word_in_array(array)
+  array.min_by { |word| word.length }
 end
 
 # return the shortest word in an array
