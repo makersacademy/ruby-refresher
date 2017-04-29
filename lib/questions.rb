@@ -281,10 +281,27 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
 
-  def is_divisible_by(numerator, denominator)
+  def divisible_by?(numerator, denominator)
     numerator/denominator.to_f === numerator/denominator
   end
+
+  for num in 0..100
+    if num == 0
+      puts 0
+    elsif divisible_by?(num,15)
+      puts 'fizzbuzz'
+    elsif divisible_by?(num,3)
+      puts 'fizz'
+    elsif divisible_by?(num,5)
+      puts 'buzz'
+    else
+      puts num
+    end
+  end
+
 end
+
+
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
