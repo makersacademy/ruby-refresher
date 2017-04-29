@@ -269,8 +269,8 @@ def count_words_of_each_length_in_a_file(file_path)
   file = File.open(file_path, "r")
   hash = {}
   file.each_line do |line|
-    line.split(' ').each do |word|
-      hash[word.length] == nil ? hash[word.length] = 1 : hash[word.length] = hash[word.length] + 1                   
+    line.split(/[\s,.]+/).each do |word|
+      hash[word.length] == nil ? hash[word.length] = 1 : hash[word.length] = hash[word.length] + 1
     end
   end
   hash
