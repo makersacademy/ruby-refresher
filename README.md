@@ -1,3 +1,6 @@
+![Travis CI](https://travis-ci.org/kittysquee/ruby-refresher.svg?branch=master)
+
+
 ## Ruby Refresher
 
 Here we're going to revisit the basics of Ruby. There are 41 questions - you don't have to do every single one (although if you can, that's great). You should be able to do at least 50% of them. They vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
@@ -37,5 +40,3 @@ Good luck
 * Don't forget Enumerable (advanced array methods)
 * Read the specs and the comments - if you're still confused, just ask.
 * Don't panic :wink:
-
-
