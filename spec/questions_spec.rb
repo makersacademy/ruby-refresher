@@ -1,10 +1,7 @@
 require 'rspec'
 require 'questions'
 
-RSpec.configure do |config|
-  config.color = true
-  config.formatter = :documentation
-end
+
 
 describe 'the Friday test :)' do
 
@@ -166,7 +163,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  it 'check_a_string_for_special_characters' do
+  fit 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -179,7 +176,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 20
   end
 
-  it 'is_a_3_dot_range?' do
+  fit 'is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 
@@ -187,7 +184,7 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  it 'square_root_of' do
+  fit 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
@@ -206,7 +203,6 @@ describe 'the Friday test :)' do
   it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
-
     expect(a).to be true
     expect(b).to be false
   end
