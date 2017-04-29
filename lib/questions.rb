@@ -220,24 +220,34 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  blah = 0
+  text = File.open(file_path, "r")
+  text.each_line do |line|
+    blah += line.split.count
+  end
+  blah
 end
 
 # --- tougher ones ---
@@ -246,12 +256,15 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = [Time.new(2014, 1, 1), Time.new(2014, 4, 18), Time.new(2014, 4, 21), Time.new(2014, 5, 5), Time.new(2014, 5, 26), Time.new(2014, 8, 25), Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
+  holidays.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -259,6 +272,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday? do
+    birthday += (60*60*24*365)
+  end
+  return birthday.strftime("%Y").to_i
 end
 
 # in a file, total the number of times words of different lengths
