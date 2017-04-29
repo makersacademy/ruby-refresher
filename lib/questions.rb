@@ -18,11 +18,14 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  n = ['a', 'b', nil, nil, false, 'c', nil]
+  n.delete_if {|x| x == false }.compact
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
