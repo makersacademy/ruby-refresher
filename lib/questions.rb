@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.delete_if {|word| word.chars.first != "a"}
+  array.select {|word| word.chars.first == "a"}
 end
 
 # keep only the elements that start with a vowel
@@ -12,12 +12,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.delete_if {|i| i == nil}
+  array.compact
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if {|i| i == false || i == nil}
+  array.delete_if {|i| i == false || i.nil?}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -31,7 +31,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  array.combination(2).to_a
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
@@ -70,10 +70,9 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  odd = []
-  even = []
+  odd, even = [], []
   array.each do |i|
-    if i % 2 == 0
+    if i.even?
       even << i
     else
       odd << i
@@ -87,10 +86,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.delete_if do |i|
-    i != i.reverse
-  end
-  array.count
+  array.select{|i| i == i.reverse}.count
 end
 
 # return the shortest word in an array
@@ -134,7 +130,7 @@ end
 def get_elements_until_greater_than_five(array)
   newarray = []
   array.each do |i|
-    break i if i >= 6
+    break if i >= 6
     newarray << i
   end
   newarray
@@ -197,9 +193,8 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  remove_at = email.split("@")
-  remove_com = remove_at[1].split(".")
-  remove_com[0]
+  domain_name = email.split("@")[1]
+  domain_name.split(".")[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -210,7 +205,7 @@ end
 def titleize_a_string(string)
   string.capitalize!
   words_no_cap = ["the", "and"]
-  title = string.split(" ").map do |word|
+  title = string.split.map do |word|
     if words_no_cap.include?(word)
       word
     else
@@ -225,11 +220,7 @@ end
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
   result = string =~ /[^[:alnum:]]$/
-  if result.nil?
-    false
-  else
-    true
-  end
+  result != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -251,12 +242,11 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  blah = 0
-  text = File.open(file_path, "r")
-  text.each_line do |line|
-    blah += line.split.count
+  word_count = 0
+  File.open(file_path, "r").each_line do |line|
+    word_count += line.split.count
   end
-  blah
+  word_count
 end
 
 # --- tougher ones ---
@@ -282,7 +272,7 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   until birthday.friday? do
-    birthday += (60*60*24*365)
+    birthday += (31_536_000) #seconds in a year
   end
   return birthday.strftime("%Y").to_i
 end
@@ -293,16 +283,14 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  myhash = {}
-  text = File.open(file_path, 'r')
-  text.each_line do |line|
+  results = {}
+  File.open(file_path, 'r').each_line do |line|
     line.split(/\W+/).each do |word|
-      word.length
-      current_count = myhash[word.length] || 0
-      myhash[word.length] = current_count + 1
+      current_count = results[word.length] || 0
+      results[word.length] = current_count + 1
     end
   end
-  myhash
+  results
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -331,7 +319,7 @@ end
 def ninety_nine_bottles_of_beer
   99.downto(2) do |i|
     puts "#{i} bottles of beer on the wall, #{i} bottles of beer.\n
-    Take one down and pass it around, #{i-1} bottles of beer on the wall."
+    Take one down and pass it around, #{i-1} bottle#{"s" if i > 2} of beer on the wall."
   end
     puts "1 bottle of beer on the wall, 1 bottle of beer.\n
     Take one down and pass it around, no more bottles of beer on the wall.\n
