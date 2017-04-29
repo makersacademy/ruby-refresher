@@ -63,11 +63,12 @@ def make_numbers_negative(number)
   number < 0? number : -number
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of
+# 12 - turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  array.partition { |number| number.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
