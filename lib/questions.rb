@@ -104,12 +104,13 @@ def total_of_array(array)
   array.reduce(:+)
 end
 
-# turn an array into itself repeated twice. So [1, 2, 3]
+# 17 - turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array + array
 end
 
-# convert a symbol into a string
+# 18 - convert a symbol into a string
 def turn_symbol_into_string(symbol)
 end
 

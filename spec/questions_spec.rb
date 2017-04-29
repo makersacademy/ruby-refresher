@@ -91,12 +91,12 @@ describe 'the Friday test :)' do
     expect(n).to eq 'different'
   end
 
-  fit '16 - total_of_array' do
+  it '16 - total_of_array' do
     n = total_of_array [1, 3, 5, 6, 2, 8]
     expect(n).to eq 25
   end
 
-  it 'double_array' do
+  fit '17 - double_array' do
     n = double_array [1, 2, 3]
     expect(n).to eq [1, 2, 3, 1, 2, 3]
   end
