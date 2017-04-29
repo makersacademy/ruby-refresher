@@ -98,7 +98,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-
+  array * 2
 end
 
 # convert a symbol into a string
@@ -132,7 +132,9 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  ("a".."z").to_a&[array]
+  letters = []
+  array.each { |word| word.split('').each { |letter| letters << letter } }
+  ("a".."z").to_a&letters
 end
 
 # swap the keys and values in a hash. e.g.
@@ -225,7 +227,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-
+  self.send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
