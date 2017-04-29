@@ -242,12 +242,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  day = birthday.strftime('%d').to_i
-  month = birthday.strftime('%m').to_i
-  year = birthday.strftime('%Y').to_i
+    year = birthday.year
   until birthday.strftime('%A') === 'Friday'
     year += 1
-    birthday = Time.new(year, month, day)
+    birthday = Time.new(year, birthday.month, birthday.day)
   end
   year
 end
