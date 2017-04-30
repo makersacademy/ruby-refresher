@@ -129,8 +129,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-
+  valid_nums = []
+  array.each do |num|
+    break if num > 5
+    valid_nums << num
+  end
+  valid_nums
 end
+
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
@@ -187,6 +193,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -227,15 +234,30 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.include?(range.last) ? false : true
 end
+
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  word_count = {}
+  File.open(file_path, "r") do |file|
+    file.each_line do |line|
+      words = line.split(' ').each do |word|
+        word_count[word] += 1 if word_count.has_key? word
+        word_count[word] = 1 if not word_count.has_key? word
+      end
+    end
+  end
+  word_count.sum
 end
+
+
 
 # --- tougher ones ---
 
@@ -243,6 +265,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+
 end
 
 # return true if the date is a uk bank holiday for 2014
