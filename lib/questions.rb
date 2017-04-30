@@ -1,6 +1,5 @@
 array = ["mango", "papaya", "kiwi", "granola", "musli"]
 
-
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |word| word.chars.first == "a"}
@@ -182,6 +181,7 @@ end
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
@@ -192,6 +192,8 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  split = email.split(/[@\.]/)
+  split[1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -200,18 +202,27 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  new_string = string.split(' ')
+  ignore = ["a", "and", "the"]
+  new_string.each { |word| word.capitalize! if !ignore.include? word}
+  new_string.each { |word| word.capitalize! if new_string.first == word}
+  new_string.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  special = /[\?\<\>\'\,\?\[\]\}\{\=\-\)\(\*\&\^\%\$\#\`\~\{\}\@]/
+  string.match(special) ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
+
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
