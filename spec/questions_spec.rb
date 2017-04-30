@@ -166,7 +166,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  fit '31 - check_a_string_for_special_characters' do
+  it '31 - check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -174,12 +174,12 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  fit '32 - get_upper_limit_of' do
+  it '32 - get_upper_limit_of' do
     n = get_upper_limit_of 1..20
     expect(n).to eq 20
   end
 
-  fit '33 - is_a_3_dot_range?' do
+  it '33 - is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 
@@ -187,19 +187,19 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  fit '34 - square_root_of' do
+  it '34 - square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
     expect(b).to eq 1.7320508075688772
   end
 
-  fit '35 - word_count_a_file' do
+  it '35 - word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end
 
-  it '36 - call_method_from_string' do
+  fit '36 - call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
