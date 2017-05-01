@@ -121,7 +121,7 @@ describe 'the Friday test :)' do
     expect(n).to eq({'a' => 'b', 'c' => 'd'})
   end
 
-  fit 'get_all_letters_in_array_of_words' do
+  it 'get_all_letters_in_array_of_words' do
     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
@@ -156,7 +156,7 @@ describe 'the Friday test :)' do
     expect(n).to eq '31/10/2013'
   end
 
-  it 'get_domain_name_from_email_address' do
+  fit 'get_domain_name_from_email_address' do
     n = get_domain_name_from_email_address 'alex@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
