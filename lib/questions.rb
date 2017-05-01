@@ -1,3 +1,5 @@
+require 'open-uri'
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |element| element =~ /^a/ }
@@ -29,7 +31,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
@@ -75,6 +77,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  array.select { |word| word == word.reverse }.count
 end
 
 # return the shortest word in an array
@@ -122,7 +125,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  array.each_slice(2)
+  Hash[array.each_slice(2).to_a]
 end
 
 # get all the letters used in an array of words and return
@@ -183,7 +186,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split
+  string.capitalize.split.map { |word| %w(a and the).include?(word) ? word : word.capitalize }.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -212,6 +215,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  IO.read(file_path).split.count
 end
 
 # --- tougher ones ---
@@ -220,12 +224,19 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  puts date.strftime('%-d %B')
+  open('https://www.gov.uk/bank-holidays') { |f|
+    # f.each_line { |line| puts line }
+    f.each_line.any? { |line| line.include?(date.strftime('%-d %B'))}
+  }
+
 end
 
 # given your birthday this year, this method tells you
@@ -233,6 +244,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+
 end
 
 # in a file, total the number of times words of different lengths
@@ -241,13 +253,23 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  hash = Hash.new(0)
+  IO.read(file_path).gsub(/[,.]/,'').split.each { |word| hash[word.length] += 1 }
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |num|
+    puts check(num,15) ? 'fizzbuzz' : (check(num,5) ? 'buzz' : (check(num,3) ? 'fizz' : num))
+  end
 end
+
+# def check(num, divisor)
+#   num/divisor.is_a? Float
+# end
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
