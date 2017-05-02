@@ -100,7 +100,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-array += array
+  array + array
 end
 
 # convert a symbol into a string
@@ -150,7 +150,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.to_a.flatten.inject(:+)
+  hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -229,7 +229,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  self.send(str_method, 'abc')
+  send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
