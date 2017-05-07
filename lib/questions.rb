@@ -100,6 +100,9 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  short = array[0]
+  array.each{ |word| short = word if word.length < short.length }
+  short
 end
 
 # return the shortest word in an array
