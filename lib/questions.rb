@@ -254,6 +254,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
+  number ** 0.5
 end
 
 # count the number of words in a file
