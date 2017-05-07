@@ -211,7 +211,7 @@ describe 'the Friday test :)' do
     expect(b).to be false
   end
 
-  it 'your_birthday_is_on_a_friday_in_the_year' do
+  fit 'your_birthday_is_on_a_friday_in_the_year' do
     n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
     expect(n).to eq 2016
   end
