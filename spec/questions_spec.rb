@@ -151,7 +151,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 4
   end
 
-  it 'format_date_nicely' do
+  fit 'format_date_nicely' do
     n = format_date_nicely Time.new(2013, 10, 31)
     expect(n).to eq '31/10/2013'
   end
