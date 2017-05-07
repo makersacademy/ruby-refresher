@@ -325,8 +325,28 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  threes = 3;   fives = 5;   array = [*1..100]
+
+  (1..100).each do |x|
+
+    while threes <= x
+      array[x-1] = "fizz" if x == threes
+      threes += 3
+    end
+
+    while fives <= x
+      if x == fives
+        array[x-1] == "fizz" ? array[x-1] = "fizzbuzz" : array[x-1] = "buzz"
+        break
+      end
+      fives += 5
+    end
+    
+  end
+  array
 end
 
+puts fizzbuzz_without_modulo
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
 # make sure you use the singular when you have one bottle of
