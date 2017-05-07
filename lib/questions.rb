@@ -34,6 +34,15 @@ p reverse_every_element_in_array ['dog', 'monkey', 'elephant']
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  pairings = []
+  for i in 0...array.length - 1
+    j = i+1
+    until j == array.length
+      pairings << [array[i],array[j]]
+      j += 1
+    end
+  end
+  pairings
 end
 
 # discard the first 3 elements of an array,
