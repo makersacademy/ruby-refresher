@@ -54,11 +54,14 @@ end
 def add_element_to_beginning_of_array(array, element)
   array.unshift(element)
 end
-p add_element_to_beginning_of_array([1, 2, 3, 4, 5, 6], "test")
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  for i in 0...array.length - 1
+    array[i], array[i+1] = array[i+1], array[i] if array[i][-1] > array[i+1][-1]
+  end
+  array
 end
 
 # cut strings in half, and return the first half, e.g.
