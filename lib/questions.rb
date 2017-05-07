@@ -27,7 +27,6 @@ end
 def reverse_every_element_in_array(array)
   array.map{ |word| word.reverse }
 end
-p reverse_every_element_in_array ['dog', 'monkey', 'elephant']
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
 # give every possible pairing - in this case:
@@ -48,6 +47,7 @@ end
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.slice(3..array.length)
 end
 
 # add an element to the beginning of an array
