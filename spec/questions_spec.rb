@@ -8,7 +8,7 @@ end
 
 describe 'the Friday test :)' do
 
-  it 'select_elements_starting_with_a' do
+  fit 'select_elements_starting_with_a' do
     n = select_elements_starting_with_a ['bananas', 'apples', 'pears', 'avocados']
     expect(n).to eq ['apples', 'avocados']
   end
