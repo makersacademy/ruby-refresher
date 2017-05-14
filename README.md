@@ -1,3 +1,27 @@
+#### Welcome to Ruby Refresher!
+
+After spending a couple of weeks learning JavaScript, I completed this challenge to remind myself of some ruby syntax. It consisted of 39 failing RSpec tests which I was asked to make pass. Some were easy, some were very hard. But in the end, I managed to get them all to pass!
+
+The main learning I take away from this challenge is research skills, as I managed to find almost all answers online using the right search terms and websites.
+
+### Technologies:
+- Ruby (version 2.4.0)
+- RSpec (version 3.6)
+
+### Key features:
+- 39 failing tests at the start
+- 39 passing tests at the end
+
+### Deployment instructions:
+1. Navigate to your projects directory
+2. Run ```git clone https://github.com/connie-reinholdsson/ruby-refresher.git```
+3. Run ```cd ruby-refresher```
+4. Run ```rspec```
+
+Please note: below is the challenge as I was given it.
+
+Enjoy!
+
 ## Ruby Refresher
 
 Here we're going to revisit the basics of Ruby. There are 41 questions - you don't have to do every single one (although if you can, that's great). You should be able to do at least 50% of them. They vary in level from quite easy to fairly hard. Work through them and check if they're correct by running the specs.
@@ -37,5 +61,3 @@ Good luck
 * Don't forget Enumerable (advanced array methods)
 * Read the specs and the comments - if you're still confused, just ask.
 * Don't panic :wink:
-
-
