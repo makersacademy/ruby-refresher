@@ -1,4 +1,4 @@
-#### Welcome to Ruby Refresher!
+# Welcome to Ruby Refresher!
 
 After spending a couple of weeks learning JavaScript, I completed this challenge to remind myself of some ruby syntax. It consisted of 39 failing RSpec tests which I was asked to make pass. Some were easy, some were very hard. But in the end, I managed to get them all to pass!
 
