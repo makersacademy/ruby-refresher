@@ -104,10 +104,9 @@ end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+
 end
 
-# add up all the numbers in an array, so [1, 3, 5, 6]
-# returns 15
 def total_of_array(array)
   array.flatten.inject(:+)
 end
@@ -117,13 +116,16 @@ end
 def double_array(array)
 end
 
-# convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  average = (array.flatten.inject(:+) / array.length).round(3)
+  p average
+  average
 end
 
 # get all the elements in an array, up until the first element
@@ -144,6 +146,10 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.flatten!
+  array.uniq!
+  array.sort!
+  array
 end
 
 # swap the keys and values in a hash. e.g.
