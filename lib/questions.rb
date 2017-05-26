@@ -69,8 +69,6 @@ end
 def get_first_half_of_string(string)
 end
 
-# turn a positive integer into a negative integer. A negative integer
-# stays negative
 def make_numbers_negative(number)
   if number >= 0
     number = -number
@@ -91,6 +89,13 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  n = 0
+  array.each do | element |
+    if element == element.reverse
+      n +=1
+    end
+  end
+    n
 end
 
 # return the shortest word in an array
@@ -104,6 +109,7 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.flatten.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
