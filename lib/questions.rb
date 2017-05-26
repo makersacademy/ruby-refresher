@@ -1,22 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select { |word| word[0, 1] == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select { |word| word[0, 1] == word[/[aeiou]/] }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  array.select { |item| !item.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.select { |item| !item.nil? && item != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.map { |item| item.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -24,31 +29,38 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.unshift(element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  cut = (string.length / 2)
+  string.length.even? ? string[0..cut - 1] : string[0..cut]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  number > 0 ? number - (number * 2) : number - number + number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -56,6 +68,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  separate = array.group_by { |num| num % 2 }
+  [separate[0], separate[1]]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -63,33 +77,44 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  new_array = array.select { |word| word == word.reverse }
+  new_array.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  string = array * ' '
+  string.split(' ').min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  string = array * ' '
+  string.split(' ').max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array * 2
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  sum = array.inject(:+)
+  ( sum / array.length.to_f ).round
 end
 
 # get all the elements in an array, up until the first element
@@ -97,12 +122,15 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  index = array.index { |num| num > 5 }
+  array[ 0..index-1 ]
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -110,43 +138,52 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.join('').split('').sort
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  sum = hash.inject { |key, value| key + value }
+  sum.inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  email.split('@')[1].split(".com")[0]
 end
 
 # capitalize the first letter in each word of a string,
@@ -155,30 +192,39 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  lowercase_words = %w{a and the}
+  string.split.each_with_index.map { |word, index| lowercase_words.include?(word) && index > 0 ? word : word.capitalize }.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string =~ /\W/ ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.end
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  word_array = []
+  file = File.open(file_path, 'r').each { |line| word_array << line }
+  word_array.first.split(' ').count
 end
 
 # --- tougher ones ---
@@ -187,12 +233,16 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  self.str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  holidays = ['2014-12-25', '2014-12-26', '2014-08-25', '2014-05-26', '2014-05-05', '2014-05-21', '2014-04-18', '2014-01-01']
+  date = date.to_s.split
+  holidays.include?(date[0])
 end
 
 # given your birthday this year, this method tells you
@@ -200,6 +250,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday?
+    birthday += ( 60*60*24*365 )
+  end
+  birthday.strftime("%Y").to_i
 end
 
 # in a file, total the number of times words of different lengths
@@ -208,12 +262,25 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_length = Hash.new(0)
+  file = File.open(file_path, 'r') { |line| line.readline.gsub(/[^a-z ]/i,"").split(" ") }
+  file.each { |word| word_length [word.length] += 1 }
+  word_length
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+  if number / 15 != 0 && (number / 15 == number.to_f / 15)
+    'Fizzbuzz'
+  elsif number / 5 != 0 && (number / 5 == number.to_f / 5)
+    'Buzz'
+  elsif number / 3 != 0 && (number / 3 == number.to_f / 3)
+    'Fizz'
+  else
+    number
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -223,4 +290,12 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottles_start = 99
+  bottles_num = proc { |n| "#{n} bottle#{n == 1 ? '' : 's'}" }
+  bottles_start.downto(2) do |num|
+    puts "#{bottles_num[num]} of beer on the wall, #{bottles_num[num]} of beer."
+    puts "Take one down and pass it around, #{bottles_num[num-1]} of beer on the wall."
+  end
+  puts "#{bottles_num[1]} of beer on the wall, #{bottles_num[1]} of beer."
+  puts "Take one down and pass it around, no more bottles of beer on the wall."
 end
