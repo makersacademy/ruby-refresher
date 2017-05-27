@@ -285,5 +285,20 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
+def ninety_nine_bottles_of_beer(num)
+  if num == 1
+    puts "1 bottle of beer on the wall, 1 bottle of beer."
+    puts "Take one down, pass it around, no more bottles of beer on the wall."
+    puts ""
+  elsif num == 0
+    puts "No more bottles of beer on the wall, no more bottles of beer."
+    puts "Go to the store and buy some more, 99 bottles of beer on the wall."
+    puts ""
+  else
+    num == 2 ? beer = 'bottle' : beer = 'bottles'
+    puts "#{num} bottles of beer on the wall, #{num} bottles of beer."
+    puts "Take one down, pass it around, #{num-1} #{beer} of beer on the wall."
+    puts ""
+  end
+  ninety_nine_bottles_of_beer(num-1) if num != 0
 end
