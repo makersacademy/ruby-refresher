@@ -35,7 +35,7 @@ describe 'the Friday test :)' do
 
   it 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
-    sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
+    sorted = n.map { |pair| pair.sort }.sort_by { |pair| [pair.first, pair.last] }
 
     expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   end
@@ -118,7 +118,7 @@ describe 'the Friday test :)' do
 
   it 'convert_array_to_a_hash' do
     n = convert_array_to_a_hash ['a', 'b', 'c', 'd']
-    expect(n).to eq({'a' => 'b', 'c' => 'd'})
+    expect(n).to eq({ 'a' => 'b', 'c' => 'd' })
   end
 
   it 'get_all_letters_in_array_of_words' do
@@ -127,12 +127,12 @@ describe 'the Friday test :)' do
   end
 
   it 'swap_keys_and_values_in_a_hash' do
-    n = swap_keys_and_values_in_a_hash({'a' => 'b', 'c' => 'd'})
-    expect(n).to eq({'b' => 'a', 'd' => 'c'})
+    n = swap_keys_and_values_in_a_hash({ 'a' => 'b', 'c' => 'd' })
+    expect(n).to eq({ 'b' => 'a', 'd' => 'c' })
   end
 
   it 'add_together_keys_and_values' do
-    n = add_together_keys_and_values({1 => 1, 2 => 2})
+    n = add_together_keys_and_values({ 1 => 1, 2 => 2 })
     expect(n).to eq 6
   end
 
@@ -218,6 +218,6 @@ describe 'the Friday test :)' do
 
   it 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
-    expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
+    expect(Hash[n.sort]).to eq({ 1 => 1, 2 => 5, 3 => 7, 4 => 12, 5 => 14, 6 => 4, 7 => 8, 8 => 6, 9 => 6, 10 => 2, 11 => 2, 12 => 3 })
   end
 end

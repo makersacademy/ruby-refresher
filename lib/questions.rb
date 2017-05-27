@@ -27,14 +27,14 @@ end
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
 # give every possible pairing - in this case:
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
-# make sure you don't have the same pairing twice, 
+# make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
   array.each_with_index.with_object([]) do |(item, index), new_array| 
     array[index + 1..-1].each{ |inner_array_item| new_array << [item, inner_array_item] }
   end
 end
 
-# discard the first 3 elements of an array, 
+# discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
   array[3..-1]
@@ -65,7 +65,7 @@ def make_numbers_negative(number)
   number < 0 ? number : number - (number * 2)
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of 
+# turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
@@ -193,7 +193,7 @@ def get_domain_name_from_email_address(email)
   email.match(/(?<=@).*(?=\.com)/)[0]
 end
 
-# capitalize the first letter in each word of a string, 
+# capitalize the first letter in each word of a string,
 #  except 'a', 'and' and 'the'
 # *unless* they come at the start of the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
@@ -217,7 +217,7 @@ def get_upper_limit_of(range)
   range.last
 end
 
-# should return true for a 3 dot range like 1...20, false for a 
+# should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
   range.include?(range.last) == false
@@ -270,7 +270,7 @@ end
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of 
+# make sure you use the singular when you have one bottle of
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
