@@ -115,7 +115,7 @@ end
 # so [10, 15, 25] should return 17
 def average_of_array(array)
   f = array.reduce(:+).to_f / array.length.to_f
-  i = f.to_i
+  i = f.floor
   f - i > 0.5 ? i + 1 : i
 end
 
@@ -124,6 +124,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+
 end
 
 # turn an array (with an even number of elements) into a hash, by
