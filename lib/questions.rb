@@ -271,6 +271,19 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  array = Array (1..100)
+  fizzbuzz_array = array.map do |i|
+    if i.modulo(15).zero?
+      "FizzBuzz"
+    elsif i.modulo(3).zero?
+      "Fizz"
+    elsif i.modulo(5).zero?
+      "Buzz"
+    else
+      i
+    end
+  end
+  fizzbuzz_array
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -279,5 +292,18 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
+def bottle_plural(n)
+  n > 1 || n == 0 ? "bottles" : "bottle"
+end
+
+def zero_to_no_more(n)
+  (n - 1) == 0 ? "no more" : (n - 1).to_s
+end
+
 def ninety_nine_bottles_of_beer
+  array = Array (1..99)
+  array.reverse.each do |n|
+    puts "#{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer on the wall, #{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer,
+    Take one down, pass it around, #{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer on the wall.".capitalize
+  end
 end
