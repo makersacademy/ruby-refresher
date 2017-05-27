@@ -275,6 +275,17 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  for integer in 1..100
+    if integer / 5.0 == integer / 5 && integer / 3.0 == integer / 3
+      puts 'Fizzbuzz'
+    elsif integer / 5.0 == integer / 5 
+      puts 'Buzz'
+    elsif integer / 3.0 == integer / 3 
+      puts 'Fizz'
+    else
+      puts integer
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -284,4 +295,13 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  bottle_number = 100
+  loop do
+    bottle_s = bottle_number == 1 ? "bottle" : "bottles"
+    puts "#{bottle_number} #{bottle_s} of beer on the wall, #{bottle_number} #{bottle_s} of beer."
+    break if bottle_number == 1
+    bottle_number -= 1
+    puts "Take one down and pass it around, #{bottle_number} #{bottle_s} of beer on the wall."
+  end
+  puts "Take one down and pass it around, no more bottles of beer on the wall."
 end
