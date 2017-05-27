@@ -106,7 +106,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'foobar'
   end
 
-  it 'average_of_array' do
+  fit 'average_of_array' do
     n = average_of_array [10, 15, 25]
     expect(n).to eq 17
   end
