@@ -283,11 +283,7 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer(num)
-  if num <= 1
-    sing_special_verse(num)
-  else
-    sing_normal_verse(num)
-  end
+  num <= 1 ? sing_special_verse(num) : sing_normal_verse(num)
   puts ""
   ninety_nine_bottles_of_beer(num - 1) if num != 0
 end
