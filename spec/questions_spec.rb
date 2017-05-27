@@ -136,7 +136,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 6
   end
 
-  fit 'remove_capital_letters_from_string' do
+  it 'remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
@@ -203,7 +203,7 @@ describe 'the Friday test :)' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  it 'is_a_2014_bank_holiday?' do
+  fit 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
