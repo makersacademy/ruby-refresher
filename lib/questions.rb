@@ -190,7 +190,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-
+  email.gsub(/.+@([^.]+).+/, '\1')
 end
 
 # capitalize the first letter in each word of a string,
@@ -210,24 +210,40 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  x = string[/[a-zA-Z0-9]+/] == string
+  !x
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !(range).cover?(range.last)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  f = File.new(file_path, 'r')
+    contents = f.read()
+    f.close()
+    spaces = contents.split(' ')
+    breaks = contents.split("\n")
+    false_doubles = contents.split(" \n")
+    double_spaces = contents.split('  ')
+    hyphens = contents.split('-')
+    false_doubles += double_spaces + hyphens
+    words = words = spaces + breaks - false_doubles
+    return words.length
 end
 
 # --- tougher ones ---
@@ -236,12 +252,18 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = [Time.new(2014, 12, 26), Time.new(2014, 12, 25),
+                   Time.new(2014, 8, 25), Time.new(2014, 5, 26),
+                   Time.new(2014, 5, 5), Time.new(2014, 4, 21),
+                   Time.new(2014, 4, 18), Time.new(2014, 1, 1)]
+  bank_holidays.include? date
 end
 
 # given your birthday this year, this method tells you
@@ -249,6 +271,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  
 end
 
 # in a file, total the number of times words of different lengths
