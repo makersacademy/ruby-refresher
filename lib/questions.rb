@@ -1,5 +1,8 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  first_letter_a = []
+  array.each { |word| first_letter_a << word if word[0] == "a" }
+  first_letter_a
 end
 
 # keep only the elements that start with a vowel
