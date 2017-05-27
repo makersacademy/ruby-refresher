@@ -7,6 +7,9 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  first_letter_vowel = []
+  array.each { |word| first_letter_vowel << word if %w(a e i o u).include?(word[0]) }
+  first_letter_vowel
 end
 
 # remove instances of nil (but NOT false) from an array
