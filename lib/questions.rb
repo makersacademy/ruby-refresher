@@ -1,4 +1,3 @@
-# keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |w|
     if w[0] == "a"
@@ -8,6 +7,19 @@ end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  # array.select! { |w|
+  # if w[0] == "a" || "o" || "i"
+  #   w
+  # end}
+  # # array.each do |w|
+  # #   if w[0] == "a"
+  # #     p w[0]
+  # #     array.push(w)
+  # #     # p array.select { w }
+  # #   end
+  # #   # p array
+  # # end
+  # p array
 end
 
 def remove_nils_from_array(array)
@@ -56,7 +68,6 @@ def all_elements_except_first_3(array)
     array
 end
 
-# add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
   array.unshift(element)
 end
@@ -113,6 +124,8 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  array2 = Array.new(array)
+  array.concat(array2)
 end
 
 def turn_symbol_into_string(symbol)
