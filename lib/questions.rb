@@ -1,22 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select { |word| word.start_with?("a") }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select { |word| word.start_with?("a", "e", "i", "o", "u") }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
+  array.compact
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
+  array.delete_if { |i| i == nil or i == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
+  array.map { |word| word.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -24,31 +29,49 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  answer = []
+  array.each_with_index do |name, i|
+    for x in i+1..array.length-1
+      answer << [name, array[x]]
+    end
+  end
+  answer
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.slice!(0..2)
+  array
 end
 
 # add an element to the beginning of an array
 def add_element_to_beginning_of_array(array, element)
+  array.insert(0, element)
 end
 
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.map! { |word| word.reverse }
+  array.sort.map { |word| word.reverse }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  target_length = string.length / 2 if string.length.even?
+  target_length = string.length / 2 + 1 if string.length.odd?
+  until string.length == target_length do string.chop!
+  end
+  string
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
+  number > 0 ? -number : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -56,6 +79,10 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  odds, evens = array.clone, array.clone
+  odds.reject! { |num| num % 2 == 0 }
+  evens.reject! { |num| num % 2 != 0 }
+  return [evens, odds]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -63,14 +90,33 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  counter = 0
+  array.each { |word| counter += 1 if word == word.reverse }
+  counter
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  shortest = 0
+  array.each do |word| if shortest.class != String
+    shortest = word
+  else
+    shortest = word if word.length < shortest.length
+  end
+end
+shortest
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  longest = 0
+  array.each do |word| if longest.class != String
+    longest = word
+  else
+    longest = word if word.length > longest.length
+  end
+end
+longest
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
