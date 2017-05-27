@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |element| /^a.*/ =~ element }
+  array.select { |element| /^a.*/ =~ element }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{ |element| /^[aeiou].*/ =~ element }
+  array.select { |element| /^[aeiou].*/ =~ element }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select{ |element| element.nil? == false }
+  array.select { |element| element.nil? == false }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{ |element| element }
+  array.select { |element| element }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.collect{ |element| element.reverse }
+  array.collect { |element| element.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -30,7 +30,7 @@ end
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
   array.each_with_index.with_object([]) do |(item, index), new_array| 
-    array[index + 1..-1].each{ |inner_array_item| new_array << [item, inner_array_item] }
+    array[index + 1..-1].each { |inner_array_item| new_array << [item, inner_array_item] }
   end
 end
 
@@ -48,7 +48,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{ |word| word[-1] }
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -70,7 +70,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.each_with_object([[],[]]) do |integer, new_arrays|
+  array.each_with_object([[], []]) do |integer, new_arrays|
     integer.even? ? new_arrays[0] << integer : new_arrays[1] << integer
   end
 end
@@ -80,24 +80,21 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  def palindrome(word)
-    if word.length < 2
-      return true
-    else
-      palindrome(word[1..-2]) if word[0] == word[-1]
-    end
+  palindrome = lambda do |word|
+    return true if word.length < 2
+    palindrome.call(word[1..-2]) if word[0] == word[-1]
   end
-  array.select{ |word| palindrome(word) }.length
+  array.select { |word| palindrome.call(word) }.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by{|word| word.length}.first
+  array.sort_by { |word| word.length }.first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort_by{|word| word.length}.last
+  array.sort_by { |word| word.length }.last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
