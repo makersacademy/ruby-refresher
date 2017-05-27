@@ -258,6 +258,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+#dates =  File.read('data/england-and-wales.ics')
 end
 
 # given your birthday this year, this method tells you
@@ -288,4 +289,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+
 end
