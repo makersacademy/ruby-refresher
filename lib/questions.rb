@@ -84,8 +84,7 @@ end
 
 def get_first_half_of_string(string)
   l = (string.length.to_f/2).ceil
-  l -= 1
-  string[0..l]
+  string[0..(l-1)]
 end
 
 def make_numbers_negative(number)
@@ -197,6 +196,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+
 end
 
 # capitalize the first letter in each word of a string,
@@ -205,6 +205,18 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  array = string.split
+  p array
+  array.each do |w|
+    w.capitalize!
+  end
+  array
+
+  # array.each do | article |
+  #   if article == "and"
+  #     article.downcase!
+  #   end
+  # end
 end
 
 # return true if a string contains any special characters
