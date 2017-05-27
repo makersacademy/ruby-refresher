@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |str| str.start_with? ('a') }
+  array.select { |str| str.start_with? 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |str| str.start_with? ('a'), ('e'), ('i'), ('o'), ('u') }
+  array.select { |str| str.start_with? 'a', 'e', 'i', 'o', 'u' }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,7 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.compact.delete_if {|str| str == false}
+  array.compact.delete_if { |str| str == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -53,7 +53,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  half = (string.size/2.to_f).ceil; string[0,half]
+  half = (string.size / 2.to_f).ceil; string[0, half]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -108,7 +108,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(&:+)/array.length.to_f).round
+  (array.inject(&:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -185,14 +185,15 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   exclusions = %w(a and the)
-  string.capitalize.split(" ").map { |word| exclusions.include?(word) ? word : word.capitalize }.join(" ")
+  title = string.capitalize.split(" ")
+  title.map { |word| exclusions.include?(word) ? word : word.capitalize }.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.include?('@')
+  /[^a-zA-Z0-9]/ =~ string ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -225,7 +226,7 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
-def call_method_from_string(str_method)
+def call_method_from_string(_str_method)
   call()
 end
 
@@ -233,7 +234,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-
+  bank_holidays_2014 = ["01/01", "18/04", "21/04", "05/05", "26/05", "25/08", "25/12", "26/12"]
+  bank_holidays_2014.include?(date.strftime("%e/%m")) ? true : false
 end
 
 # given your birthday this year, this method tells you
@@ -241,6 +243,8 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  birthday += (365 * 24 * 60 * 60) while birthday.strftime('%A') != "Friday"
+  birthday.strftime('%Y').to_i
 end
 
 # in a file, total the number of times words of different lengths
@@ -249,8 +253,8 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  file = File.open(file_path); data = file.read; file.close
-  word_count = data.gsub(',', '').gsub('.', '').split.map { |word| word.length }
+  file = File.open(file_path, 'r'); data = file.read; file.close
+  word_count = data.delete(',').delete('.').split.map { |word| word.length }
   Hash.new(0).tap { |key| word_count.each { |val| key[val] += 1 } }
 end
 
