@@ -108,7 +108,6 @@ def number_of_elements_that_are_palindromes(array)
     n
 end
 
-# return the shortest word in an array
 def shortest_word_in_array(array)
     array.min_by(&:length)
 end
@@ -130,12 +129,9 @@ def turn_symbol_into_string(symbol)
   symbol.to_s
 end
 
-# get the average from an array, rounded to the nearest integer
-# so [10, 15, 25] should return 17
 def average_of_array(array)
-  average = (array.flatten.inject(:+) / array.length).round(3)
+  average = (array.inject(:+).to_f / array.length).ceil
   p average
-  average
 end
 
 # get all the elements in an array, up until the first element
