@@ -156,10 +156,8 @@ def swap_keys_and_values_in_a_hash(hash)
   hash.invert
 end
 
-# in a hash where the keys and values are all numbers
-# add all the keys and all the values together, e.g.
-# {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  hash.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
