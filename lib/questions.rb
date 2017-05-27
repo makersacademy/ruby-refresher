@@ -96,6 +96,16 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  even = []
+  odd = []
+  array.each do | elem |
+    if elem % 2 == 0
+      even << elem
+    else
+      odd << elem
+    end
+  end
+  array = [even, odd]
 end
 
 def number_of_elements_that_are_palindromes(array)
@@ -131,7 +141,6 @@ end
 
 def average_of_array(array)
   average = (array.inject(:+).to_f / array.length).ceil
-  p average
 end
 
 def get_elements_until_greater_than_five(array)
