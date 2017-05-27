@@ -110,19 +110,17 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+    array.min_by(&:length)
 end
 
-# return the shortest word in an array
 def longest_word_in_array(array)
-
+  array.max_by(&:length)
 end
 
 def total_of_array(array)
   array.flatten.inject(:+)
 end
 
-# turn an array into itself repeated twice. So [1, 2, 3]
-# becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
   array2 = Array.new(array)
   array.concat(array2)
