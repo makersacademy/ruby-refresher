@@ -177,7 +177,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
-  date.strftime('%d/%m/%Y')
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -234,7 +234,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  self.send('str_method')
+  self.send("str_method")
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -242,7 +242,7 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   ["01/01/2014", "18/04/2014", "21/04/2014", "05/05/2014", "26/05/2014",
-    "25/08/2014", "25/12/2014", "26/12/2014"].include? date.strftime('%d/%m/%Y')
+    "25/08/2014", "25/12/2014", "26/12/2014"].include? date.strftime("%d/%m/%Y")
 end
 
 # given your birthday this year, this method tells you
@@ -250,6 +250,9 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  current_year = birthday.strftime("%Y").to_i
+  return current_year + 5 - birthday.wday if birthday.wday != 6
+  current_year + 6
 end
 
 # in a file, total the number of times words of different lengths
