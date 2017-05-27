@@ -304,5 +304,3 @@ def ninety_nine_bottles_of_beer
     " of beer on the wall.".capitalize
   end
 end
-
-ninety_nine_bottles_of_beer
