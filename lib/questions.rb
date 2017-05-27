@@ -184,7 +184,7 @@ end
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
   at_index = email.rindex("@")
-  email[at_index+1...-4]
+  email[at_index + 1...-4]
 end
 
 # capitalize the first letter in each word of a string,
@@ -233,8 +233,8 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
-def call_method_from_string(str_method)
-  self.send("str_method")
+def call_method_from_string(*)
+  send("*")
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -271,16 +271,11 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  array = Array (1..100)
-  fizzbuzz_array = array.map do |i|
-    if i.modulo(15).zero?
-      "FizzBuzz"
-    elsif i.modulo(3).zero?
-      "Fizz"
-    elsif i.modulo(5).zero?
-      "Buzz"
-    else
-      i
+  fizzbuzz_array = Array(1..100).map do |i|
+    if i.modulo(15).zero?; "FizzBuzz"
+    elsif i.modulo(3).zero?; "Fizz"
+    elsif i.modulo(5).zero?; "Buzz"
+    else; i
     end
   end
   fizzbuzz_array
@@ -293,17 +288,19 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def bottle_plural(n)
-  n > 1 || n == 0 ? "bottles" : "bottle"
+  n > 1 || n.zero? ? "bottles" : "bottle"
 end
 
 def zero_to_no_more(n)
-  (n - 1) == 0 ? "no more" : (n - 1).to_s
+  (n - 1).zero? ? "no more" : (n - 1).to_s
 end
 
 def ninety_nine_bottles_of_beer
-  array = Array (1..99)
+  array = Array(1..99)
   array.reverse.each do |n|
-    puts "#{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer on the wall, #{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer,
-    Take one down, pass it around, #{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer on the wall.".capitalize
+    puts "#{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer on the wall,"\
+    " #{zero_to_no_more(n)} #{bottle_plural(n - 1)} of beer,
+    Take one down, pass it around, #{zero_to_no_more(n)} #{bottle_plural(n - 1)}"\
+    " of beer on the wall.".capitalize
   end
 end
