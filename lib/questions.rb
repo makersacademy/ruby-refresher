@@ -72,9 +72,14 @@ def add_element_to_beginning_of_array(array, element)
   array.unshift(element)
 end
 
-# sort an array of words by their last letter, e.g.
-# ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.each do | item |
+    item.reverse!
+  end
+  array.sort!
+  array.each do | item |
+    item.reverse!
+  end
 end
 
 def get_first_half_of_string(string)
