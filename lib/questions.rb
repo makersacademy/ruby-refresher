@@ -69,7 +69,7 @@ end
 def shortest_word_in_array(array)
 end
 
-# return the longest word in an array
+# return the shortest word in an array
 def longest_word_in_array(array)
 end
 
