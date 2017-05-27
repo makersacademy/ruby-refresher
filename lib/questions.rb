@@ -125,9 +125,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(:+)/(array.length)).to_f
-  #(array.inject(:+)/(array.length).to_f).ceil
-
+  (array.inject(:+)/(array.length).to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -135,6 +133,8 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  index = array.index{|element| element>5}
+  return array.slice(0..index-1)
 end
 
 # turn an array (with an even number of elements) into a hash, by
