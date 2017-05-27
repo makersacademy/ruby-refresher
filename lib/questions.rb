@@ -77,10 +77,10 @@ end
 def array_sort_by_last_letter_of_word(array)
 end
 
-# cut strings in half, and return the first half, e.g.
-# 'banana' becomes 'ban'. If the string is an odd number of letters
-# round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
+  l = (string.length.to_f/2).ceil
+  l -= 1
+  string[0..l]
 end
 
 def make_numbers_negative(number)
@@ -91,10 +91,6 @@ def make_numbers_negative(number)
   end
 end
 
-# turn an array of numbers into two arrays of numbers, one an array of
-# even numbers, the other an array of odd numbers
-# even numbers come first
-# so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   even = []
   odd = []
