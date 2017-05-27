@@ -210,24 +210,31 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+   string.index(/[^[:alnum:]]/) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range != (1..range.max)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  words = []
+  File.open(file_path, 'r').readlines.each { |lines| words << lines.split(' ') }
+  words[0].length
 end
 
 # --- tougher ones ---
@@ -236,19 +243,35 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  call str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_hols = [
+    '2014-01-01',
+    '2014-04-18',
+    '2014-04-21',
+    '2014-05-05',
+    '2014-05-26',
+    '2014-08-25',
+    '2014-12-25',
+    '2014-12-26'
+  ]
+  bank_hols.include? date.strftime("%Y-%m-%d")
 end
 
 # given your birthday this year, this method tells you
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
+require 'date'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  find_year = birthday.year
+  find_year += 1 until Date.new(find_year, 1, 1).strftime("%A") == 'Friday'
+  find_year
 end
 
 # in a file, total the number of times words of different lengths
@@ -257,13 +280,28 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = ''
+  n = Hash.new 0
+  text = File.open(file_path, 'r')
+  text.readlines.each { |lines| words = lines.gsub!(/[.,]/,'') }
+  words.split(' ').each { |word| n[word.length] += 1 }
+  n
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each { |n| fizzbuzz(n) }
 end
+
+def fizzbuzz(number)
+  puts 'fizzbuzz' if (number.to_f / 15) == (number / 15)
+  puts 'buzz' if (number.to_f / 5) == (number / 5)
+  puts 'fizz' if (number.to_f / 3) == (number / 3)
+  puts number
+end
+
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
@@ -272,4 +310,27 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  @bottles = 99
+  @ending = 'of beer on the wall'
+  sing_song while @bottles >= 1
+  puts 'NO MORE BOTTLES OF BEER ON THE WAAAALLLLL!'
+end
+
+def sing_song
+  beginning = @bottles.to_s + ' bottle' + my_plural + ' '
+  puts beginning + @ending + ','
+  puts beginning + 'of beer.'
+  puts 'Take one down, pass it around,'
+  sing_part_two
+end
+
+def sing_part_two
+  @bottles = @bottles - 1
+  @beginning = @bottles.to_s + ' bottle' + my_plural + ' '
+  puts @beginning + @ending + '!' if @bottles > 0
+  puts nil if @bottles > 0
+end
+
+def my_plural
+  @bottles > 1 ? 's' : ''
 end
