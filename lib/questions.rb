@@ -76,7 +76,7 @@ def separate_array_into_even_and_odd_numbers(array)
   evens = []
   odds = []
   array.each { |n| (n % 2).zero? ? evens.push(n) : odds.push(n) }
-  [evens, odds]
+  return [evens, odds]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -84,9 +84,9 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  n = 0
-  array.each { |word| n += 1 if word == word.reverse }
-  n
+  palindromes = 0
+  array.each { |word| palindromes += 1 if word == word.reverse }
+  return palindromes
 end
 
 # return the shortest word in an array
@@ -152,16 +152,16 @@ end
 def swap_keys_and_values_in_a_hash(hash)
   new_hash = {}
   hash.each { |key, value| new_hash.store(value, key) }
-  new_hash
+  return new_hash
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  n = 0
-  hash.each { |key, value| n += key + value }
-  n
+  sum = 0
+  hash.each { |key, value| sum += key + value }
+  return sum
 end
 
 # take out all the capital letters from a string
@@ -210,7 +210,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-   string.index(/[^[:alnum:]]/) != nil
+  string.index(/[^[:alnum:]]/) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -250,16 +250,14 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_hols = [
-    '2014-01-01',
+  bank_hols = ['2014-01-01',
     '2014-04-18',
     '2014-04-21',
     '2014-05-05',
     '2014-05-26',
     '2014-08-25',
     '2014-12-25',
-    '2014-12-26'
-  ]
+    '2014-12-26']
   bank_hols.include? date.strftime("%Y-%m-%d")
 end
 
@@ -270,8 +268,8 @@ end
 require 'date'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   find_year = birthday.year
-  find_year += 1 until Date.new(find_year, 1, 1).strftime("%A") == 'Friday'
-  find_year
+  find_year += 1 until Date.new(find_year, birthday.month, birthday.day).strftime("%A") == 'Friday'
+  return find_year
 end
 
 # in a file, total the number of times words of different lengths
@@ -281,27 +279,24 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   words = ''
-  n = Hash.new 0
+  counts = Hash.new 0
   text = File.open(file_path, 'r')
-  text.readlines.each { |lines| words = lines.gsub!(/[.,]/,'') }
-  words.split(' ').each { |word| n[word.length] += 1 }
-  n
+  text.readlines.each { |lines| words = lines.gsub!(/[.,]/, '') }
+  words.split(' ').each { |word| counts[word.length] += 1 }
+  return counts
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  (1..100).each { |n| fizzbuzz(n) }
+  (1..100).each do |number|
+    puts 'fizzbuzz' if (number.to_f / 15) == (number / 15)
+    puts 'buzz' if (number.to_f / 5) == (number / 5)
+    puts 'fizz' if (number.to_f / 3) == (number / 3)
+    puts number
+  end
 end
-
-def fizzbuzz(number)
-  puts 'fizzbuzz' if (number.to_f / 15) == (number / 15)
-  puts 'buzz' if (number.to_f / 5) == (number / 5)
-  puts 'fizz' if (number.to_f / 3) == (number / 3)
-  puts number
-end
-
 
 # print the lyrics of the song 99 bottles of beer on the wall
 # http://www.99-bottles-of-beer.net/lyrics.html
@@ -309,6 +304,7 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
+
 def ninety_nine_bottles_of_beer
   @bottles = 99
   @ending = 'of beer on the wall'
@@ -325,7 +321,7 @@ def sing_song
 end
 
 def sing_part_two
-  @bottles = @bottles - 1
+  @bottles -= 1
   @beginning = @bottles.to_s + ' bottle' + my_plural + ' '
   puts @beginning + @ending + '!' if @bottles > 0
   puts nil if @bottles > 0
