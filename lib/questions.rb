@@ -86,10 +86,10 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min
+  array.min_by { |word| word.length }
 end
 
-# return the shortest word in an array
+# return the longest word in an array
 def longest_word_in_array(array)
 end
 
