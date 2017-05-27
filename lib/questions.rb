@@ -10,12 +10,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.reject { |item| item == nil }
+  array.reject { |item| item.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject { |item| !item }
+  array.select { |item| item }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -53,7 +53,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(str)
-  str.length.even? ? str[0, str.length/2] : str[0, str.length/2 + 1]
+  str.length.even? ? str[0, str.length / 2] : str[0, str.length / 2 + 1]
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -116,7 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while { |num| num <= 5}
+  array.take_while { |num| num <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -229,8 +229,8 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_holidays = [ "26/12", "25/12", "25/08", "26/05",
-                    "05/05", "21/04", "18/04", "01/01" ]
+  bank_holidays = ["26/12", "25/12", "25/08", "26/05",
+                    "05/05", "21/04", "18/04", "01/01"]
   bank_holidays.include?(date.strftime("%d/%m"))
 end
 
@@ -252,8 +252,8 @@ end
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
   hash, arr = {}, File.open(file_path, 'r').read.tr('.,', '').split
-  min, max = arr.min_by(&:length).length, arr.max_by(&:length).length
-  until min > max do
+  min = arr.min_by(&:length).length
+  until min > arr.max_by(&:length).length do
     hash[min] = arr.select { |word| word.length == min }.length
     min += 1
   end
@@ -265,18 +265,15 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo(fizz, buzz, fizzbuzz, count)
   if fizzbuzz == 15
-    fizzbuzz, fizz, buzz = 0, 0, 0
-    p "fizzbuzz"
+    fizzbuzz, fizz, buzz = 0, 0, 0; p "fizzbuzz"
   elsif fizz == 3
-    fizz = 0
-    p "fizz"
+    fizz = 0; p "fizz"
   elsif buzz == 5
-    buzz = 0
-    p "buzz"
+    buzz = 0; p "buzz"
   else
     p count
   end
-  fizzbuzz_without_modulo(fizz+1, buzz+1, fizzbuzz+1, count+1) if count < 100
+  fizzbuzz_without_modulo(fizz + 1, buzz + 1, fizzbuzz + 1, count + 1) if count < 100
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -286,19 +283,29 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer(num)
+  if num <= 1
+    sing_special_verse(num)
+  else
+    sing_normal_verse(num)
+  end
+  puts ""
+  ninety_nine_bottles_of_beer(num - 1) if num != 0
+end
+
+def sing_normal_verse(num)
+  num == 2 ? beer = 'bottle' : beer = 'bottles'
+  puts "#{num} bottles of beer on the wall, #{num} bottles of beer."
+  puts "Take one down, pass it around, #{num - 1} #{beer} of beer on the wall."
+end
+
+def sing_special_verse(num)
   if num == 1
     puts "1 bottle of beer on the wall, 1 bottle of beer."
     puts "Take one down, pass it around, no more bottles of beer on the wall."
-    puts ""
-  elsif num == 0
+  else
     puts "No more bottles of beer on the wall, no more bottles of beer."
     puts "Go to the store and buy some more, 99 bottles of beer on the wall."
-    puts ""
-  else
-    num == 2 ? beer = 'bottle' : beer = 'bottles'
-    puts "#{num} bottles of beer on the wall, #{num} bottles of beer."
-    puts "Take one down, pass it around, #{num-1} #{beer} of beer on the wall."
-    puts ""
   end
-  ninety_nine_bottles_of_beer(num-1) if num != 0
 end
+
+ninety_nine_bottles_of_beer(99)
