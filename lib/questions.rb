@@ -1,6 +1,6 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.each { | x | array.delete(x) if x[0] != 'a' }
+  array.select { | x |  x[0] == 'a' }
 end
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
@@ -9,7 +9,7 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.each { | x | array.delete(x) if x == nil }
+  array.select { | x | x != nil }
 end
 
 # remove instances of nil AND false from an array
@@ -28,11 +28,13 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
 # e.g. [1, 2, 3, 4, 5, 6] becomes [4, 5, 6]
 def all_elements_except_first_3(array)
+  array.drop(3)
 end
 
 # add an element to the beginning of an array
