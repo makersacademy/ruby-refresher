@@ -2,6 +2,7 @@
 def select_elements_starting_with_a(array)
   array.select { | x |  x.match(/^a/) }
 end
+
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
     array.select { | x | x.match(/^[aeoui]/) }
@@ -237,6 +238,23 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  if date == Time.new(2014,12,26)
+    true
+  elsif date == Time.new(2014,12,25)
+    true
+  elsif date == Time.new(2014,8,25)
+    true
+  elsif date == Time.new(2014,5,5)
+    true
+  elsif date == Time.new(2014,4,21)
+    true
+  elsif date == Time.new(2014,4,18)
+    true
+  elsif date == Time.new(2014,1,1)
+    true
+  else
+    false
+  end
 
 end
 
@@ -245,7 +263,13 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
-  Time.new(2017,11,24)
+  year = birthday.year
+  year.upto(2050) {
+    if Time.new(year,birthday.month,birthday.day).friday?
+      return year
+    end
+    year += 1
+  }
 end
 
 # in a file, total the number of times words of different lengths
