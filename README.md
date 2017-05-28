@@ -3,7 +3,7 @@
 A series of tests I completed to refresh my knowledge of Ruby before moving into Rails. 
 
 ## Installation
-The following assumes you have ruby installed:
+The following assumes you have Ruby installed:
 
 1. Clone the repository: `git clone git@github.com:adc17/ruby-refresher.git`.
 2. `bundle install`.
