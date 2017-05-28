@@ -221,4 +221,5 @@ describe 'the Friday test :)' do
     expect(Hash[n.sort]).to eq({ 1 => 1, 2 => 5, 3 => 7, 4 => 12, 5 => 14, 6 => 4, 7 => 8, 8 => 6, 9 => 6, 10 => 2, 11 => 2, 12 => 3 })
   end
   fizzbuzz_without_modulo
+  ninety_nine_bottles_of_beer
 end

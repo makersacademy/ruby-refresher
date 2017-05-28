@@ -1,10 +1,10 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { | x |  x[0] == 'a' }
+  array.select { | x |  x.match(/^a/) }
 end
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-    array.select { | x | /[aeoui]/.match(x[0]) }
+    array.select { | x | x.match(/^[aeoui]/) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -14,7 +14,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select { | x | x unless  x == nil || x == false}
+  array.compact.delete_if { | x | x == false}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -66,7 +66,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array = array.select { |x| x.even?  } , array.select { |x| x.odd?  }
+  array = array.select { | x | x.even?  } , array.select { | x | x.odd? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -74,18 +74,18 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array = array.each { |x| array.delete(x) if x != x.reverse }
+  array = array.each { | x | array.delete(x) if x != x.reverse }
   return array.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min {|x,y| x.size <=> y.size}
+  array.min {| x, y | x.size <=> y.size }
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max {|x,y| x.size <=> y.size}
+  array.max { | x, y | x.size <=> y.size }
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -294,5 +294,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-
+   bottles = 99
+   bottles.downto(1){
+     if bottles != 1
+       puts "#{bottles} bottles on the wall"
+     else
+       puts "#{bottles} bottle on the wall"
+     end
+     puts "Take one down, pass it around"
+     bottles -= 1
+   }
+   puts 'no more bottles of beer on the wall'
 end
