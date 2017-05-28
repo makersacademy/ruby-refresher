@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { | x |  x.match(/^a/) }
+  array.select { |x| x.match(/^a/) }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-    array.select { | x | x.match(/^[aeoui]/) }
+  array.select { |x| x.match(/^[aeoui]/) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,13 +15,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.compact.delete_if { | x | x == false}
+  array.compact.delete_if { |x| x == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each { | x | x.reverse! }
+  array.each { |x| x.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -46,7 +46,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by! { | x | x[-1] }
+  array.sort_by! { |x| x[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array = array.select { | x | x.even?  } , array.select { | x | x.odd? }
+  array = array.select { |x| x.even? }, array.select { |x| x.odd? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -75,18 +75,18 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array = array.each { | x | array.delete(x) if x != x.reverse }
+  array = array.each { |x| array.delete(x) if x != x.reverse }
   return array.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min {| x, y | x.size <=> y.size }
+  array.min_by(&:size)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max { | x, y | x.size <=> y.size }
+  array.max_by(&:size)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -117,14 +117,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
- array = array.take_while { |x| x <= 5}
+  array.take_while { |x| x <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  array =  Hash[*array.flatten(1)]
+  Hash[*array.flatten(1)]
 end
 
 # get all the letters used in an array of words and return
@@ -132,7 +132,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.map! { |x| x.split(//)}.flatten.uniq.sort
+  array.map! { |x| x.split(//) }.flatten.uniq.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -176,7 +176,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  email[/\@(.*).com/,1]
+  email[/\@(.*).com/, 1]
 end
 
 # capitalize the first letter in each word of a string,
@@ -185,10 +185,10 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize! if string.match(/^[a, the, and]/)
+  string.capitalize! if string =~ /^[a, the, and]/
   string = string.scan(/\w+/)
   string.select do |x|
-    x.capitalize! unless x.match(/a\b|the\b|and\b/)
+    x.capitalize! unless x =~ /a\b|the\b|and\b/
   end
   string.join(" ")
 end
@@ -197,7 +197,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string.match(/\W/) ? true : false
+  string =~ /\W/ ? true : false
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -230,27 +230,27 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
-def call_method_from_string(str_method)
-  self.str_method
+def call_method_from_string(_str_method)
+  str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  if date == Time.new(2014,12,26)
+  if date == Time.new(2014, 12, 26) 
     true
-  elsif date == Time.new(2014,12,25)
+  elsif date == Time.new(2014, 12, 25)
     true
-  elsif date == Time.new(2014,8,25)
+  elsif date == Time.new(2014, 8, 25)
     true
-  elsif date == Time.new(2014,5,5)
+  elsif date == Time.new(2014, 5, 5)
     true
-  elsif date == Time.new(2014,4,21)
+  elsif date == Time.new(2014, 4, 21)
     true
-  elsif date == Time.new(2014,4,18)
+  elsif date == Time.new(2014, 4, 18)
     true
-  elsif date == Time.new(2014,1,1)
+  elsif date == Time.new(2014, 1, 1)
     true
   else
     false
@@ -265,7 +265,7 @@ end
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   year = birthday.year
   year.upto(2050) {
-    if Time.new(year,birthday.month,birthday.day).friday?
+    if Time.new(year, birthday.month, birthday.day).friday?
       return year
     end
     year += 1
@@ -283,11 +283,11 @@ def count_words_of_each_length_in_a_file(file_path)
   file.each_line do |line|
     words = line.split
     words.each do |word|
-      word = word.gsub(/[,()'".]/,'')
+      word = word.gsub(/[,()'".]/, '')
       if word_count[word.length]
-       word_count[word.length] += 1
+        word_count[word.length] += 1
       else
-       word_count[word.length] = 1
+        word_count[word.length] = 1
       end
     end
   end
@@ -318,15 +318,15 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-   bottles = 99
-   bottles.downto(1){
-     if bottles != 1
-       puts "#{bottles} bottles on the wall"
-     else
-       puts "#{bottles} bottle on the wall"
-     end
-     puts "Take one down, pass it around"
-     bottles -= 1
-   }
-   puts 'no more bottles of beer on the wall'
+  bottles = 99
+  bottles.downto(1) {
+    if bottles != 1
+      puts "#{bottles} bottles on the wall"
+    else
+      puts "#{bottles} bottle on the wall"
+    end
+    puts "Take one down, pass it around"
+    bottles -= 1
+  }
+  puts 'no more bottles of beer on the wall'
 end
