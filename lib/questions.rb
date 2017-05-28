@@ -294,49 +294,69 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   holidays = [Time.new(2014, 1, 1), Time.new(2014, 4, 18), Time.new(2014, 8, 21),
-  Time.new(2014, 5, 5), Time.new(2014, 5, 26), Time.new(2014, 8, 25), Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
-  holidays.include?(date) ? true : false
-end
-
-# given your birthday this year, this method tells you
-# the next year when your birthday will fall on a friday
-# e.g. january 1st, will next be a friday in 2016
-# return the day as a capitalized string like 'Friday'
-def your_birthday_is_on_a_friday_in_the_year(birthday)
-  until birthday.friday? do
-    birthday += 31536000
+    Time.new(2014, 5, 5), Time.new(2014, 5, 26), Time.new(2014, 8, 25), Time.new(2014, 12, 25), Time.new(2014, 12, 26)]
+    holidays.include?(date) ? true : false
   end
-  birthday.year
-end
 
-# in a file, total the number of times words of different lengths
-# appear. So in a file with the text "the cat sat on the blue mat"
-# I have 5 words which are 3 letters long, 1 which is 2 letters long
-# and 1 that is 4 letters long. Return it as a hash in the format
-# word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
-def count_words_of_each_length_in_a_file(file_path)
-  words = File.read('data/lorem.txt').split(" ")
-  words.map! { |word| word.split("") }
-  words.each do |word|
-    word.delete_if { |character| [*('a'..'z'), *('0'..'9'), *('A'..'Z')].include?(character) == false }
+  # given your birthday this year, this method tells you
+  # the next year when your birthday will fall on a friday
+  # e.g. january 1st, will next be a friday in 2016
+  # return the day as a capitalized string like 'Friday'
+  def your_birthday_is_on_a_friday_in_the_year(birthday)
+    until birthday.friday? do
+      birthday += 31536000
+    end
+    birthday.year
   end
-  words.map! { |word| word.join }
-  hash = Hash.new(0)
-  words.each{|word| hash[word.length] += 1}
-  hash
-end
 
-# implement fizzbuzz without modulo, i.e. the % method
-# go from 1 to 100
-# (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
-end
+  # in a file, total the number of times words of different lengths
+  # appear. So in a file with the text "the cat sat on the blue mat"
+  # I have 5 words which are 3 letters long, 1 which is 2 letters long
+  # and 1 that is 4 letters long. Return it as a hash in the format
+  # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
+  def count_words_of_each_length_in_a_file(file_path)
+    words = File.read('data/lorem.txt').split(" ")
+    words.map! { |word| word.split("") }
+    words.each do |word|
+      word.delete_if { |character| [*('a'..'z'), *('0'..'9'), *('A'..'Z')].include?(character) == false }
+    end
+    words.map! { |word| word.join }
+    hash = Hash.new(0)
+    words.each{|word| hash[word.length] += 1}
+    hash
+  end
 
-# print the lyrics of the song 99 bottles of beer on the wall
-# http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of
-# beer on the wall, and print 'no more bottles of beer on the wall'
-# at the end.
-# (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
-end
+  # implement fizzbuzz without modulo, i.e. the % method
+  # go from 1 to 100
+  # (there's no RSpec test for this one)
+  def fizzbuzz_without_modulo
+    for i in 1..100 do
+      if i.to_f / 3.0 == i / 3 && i.to_f / 5.0 != i / 5
+        puts "fizz"
+      elsif i.to_f / 5.0 == i / 5 && i.to_f / 3.0 != i / 3
+        puts "buzz"
+      elsif i.to_f / 3.0 == i / 3 && i.to_f / 5.0 == i / 5
+        puts "fizzbuzz"
+      else
+        puts i
+      end
+    end
+  end
+
+  # print the lyrics of the song 99 bottles of beer on the wall
+  # http://www.99-bottles-of-beer.net/lyrics.html
+  # make sure you use the singular when you have one bottle of
+  # beer on the wall, and print 'no more bottles of beer on the wall'
+  # at the end.
+  # (there's no RSpec test for this one)
+  def ninety_nine_bottles_of_beer
+    num = 99
+    until num == 0
+      num == 1 ? bottles = "bottle" : bottles = "bottles"
+      puts "#{num} #{bottles} of beer on the wall, #{num} #{bottles} of beer.
+      Take one down and pass it around, #{num - 1} #{bottles} of beer on the wall."
+      num -= 1
+    end
+    puts "No more bottles of beer on the wall, no more bottles of beer.
+    Go to the store and buy some more, 99 bottles of beer on the wall."
+  end
