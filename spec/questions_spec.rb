@@ -28,7 +28,7 @@ describe 'the Friday test :)' do
     expect(n).to eq ['a', 'b', 'c']
   end
 
-  fit 'reverse_every_element_in_array' do
+  it 'reverse_every_element_in_array' do
     n = reverse_every_element_in_array ['dog', 'monkey', 'elephant']
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
@@ -157,7 +157,7 @@ describe 'the Friday test :)' do
   end
 
   it 'get_domain_name_from_email_address' do
-    n = get_domain_name_from_email_address 'alex@makersacademy.com'
+    n = get_domain_name_from_email_address 'alex.foo@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
 
@@ -203,7 +203,7 @@ describe 'the Friday test :)' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  it 'is_a_2014_bank_holiday?' do
+  fit 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
