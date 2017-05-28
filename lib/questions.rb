@@ -184,8 +184,12 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.scan(/\b[a-z][a-z]*\b/)
-
+  string.capitalize! if string.match(/^[a, the, and]/)
+  string = string.scan(/\w+/)
+  string.select do |x|
+    x.capitalize! unless x.match(/a\b|the\b|and\b/)
+  end
+  string.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -198,13 +202,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
-
+  range.end
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-
+  range.exclude_end?
 end
 
 # get the square root of a number
@@ -216,9 +220,8 @@ end
 def word_count_a_file(file_path)
   file = File.open(file_path, "r")
   file.each_line do |line|
-  return line.split(/ /).size
-end
-
+    return line.split(/ /).size
+  end
 end
 
 # --- tougher ones ---
