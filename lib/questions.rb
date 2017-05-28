@@ -11,15 +11,15 @@ def select_elements_starting_with_vowel(array)
   # if w[0] == "a" || "o" || "i"
   #   w
   # end}
-  # # array.each do |w|
-  # #   if w[0] == "a"
-  # #     p w[0]
-  # #     array.push(w)
-  # #     # p array.select { w }
-  # #   end
-  # #   # p array
-  # # end
-  # p array
+  # array.each do |w|
+  #   if w[0] == "a"
+  #     p w[0]
+  #     array.push(w)
+  #     # p array.select { w }
+  #   end
+  #   # p array
+  # end
+  p array
 end
 
 def remove_nils_from_array(array)
@@ -58,6 +58,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  array.combination(2)
 end
 
 
@@ -223,6 +224,8 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  p string =~ /[^a-zA-Z0-9]/
+  p string =~ /[a-zA-Z0-9]/
   true if string =~ /[^a-zA-Z0-9]/
 end
 
@@ -237,7 +240,7 @@ end
 def is_a_3_dot_range?(range)
 end
 
-# get the square root of a number
+
 def square_root_of(number)
   Math.sqrt(number)
 end
