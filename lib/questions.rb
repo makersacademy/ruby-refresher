@@ -1,9 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
+  array.select { |e| e[0] == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
+  array.select { |e| ['a','e','i','o','u'].include?(e[0]) }
 end
 
 # remove instances of nil (but NOT false) from an array
