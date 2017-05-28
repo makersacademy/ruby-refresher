@@ -277,7 +277,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  File.read('data/lorem.txt').split(" ").length
+  File.read(file_path).split(" ").length
 end
 
 # --- tougher ones ---
@@ -303,6 +303,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday? do
+    birthday += 31536000
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -311,6 +315,15 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = File.read('data/lorem.txt').split(" ")
+  words.map! { |word| word.split("") }
+  words.each do |word|
+    word.delete_if { |character| [*('a'..'z'), *('0'..'9'), *('A'..'Z')].include?(character) == false }
+  end
+  words.map! { |word| word.join }
+  hash = Hash.new(0)
+  words.each{|word| hash[word.length] += 1}
+  hash
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
