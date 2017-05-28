@@ -29,9 +29,7 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
-  result = []
-  array.combination(2) { |a, b| result << [a, b].sort }
-  return result
+  array.combination(2)
 end
 
 # discard the first 3 elements of an array,
@@ -134,10 +132,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  # Hash[*array.flatten(1)]
-  hash = {}
-  array.each_with_index { |e, i| next if i.odd? ; hash[array[i]] = array[i+1]}
-  hash
+  Hash[*array.flatten(1)]
 end
 
 # get all the letters used in an array of words and return
@@ -232,9 +227,7 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  File.open(file_path).each do |line|
-    return line.split.count
-  end
+  File.read(file_path).split.count
 end
 
 # --- tougher ones ---
@@ -267,6 +260,20 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  day, year = birthday.strftime("%A"), birthday.strftime("%Y").to_i
+  week_days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  index_of_friday = week_days.index("Friday")
+  index_of_day = week_days.index(day)
+  number = index_of_friday - index_of_day
+  if number == 0
+    return year + 7
+  elsif number == -1
+    return year + 6
+  elsif number == -2
+    return year + 5
+  else
+    return year + number
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -275,6 +282,12 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_sizes_array = []
+  File.read('data/lorem.txt').split(/\W+/).each { |e| word_sizes_array << e.size }
+  keys = word_sizes_array.uniq.sort
+  values = []
+  keys.each { |e| values << word_sizes_array.count(e) }
+  Hash[keys.zip(values)]
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
