@@ -10,7 +10,7 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array - [nil]
+  array.compact
 end
 
 # remove instances of nil AND false from an array
@@ -67,6 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  array.partition { |e| e.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
