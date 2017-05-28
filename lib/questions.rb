@@ -228,6 +228,7 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+
 end
 
 # should return true for a 3 dot range like 1...20, false for a
@@ -241,6 +242,10 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, "r")
+  data = file.read
+  file.close
+  data.split.size
 end
 
 # --- tougher ones ---
