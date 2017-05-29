@@ -282,10 +282,9 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
-  word_sizes_array = []
+  word_sizes_array, values = [], []
   File.read('data/lorem.txt').split(/\W+/).each { |e| word_sizes_array << e.size }
   keys = word_sizes_array.uniq.sort
-  values = []
   keys.each { |e| values << word_sizes_array.count(e) }
   Hash[keys.zip(values)]
 end
@@ -294,6 +293,17 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100) do |i|
+    if (i - (i / 15) * 15) == 0
+      puts "FizzBuzz"
+    elsif (i - (i / 5) * 5) == 0
+      puts "Buzz"
+    elsif (i - (i / 3) * 3) == 0
+      puts "Fizz"
+    else
+      puts i
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -302,5 +312,26 @@ end
 # beer on the wall, and print 'no more bottles of beer on the wall'
 # at the end.
 # (there's no RSpec test for this one)
+
+def print_stanza(n)
+  if n.zero?
+    puts "No more bottles of beer on the wall,"  ,
+         "no more bottles of beer." , 
+         "Go to the store and buy some more."
+  else
+    puts "#{n} #{bottle n} of beer on the wall," ,
+          "#{n} #{bottle n} of beer," ,
+          "Take one down, pass it around," ,
+          "#{n - 1} #{bottle n-1} of beer on the wall."
+  end
+end
+
+def bottle(n)
+  if n == 1 then 'bottle' else 'bottles' end
+end
+  
 def ninety_nine_bottles_of_beer
+  99.downto 0 do |i|
+    print_stanza i
+  end
 end
