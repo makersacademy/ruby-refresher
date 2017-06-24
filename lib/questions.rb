@@ -223,6 +223,8 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  lines = File.readlines(file_path)
+  lines.join.split.size
 end
 
 # --- tougher ones ---
