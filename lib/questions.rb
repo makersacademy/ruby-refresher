@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |elem| elem[0] == 'a' }
+  array.select { |elem| elem[0] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{ |elem| elem[0] =~ /[aeiou]/ }
+  array.select { |elem| elem[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select{ |elem| elem != nil }
+  array.select { |elem| !elem.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select{ |elem| !!elem != false }
+  array.select { |elem| !!elem != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.each{ |elem| elem.reverse! }
+  array.each { |elem| elem.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -45,7 +45,7 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{ |elem| elem[-1] }
+  array.sort_by { |elem| elem[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition{ |num| num.even? }
+  array.partition { |num| num.even? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -77,18 +77,18 @@ end
 def number_of_elements_that_are_palindromes(array)
   array.select do |elem|
     len = elem.length / 2
-    elem[0..len] == elem[-len-1..-1].reverse
+    elem[0..len] == elem[-len - 1..-1].reverse
   end.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min{ |a, b| a.size <=> b.size }
+  array.min { |a, b| a.size <=> b.size }
 end
 
 # return the longest word in an array
 def longest_word_in_array(array)
-  array.max{ |a, b| a.size <=> b.size }
+  array.max { |a, b| a.size <=> b.size }
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -119,8 +119,8 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  index = array.detect{ |i| array[i] > 5 }
-  array.slice(0..index-1)
+  index = array.detect { |i| array[i] > 5 }
+  array.slice(0..index - 1)
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -135,6 +135,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+
 end
 
 # swap the keys and values in a hash. e.g.
