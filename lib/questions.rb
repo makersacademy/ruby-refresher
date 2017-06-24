@@ -111,6 +111,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  (array.reduce(:+) / array.size.to_f).ceil
 end
 
 # get all the elements in an array, up until the first element
