@@ -155,7 +155,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.split(" ").map{ |s| s.tr("A-Z", "") }.join(" ")
+  string.split(" ").map { |s| s.tr("A-Z", "") }.join(" ")
 end
 
 # round up a float up and convert it to an Integer,
@@ -188,6 +188,14 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  exclusion = ['the', 'a', 'and', 'or', 'for', 'from', 'to']
+  string.capitalize.split(" ").map do |word|
+    if exclusion.include?(word)
+      word
+    else
+      word.capitalize
+    end
+  end.join(" ")
 end
 
 # return true if a string contains any special characters
