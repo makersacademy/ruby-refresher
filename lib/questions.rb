@@ -11,12 +11,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.reject { |element| element == nil }
+  array.reject { |element| element.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject { |element| !element }
+  array.select { |element| element }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -60,7 +60,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number > 0 ? ( -1 * number ) : number
+  number.positive? ? ( -1 * number ) : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -68,8 +68,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  result = [] << array.select { |element| element % 2 == 0 }
-  result << array.select { |element| element % 2 != 0 }
+  result = [] << array.select { |element| (element % 2).zero? }
+  result << array.reject { |element| (element % 2).zero? }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -78,9 +78,7 @@ end
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
   count = 0
-  array.each.with_index do |word, index|
-    count += 1 if word == word.reverse
-  end
+  array.each { |word| count += 1 if word == word.reverse }
   count
 end
 
@@ -235,15 +233,13 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-  count = 0
+  word_count = 0
   file = File.open(file_path, 'r')
   file.each_line do |line|
-    line.split(' ').each do |word|
-      count += 1
-    end
+    line.split(' ').each { word_count += 1 }
   end
   file.close
-  count
+  word_count
 end
 
 # --- tougher ones ---
@@ -260,14 +256,14 @@ end
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
   require 'date'
-  bank_holidays = [ ["26/12/2014", 'Boxing Day'],
-                    ["25/12/2014", "Christmas Day"],
-                    ["25/08/2014", "Summer bank holiday"],
-                    ["26/05/2014", "Spring bank holiday"],
-                    ["05/05/2014", "Early May bank holiday"],
-                    ["21/04/2014", "Easter Monday"],
-                    ["18/04/2014", "Good Friday"],
-                    ["01/01/2014", "New Year’s Day"]
+  bank_holidays = [["26/12/2014", 'Boxing Day'],
+                   ["25/12/2014", "Christmas Day"],
+                   ["25/08/2014", "Summer bank holiday"],
+                   ["26/05/2014", "Spring bank holiday"],
+                   ["05/05/2014", "Early May bank holiday"],
+                   ["21/04/2014", "Easter Monday"],
+                   ["18/04/2014", "Good Friday"],
+                   ["01/01/2014", "New Year’s Day"]
                   ]
   bank_holidays.map! { |holiday| Date.parse(holiday[0]) }
   bank_holidays.include?(date.to_date)
