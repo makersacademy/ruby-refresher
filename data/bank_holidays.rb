@@ -1,4 +1,4 @@
-@bank_holidays = [ ["26/12/2014", 'Boxing Day'],
+@bank_holidays = [["26/12/2014", 'Boxing Day'],
                   ["25/12/2014", "Christmas Day"],
                   ["25/08/2014", "Summer bank holiday"],
                   ["26/05/2014", "Spring bank holiday"],
