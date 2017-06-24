@@ -191,6 +191,10 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  articles = ['a', 'and', 'the']
+  string.split.each_with_index.map do |word, index|
+    index > 0 && articles.include?(word) ? word : word.capitalize!
+  end.join(' ')
 end
 
 # return true if a string contains any special characters
