@@ -188,7 +188,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  exclusion = ['the', 'a', 'and', 'or', 'for', 'from', 'to']
+  exclusion = %w(the a and or for from to in into)
   string.capitalize.split(" ").map do |word|
     if exclusion.include?(word)
       word
