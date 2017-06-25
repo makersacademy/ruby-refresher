@@ -262,7 +262,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  1.upto(20) do |x|
+  1.upto(100) do |x|
     if (x / 3.0).to_i == (x / 3.0) && (x / 5.0).to_i == (x / 5.0)
       puts " #{x} fizzbuzz"
       next
@@ -282,4 +282,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+
 end
