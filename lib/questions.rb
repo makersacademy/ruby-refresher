@@ -83,6 +83,9 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  even = array.select { |num| num.even? }
+  odd = array.select { |num| num.odd? }
+  [even, odd]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -90,33 +93,47 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  count = []
+  array.map { |word| count << 1 if word == word.reverse }
+  count.length
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
+  array.min {|a, b| a.length <=> b.length}
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.max {|a, b| a.length <=> b.length}
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.reduce(:+)
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  new_array = []
+  2.times do
+    array.each { |num| new_array.push(num) }
+  end
+  new_array
 end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
+  average = array.inject{ |sum, el| sum + el }.to_f / array.length
+  average.round
 end
 
 # get all the elements in an array, up until the first element
@@ -124,12 +141,14 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  array.take_while { |num| num < 6 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
+  array.each_slice(2).to_h
 end
 
 # get all the letters used in an array of words and return
@@ -137,43 +156,54 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.join.split('').sort
 end
 
 # swap the keys and values in a hash. e.g.
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
+  (hash.keys + hash.values).inject(:+)
 end
 
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
+#TODO come back to this & finish up
 def remove_capital_letters_from_string(string)
+  string = string.each_char {|char| string.delete char if char == char.upcase }
+  string
 end
 
 # round up a float up and convert it to an Integer,
 # so 3.214 becomes 4
 def round_up_number(float)
+  float.ceil
 end
 
 # round down a float up and convert it to an Integer,
 # so 9.52 becomes 9
 def round_down_number(float)
+  float.floor
 end
 
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
+#TODO come back to this & complete it
 def get_domain_name_from_email_address(email)
+  email.gsub(/^@\./, '')
 end
 
 # capitalize the first letter in each word of a string,
@@ -182,6 +212,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  # array = string.chars
 end
 
 # return true if a string contains any special characters
