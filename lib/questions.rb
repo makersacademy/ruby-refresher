@@ -62,7 +62,7 @@ end
 def make_numbers_negative(number)
   number < 0? number : -number
 end
-
+#
 # 12 - turn an array of numbers into two arrays of numbers, one an array of
 # even numbers, the other an array of odd numbers
 # even numbers come first
@@ -250,7 +250,7 @@ def word_count_a_file(file_path)
 end
 
 # --- tougher ones ---
-
+#
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
