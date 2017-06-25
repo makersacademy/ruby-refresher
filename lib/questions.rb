@@ -220,13 +220,13 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
-count = 0
-file = File.open(file_path, 'r')
-file.each_line do |line|
-  count += line.split(' ').count
-end
-file.close
-count
+  count = 0
+  file = File.open(file_path, 'r')
+  file.each_line do |line|
+    count += line.split(' ').count
+  end
+  file.close
+  count
 end
 
 # --- tougher ones ---
@@ -242,15 +242,15 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_holidays = [Time.new(2014,12,26),
-                   Time.new(2014,12,25),
-                   Time.new(2014,8,25),
-                   Time.new(2014,5,26),
-                   Time.new(2014,5,5),
-                   Time.new(2014,4,21),
-                   Time.new(2014,4,18),
-                   Time.new(2014,1,1)]
-bank_holidays.include?(date)
+  bank_holidays = [Time.new(2014, 12, 26),
+                   Time.new(2014, 12, 25),
+                   Time.new(2014, 8, 25),
+                   Time.new(2014, 5, 26),
+                   Time.new(2014, 5, 5),
+                   Time.new(2014, 4, 21),
+                   Time.new(2014, 4, 18),
+                   Time.new(2014, 1, 1)]
+  bank_holidays.include?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -285,14 +285,14 @@ def isdivisibleby3?(number)
   while number > 0
     number -= 3
   end
-  number == 0
+  number.zero?
 end
 
 def isdivisibleby5?(number)
   while number > 0
     number -= 5
   end
-  number == 0
+  number.zero?
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
