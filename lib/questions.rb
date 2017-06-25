@@ -132,7 +132,8 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  array.map {|i| Hash[array[i].zip(array[i+2])]}
+  # array.map {|i| Hash[array[i].zip(array[i+2])]}
+  Hash[*array]
 end
 
 # get all the letters used in an array of words and return
@@ -198,9 +199,14 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   # splstring = string.split
-  # splstring.each {|word| word.capitalize unless splstring.include?['a', 'and', 'the']}
-  # splstring.map(&:capitalize).join(' ')
-  # unless string.start_with?("a", 'and', 'the')
+  # articles = ['a', 'and', 'the']
+  # splstring.each {|word| word.capitalize! unless articles.include?(word)}
+  # # splstring.map(&:capitalize).join(' ')
+  # # unless splstring[0].include?(articles)
+  #
+  #   splstring[0].capitalize!
+  # end
+  # return splstring.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -288,5 +294,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-# end
+
 end
