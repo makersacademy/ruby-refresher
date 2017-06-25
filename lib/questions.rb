@@ -270,31 +270,8 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
+
 def fizzbuzz_without_modulo
-  counter = 0
-  fizz = 0
-  buzz = 0
-  fizzbuzz = 0
-  if fizzbuzz == 15
-    print("fizzbuzz ")
-    fizzbuzz = 0
-    fizz = 0
-    buzz = 0
-  elsif fizz == 3
-    print("fizz ")
-    fizz = 0
-  elsif buzz == 5
-    print("buzz ")
-    buzz = 0
-  else
-    print(counter, " ")
-  end
-  until counter == 100
-    fizz += 1
-    buzz += 1
-    fizzbuzz += 1
-    counter += 1
-  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -308,15 +285,15 @@ def bottle_plural(num)
 end
 
 def num_of_bottles(num)
-    (num - 1).zero? ? "no more" : (num -1).to_s
+  (num - 1).zero? ? "no more" : (num - 1).to_s
 end
 
 def ninety_nine_bottles_of_beer
   array = Array(1..99)
   array.reverse.each do |num|
-    puts "#{num_of_bottles(num)} #{bottle_plural(num-1)} of beer on the wall,"\
-    "#{num_of_bottles(num)} #{bottle_plural(num-1)} of beer,
-    Take one down and pass it around, #{num_of_bottles(num-1)} #{bottle_plural(num-1)}"\
+    puts "#{num_of_bottles(num)} #{bottle_plural(num - 1)} of beer on the wall,"\
+    "#{num_of_bottles(num)} #{bottle_plural(num - 1)} of beer,
+    Take one down and pass it around, #{num_of_bottles(num - 1)} #{bottle_plural(num - 1)}"\
     " of beer on the wall.".capitalize
   end
 end
