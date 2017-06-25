@@ -141,7 +141,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  array.split
+  array.map {|word| word.each_char.sort}.flatten.sort
 end
 
 # swap the keys and values in a hash. e.g.
@@ -198,15 +198,13 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  # splstring = string.split
-  # articles = ['a', 'and', 'the']
-  # splstring.each {|word| word.capitalize! unless articles.include?(word)}
-  # # splstring.map(&:capitalize).join(' ')
-  # # unless splstring[0].include?(articles)
-  #
-  #   splstring[0].capitalize!
-  # end
-  # return splstring.join(' ')
+  splstring = string.split
+  articles = ['a', 'and', 'the']
+  splstring.each {|word| word.capitalize! unless articles.include?(word)}
+  if articles.include?(splstring[0])
+    splstring[0].capitalize!
+  end
+  return splstring.join(' ')
 end
 
 # return true if a string contains any special characters
