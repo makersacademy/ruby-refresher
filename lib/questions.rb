@@ -256,7 +256,24 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(number)
+  return 'fizzbuzz' if (isdivisibleby3?(number) && isdivisibleby5?(number))
+  return 'fizz' if isdivisibleby3?(number)
+  return 'buzz' if isdivisibleby5?(number)
+end
+
+def isdivisibleby3?(number)
+  while number > 0
+    number -= 3
+  end
+  number == 0
+end
+
+def isdivisibleby5?(number)
+  while number > 0
+    number -= 5
+  end
+  number == 0
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
