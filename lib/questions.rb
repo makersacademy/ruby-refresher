@@ -31,13 +31,8 @@ end
 # give every possible pairing - in this case:
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
-# TODO return to sort these
 def every_possible_pairing_of_students(array)
-  # array_length = array.length - 1
-  # result = []
-  # pair = array(0...array_length).each_slice(2) { |a,b| result [a,b] }
-
-  # array.map(2) {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
+  array.combination(2).to_a
 end
 
 # discard the first 3 elements of an array,
@@ -177,8 +172,9 @@ end
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 #TODO come back to this & finish up
 def remove_capital_letters_from_string(string)
-  string = string.each_char {|char| string.delete char if char == char.upcase }
-  string
+  string.tr("A-Z", "")
+  # string = string.each_char {|char| string.delete char if char == char.upcase }
+  # string
 end
 
 # round up a float up and convert it to an Integer,
@@ -211,32 +207,52 @@ end
 # *unless* they come at the start of the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
+#TODO create a more elegant solution
 def titleize_a_string(string)
-  # array = string.chars
+  array = string.split
+  new_array = []
+  array.each_with_index do |word, index|
+    if index == 0
+      new_array << word.capitalize
+    elsif word != 'a' && word != 'and' && word != 'the'
+      new_array << word.capitalize
+    else
+      new_array << word
+    end
+  end
+  new_array.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
+#TODO come back to this & complete
 def check_a_string_for_special_characters(string)
+  string.chars.any? { |char| char =~ /[^a-zA-Z0-9]/ }
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
+#TODO come back to this one to complete
 def word_count_a_file(file_path)
+  # count = 0
+  # File.open(file_path) {|f| count = f.read.count("\n")}
 end
 
 # --- tougher ones ---
@@ -245,12 +261,16 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  str_method()
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = { boxing_day: Time.new(2014, 12, 26), christmas: Time.new(2014, 12, 25), summer: Time.new(2014, 8, 25), spring: Time.new(2014, 5, 26), may: Time.new(2014, 5, 5), easter: Time.new(2014, 4, 21), good_friday: Time.new(2014, 4, 18), new_year: Time.new(2014, 1, 1) }
+
+  bank_holidays.has_value?(date)
 end
 
 # given your birthday this year, this method tells you
@@ -258,27 +278,34 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  (birthday.year..birthday.year + 15).each do |year|
+    return year if Time.new(year, birthday.month, birthday.day).friday?
+  end
 end
 
-# in a file, total the number of times words of different lengths
-# appear. So in a file with the text "the cat sat on the blue mat"
-# I have 5 words which are 3 letters long, 1 which is 2 letters long
-# and 1 that is 4 letters long. Return it as a hash in the format
-# word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
-def count_words_of_each_length_in_a_file(file_path)
-end
+  # in a file, total the number of times words of different lengths
+  # appear. So in a file with the text "the cat sat on the blue mat"
+  # I have 5 words which are 3 letters long, 1 which is 2 letters long
+  # and 1 that is 4 letters long. Return it as a hash in the format
+  # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
+  def count_words_of_each_length_in_a_file(file_path)
+  end
 
-# implement fizzbuzz without modulo, i.e. the % method
-# go from 1 to 100
-# (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
-end
+  # implement fizzbuzz without modulo, i.e. the % method
+  # go from 1 to 100
+  # (there's no RSpec test for this one)
+  def fizzbuzz_without_modulo
 
-# print the lyrics of the song 99 bottles of beer on the wall
-# http://www.99-bottles-of-beer.net/lyrics.html
-# make sure you use the singular when you have one bottle of
-# beer on the wall, and print 'no more bottles of beer on the wall'
-# at the end.
-# (there's no RSpec test for this one)
-def ninety_nine_bottles_of_beer
-end
+    before do
+      
+    end
+  end
+
+  # print the lyrics of the song 99 bottles of beer on the wall
+  # http://www.99-bottles-of-beer.net/lyrics.html
+  # make sure you use the singular when you have one bottle of
+  # beer on the wall, and print 'no more bottles of beer on the wall'
+  # at the end.
+  # (there's no RSpec test for this one)
+  def ninety_nine_bottles_of_beer
+  end

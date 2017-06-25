@@ -34,8 +34,7 @@ describe 'the Friday test :)' do
     expect(n).to eq ['god', 'yeknom', 'tnahpele']
   end
 
-  # TODO return to complete this one
-  xit 'every_possible_pairing_of_students' do
+  it 'every_possible_pairing_of_students' do
     n = every_possible_pairing_of_students(['Bob', 'Dave', 'Clive']) || []
     sorted = n.map {|pair| pair.sort}.sort_by {|pair| [pair.first, pair.last] }
 
@@ -139,7 +138,7 @@ describe 'the Friday test :)' do
   end
 
   #TODO come back to this
-  xit 'remove_capital_letters_from_string' do
+  it 'remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
@@ -159,18 +158,18 @@ describe 'the Friday test :)' do
     expect(n).to eq '31/10/2013'
   end
 
-  #TODO come back to this one 
-  xit 'get_domain_name_from_email_address' do
+  it 'get_domain_name_from_email_address' do
     n = get_domain_name_from_email_address 'alex@makersacademy.com'
     expect(n).to eq 'makersacademy'
   end
 
-  xit 'titleize_a_string' do
+  it 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
 
-  xit 'check_a_string_for_special_characters' do
+  #TODO return to this to complete
+  it 'check_a_string_for_special_characters' do
     a = check_a_string_for_special_characters 'ABCdef123'
     b = check_a_string_for_special_characters 'ABC@def123!'
 
@@ -178,12 +177,12 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  xit 'get_upper_limit_of' do
+  it 'get_upper_limit_of' do
     n = get_upper_limit_of 1..20
     expect(n).to eq 20
   end
 
-  xit 'is_a_3_dot_range?' do
+  it 'is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 
@@ -191,23 +190,24 @@ describe 'the Friday test :)' do
     expect(b).to be true
   end
 
-  xit 'square_root_of' do
+  it 'square_root_of' do
     a = square_root_of 9
     b = square_root_of 3
     expect(a).to eq 3.0
     expect(b).to eq 1.7320508075688772
   end
 
-  xit 'word_count_a_file' do
+  #TODO come back to complete
+  it 'word_count_a_file' do
     n = word_count_a_file 'data/lorem.txt'
     expect(n).to eq 70
   end
 
-  xit 'call_method_from_string' do
+  it 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  xit 'is_a_2014_bank_holiday?' do
+  it 'is_a_2014_bank_holiday?' do
     a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
     b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
@@ -215,13 +215,20 @@ describe 'the Friday test :)' do
     expect(b).to be false
   end
 
-  xit 'your_birthday_is_on_a_friday_in_the_year' do
+  it 'your_birthday_is_on_a_friday_in_the_year' do
     n = your_birthday_is_on_a_friday_in_the_year(Time.new(2013, 1, 1))
     expect(n).to eq 2016
   end
 
-  xit 'count_words_of_each_length_in_a_file' do
+  it 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3})
+  end
+
+  it 'fizzbuzz_without_modulo(number)' do
+    expect(fizzbuzz_without_modulo(15)).to eq "fizzbuzz"
+    expect(fizzbuzz_without_modulo(3)).to eq "fizz"
+    expect(fizzbuzz_without_modulo(5)).to eq "buzz"
+    expect(fizzbuzz_without_modulo(2)).to eq "2"
   end
 end
