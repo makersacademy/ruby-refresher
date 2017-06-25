@@ -1,30 +1,30 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |element| element[0] == 'a'}
+  array.select { |element| element[0] == 'a' }
 
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |element| element[0] == 'a' || element[0] == 'e' || element[0] == 'i' || element[0] == 'o'|| element[0] == 'u'}
+  array.select { |element| element[0] == 'a' || element[0] == 'e' || element[0] == 'i' || element[0] == 'o'|| element[0] == 'u' }
 
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select { |element| element != nil }
+  array.reject{ |element| element == nil }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  newarray = array.select {|element| element !=nil}
-  newarray.select {|element| element !=false}
+  newarray = array.select {|element| element != nil }
+  newarray.select {|element| element != false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map { |element| element.reverse!}
+  array.map { |element| element.reverse! }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -49,15 +49,15 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by{|word| word[-1] }
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  if string.length%2 == 0
-    string[0..string.length/2 -1]
+  if (string.length % 2).zero?
+    string[0..string.length/2 - 1]
   else
     string[0..string.length/2]
   end
@@ -75,8 +75,8 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  even = array.select { |element| element%2==0 }
-  odd = array.select { |element| element%2==1 }
+  even = array.select { |element| (element % 2).zero? }
+  odd = array.select { |element| element % 2 == 1 }
   [even, odd]
 
 end
@@ -86,24 +86,24 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-array.count {|element| element == element.reverse}
+  array.count { |element| element == element.reverse }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by{|s| s.length }[0]
+  array.sort_by { |s| s.length }[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.sort_by{|s| s.length }[-1]
+  array.sort_by { |s| s.length }[-1]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
   results = 0
-  array.each{ |element| results += element }
+  array.each { |element| results += element }
   results
 end
 
@@ -129,9 +129,9 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-   last_result = array.select { |element| element > 5 } [0]
-   end_index = array.index(last_result) -1
-   array[0..end_index]
+  last_result = array.select { |element| element > 5 } [0]
+  end_index = array.index(last_result) - 1
+  array[0..end_index]
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -146,9 +146,9 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
-  results =[]
-  array.each { |element| results.push(element.split(''))}
-  results.flatten.sort_by{|s| s }
+  results = []
+  array.each { |element| results.push(element.split('')) }
+  results.flatten.sort_by { |s| s }
 end
 
 # swap the keys and values in a hash. e.g.
@@ -163,7 +163,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   count = 0
-  hash.each {|key, value| count += key + value}
+  hash.each { |key, value| count += key + value}
   count
 end
 
@@ -208,7 +208,7 @@ end
 def titleize_a_string(string)
   result = []
   string.split(' ').each_with_index { |element, index|
-    if index == 0
+    if index.zero?
       result.push(element.capitalize)
     elsif element == 'the' || element == 'a' || element == 'and'
       result.push(element)
@@ -223,7 +223,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  string!= string.gsub(/\W+/, '')
+  string != string.gsub(/\W+/, '')
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -247,7 +247,7 @@ end
 # count the number of words in a file
 def word_count_a_file(file_path)
   count = 0
-  File.open(file_path).each {|line|
+  File.open(file_path).each { |line|
     count += line.split(' ').count
   }
   count
@@ -266,7 +266,7 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
-  bank_holidays = [Time.new(2014,1,1), Time.new(2014,5,18), Time.new(2014,5,21), Time.new(2014,6,5), Time.new(2014,6,26), Time.new(2014,8,25), Time.new(2014,12,25), Time.new(2014,12,26)]
+  bank_holidays = [Time.new(2014, 1, 1), Time.new(2014, 5, 18), Time.new(2014, 5, 21), Time.new(2014, 6, 5), Time.new(2014, 6, 26), Time.new(2014, 8, 25), Time.new(2014, 12, 25), Time.new(2014, 12, 25)]
   bank_holidays.include?(date)
 end
 
@@ -298,14 +298,14 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   for i in 1..100 do
-    if (i/3)*3 == i &&  (i/5)*5 == i
+    if (i / 3) * 3 == i && (i / 5) * 5 == i
       p 'FizzBuzz'
-    elsif (i/3)*3 == i
+    elsif (i / 3) * 3 == i
       p 'Fizz'
-    elsif (i/5)*5 == i
+    elsif (i / 5) * 5 == i
       p 'Buzz'
     else
-    p i
+      p i
     end
   end
 end
@@ -319,10 +319,10 @@ fizzbuzz_without_modulo()
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
-  bottles = lambda {|n|
+  bottles = lambda { |n|
     if n == 1
       "#{n} bottle"
-    elsif n == 0
+    elsif n.zero?
       "no bottles"
     else
       "#{n} bottles"
@@ -330,14 +330,12 @@ def ninety_nine_bottles_of_beer
   }
 
   99.downto(1) do |n|
-
-  puts"#{bottles[n]} of beer on the wall
-  #{bottles[n]} of beer "
-  puts " "
-  puts "Take one down, pass it around
-  #{bottles[n - 1]} of beer on the wall"
-  puts ' '
+    puts"#{bottles[n]} of beer on the wall
+    #{bottles[n]} of beer "
+    puts " "
+    puts "Take one down, pass it around
+    #{bottles[n - 1]} of beer on the wall"
+    puts ' '
   end
-
 end
 ninety_nine_bottles_of_beer()
