@@ -203,6 +203,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  string.index( /[^[:alnum:]]/ ) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -276,7 +277,7 @@ def count_words_of_each_length_in_a_file(file_path)
       words[w.length] += 1
     end
   end
-  words.sort_by { |length, count| length }
+  words.sort_by { |length, _| length }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
