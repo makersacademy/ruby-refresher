@@ -2,13 +2,13 @@ require 'net/http'
 require 'date'
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |element| element if element.chars.first == 'a' }
+  array.select { |element| element.chars.first == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  vowels = ['a','e','i','o','u']
-  array.select { |element| element if vowels.include?(element.chars.first) }
+  vowels = ['a', 'e', 'i', 'o', 'u']
+  array.select { |element| vowels.include?(element.chars.first) }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -18,7 +18,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select { |element| element unless element == false }
+  array.reject { |element| element.nil? or !element}
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -49,21 +49,21 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by {|word| word.chars.last}
+  array.sort_by { |word| word.chars.last }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  half_point_of_string_rounded_up = (string.length/2.0).ceil
-  string[0,half_point_of_string_rounded_up]
+  half_point_of_string_rounded_up = (string.length / 2.0).ceil
+  string[0, half_point_of_string_rounded_up]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  -(number.abs)
+  -number.abs
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -81,19 +81,17 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.count {|element| element == element.reverse }
+  array.count { |element| element == element.reverse }
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  sorted_array = array.sort_by(&:length)
-  sorted_array.first
+  array.sort_by(&:length).first
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  sorted_array = array.sort_by(&:length)
-  sorted_array.last
+  array.sort_by(&:length).last
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -105,7 +103,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  array += array
+  array + array
 end
 
 # convert a symbol into a string
@@ -160,7 +158,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub(/[A-Z]/,'')
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -232,7 +230,7 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
-def call_method_from_string(str_method)
+def call_method_from_string(_str_method)
   do_str_method()
 end
 
