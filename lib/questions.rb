@@ -233,7 +233,13 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
+class FooBar
+  def str_method; end
+end
+
 def call_method_from_string(str_method)
+  el = FooBar.new
+  el.send(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
