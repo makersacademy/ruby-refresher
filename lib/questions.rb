@@ -65,7 +65,8 @@ end
 def make_numbers_negative(number)
   if number < 0
     return number
-  else number * -1
+  else
+    number * -1
   end
 end
 
@@ -196,9 +197,10 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.split.map(&:capitalize).join(' ')
-  unless string.start_with?("a", 'and', 'the')
-  end
+  # splstring = string.split
+  # splstring.each {|word| word.capitalize unless splstring.include?['a', 'and', 'the']}
+  # splstring.map(&:capitalize).join(' ')
+  # unless string.start_with?("a", 'and', 'the')
 end
 
 # return true if a string contains any special characters
@@ -217,14 +219,24 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  if range.include?(range.last)
+    return false
+  else
+    true
+  end
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  file = File.open(file_path, 'r')
+  array_of_words = []
+  file.each_line {|line| array_of_words << line}
+  array_of_words.first.split(' ').count
 end
 
 # --- tougher ones ---
@@ -233,12 +245,14 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  obj.public_send(str_method) if obj.respond_to? str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
 end
 
 # given your birthday this year, this method tells you
@@ -246,6 +260,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+
 end
 
 # in a file, total the number of times words of different lengths
@@ -254,6 +269,10 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_count = Hash.new
+  file = File.open(file_path, 'r')
+  word_count.sort {|a,b| a[1] <=> b[1]}.each do |key,value|
+  end
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -269,4 +288,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+# end
 end
