@@ -190,7 +190,8 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   str = string.split
-  str = str.map.with_index { |x, i| ((x == 'a' || x == 'the' || x == 'and') && i != 0) ? x : x.capitalize }
+  exceptions = ['a', 'the', 'and']
+  str = str.map.with_index { |x, i| exceptions.include?(x) && i != 0 ? x : x.capitalize }
   str.join(' ')
 end
 
@@ -198,7 +199,7 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  !!(string =~ /[^A-Za-z0-9]/)
+  (string =~ /[^A-Za-z0-9]/) != nil
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -307,16 +308,15 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   count = 99
-  res = ''
-  while count > 0
-    p "#{verse(count)}, #{count} #{bottle(count)} of beer."
+  while count.positive?
+    p "#{verse(count)} of beer on the wall, #{count} #{bottle(count)} of beer."
     count -= 1
     p "Take one down and pass it around, #{verse(count)}."
   end
 end
 
 def verse(count)
-  count.positive? ? "#{count} #{bottle(count)} of beer on the wall" : " #{bottle(count)} of beer on the wall"
+  count.positive? ? "#{count} #{bottle(count)}" : "#{bottle(count)}"
 end
 
 def bottle(count)
