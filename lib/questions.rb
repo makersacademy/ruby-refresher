@@ -1,21 +1,21 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select{ |element| element[0] == 'a' }
+  array.select { |element| element[0] == 'a' }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select{ |word| word[0] =~ /[aeiou]/ }
+  array.select { |word| word[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.delete_if { |element| element == nil }
+  array.delete_if { |element| element.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-    array.delete_if { |element| element == nil || element == false }
+  array.delete_if { |element| element.nil? || element == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -53,7 +53,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  half = string.length/2
+  half = string.length / 2
   string.length.even? ? string[0..half - 1] : string[0..half]
 end
 
@@ -69,8 +69,8 @@ end
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
   result = []
-  result.push(array.select{ |n| n.even? })
-  result.push(array.select{ |n| n.odd? })
+  result.push(array.select { |n| n.even? })
+  result.push(array.select { |n| n.odd? })
   return result
 end
 
@@ -84,12 +84,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by{ |word| word.length }[0]
+  array.sort_by { |word| word.length }[0]
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-    array.sort_by{ |word| word.length }[-1]
+  array.sort_by { |word| word.length }[-1]
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -112,7 +112,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.reduce(:+)/array.length.to_f).round
+  (array.reduce(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -120,7 +120,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  limit = array.index{|num| num > 5}
+  limit = array.index { |num| num > 5 }
   array[0...limit]
 end
 
@@ -156,7 +156,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub(/[A-Z]/,'')
+  string.gsub(/[A-Z]/, '')
 end
 
 # round up a float up and convert it to an Integer,
@@ -190,8 +190,8 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   str = string.split
-  str = str.map.with_index { |x, i|((x == 'a' || x == 'the' || x == 'and') && i != 0) ? x : x.capitalize}
-  str = str.join(' ')
+  str = str.map.with_index { |x, i| ((x == 'a' || x == 'the' || x == 'and') && i != 0) ? x : x.capitalize }
+  str.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -228,13 +228,14 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-  str_method()
+  str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+
 end
 
 # given your birthday this year, this method tells you
