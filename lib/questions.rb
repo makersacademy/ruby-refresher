@@ -1,3 +1,5 @@
+require 'net/http'
+require 'date'
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |element| element if element.chars.first == 'a' }
@@ -114,7 +116,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.inject(:+)/(array.length).to_f).round
+  (array.inject(:+) / array.length.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -122,7 +124,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  index_of_no_greater_than_five = array.index {|x| x > 5 }
+  index_of_no_greater_than_five = array.index { |x| x > 5 }
   array[0, index_of_no_greater_than_five]
 end
 
@@ -193,32 +195,36 @@ end
 def titleize_a_string(string)
   exceptions = ['a', 'and', 'the']
   string.capitalize!
-  string.split.map {|word| exceptions.include?(word) ? word : word.capitalize }.join(" ")
+  string.split.map { |word| exceptions.include?(word) ? word : word.capitalize }.join(" ")
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
-  
+  !!string.match(/\W/)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.last
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.exclude_end?
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.read(file_path).split.count
 end
 
 # --- tougher ones ---
@@ -227,12 +233,24 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  do_str_method()
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
+def retrieve_bank_holidays_data
+  uri = URI.parse("https://www.gov.uk/bank-holidays.json")
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true
+  request = Net::HTTP::Get.new(uri.request_uri)
+  response = http.request(request)
+  response.body
+end
+
 def is_a_2014_bank_holiday?(date)
+  bank_holidays = retrieve_bank_holidays_data
+  bank_holidays.include?(date.strftime("%Y-%m-%d"))
 end
 
 # given your birthday this year, this method tells you
@@ -240,6 +258,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  until birthday.friday? do
+    birthday = birthday.to_date.next_year
+  end
+  birthday.year
 end
 
 # in a file, total the number of times words of different lengths
@@ -248,12 +270,27 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  frequency = Hash.new(0)
+
+  file = File.read(file_path)
+  file.scan(/[\w\']+/) do |word|
+    frequency[word.length] += 1
+  end
+  frequency
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  fizz    = [nil, nil, "Fizz"].cycle
+  buzz    = [nil, nil, nil, nil, "Buzz"].cycle
+  numbers = 1..100
+
+  numbers.zip(fizz, buzz) do |number, fiz, buz|
+    fizzbuzz = [fiz, buz].join
+    puts(fizzbuzz.empty? ? number : fizzbuzz)
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
