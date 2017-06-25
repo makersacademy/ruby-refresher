@@ -308,14 +308,11 @@ end
 def ninety_nine_bottles_of_beer
   count = 99
   res = ''
-
   while count > 0
-    res += "#{verse(count)}, #{count} #{bottle(count)} of beer."
+    p "#{verse(count)}, #{count} #{bottle(count)} of beer."
     count -= 1
-    res += "Take one down and pass it around, #{verse(count)}."
+    p "Take one down and pass it around, #{verse(count)}."
   end
-  
-  res + final_verse
 end
 
 def verse(count)
@@ -325,10 +322,3 @@ end
 def bottle(count)
   count > 1 ? 'bottles' : count == 1 ? 'bottle' : 'no more bottles'
 end
-
-def final_verse
-  "No more bottles of beer on the wall, no more bottles of beer.
-   Go to the store and buy some more, 99 bottles of beer on the wall."
-end
-
-ninety_nine_bottles_of_beer()
