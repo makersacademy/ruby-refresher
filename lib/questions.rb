@@ -267,12 +267,29 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  word_length = Hash.new(0)
+  file = File.open(file_path, "r")
+  file.each_line do |line|
+    line.split.each { |word| word_length[word.gsub(/\W/, '').length] += 1 }
+  end
+  return word_length
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  (1..100).each do |number|
+    if number.to_f / 3 == number / 3 && number.to_f / 5 == number / 5
+      puts "FizzBuzz"
+    elsif number.to_f / 3 == number / 3
+      puts "Fizz"
+    elsif number.to_f / 5 == number / 5
+      puts "Buzz"
+    else
+      puts number
+    end
+  end
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
