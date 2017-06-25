@@ -310,8 +310,8 @@ fizzbuzz_without_modulo
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   99.downto(1) do |n|
-    puts "#{n.to_s} bottles of beer on the wall, #{n.to_s}  bottles of beer."
-    puts "Take one down, pass it around, #{(n-1).to_s} bottles of beer on the wall..."
+    puts "#{n} bottles of beer on the wall, #{n}  bottles of beer."
+    puts "Take one down, pass it around, #{n - 1} bottles of beer on the wall..."
   end
   puts 'No more bottles of beer on the wall, no more bottles of beer.'
   puts 'Go to the store and buy some more, 99 bottles of beer on the wall...'
