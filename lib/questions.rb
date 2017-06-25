@@ -260,9 +260,7 @@ def your_birthday_is_on_a_friday_in_the_year(birthday)
   day = birthday.strftime('%d').to_i
   month = birthday.strftime('%m').to_i
 
-  while Time.new(year, month, day).strftime('%A') != "Friday"
-    year += 1
-  end
+  year += 1 while Time.new(year, month, day).strftime('%A') != "Friday"
   year
 end
 
@@ -272,6 +270,13 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+  words = Hash.new(0)
+  File.foreach(file_path) do |line|
+    line.gsub(/[[:punct:]]/, '').split.each do |w|
+      words[w.length] += 1
+    end
+  end
+  words.sort_by { |length, count| length }
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
