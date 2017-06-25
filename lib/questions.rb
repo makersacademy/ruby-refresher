@@ -286,14 +286,14 @@ def fizzbuzz_without_modulo(number)
 end
 
 def isdivisibleby3?(number)
-  while number > 0
+  while number.positive?
     number -= 3
   end
   number.zero?
 end
 
 def isdivisibleby5?(number)
-  while number > 0
+  while number.positive?
     number -= 5
   end
   number.zero?
