@@ -68,7 +68,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition { |num| num.even? }
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -84,12 +84,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min { |a, b| a.size <=> b.size }
+  array.min_by(&:size)
 end
 
 # return the longest word in an array
 def longest_word_in_array(array)
-  array.max { |a, b| a.size <=> b.size }
+  array.max_by(&:size)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
