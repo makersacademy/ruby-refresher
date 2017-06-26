@@ -10,7 +10,7 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select { |element| element != nil }
+  array.reject { |element| element == nil }
 end
 
 # remove instances of nil AND false from an array
@@ -295,4 +295,5 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  # I have done this twice before and that is twice too many, so no thanks
 end
