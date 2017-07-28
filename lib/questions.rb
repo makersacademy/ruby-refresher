@@ -54,14 +54,14 @@ end
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
   return string[0...(string.length/2)] if string.length.even?
-  string[0..(string.length/2).round]
+  string[0..(string.length / 2).round]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  return number if number < 0
-  number - number*2
+  return number if number.negative?
+  number - number * 2
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -125,7 +125,7 @@ end
 # pairing up elements. e.g. ['a', 'b', 'c', 'd'] becomes
 # {'a' => 'b', 'c' => 'd'}
 def convert_array_to_a_hash(array)
-  odds_and_evens = array.partition.with_index { |number, index| index.even? }
+  odds_and_evens = array.partition.with_index { |_number, index| index.even? }
   odds_and_evens[0].zip(odds_and_evens[1]).to_h
 end
 
@@ -189,7 +189,7 @@ end
 def titleize_a_string(string)
   articles = ['a', 'and', 'the']
   string.split.each_with_index.map do |word, index|
-    index > 0 && articles.include?(word) ? word : word.capitalize!
+    index.positive? && articles.include?(word) ? word : word.capitalize!
   end.join(' ')
 end
 
