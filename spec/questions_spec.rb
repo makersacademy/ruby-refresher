@@ -71,7 +71,7 @@ describe 'the Friday test :)' do
     expect(b).to eq -7
   end
 
-  it 'separate_array_into_even_and_odd_numbers' do
+  fit 'separate_array_into_even_and_odd_numbers' do
     n = separate_array_into_even_and_odd_numbers [1, 2, 3, 4, 5, 6, 7]
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
@@ -121,7 +121,7 @@ describe 'the Friday test :)' do
     expect(n).to eq({ 'a' => 'b', 'c' => 'd' })
   end
 
-  it 'get_all_letters_in_array_of_words' do
+  fit 'get_all_letters_in_array_of_words' do
     n = get_all_letters_in_array_of_words ['cat', 'dog', 'fish']
     expect(n).to eq ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
   end
@@ -161,7 +161,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  it 'titleize_a_string' do
+  fit 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
@@ -179,7 +179,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 20
   end
 
-  it 'is_a_3_dot_range?' do
+  fit 'is_a_3_dot_range?' do
     a = is_a_3_dot_range? 1..20
     b = is_a_3_dot_range? 1...20
 
