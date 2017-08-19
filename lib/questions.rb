@@ -1,21 +1,21 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |word| word[0] == "a"}
+  array.select { |word| word[0] == "a" }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |word| word =~ /^[aeiou]/i}
+  array.select { |word| word =~ /^[aeiou]/i }
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.reject { |word| word == nil}
+  array.reject { |word| word.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject { |word| word == nil || word == false}
+  array.reject { |word| word.nil? || word == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -46,20 +46,20 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
-  array.sort_by { |word| word[-1]}
+  array.sort_by { |word| word[-1] }
 end
 
 # cut strings in half, and return the first half, e.g.
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string[0,(string.size/2.to_f).ceil]
+  string[0, (string.size / 2.to_f).ceil]
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number < 0 ? number : number*(-1)
+  number < 0 ? number : number * -1
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,11 +67,9 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  odd = []
-  even = []
   odd = array.select.with_index { |_, i| i.odd? }
   even = array.select.with_index { |_, i| i.even? }
-  result = [odd, even]
+  [odd, even]
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -79,7 +77,7 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.select { |word| word == word.reverse}.count
+  array.select { |word| word == word.reverse }.count
 end
 
 # return the shortest word in an array
@@ -98,7 +96,7 @@ end
 # returns 15
 def total_of_array(array)
   sum = 0
-  array.each { |number| sum += number}
+  array.each { |number| sum += number }
   sum
 end
 
@@ -116,7 +114,7 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-  (array.reduce(:+)/array.size.to_f).ceil
+  (array.reduce(:+) / array.size.to_f).ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -164,7 +162,7 @@ end
 # take out all the capital letters from a string
 # so 'Hello JohnDoe' becomes 'ello ohnoe'
 def remove_capital_letters_from_string(string)
-  string.gsub!(/[A-Z]/,"")
+  string.gsub!(/[A-Z]/, "")
 end
 
 # round up a float up and convert it to an Integer,
@@ -188,7 +186,7 @@ end
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
-  ((email.split("@"))[1].split("."))[0]
+  email.split("@")[1].split(".")[0]
 end
 
 # capitalize the first letter in each word of a string,
