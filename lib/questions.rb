@@ -252,6 +252,10 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  7.times do |i|
+    year = birthday.year + 1 + i
+    return year if Date.new(year, birthday.mon, birthday.mday).strftime('%a') === 'Fri'
+  end
 end
 
 # in a file, total the number of times words of different lengths
