@@ -10,12 +10,12 @@ end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.select { |element| !element.nil?  }
+  array.reject { |element| element.nil? }
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.select { |element| !!element }
+  array.select { |element| element }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -186,7 +186,7 @@ end
 def titleize_a_string(string)
   string.capitalize.split
     .map do |word|
-    if  ["a", "the", "and"].any? { |wrd| wrd == word }
+    if ["a", "the", "and"].any? { |wrd| wrd == word }
       word
     else
       word.capitalize
@@ -246,7 +246,7 @@ end
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
   birthday.friday? ?
-    birthday.year : your_birthday_is_on_a_friday_in_the_year(birthday + 31536000)
+    birthday.year : your_birthday_is_on_a_friday_in_the_year(birthday + 31_536_000)
 end
 
 # in a file, total the number of times words of different lengths
@@ -264,6 +264,44 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  @fizz = @buzz = @fizzbuzz = 1
+  (1..100).each do |number|
+    if @fizzbuzz == 15
+      fizzbuzz_handler
+    elsif @buzz == 5
+      buzz_handler
+    elsif @fizz == 3
+      fizz_handler
+    else
+      number_handler(number)
+    end
+  end
+end
+
+def fizzbuzz_handler
+  @fizz = @buzz = @fizzbuzz = 1
+  puts "fizzbuzz"
+end
+
+def buzz_handler
+  @fizz += 1
+  @buzz = 1
+  @fizzbuzz += 1
+  puts "buzz"
+end
+
+def fizz_handler
+  @fizz = 1
+  @buzz += 1
+  @fizzbuzz += 1
+  puts "fizz"
+end
+
+def number_handler(number)
+  @fizz += 1
+  @buzz += 1
+  @fizzbuzz += 1
+  puts number
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -273,4 +311,17 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  wall = " on the wall"
+  99.downto(1) do |number|
+    beers(number, wall)
+    beers(number)
+    puts "Take one down, pass it around"
+    beers(number - 1, wall)
+  end
+end
+
+def beers(number, on_wall = "")
+  bottle_plural = number == 1 ? "bottle" : "bottles"
+  number_print = number > 0 ? number : "No more"
+  puts "#{number_print} #{bottle_plural} of beer#{on_wall}"
 end
