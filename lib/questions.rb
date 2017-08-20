@@ -1,11 +1,11 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.select { |e| e[0] =~ /a/}
+  array.select { |e| e[0] =~ /a/ }
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.select { |e| e[0] =~ /[aeiou]/}
+  array.select { |e| e[0] =~ /[aeiou]/ }
 end
 
 # remove instances of nil (but NOT false) from an array
@@ -15,7 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if { |e| e == nil || e == false }
+  array.delete_if { |e| e.nil? || e == false }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -117,7 +117,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  index = array.index{ |num| num > 5 }
+  index = array.index { |num| num > 5 }
   array[0...index]
 end
 
@@ -149,7 +149,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.each { |k,v| k + v }.to_a.flatten.inject(:+)
+  hash.each { |k, v| k + v }.to_a.flatten.inject(:+)
 end
 
 # take out all the capital letters from a string
@@ -188,10 +188,11 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  exempt_array = ["a", "and", "the"]
   string
     .capitalize
     .split(" ")
-    .map { |word| word == "a" || word == "and" || word == "the" ? word : word.capitalize }
+    .map { |word| exempt_array.include?(word) ? word : word.capitalize }
     .join(" ")
 end
 
@@ -211,7 +212,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-  !(range.max == range.last)
+  range.max != range.last
 end
 
 # get the square root of a number
@@ -233,7 +234,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
-    str_method.call
+  str_method.call
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -246,7 +247,7 @@ end
 # the next year when your birthday will fall on a friday
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
-def your_birthday_is_on_a_friday_in_the_year(birthday)  
+def your_birthday_is_on_a_friday_in_the_year(birthday)
 end
 
 # in a file, total the number of times words of different lengths
