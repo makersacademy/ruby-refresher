@@ -116,7 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  # n = array.map { |number| array.shift }
+  n = array.take_while { |number| number <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -132,6 +132,7 @@ end
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
   n = array.map { |word| word.scan /\w/  }.flatten.sort
+  # array.join.split("").sort
 end
 
 # swap the keys and values in a hash. e.g.
