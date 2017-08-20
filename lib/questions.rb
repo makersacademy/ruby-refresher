@@ -59,7 +59,7 @@ end
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number > 0 ? -number : number
+  number.positive? ? -number : number
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -322,6 +322,6 @@ end
 
 def beers(number, on_wall = "")
   bottle_plural = number == 1 ? "bottle" : "bottles"
-  number_print = number > 0 ? number : "No more"
+  number_print = number.positive? ? number : "No more"
   puts "#{number_print} #{bottle_plural} of beer#{on_wall}"
 end
