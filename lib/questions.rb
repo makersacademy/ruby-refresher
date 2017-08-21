@@ -1,27 +1,27 @@
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
-  array.map{|n| n if n.start_with? 'a'}.compact
+  array.map { |n| n if n.start_with? 'a' }.compact
 end
 
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
-  array.map{ |n| n if n[0].match(/a|e|i|o|u/)}.compact
+  array.map { |n| n if n[0].match(/a|e|i|o|u/) }.compact
 end
 
 # remove instances of nil (but NOT false) from an array
 def remove_nils_from_array(array)
-  array.map{|n| n }.compact
+  array.map { |n| n }.compact
 end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.grep(String){|n| n}
+  array.grep(String) { |n| n }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map{|n| n.reverse}
+  array.map { |n| n.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -53,13 +53,13 @@ end
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
   string[0..2]
-  #also tried the .slic and .ceil methods
+  # also tried the .slic and .ceil methods
 end
 
 # turn a positive integer into a negative integer. A negative integer
 # stays negative
 def make_numbers_negative(number)
-  number < 0 ? number : number * -1
+  number.negative? ? number : number * -1
 end
 
 # turn an array of numbers into two arrays of numbers, one an array of
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.map { |n| n.group_by  }
+  array.map { |n| n.group_by }
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -75,23 +75,23 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-  array.map{|n| n if n.reverse == n}.compact.count
+  array.map { |n| n if n.reverse == n }.compact.count
 end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.sort_by{|n| n.length }[0]
+  array.sort_by { |n| n.length }[0]
 end
 
 # return the longest word in an array
 def longest_word_in_array(array)
-  array.max{|n,b| n.size <=> b.size}
+  array.max_by(&:size)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
-  array.inject(0){|sum,n| sum + n }
+  array.inject(0) { |sum,n| sum + n }
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
@@ -142,7 +142,7 @@ end
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-  hash.map {|key, value| key + value }.compact.reduce(:+)
+  hash.map { |key, value| key + value }.compact.reduce(:+)
 end
 
 # take out all the capital letters from a string
