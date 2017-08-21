@@ -299,7 +299,7 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   counter = start = 99
-  while counter > 0
+  while counter.positive?
     puts "#{bottles(counter)} of beer on the wall, #{bottles(counter)} of beer."
     puts "Take one down and pass it around, #{bottles(counter - 1)} of beer on the wall."
     puts ""
