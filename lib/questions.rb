@@ -279,6 +279,16 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100) do |number|
+    puts "#{number} --> #{fizzbuzz(number)}"
+  end
+end
+
+def fizzbuzz(number)
+  return "Fizzbuzz" if number == number / 15 * 15
+  return "Fizz" if number == number / 3 * 3
+  return "Buzz" if number == number / 5 * 5
+  number
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
@@ -288,4 +298,19 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  counter = start = 99
+  while counter > 0
+    puts "#{bottles(counter)} of beer on the wall, #{bottles(counter)} of beer."
+    puts "Take one down and pass it around, #{bottles(counter - 1)} of beer on the wall."
+    puts ""
+    counter -= 1
+  end
+  puts "#{bottles(counter)} of beer on the wall, #{bottles(counter)} of beer.".capitalize
+  puts "Go to the store and buy some more, #{bottles(start)} of beer on the wall."
+end
+
+def bottles(number)
+  return "no more bottles" if number.zero?
+  return "1 bottle" if number == 1
+  "#{number} bottles"
 end
