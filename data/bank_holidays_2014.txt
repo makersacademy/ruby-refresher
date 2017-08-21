@@ -1,0 +1,8 @@
+26 December	Friday	Boxing Day
+25 December	Thursday	Christmas Day
+25 August	Monday	Summer bank holiday
+26 May	Monday	Spring bank holiday
+5 May	Monday	Early May bank holiday
+21 April	Monday	Easter Monday
+18 April	Friday	Good Friday
+1 January	Wednesday	New Year’s Day
