@@ -32,6 +32,8 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  new_array = array.repeated_combination(2).to_a
+  new_array.select{|pair| pair[0] != pair[1]}
 end
 
 # discard the first 3 elements of an array,
@@ -96,11 +98,16 @@ end
 # add up all the numbers in an array, so [1, 3, 5, 6]
 # returns 15
 def total_of_array(array)
+  array.inject(0){|sum, x| sum + x}
 end
 
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
+  new_array = []
+  array.each {|item| new_array.push(item)}
+  array.each {|item| new_array.push(item)}
+  new_array
 end
 
 # convert a symbol into a string
