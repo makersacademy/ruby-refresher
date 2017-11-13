@@ -6,7 +6,7 @@ end
 # keep only the elements that start with a vowel
 def select_elements_starting_with_vowel(array)
   array.select do |item|
-    item[0] == 'a' || item [0] =='e' || item[0] == 'i' || item [0] == 'o' || item [0] =='u'
+    item[0] == 'a' || item[0] =='e' || item[0] == 'i' || item [0] == 'o' || item [0] =='u'
   end
 end
 
@@ -106,10 +106,7 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-  new_array = []
-  array.each {|item| new_array.push(item)}
-  array.each {|item| new_array.push(item)}
-  new_array
+  new_array = array
 end
 
 # convert a symbol into a string
@@ -145,6 +142,7 @@ end
 # . e.g. the array ['cat', 'dog', 'fish'] becomes
 # ['a', 'c', 'd', 'f', 'g', 'h', 'i', 'o', 's', 't']
 def get_all_letters_in_array_of_words(array)
+  array.join("").chars.sort
   # new_array = array.to_s..scan(/./)
   # new_array.sort
 end
@@ -187,6 +185,8 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
+
 end
 
 # get the domain name *without* the .com part, from an email address
@@ -207,6 +207,9 @@ end
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  # regex = "?<>',?[]}{=-)(*&^%$#`~{}".split
+  # p regex
+  # regex.each{ |regex| string.split("").each{ |char| char == regex ? true : false}}
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
@@ -218,6 +221,7 @@ end
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+    range.exclude_end?
 end
 
 # get the square root of a number
@@ -227,6 +231,8 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  f = File.open("#{file_path}", "r")
+  f.read.split(" ").length
 end
 
 # --- tougher ones ---
@@ -235,6 +241,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  raise NameError
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -248,6 +255,7 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  birthday.wday == 5
 end
 
 # in a file, total the number of times words of different lengths
