@@ -90,8 +90,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-
-
+ array.partition {|x| x.even?}
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -99,6 +98,13 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+  x = 0
+  for i in array
+    if i == i.reverse
+      x += 1
+    end
+  end
+  x
 end
 
 # return the shortest word in an array
@@ -122,7 +128,13 @@ end
 # turn an array into itself repeated twice. So [1, 2, 3]
 # becomes [1, 2, 3, 1, 2, 3]
 def double_array(array)
-
+  foo = (array.length) - 1
+  x = 0
+  while x < 3 do
+  array.unshift(array[foo])
+  x += 1
+  end
+  array
 end
 
 # convert a symbol into a string
@@ -133,7 +145,8 @@ end
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 17
 def average_of_array(array)
-
+  avg = (array.sum) / (array.length.to_f)
+  avg.ceil
 end
 
 # get all the elements in an array, up until the first element
@@ -177,13 +190,17 @@ end
 # {'a' => 'b', 'c' => 'd'} becomes
 # {'b' => 'a', 'd' => 'c'}
 def swap_keys_and_values_in_a_hash(hash)
+  hash.invert
+
 end
 
 # in a hash where the keys and values are all numbers
 # add all the keys and all the values together, e.g.
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
-
+  x = 0
+  hash.each {|key, value| x += key + value}
+  x
 end
 
 # take out all the capital letters from a string
@@ -207,6 +224,7 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  date.strftime("%d/%m/%Y")
 
 end
 
@@ -222,7 +240,15 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-
+  little_words = ["a", "and", "the"]
+  string.capitalize!
+  string.split(" ").map {|w|
+    if little_words.include?(w)
+      w
+      else
+        w.capitalize
+      end
+    }.join(" ")
 end
 
 # return true if a string contains any special characters
@@ -235,12 +261,13 @@ end
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
-
+  range.to_s =~ /(\.){3}/ ? true : false
 end
 
 # get the square root of a number
@@ -250,6 +277,9 @@ end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  text = File.read(file_path)
+  words = text.split(" ")
+  words.count
 end
 
 # --- tougher ones ---
@@ -264,6 +294,11 @@ end
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  date = date.strftime("%d/%m/%Y")
+  holidays = ['1/01/2014','2/01/2014','17/03/2014','18/04/2014',
+  '21/04/2014','5/05/2014','26/05/2014','12/07/2014','14/07/2014',
+  '4/08/2014','25/08/2014','30/11/2014','1/12/2014','25/12/2014','26/12/2014']
+  holidays.include?(date)
 end
 
 # given your birthday this year, this method tells you
