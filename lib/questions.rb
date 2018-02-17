@@ -85,6 +85,7 @@ end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
+  array.max { |item_1, item_2| item_1.length <=> item_2.length  }
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
