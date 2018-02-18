@@ -286,4 +286,13 @@ end
 # at the end.
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
+  counter = 99
+  while counter > 0
+    puts "#{counter} bottles of beer on the wall, #{counter} bottles of beer."
+    counter -= 1
+    puts "Take one down and pass it around, #{counter.zero? ? "no more" : counter}"\
+         " bottles of beer on the wall."
+  end
+  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts "Go to the store and buy some more, #{counter} bottles of beer on the wall."
 end
