@@ -15,13 +15,13 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.reject { |item| !item }
+  array.select { |item| item }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map { |item| item.reverse  }
+  array.map { |item| item.reverse }
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -53,7 +53,7 @@ end
 # 'banana' becomes 'ban'. If the string is an odd number of letters
 # round up - so 'apple' becomes 'app'
 def get_first_half_of_string(string)
-  string.slice(0, (string.length/2.0).ceil)
+  string.slice(0, (string.length / 2.0).ceil)
 end
 
 # turn a positive integer into a negative integer. A negative integer
@@ -80,12 +80,12 @@ end
 
 # return the shortest word in an array
 def shortest_word_in_array(array)
-  array.min { |item_1, item_2| item_1.length <=> item_2.length  }
+  array.min_by(&:length)
 end
 
 # return the shortest word in an array
 def longest_word_in_array(array)
-  array.max { |item_1, item_2| item_1.length <=> item_2.length  }
+  array.max_by(&:length)
 end
 
 # add up all the numbers in an array, so [1, 3, 5, 6]
@@ -116,7 +116,7 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
-  array.take_while { |item| item <= 5}
+  array.take_while { |item| item <= 5 }
 end
 
 # turn an array (with an even number of elements) into a hash, by
@@ -184,7 +184,9 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.map { |item| ['a', 'and', 'the'].include?(item) ? item : item.capitalize }.join(' ')
+  string.capitalize.split.map do |item|
+    ['a', 'and', 'the'].include?(item) ? item : item.capitalize
+  end.join(' ')
 end
 
 # return true if a string contains any special characters
@@ -267,15 +269,11 @@ end
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
   (1..100).each do |number|
-    if number.remainder(15).zero?
-      puts 'fizzbuzz'
-    elsif number.remainder(5).zero?
-      puts 'buzz'
-    elsif number.remainder(3).zero?
-      puts 'fizz'
-    else
-      puts number
-    end
+    output_string = ''
+    output_string += 'fizz' if number.remainder(3).zero?
+    output_string += 'buzz' if number.remainder(5).zero?
+    output_string = number if output_string.length.zero?
+    puts output_string
   end
 end
 
