@@ -46,6 +46,9 @@ end
 # sort an array of words by their last letter, e.g.
 # ['sky', 'puma', 'maker'] becomes ['puma', 'maker', 'sky']
 def array_sort_by_last_letter_of_word(array)
+  array.map { |str| str.reverse! }
+  array.sort!
+  array.map { |str| str.reverse! }
 end
 
 # cut strings in half, and return the first half, e.g.

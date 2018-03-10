@@ -50,7 +50,7 @@ describe 'the Friday test :)' do
     expect(n).to eq [1, 2, 3, 4, 5]
   end
 
-  it 'array_sort_by_last_letter_of_word' do
+  fit 'array_sort_by_last_letter_of_word' do
     n = array_sort_by_last_letter_of_word ['sky', 'puma', 'maker']
     expect(n).to eq ['puma', 'maker', 'sky']
   end
