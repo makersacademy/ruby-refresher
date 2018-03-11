@@ -15,8 +15,7 @@ end
 
 # remove instances of nil AND false from an array
 def remove_nils_and_false_from_array(array)
-  array.delete_if { |elem| elem == false }
-  array.compact
+  array.delete_if { |elem| elem == false || elem == nil }
 end
 
 # don't reverse the array, but reverse every word inside it. e.g.
@@ -259,7 +258,6 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
-  1.upto(100)
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
