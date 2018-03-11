@@ -81,7 +81,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 3
   end
 
-  it 'shortest_word_in_array' do
+  fit 'shortest_word_in_array' do
     n = shortest_word_in_array %w(here is a bunch of words of different lengths)
     expect(n).to eq 'a'
   end
