@@ -153,7 +153,7 @@ end
 # {1 => 1, 2 => 2} becomes 6
 def add_together_keys_and_values(hash)
   sum = 0
-  hash.sum { |key, value| sum =+ (key + value) }
+  hash.sum { |key, value| sum = + (key + value) }
 end
 
 # take out all the capital letters from a string
@@ -192,7 +192,7 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  string.capitalize.split.map { |word| word.length > 3 ? word.capitalize! : word  }.join(' ')
+  string.capitalize.split.map { |word| word.length > 3 ? word.capitalize! : word }.join(' ')
 end
 
 # return true if a string contains any special characters
