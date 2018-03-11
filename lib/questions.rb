@@ -188,10 +188,11 @@ end
 
 # capitalize the first letter in each word of a string,
 #  except 'a', 'and' and 'the'
-# *unless* they come at the start of the start of the string, e.g.
+# *unless* they come at the start of the string, e.g.
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  string.capitalize.split.map { |word| word.length > 3 ? word.capitalize! : word  }.join(' ')
 end
 
 # return true if a string contains any special characters
