@@ -30,6 +30,9 @@ end
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice,
 def every_possible_pairing_of_students(array)
+  names_array = []
+  array.cycle(2) { |x| names_array << x }
+  names_array.each_slice(2).to_a
 end
 
 # discard the first 3 elements of an array,
@@ -256,6 +259,7 @@ end
 # go from 1 to 100
 # (there's no RSpec test for this one)
 def fizzbuzz_without_modulo
+  1.upto(100)
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
