@@ -36,10 +36,10 @@ PLATFORMS
 
 DEPENDENCIES
   rspec
-  rubocop (= 0.48.1)
+  rubocop
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.5.1p57
 
 BUNDLED WITH
-   1.13.7
+   1.16.2

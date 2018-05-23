@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.4.0'
+ruby '2.5.1'
 
 group :development do
   gem 'rspec'
-  gem 'rubocop', '0.48.1'
+  gem 'rubocop'
 end
