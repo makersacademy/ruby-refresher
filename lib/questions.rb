@@ -21,7 +21,7 @@ end
 # don't reverse the array, but reverse every word inside it. e.g.
 # ['dog', 'monkey'] becomes ['god', 'yeknom']
 def reverse_every_element_in_array(array)
-  array.map { |item| item.reverse }
+  array.map(&:reverse)
 end
 
 # given an array of student names, like ['Bob', 'Dave', 'Clive']
@@ -67,7 +67,7 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
-  array.partition { |item| item.even? }
+  array.partition(&:even?)
 end
 
 # count the numbers of elements in an element which are palindromes
@@ -185,7 +185,7 @@ end
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
   string.capitalize.split.map do |item|
-    ['a', 'and', 'the'].include?(item) ? item : item.capitalize
+    %w[a and the].include?(item) ? item : item.capitalize
   end.join(' ')
 end
 
@@ -210,7 +210,7 @@ end
 
 # get the square root of a number
 def square_root_of(number)
-  Math::sqrt(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
@@ -223,8 +223,8 @@ end
 # call an arbitrary method from a string. so if I
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
-def call_method_from_string(str_method)
-  self.str_method
+def call_method_from_string(_str_method)
+  str_method
 end
 
 # return true if the date is a uk bank holiday for 2014
@@ -261,7 +261,7 @@ def count_words_of_each_length_in_a_file(file_path)
     frequencies[word.delete(',.').length] += 1
   end
 
-  return frequencies
+  frequencies
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
@@ -288,9 +288,9 @@ def ninety_nine_bottles_of_beer
   while counter > 0
     puts "#{counter} bottles of beer on the wall, #{counter} bottles of beer."
     counter -= 1
-    puts "Take one down and pass it around, #{counter.zero? ? "no more" : counter}"\
-         " bottles of beer on the wall."
+    puts "Take one down and pass it around, #{counter.zero? ? 'no more' : counter}"\
+         ' bottles of beer on the wall.'
   end
-  puts "No more bottles of beer on the wall, no more bottles of beer."
+  puts 'No more bottles of beer on the wall, no more bottles of beer.'
   puts "Go to the store and buy some more, #{counter} bottles of beer on the wall."
 end
