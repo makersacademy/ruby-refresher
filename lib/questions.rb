@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |item| item[0] == 'a' }
@@ -204,7 +206,7 @@ end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
-def is_a_3_dot_range?(range)
+def a_3_dot_range?(range)
   range.exclude_end?
 end
 
@@ -230,7 +232,7 @@ end
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
-def is_a_2014_bank_holiday?(date)
+def a_2014_bank_holiday?(date)
   bank_holidays = ['26/12',	'25/12', '25/08', '26/05', '05/05', '21/04', '18/04', '01/01']
   bank_holidays.include?(date.strftime('%d/%m'))
 end
@@ -285,7 +287,7 @@ end
 # (there's no RSpec test for this one)
 def ninety_nine_bottles_of_beer
   counter = 99
-  while counter > 0
+  while counter.positive?
     puts "#{counter} bottles of beer on the wall, #{counter} bottles of beer."
     counter -= 1
     puts "Take one down and pass it around, #{counter.zero? ? 'no more' : counter}"\

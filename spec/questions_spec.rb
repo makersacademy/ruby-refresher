@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 require 'questions'
 
@@ -178,9 +180,9 @@ describe 'the Friday test :)' do
     expect(n).to eq 20
   end
 
-  it 'is_a_3_dot_range?' do
-    a = is_a_3_dot_range? 1..20
-    b = is_a_3_dot_range? 1...20
+  it 'a_3_dot_range?' do
+    a = a_3_dot_range? 1..20
+    b = a_3_dot_range? 1...20
 
     expect(a).to be false
     expect(b).to be true
@@ -202,9 +204,9 @@ describe 'the Friday test :)' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
-  it 'is_a_2014_bank_holiday?' do
-    a = is_a_2014_bank_holiday?(Time.new(2014, 8, 25))
-    b = is_a_2014_bank_holiday?(Time.new(2014, 8, 26))
+  it 'a_2014_bank_holiday?' do
+    a = a_2014_bank_holiday?(Time.new(2014, 8, 25))
+    b = a_2014_bank_holiday?(Time.new(2014, 8, 26))
 
     expect(a).to be true
     expect(b).to be false
