@@ -76,7 +76,7 @@ describe 'the Friday test :)' do
     expect(n).to eq [[2, 4, 6], [1, 3, 5, 7]]
   end
 
-  it 'number_of_elements_that_are_palindromes' do
+  fit 'number_of_elements_that_are_palindromes' do
     n = number_of_elements_that_are_palindromes ['bob', 'radar', 'alex', 'noon', 'banana']
     expect(n).to eq 3
   end
@@ -136,7 +136,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 6
   end
 
-  it 'remove_capital_letters_from_string' do
+  fit 'remove_capital_letters_from_string' do
     n = remove_capital_letters_from_string 'Hello JohnDoe'
     expect(n).to eq 'ello ohnoe'
   end
@@ -161,7 +161,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 'makersacademy'
   end
 
-  it 'titleize_a_string' do
+  fit 'titleize_a_string' do
     n = titleize_a_string 'the lion the witch and the wardrobe'
     expect(n).to eq 'The Lion the Witch and the Wardrobe'
   end
@@ -199,7 +199,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 70
   end
 
-  it 'call_method_from_string' do
+  fit 'call_method_from_string' do
     expect { call_method_from_string('foobar') }.to raise_error(NameError)
   end
 
@@ -216,7 +216,7 @@ describe 'the Friday test :)' do
     expect(n).to eq 2016
   end
 
-  it 'count_words_of_each_length_in_a_file' do
+  fit 'count_words_of_each_length_in_a_file' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({ 1 => 1, 2 => 5, 3 => 7, 4 => 12, 5 => 14, 6 => 4, 7 => 8, 8 => 6, 9 => 6, 10 => 2, 11 => 2, 12 => 3 })
   end
